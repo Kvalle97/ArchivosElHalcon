@@ -152,7 +152,7 @@ namespace CSPresentacion.Sistema.Utilidades
         /// <param name="e"></param>
         public static void MostrarError(Exception e)
         {
-            string folder = "C:\\HalconLogs\\Importaciones\\";
+            string folder = "C:\\HalconLogs\\"+ Datos_Globales.Sistema + "\\";
 
             string tiempo = DateTime.Now.ToString(CultureInfo.CurrentCulture);
             string tiempoFileName = DateTime.Now.ToFileTime().ToString();

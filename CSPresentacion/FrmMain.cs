@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraBars;
 using CSNegocios;
+using CSPresentacion.Sistema.Administracion;
 using CSPresentacion.Sistema.General;
 using DevExpress.LookAndFeel;
 using DevExpress.XtraEditors;
@@ -22,10 +23,12 @@ namespace CSPresentacion
     /// </summary>
     public partial class FrmMain : DevExpress.XtraBars.Ribbon.RibbonForm
     {
+        private bool preguntarSucursal = false;
+
         private static List<string> lstDePantallas = new List<string>()
         {
             "Usuarios",
-            "Sistema"
+            "Administracióndesistemas"
         };
 
 
@@ -119,34 +122,46 @@ namespace CSPresentacion
             UIHelper.ValidarPantallas(lstDePantallas, rpModulos,
                 new string[] {"Reportes", "Importaciones en transito"});
 
-
-            switch (n)
+            if (preguntarSucursal)
             {
-                case 0:
-                    XtraMessageBox.Show("Este usuario no tiene Sucursales Asociadas");
-                    this.Close();
-                    break;
-
-                case 1:
-                    Datos_Globales.IdSucursal = OperacionesGlobal.numGet_Int(
-                        "select halcon.[dbo].[fxObtenerUsuarioIDEmpresa]('" + Datos_Globales.Usuario + "')");
-                    Datos_Globales.NombreSucursal = OperacionesGlobal.strGet_String(
-                        "select halcon.[dbo].[fxObtenerNombreSucursal](" + Datos_Globales.IdSucursal.ToString() +
-                        ") as Sucursal", "Halcon");
-
-
-                    break;
-
-                default:
-                    FrmSucursales frm = new FrmSucursales();
-                    frm.ShowDialog();
-                    if (frm.DialogResult != DialogResult.OK)
+                switch (n)
+                {
+                    case 0:
+                        XtraMessageBox.Show("Este usuario no tiene Sucursales Asociadas");
                         this.Close();
-                    break;
+                        break;
+
+                    case 1:
+                        Datos_Globales.IdSucursal = OperacionesGlobal.numGet_Int(
+                            "select halcon.[dbo].[fxObtenerUsuarioIDEmpresa]('" + Datos_Globales.Usuario + "')");
+                        Datos_Globales.NombreSucursal = OperacionesGlobal.strGet_String(
+                            "select halcon.[dbo].[fxObtenerNombreSucursal](" + Datos_Globales.IdSucursal.ToString() +
+                            ") as Sucursal", "Halcon");
+
+
+                        break;
+
+                    default:
+                        FrmSucursales frm = new FrmSucursales();
+                        frm.ShowDialog();
+                        if (frm.DialogResult != DialogResult.OK)
+                            this.Close();
+                        break;
+                }
+
+                this.barSucursal.Caption = "Sucursal: " + Datos_Globales.NombreSucursal;
+                this.barSucursal.Visibility = BarItemVisibility.Always;
+
+                Datos_Globales.ID_Empresa = Datos_Globales.IdSucursal.ToString();
+            }
+            else
+            {
+                this.barSucursal.Visibility = BarItemVisibility.Never;
+                Datos_Globales.IdSucursal = -1;
+                Datos_Globales.ID_Empresa = null;
+                Datos_Globales.NombreSucursal = null;
             }
 
-
-            this.barSucursal.Caption = "Sucursal: " + Datos_Globales.NombreSucursal;
             this.barUsuario.Caption = "Usuario: " + Datos_Globales.Usuario;
             this.barLogin.Caption = "ID: " + Datos_Globales.IdLogin.ToString();
             this.barTC.Caption = "TC: " + OperacionesGlobal.Obtener_TC();
@@ -154,10 +169,14 @@ namespace CSPresentacion
             //**********Parte nueva************/
             this.barIP.Caption = "IP: " + Datos_Globales.IPLocal;
 
-            this.Text = "Sistema de administración, " + Datos_Globales.NombreSucursal;
-
-
-            Datos_Globales.ID_Empresa = Datos_Globales.IdSucursal.ToString();
+            if (Datos_Globales.NombreSucursal != null)
+            {
+                this.Text = "Sistema de administración, " + Datos_Globales.NombreSucursal;
+            }
+            else
+            {
+                this.Text = "Sistema de administración";
+            }
         }
 
         private void btnFormulario_ItemClick(object sender, ItemClickEventArgs e)
@@ -171,10 +190,11 @@ namespace CSPresentacion
             }
         }
 
-        private void btnCatalogo_ItemClick(object sender, ItemClickEventArgs e)
+        private void btnUsuarios_ItemClick(object sender, ItemClickEventArgs e)
         {
             try
             {
+                AgregarAlMdi(FrmUsuarios.Instance());
             }
             catch (Exception ex)
             {
@@ -192,7 +212,7 @@ namespace CSPresentacion
         {
             MostrarManualDeUsuario();
         }
-        
+
         private void btnCerrarSesion_ItemClick(object sender, ItemClickEventArgs e)
         {
             this.MdiChildren.ToList().ForEach(x => x.Close());
@@ -224,7 +244,7 @@ namespace CSPresentacion
             }
         }
 
-        
+
         private void btnOrdenesDeCompraPorProveedor_ItemClick(object sender, ItemClickEventArgs e)
         {
             //AgregarAlMdi(FrmReportes.Instance(FrmReportes.TipoDeReporte.OrdenDeCompraPorProveedor));
@@ -245,7 +265,7 @@ namespace CSPresentacion
         private void btnproductosCompradosYVendidosPorProveedorYSucursal_ItemClick(object sender, ItemClickEventArgs e)
         {
         }
-        
+
 
         private void barButtonItem2_ItemClick(object sender, ItemClickEventArgs e)
         {
@@ -259,7 +279,18 @@ namespace CSPresentacion
             //}
         }
 
-       
+        private void btnAdministradorDeSistema_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            try
+            {
+                AgregarAlMdi(FrmAdministracionDeSistema.Instance());
+            }
+            catch (Exception exception)
+            {
+                UIHelper.MostrarError(exception);
+            }
+        }
         #endregion
+
     }
 }
