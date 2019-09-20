@@ -146,6 +146,35 @@ namespace CSNegocios.Servicios.General
         }
 
         /// <summary>
+        /// Cargar sucursales.
+        /// </summary>
+        /// <param name="lue"></param>
+        public void CargarSucursales(LookUpEdit lue, bool incluirTodas)
+        {
+            strSql = "exec SpInvCargarSucursales";
+
+            dataTable = CargarDataTable(strSql);
+
+            if (incluirTodas)
+            {
+                DataRow dr = dataTable.NewRow();
+
+                dr["IdEmpresa"] = 99;
+                dr["Empresa"] = "Todas las sucursales";
+
+                dataTable.Rows.Add(dr);
+            }
+
+            lue.Properties.DataSource = dataTable;
+            lue.Properties.ValueMember = "IdEmpresa";
+            lue.Properties.DisplayMember = "Empresa";
+
+            lue.Properties.ForceInitialize();
+
+            lue.ItemIndex = 0;
+        }
+
+        /// <summary>
         /// Guardar Documento
         /// </summary>
         /// <param name="noDoc"></param>
