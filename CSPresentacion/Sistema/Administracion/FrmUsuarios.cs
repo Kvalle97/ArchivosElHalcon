@@ -46,7 +46,7 @@ namespace CSPresentacion.Sistema.Administracion
 
         private void tpOpcionesGenerales_Paint(object sender, PaintEventArgs e)
         {
-             
+              
         }
     }
 }
