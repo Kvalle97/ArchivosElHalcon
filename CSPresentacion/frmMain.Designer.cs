@@ -64,6 +64,7 @@
             this.barButtonItem4 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem5 = new DevExpress.XtraBars.BarButtonItem();
             this.btnNacionalEInternacional = new DevExpress.XtraBars.BarButtonItem();
+            this.btnAdministracionDeSistema = new DevExpress.XtraBars.BarButtonItem();
             this.rpModulos = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.rpAdministracion = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rpConfiguracion = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -116,9 +117,10 @@
             this.btnComprasInternacionalesSinEditar,
             this.barButtonItem4,
             this.barButtonItem5,
-            this.btnNacionalEInternacional});
+            this.btnNacionalEInternacional,
+            this.btnAdministracionDeSistema});
             this.ribbon.Location = new System.Drawing.Point(0, 0);
-            this.ribbon.MaxItemId = 48;
+            this.ribbon.MaxItemId = 49;
             this.ribbon.Name = "ribbon";
             this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.rpModulos,
@@ -247,7 +249,7 @@
             this.btnUsuarios.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnUsuarios.ImageOptions.LargeImage")));
             this.btnUsuarios.Name = "btnUsuarios";
             this.btnUsuarios.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
-            this.btnUsuarios.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnCatalogo_ItemClick);
+            this.btnUsuarios.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnUsuarios_ItemClick);
             // 
             // barButtonItem3
             // 
@@ -367,6 +369,15 @@
             this.btnNacionalEInternacional.Id = 45;
             this.btnNacionalEInternacional.Name = "btnNacionalEInternacional";
             // 
+            // btnAdministracionDeSistema
+            // 
+            this.btnAdministracionDeSistema.Caption = "Administración de sistemas";
+            this.btnAdministracionDeSistema.Id = 48;
+            this.btnAdministracionDeSistema.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnAdministradorDeSistema.ImageOptions.Image")));
+            this.btnAdministracionDeSistema.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnAdministradorDeSistema.ImageOptions.LargeImage")));
+            this.btnAdministracionDeSistema.Name = "btnAdministracionDeSistema";
+            this.btnAdministracionDeSistema.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnAdministradorDeSistema_ItemClick);
+            // 
             // rpModulos
             // 
             this.rpModulos.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -377,6 +388,7 @@
             // rpAdministracion
             // 
             this.rpAdministracion.ItemLinks.Add(this.btnUsuarios);
+            this.rpAdministracion.ItemLinks.Add(this.btnAdministracionDeSistema);
             this.rpAdministracion.Name = "rpAdministracion";
             this.rpAdministracion.Text = "Administración";
             // 
@@ -517,5 +529,6 @@
         private DevExpress.XtraBars.BarButtonItem barButtonItem4;
         private DevExpress.XtraBars.BarButtonItem barButtonItem5;
         private DevExpress.XtraBars.BarButtonItem btnNacionalEInternacional;
+        private DevExpress.XtraBars.BarButtonItem btnAdministracionDeSistema;
     }
 }

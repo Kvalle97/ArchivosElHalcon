@@ -142,6 +142,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Sistema\Administracion\FrmAdministracionDeSistema.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sistema\Administracion\FrmAdministracionDeSistema.Designer.cs">
+      <DependentUpon>FrmAdministracionDeSistema.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sistema\Administracion\FrmUsuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sistema\Administracion\FrmUsuarios.Designer.cs">
+      <DependentUpon>FrmUsuarios.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sistema\General\FrmBase.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -194,6 +206,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sistema\Administracion\FrmAdministracionDeSistema.resx">
+      <DependentUpon>FrmAdministracionDeSistema.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sistema\Administracion\FrmUsuarios.resx">
+      <DependentUpon>FrmUsuarios.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sistema\General\FrmBase.resx">
       <DependentUpon>FrmBase.cs</DependentUpon>
@@ -363,7 +381,6 @@
     <None Include="Resources\check-payment_116487.png" />
     <None Include="Resources\compras.png" />
     <None Include="Resources\admin.png" />
-    <Content Include="supplier.ico" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Debug\manual\css\" />
