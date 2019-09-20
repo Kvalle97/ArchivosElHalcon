@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CSNegocios.Servicios;
 using CSPresentacion.Sistema.General;
 
 namespace CSPresentacion.Sistema.Administracion
@@ -19,6 +20,7 @@ namespace CSPresentacion.Sistema.Administracion
 
         private static FrmUsuarios childInstance = null;
 
+        private ServicioUsuarios servicioUsuarios = new ServicioUsuarios();
         /// <summary>
         /// Constructor
         /// </summary>
@@ -43,10 +45,12 @@ namespace CSPresentacion.Sistema.Administracion
             }
             return childInstance;
         }
-
-        private void tpOpcionesGenerales_Paint(object sender, PaintEventArgs e)
+        
+        private void FrmUsuarios_Load(object sender, EventArgs e)
         {
-              
+            servicioUsuarios.CargarUsuarios(gcUsuarios, gvUsuarios);
+            servicioUsuarios.CargarSucursales(lueSucursalDeOrigen, false);
+            servicioUsuarios.CargarNiveles(lueNievelDeAcceso);
         }
     }
 }
