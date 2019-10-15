@@ -33,7 +33,7 @@
             this.previewBar1 = new DevExpress.XtraPrinting.Preview.PreviewBar();
             this.previewBar2 = new DevExpress.XtraPrinting.Preview.PreviewBar();
             this.previewBar3 = new DevExpress.XtraPrinting.Preview.PreviewBar();
-            this.dvReportes = new DevExpress.XtraPrinting.Preview.DocumentViewer();
+            this.DocumtViewer = new DevExpress.XtraPrinting.Preview.DocumentViewer();
             this.documentViewerBarManager1 = new DevExpress.XtraPrinting.Preview.DocumentViewerBarManager(this.components);
             this.previewBar4 = new DevExpress.XtraPrinting.Preview.PreviewBar();
             this.bbiDocumentMap = new DevExpress.XtraPrinting.Preview.PrintPreviewBarItem();
@@ -137,12 +137,12 @@
             // 
             // dvReportes
             // 
-            this.dvReportes.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dvReportes.IsMetric = false;
-            this.dvReportes.Location = new System.Drawing.Point(0, 54);
-            this.dvReportes.Name = "dvReportes";
-            this.dvReportes.Size = new System.Drawing.Size(1282, 518);
-            this.dvReportes.TabIndex = 2;
+            this.DocumtViewer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DocumtViewer.IsMetric = false;
+            this.DocumtViewer.Location = new System.Drawing.Point(0, 54);
+            this.DocumtViewer.Name = "DocumtViewer";
+            this.DocumtViewer.Size = new System.Drawing.Size(1282, 518);
+            this.DocumtViewer.TabIndex = 2;
             // 
             // documentViewerBarManager1
             // 
@@ -154,7 +154,7 @@
             this.documentViewerBarManager1.DockControls.Add(this.barDockControl2);
             this.documentViewerBarManager1.DockControls.Add(this.barDockControl3);
             this.documentViewerBarManager1.DockControls.Add(this.barDockControl4);
-            this.documentViewerBarManager1.DocumentViewer = this.dvReportes;
+            this.documentViewerBarManager1.DocumentViewer = this.DocumtViewer;
             this.documentViewerBarManager1.Form = this;
             this.documentViewerBarManager1.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("documentViewerBarManager1.ImageStream")));
             this.documentViewerBarManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
@@ -947,7 +947,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.dvReportes);
+            this.Controls.Add(this.DocumtViewer);
             this.Controls.Add(this.barDockControl3);
             this.Controls.Add(this.barDockControl4);
             this.Controls.Add(this.barDockControl2);
@@ -1039,6 +1039,5 @@
         private DevExpress.XtraPrinting.Preview.PrintPreviewBarCheckItem printPreviewBarCheckItem17;
         private DevExpress.XtraPrinting.Preview.PrintPreviewBarCheckItem printPreviewBarCheckItem18;
         private DevExpress.XtraPrinting.Preview.PrintPreviewBarCheckItem printPreviewBarCheckItem19;
-        private DevExpress.XtraPrinting.Preview.DocumentViewer dvReportes;
     }
 }

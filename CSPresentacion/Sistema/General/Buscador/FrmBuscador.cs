@@ -1,39 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using CSNegocios;
-using CSNegocios.Global;
-using CSNegocios.Servicios;
-using DevExpress.DataProcessing;
+using CSPresentacion.Sistema.Utilidades;
 using DevExpress.Utils;
+using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Grid;
-using UIHelper = CSPresentacion.Sistema.Utilidades.UIHelper;
 
 namespace CSPresentacion.Sistema.General.Buscador
 {
     /// <summary>
-    /// Formulario de busquedas
+    ///     Formulario de busquedas
     /// </summary>
-    public partial class FrmBuscador : DevExpress.XtraEditors.XtraForm
+    public partial class FrmBuscador : XtraForm
     {
-      
-
-        private string caption = "";
-        private DataRow dataRow = null;
-        private bool multiSelect = false;
-
         /// <summary>
-        /// Tipo buscador
+        ///     Tipo buscador
         /// </summary>
         public enum TipoBuscador
         {
-           
         }
 
+
+        private bool multiSelect;
+
         /// <summary>
-        /// Constructor
+        ///     Constructor
         /// </summary>
         /// <param name="tipoBuscador"></param>
         public FrmBuscador(TipoBuscador tipoBuscador)
@@ -46,7 +38,6 @@ namespace CSPresentacion.Sistema.General.Buscador
 
                 switch (tipoBuscador)
                 {
-                
                 }
             }
             catch (Exception ex)
@@ -56,7 +47,7 @@ namespace CSPresentacion.Sistema.General.Buscador
         }
 
         /// <summary>
-        /// Constructor
+        ///     Constructor
         /// </summary>
         /// <param name="tipoBuscador"></param>
         /// <param name="idEmrpesa"></param>
@@ -69,7 +60,6 @@ namespace CSPresentacion.Sistema.General.Buscador
 
                 switch (tipoBuscador)
                 {
-                   
                 }
             }
             catch (Exception ex)
@@ -77,103 +67,6 @@ namespace CSPresentacion.Sistema.General.Buscador
                 UIHelper.MostrarError(ex);
             }
         }
-
-        #region Eventos
-
-        private void frmBuscador_Load(object sender, EventArgs e)
-        {
-            gvBuscador.ViewCaption = caption;
-        }
-
-
-        private void btnAceptar_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (multiSelect)
-                {
-                    if (gvBuscador.SelectedRowsCount > 0)
-                    {
-                        this.DialogResult = DialogResult.OK;
-                    }
-                    else
-                    {
-                        UIHelper.AlertarDeError("Debe seleccionar al menos un elemento");
-                    }
-                }
-                else
-                {
-                    if (gvBuscador.GetFocusedDataSourceRowIndex() >= 0)
-                    {
-                        dataRow = gvBuscador.GetDataRow(gvBuscador.FocusedRowHandle);
-
-                        this.DialogResult = DialogResult.OK;
-                    }
-                    else
-                    {
-                        UIHelper.AlertarDeError("Debe seleccionar un elemento primero");
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                UIHelper.MostrarError(ex);
-            }
-        }
-
-        private void btnCancelar_Click(object sender, EventArgs e)
-        {
-            this.DialogResult = DialogResult.Cancel;
-        }
-
-        private void gcBuscador_KeyUp(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    if (multiSelect)
-                    {
-                        return;
-                    }
-
-                    if (gvBuscador.GetFocusedDataSourceRowIndex() >= 0)
-                    {
-                        dataRow = gvBuscador.GetDataRow(gvBuscador.FocusedRowHandle);
-
-                        this.DialogResult = DialogResult.OK;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                UIHelper.MostrarError(ex);
-            }
-        }
-
-        private void gcBuscador_DoubleClick(object sender, EventArgs e)
-        {
-            try
-            {
-                if (multiSelect)
-                {
-                    return;
-                }
-
-                if (gvBuscador.GetFocusedDataSourceRowIndex() >= 0)
-                {
-                    dataRow = gvBuscador.GetDataRow(gvBuscador.FocusedRowHandle);
-
-                    this.DialogResult = DialogResult.OK;
-                }
-            }
-            catch (Exception ex)
-            {
-                UIHelper.MostrarError(ex);
-            }
-        }
-
-        #endregion
 
         #region SobreCargas
 
@@ -184,7 +77,7 @@ namespace CSPresentacion.Sistema.General.Buscador
 
             switch (keyData)
             {
-                case (Keys.Control | Keys.B):
+                case Keys.Control | Keys.B:
 
                     if (btnBuscar.Visible)
                     {
@@ -194,7 +87,7 @@ namespace CSPresentacion.Sistema.General.Buscador
 
                     break;
 
-                case (Keys.Control | Keys.N):
+                case Keys.Control | Keys.N:
 
                     if (btnLimpiar.Visible)
                     {
@@ -210,20 +103,107 @@ namespace CSPresentacion.Sistema.General.Buscador
 
         #endregion
 
+        #region Eventos
+
+        private void frmBuscador_Load(object sender, EventArgs e)
+        {
+            gvBuscador.ViewCaption = CaptionBuscador;
+        }
+
+
+        private void btnAceptar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (multiSelect)
+                {
+                    if (gvBuscador.SelectedRowsCount > 0)
+                        DialogResult = DialogResult.OK;
+                    else
+                        UIHelper.AlertarDeError("Debe seleccionar al menos un elemento");
+                }
+                else
+                {
+                    if (gvBuscador.GetFocusedDataSourceRowIndex() >= 0)
+                    {
+                        DataRow = gvBuscador.GetDataRow(gvBuscador.FocusedRowHandle);
+
+                        DialogResult = DialogResult.OK;
+                    }
+                    else
+                    {
+                        UIHelper.AlertarDeError("Debe seleccionar un elemento primero");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                UIHelper.MostrarError(ex);
+            }
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+        }
+
+        private void gcBuscador_KeyUp(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    if (multiSelect) return;
+
+                    if (gvBuscador.GetFocusedDataSourceRowIndex() >= 0)
+                    {
+                        DataRow = gvBuscador.GetDataRow(gvBuscador.FocusedRowHandle);
+
+                        DialogResult = DialogResult.OK;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                UIHelper.MostrarError(ex);
+            }
+        }
+
+        private void gcBuscador_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                if (multiSelect) return;
+
+                if (gvBuscador.GetFocusedDataSourceRowIndex() >= 0)
+                {
+                    DataRow = gvBuscador.GetDataRow(gvBuscador.FocusedRowHandle);
+
+                    DialogResult = DialogResult.OK;
+                }
+            }
+            catch (Exception ex)
+            {
+                UIHelper.MostrarError(ex);
+            }
+        }
+
+        #endregion
+
         #region Propiedades
 
         /// <summary>
-        /// Fila obtenida de la busqueda
+        ///     Fila obtenida de la busqueda
         /// </summary>
-        public DataRow DataRow => dataRow;
+        public DataRow DataRow { get; private set; }
 
         /// <summary>
-        /// Seleccion multiple ?
-        /// Convierte el buscador en un buscador de multiples filas
+        ///     Seleccion multiple ?
+        ///     Convierte el buscador en un buscador de multiples filas
         /// </summary>
         public bool MultiSelect
         {
-            get { return multiSelect; }
+            get => multiSelect;
             set
             {
                 if (value)
@@ -238,29 +218,22 @@ namespace CSPresentacion.Sistema.General.Buscador
         }
 
         /// <summary>
-        /// Cuando el buscador es de multiple filas, obtiene todas las seleccionadas
+        ///     Cuando el buscador es de multiple filas, obtiene todas las seleccionadas
         /// </summary>
         /// <returns></returns>
         public List<DataRow> ObtenerFilasSeleccionadas()
         {
             List<DataRow> rows = new List<DataRow>();
 
-            foreach (int i in gvBuscador.GetSelectedRows())
-            {
-                rows.Add(gvBuscador.GetDataRow(i));
-            }
+            foreach (int i in gvBuscador.GetSelectedRows()) rows.Add(gvBuscador.GetDataRow(i));
 
             return rows;
         }
 
         /// <summary>
-        /// Caption que mostrara el buscador    
+        ///     Caption que mostrara el buscador
         /// </summary>
-        public string CaptionBuscador
-        {
-            get { return caption; }
-            set { caption = value; }
-        }
+        public string CaptionBuscador { get; set; } = "";
 
         #endregion
     }

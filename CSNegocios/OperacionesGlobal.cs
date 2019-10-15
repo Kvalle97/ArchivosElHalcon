@@ -1,26 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data;
 using System.Data.SqlClient;
 using CSDatos;
-using System.Data;
-
 
 namespace CSNegocios
 {
     /// <summary>
-    /// Clase de operaciones globales con sql.
+    ///     Clase de operaciones globales con sql.
     /// </summary>
     public static class OperacionesGlobal
     {
         private static string ErrorGW;
-        private static decimal tc;
+
+        /// <summary>
+        ///     Tasa de cambio
+        /// </summary>
+        public static decimal Tc { get; set; }
 
 
         /// <summary>
-        /// Intento de conectar
+        ///     Intento de conectar
         /// </summary>
         /// <param name="direccion"></param>
         /// <param name="bd"></param>
@@ -34,11 +33,11 @@ namespace CSNegocios
             connetionString = @"Data Source=" + direccion + ";Initial Catalog=" + bd + ";User ID=" + login +
                               ";Password=" + pswd + "; Connection Timeout=35";
             cnn = new SqlConnection(connetionString);
-            SqlExtensions.QuickOpen(cnn, timeout);
+            cnn.QuickOpen(timeout);
         }
 
         /// <summary>
-        /// Obtener Tasa proyectada
+        ///     Obtener Tasa proyectada
         /// </summary>
         /// <returns></returns>
         public static decimal ObtenerTcProyectada()
@@ -49,10 +48,7 @@ namespace CSNegocios
 
                 DataTable dt = Coneccion.EjecutarSpDataTable("spObtenerTasaDeCambioProyectada", null);
 
-                if (dt.Rows.Count > 0)
-                {
-                    return Convert.ToDecimal(dt.Rows[0]["Monto"]);
-                }
+                if (dt.Rows.Count > 0) return Convert.ToDecimal(dt.Rows[0]["Monto"]);
 
                 return value;
             }
@@ -67,7 +63,7 @@ namespace CSNegocios
         }
 
         /// <summary>
-        /// Obtener Tasa
+        ///     Obtener Tasa
         /// </summary>
         /// <returns></returns>
         public static decimal Obtener_TC()
@@ -80,20 +76,13 @@ namespace CSNegocios
 
                 if (ds.Tables[0].Rows.Count > 0)
                 {
-                    if (Convert.IsDBNull(ds.Tables[0].Rows[0][0]))
-                    {
-                        return 1;
-                    }
-                    else
-                    {
-                        tc = Convert.ToDecimal((ds.Tables[0].Rows[0][0].ToString()));
-                        return tc;
-                    }
+                    if (Convert.IsDBNull(ds.Tables[0].Rows[0][0])) return 1;
+
+                    Tc = Convert.ToDecimal(ds.Tables[0].Rows[0][0].ToString());
+                    return Tc;
                 }
-                else
-                {
-                    return 1;
-                }
+
+                return 1;
             }
             catch (Exception ex)
             {
@@ -103,16 +92,16 @@ namespace CSNegocios
         }
 
         /// <summary>
-        /// Obtener Nombre de la empresa
+        ///     Obtener Nombre de la empresa
         /// </summary>
         /// <returns></returns>
         public static string ObtenerNombreEmpresa()
         {
-            return OperacionesGlobal.strGet_String("exec halcon.dbo.spObtenerNombreEmpresa", "El Halcón");
+            return strGet_String("exec halcon.dbo.spObtenerNombreEmpresa", "El Halcón");
         }
 
         /// <summary>
-        /// Cargar Data Set
+        ///     Cargar Data Set
         /// </summary>
         /// <param name="consulta"></param>
         /// <returns></returns>
@@ -122,7 +111,7 @@ namespace CSNegocios
         }
 
         /// <summary>
-        /// Num Get Int
+        ///     Num Get Int
         /// </summary>
         /// <param name="strSQL"></param>
         /// <returns></returns>
@@ -136,18 +125,11 @@ namespace CSNegocios
                 if (ds.Tables[0].Rows.Count > 0)
                 {
                     if (Convert.IsDBNull(ds.Tables[0].Rows[0][0]))
-                    {
                         return 0;
-                    }
-                    else
-                    {
-                        return Convert.ToInt32(ds.Tables[0].Rows[0][0].ToString());
-                    }
+                    return Convert.ToInt32(ds.Tables[0].Rows[0][0].ToString());
                 }
-                else
-                {
-                    return 0;
-                }
+
+                return 0;
             }
             catch (Exception ex)
             {
@@ -157,7 +139,7 @@ namespace CSNegocios
         }
 
         /// <summary>
-        /// Str Get String
+        ///     Str Get String
         /// </summary>
         /// <param name="strSQL"></param>
         /// <param name="strDefault"></param>
@@ -174,13 +156,9 @@ namespace CSNegocios
                 if (ds.Tables[0].Rows.Count > 0)
                 {
                     if (Convert.IsDBNull(ds.Tables[0].Rows[0][0]))
-                    {
                         functionReturnValue = "";
-                    }
                     else
-                    {
-                        functionReturnValue = Convert.ToString((ds.Tables[0].Rows[0][0].ToString()));
-                    }
+                        functionReturnValue = Convert.ToString(ds.Tables[0].Rows[0][0].ToString());
                 }
                 else
                 {
@@ -197,22 +175,13 @@ namespace CSNegocios
         }
 
         /// <summary>
-        /// Ejecutar Consulta
+        ///     Ejecutar Consulta
         /// </summary>
         /// <param name="consulta"></param>
         /// <returns></returns>
         public static int EjecutarConsulta(string consulta)
         {
             return Coneccion.EjecutarConsulta(consulta);
-        }
-
-        /// <summary>
-        /// Tasa de cambio
-        /// </summary>
-        public static decimal Tc
-        {
-            get { return tc; }
-            set { tc = value; }
         }
     }
 }

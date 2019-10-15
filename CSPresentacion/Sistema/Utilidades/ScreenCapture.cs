@@ -1,21 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CSPresentacion.Sistema.Utilidades
 {
     /// <summary>
-    /// Clase para captura de imágenes, fuente : 'https://www.developerfusion.com/code/4630/capture-a-screen-shot/'
+    ///     Clase para captura de imágenes, fuente : 'https://www.developerfusion.com/code/4630/capture-a-screen-shot/'
     /// </summary>
     public class ScreenCapture
     {
         /// <summary>
-        /// Creates an Image object containing a screen shot of the entire desktop
+        ///     Creates an Image object containing a screen shot of the entire desktop
         /// </summary>
         /// <returns></returns>
         public Image CaptureScreen()
@@ -24,7 +20,7 @@ namespace CSPresentacion.Sistema.Utilidades
         }
 
         /// <summary>
-        /// Creates an Image object containing a screen shot of a specific window
+        ///     Creates an Image object containing a screen shot of a specific window
         /// </summary>
         /// <param name="handle">The handle to the window. (In windows forms, this is obtained by the Handle property)</param>
         /// <returns></returns>
@@ -59,7 +55,7 @@ namespace CSPresentacion.Sistema.Utilidades
         }
 
         /// <summary>
-        /// Captures a screen shot of a specific window, and saves it to a file
+        ///     Captures a screen shot of a specific window, and saves it to a file
         /// </summary>
         /// <param name="handle"></param>
         /// <param name="filename"></param>
@@ -71,7 +67,7 @@ namespace CSPresentacion.Sistema.Utilidades
         }
 
         /// <summary>
-        /// Captures a screen shot of the entire desktop, and saves it to a file
+        ///     Captures a screen shot of the entire desktop, and saves it to a file
         /// </summary>
         /// <param name="filename"></param>
         /// <param name="format"></param>
@@ -82,7 +78,7 @@ namespace CSPresentacion.Sistema.Utilidades
         }
 
         /// <summary>
-        /// Helper class containing Gdi32 API functions
+        ///     Helper class containing Gdi32 API functions
         /// </summary>
         private class GDI32
         {
@@ -111,37 +107,10 @@ namespace CSPresentacion.Sistema.Utilidades
         }
 
         /// <summary>
-        /// Helper class containing User32 API functions
+        ///     Helper class containing User32 API functions
         /// </summary>
         private class User32
         {
-            /// <summary>
-            /// Rect
-            /// </summary>
-            [StructLayout(LayoutKind.Sequential)]
-            public struct RECT
-            {
-                /// <summary>
-                /// Izquierda
-                /// </summary>
-                public int left;
-
-                /// <summary>
-                /// Arriba
-                /// </summary>
-                public int top;
-
-                /// <summary>
-                /// Derecha
-                /// </summary>
-                public int right;
-
-                /// <summary>
-                /// Abajo
-                /// </summary>
-                public int bottom;
-            }
-
             [DllImport("user32.dll")]
             public static extern IntPtr GetDesktopWindow();
 
@@ -153,6 +122,33 @@ namespace CSPresentacion.Sistema.Utilidades
 
             [DllImport("user32.dll")]
             public static extern IntPtr GetWindowRect(IntPtr hWnd, ref RECT rect);
+
+            /// <summary>
+            ///     Rect
+            /// </summary>
+            [StructLayout(LayoutKind.Sequential)]
+            public struct RECT
+            {
+                /// <summary>
+                ///     Izquierda
+                /// </summary>
+                public readonly int left;
+
+                /// <summary>
+                ///     Arriba
+                /// </summary>
+                public readonly int top;
+
+                /// <summary>
+                ///     Derecha
+                /// </summary>
+                public readonly int right;
+
+                /// <summary>
+                ///     Abajo
+                /// </summary>
+                public readonly int bottom;
+            }
         }
     }
 }

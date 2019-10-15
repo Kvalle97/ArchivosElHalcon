@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmReportViewer));
-            this.report = new CSPresentacion.Sistema.Utilidades.ReporteGeneral();
+            this.Report = new CSPresentacion.Sistema.Utilidades.ReporteGeneral();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
@@ -41,11 +41,11 @@
             // 
             // report
             // 
-            this.report.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.report.Location = new System.Drawing.Point(2, 2);
-            this.report.Name = "report";
-            this.report.Size = new System.Drawing.Size(666, 342);
-            this.report.TabIndex = 0;
+            this.Report.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Report.Location = new System.Drawing.Point(2, 2);
+            this.Report.Name = "Report";
+            this.Report.Size = new System.Drawing.Size(666, 342);
+            this.Report.TabIndex = 0;
             // 
             // panelControl1
             // 
@@ -69,7 +69,7 @@
             // 
             // panelControl2
             // 
-            this.panelControl2.Controls.Add(this.report);
+            this.panelControl2.Controls.Add(this.Report);
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl2.Location = new System.Drawing.Point(0, 53);
             this.panelControl2.Name = "panelControl2";
@@ -96,7 +96,6 @@
 
         #endregion
 
-        private Utilidades.ReporteGeneral report;
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraEditors.SimpleButton simpleButton1;
         private DevExpress.XtraEditors.PanelControl panelControl2;

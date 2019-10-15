@@ -57,8 +57,8 @@
     <ApplicationIcon>admin.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoUpdater.NET, Version=1.5.7.0, Culture=neutral, PublicKeyToken=501435c91b35f4bc, processorArchitecture=MSIL">
-      <HintPath>..\packages\Autoupdater.NET.Official.1.5.7\lib\net40\AutoUpdater.NET.dll</HintPath>
+    <Reference Include="ActualizadorHalcon">
+      <HintPath>..\..\..\Visual Studio 2017\Projects\AutoUpdaterHalcon\FrmUpdater\bin\Release\ActualizadorHalcon.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.BonusSkins.v18.2, Version=18.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Charts.v18.2.Core, Version=18.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -142,11 +142,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Sistema\Administracion\FrmAdministracionDeSistema.cs">
+    <Compile Include="Sistema\Administracion\FrmSistemasyPantallas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Sistema\Administracion\FrmAdministracionDeSistema.Designer.cs">
-      <DependentUpon>FrmAdministracionDeSistema.cs</DependentUpon>
+    <Compile Include="Sistema\Administracion\FrmSistemasyPantallas.Designer.cs">
+      <DependentUpon>FrmSistemasyPantallas.cs</DependentUpon>
     </Compile>
     <Compile Include="Sistema\Administracion\FrmUsuarios.cs">
       <SubType>Form</SubType>
@@ -207,8 +207,8 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Sistema\Administracion\FrmAdministracionDeSistema.resx">
-      <DependentUpon>FrmAdministracionDeSistema.cs</DependentUpon>
+    <EmbeddedResource Include="Sistema\Administracion\FrmSistemasyPantallas.resx">
+      <DependentUpon>FrmSistemasyPantallas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sistema\Administracion\FrmUsuarios.resx">
       <DependentUpon>FrmUsuarios.cs</DependentUpon>
@@ -228,7 +228,6 @@
     <EmbeddedResource Include="Sistema\Utilidades\ReporteGeneral.resx">
       <DependentUpon>ReporteGeneral.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -356,6 +355,8 @@
     <None Include="Resources\supplier.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\permiso.png" />
+    <None Include="Resources\sensible.png" />
     <None Include="Resources\adjuntar.png" />
     <None Include="Resources\delete archivo.png" />
     <None Include="Resources\PDF.png" />

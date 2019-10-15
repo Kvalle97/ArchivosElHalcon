@@ -1,27 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using DevExpress.XtraEditors;
 using System.Diagnostics;
+using System.Linq;
+using System.Reflection;
+using System.Windows.Forms;
 using CSNegocios;
-using DevExpress.Utils;
+using CSPresentacion.Properties;
 using DevExpress.LookAndFeel;
+using DevExpress.Utils;
+using DevExpress.XtraEditors;
+using DevExpress.XtraEditors.Controls;
 
 namespace CSPresentacion
 {
     /// <summary>
-    /// Formulario de incio de sesion
+    ///     Formulario de incio de sesion
     /// </summary>
-    public partial class FrmLogin : DevExpress.XtraEditors.XtraForm
+    public partial class FrmLogin : XtraForm
     {
         /// <summary>
-        /// Constructor
+        ///     Constructor
         /// </summary>
         public FrmLogin()
         {
@@ -32,18 +30,18 @@ namespace CSPresentacion
         #region Metodos
 
         /// <summary>
-        /// List items
+        ///     List items
         /// </summary>
         private void ListItems()
         {
-            lstItems.DataSource = Properties.Settings.Default.ServerAddress.Cast<string>().ToArray();
+            lstItems.DataSource = Settings.Default.ServerAddress.Cast<string>().ToArray();
             //lstItems.Refresh();
             //Properties.Settings.Default.Items.Cast<string>().ToArray();
             lstItems.SelectedIndex = -1;
         }
 
         /// <summary>
-        /// Validar String de coneccion
+        ///     Validar String de coneccion
         /// </summary>
         /// <returns></returns>
         public string ValidarConnString()
@@ -53,10 +51,9 @@ namespace CSPresentacion
 
             var retryCount = 0;
             while (true)
-            {
                 try
                 {
-                    this.txtValue.Text = lstItems.Items[retryCount].ToString();
+                    txtValue.Text = lstItems.Items[retryCount].ToString();
                     OperacionesGlobal.IntentarConectar(lstItems.Items[retryCount].ToString(), txtDataBase.Text,
                         txtLogin.Text, txtPassword.Text, Convert.ToInt32(txtTimeOut.EditValue));
 
@@ -74,12 +71,10 @@ namespace CSPresentacion
 
                     //throw; //or handle error and break/return
                 }
-            }
 
             if (retryCount < n)
                 return lstItems.Items[retryCount].ToString();
-            else
-                return string.Empty;
+            return string.Empty;
         }
 
         #endregion
@@ -88,24 +83,24 @@ namespace CSPresentacion
 
         private void frmLogin_Load(object sender, EventArgs e)
         {
-            System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
+            Assembly assembly = Assembly.GetExecutingAssembly();
             FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(assembly.Location);
             string version = fvi.FileVersion;
-            this.lblVersion.Text = "v" + version;
+            lblVersion.Text = "v" + version;
             Datos_Globales.VersionSistemaLocal = version;
 
-            this.Width = 210;
-            this.txtLogin.EditValue = Properties.Settings.Default.Login;
-            this.txtPassword.EditValue = Properties.Settings.Default.Password;
-            this.txtTimeOut.EditValue = Properties.Settings.Default.TimeOut;
-            this.txtDataBase.EditValue = Properties.Settings.Default.DataBase;
+            Width = 210;
+            txtLogin.EditValue = Settings.Default.Login;
+            txtPassword.EditValue = Settings.Default.Password;
+            txtTimeOut.EditValue = Settings.Default.TimeOut;
+            txtDataBase.EditValue = Settings.Default.DataBase;
             ListItems();
 
-            if (Properties.Settings.Default.Recordar == true)
+            if (Settings.Default.Recordar)
             {
-                this.chkRecordar.Checked = Properties.Settings.Default.Recordar;
-                this.txtUsuario.Text = Properties.Settings.Default.User.Trim();
-                this.txtClave.Text = Properties.Settings.Default.Pass.Trim();
+                chkRecordar.Checked = Settings.Default.Recordar;
+                txtUsuario.Text = Settings.Default.User.Trim();
+                txtClave.Text = Settings.Default.Pass.Trim();
             }
         }
 
@@ -121,7 +116,7 @@ namespace CSPresentacion
         {
             if (txtValue.Text != string.Empty)
             {
-                Properties.Settings.Default.ServerAddress.Add(txtValue.Text);
+                Settings.Default.ServerAddress.Add(txtValue.Text);
                 txtValue.ResetText();
                 txtValue.Focus();
                 ListItems();
@@ -130,7 +125,7 @@ namespace CSPresentacion
 
         private void btnRemove_Click(object sender, EventArgs e)
         {
-            Properties.Settings.Default.ServerAddress.Remove(txtValue.Text);
+            Settings.Default.ServerAddress.Remove(txtValue.Text);
             txtValue.ResetText();
             txtValue.Focus();
             ListItems();
@@ -138,7 +133,7 @@ namespace CSPresentacion
 
         private void frmLogin_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Properties.Settings.Default.Save();
+            Settings.Default.Save();
         }
 
 
@@ -151,10 +146,7 @@ namespace CSPresentacion
 
         private void txtValue_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
-            {
-                btnAdd.PerformClick();
-            }
+            if (e.KeyCode == Keys.Enter) btnAdd.PerformClick();
         }
 
         private void btnIngresar_Click(object sender, EventArgs e)
@@ -169,7 +161,7 @@ namespace CSPresentacion
             }
 
             Logueo login = new Logueo(txtLogin.Text, txtPassword.Text, Datos_Globales.IPLocal, txtDataBase.Text);
-            login.User = this.txtUsuario.Text;
+            login.User = txtUsuario.Text;
 
             if (login.ValidarUsuario(login))
             {
@@ -186,16 +178,16 @@ namespace CSPresentacion
                 //if (loguin.ValidarUsuario(loguin))
                 //{
 
-                login.User = this.txtUsuario.Text.Trim();
+                login.User = txtUsuario.Text.Trim();
                 object PassW = login.ObtenerPassword(login);
 
-                if (PassW.ToString() != this.txtClave.Text.Trim())
+                if (PassW.ToString() != txtClave.Text.Trim())
                 {
                     wait.Close();
                     XtraMessageBox.Show("La Contraseña es Incorrecta", "Inicio de Sesión", MessageBoxButtons.OK,
                         MessageBoxIcon.Exclamation);
-                    this.txtClave.EditValue = null;
-                    this.txtClave.Focus();
+                    txtClave.EditValue = null;
+                    txtClave.Focus();
                     return;
                 }
 
@@ -204,7 +196,7 @@ namespace CSPresentacion
                 DataTable dtb = new DataTable();
                 dtb.Clear();
                 dtb = login.Cargar("select PasswordUsuario,CambioPassword from Halcon.dbo.Usuarios where Usuario='" +
-                                   this.txtUsuario.Text.Trim() + "'");
+                                   txtUsuario.Text.Trim() + "'");
 
                 if (dtb.Rows.Count > 0)
                 {
@@ -218,26 +210,26 @@ namespace CSPresentacion
 
                         wait.Close();
 
-                        FrmCambioPassword frm = new FrmCambioPassword(this.txtUsuario.Text.Trim());
+                        FrmCambioPassword frm = new FrmCambioPassword(txtUsuario.Text.Trim());
                         frm.ShowDialog();
 
                         if (frm.DialogResult == DialogResult.OK)
                         {
-                            if (this.chkRecordar.Checked == true)
+                            if (chkRecordar.Checked)
                             {
-                                Properties.Settings.Default.Pass =
+                                Settings.Default.Pass =
                                     Datos_Globales.NuevaPassword; //this.txtclave.Text.Trim();
-                                Properties.Settings.Default.User = this.txtUsuario.Text.Trim();
-                                Properties.Settings.Default.Recordar = true;
+                                Settings.Default.User = txtUsuario.Text.Trim();
+                                Settings.Default.Recordar = true;
                             }
                             else
                             {
-                                Properties.Settings.Default.Recordar = false;
-                                Properties.Settings.Default.Pass = string.Empty;
-                                Properties.Settings.Default.User = string.Empty;
+                                Settings.Default.Recordar = false;
+                                Settings.Default.Pass = string.Empty;
+                                Settings.Default.User = string.Empty;
                             }
 
-                            Properties.Settings.Default.Save();
+                            Settings.Default.Save();
                         }
                         else
                         {
@@ -246,26 +238,26 @@ namespace CSPresentacion
                     }
                     else
                     {
-                        if (this.chkRecordar.Checked == true)
+                        if (chkRecordar.Checked)
                         {
-                            Properties.Settings.Default.Pass = this.txtClave.Text.Trim();
-                            Properties.Settings.Default.User = this.txtUsuario.Text.Trim();
-                            Properties.Settings.Default.Recordar = true;
+                            Settings.Default.Pass = txtClave.Text.Trim();
+                            Settings.Default.User = txtUsuario.Text.Trim();
+                            Settings.Default.Recordar = true;
                         }
                         else
                         {
-                            Properties.Settings.Default.Recordar = false;
-                            Properties.Settings.Default.Pass = string.Empty;
-                            Properties.Settings.Default.User = string.Empty;
+                            Settings.Default.Recordar = false;
+                            Settings.Default.Pass = string.Empty;
+                            Settings.Default.User = string.Empty;
                         }
 
-                        Properties.Settings.Default.Save();
+                        Settings.Default.Save();
                     }
                 }
 
                 DateTime srt = DateTime.Now;
 
-                if (login.EjecutarIDLogin(this.txtUsuario.Text.Trim(), srt.ToString()) != 0)
+                if (login.EjecutarIDLogin(txtUsuario.Text.Trim(), srt.ToString()) != 0)
                 {
                     DataTable dt2 = new DataTable();
 
@@ -274,7 +266,7 @@ namespace CSPresentacion
                     Datos_Globales.IdLogin = Convert.ToInt32(dt2.Rows[0][0]);
                     Datos_Globales.Correo = login.ObtenerCorreo(login);
 
-                    Datos_Globales.Usuario = this.txtUsuario.Text.Trim();
+                    Datos_Globales.Usuario = txtUsuario.Text.Trim();
                     Datos_Globales.PC = Environment.MachineName;
                 }
                 else
@@ -297,38 +289,35 @@ namespace CSPresentacion
                 "select top 1 isnull(Paleta, 'The Bezier') from Halcon.dbo.Usuarios where Usuario = '" +
                 Datos_Globales.Usuario + "'", "The Bezier");
             UserLookAndFeel.Default.SetSkinStyle("The Bezier", Datos_Globales.userPalette);
-            if (this.chkRecordar.Checked)
-            {
-                Properties.Settings.Default.UserPalette = Datos_Globales.userPalette;
-            }
+            if (chkRecordar.Checked) Settings.Default.UserPalette = Datos_Globales.userPalette;
 
-            Datos_Globales.Usuario = this.txtUsuario.Text;
-            this.DialogResult = System.Windows.Forms.DialogResult.OK;
-            Properties.Settings.Default.Login = this.txtLogin.Text;
-            Properties.Settings.Default.Password = this.txtPassword.Text;
-            Properties.Settings.Default.TimeOut = Convert.ToInt32(this.txtTimeOut.Text);
-            Properties.Settings.Default.DataBase = this.txtDataBase.Text;
-            Properties.Settings.Default.Save();
+            Datos_Globales.Usuario = txtUsuario.Text;
+            DialogResult = DialogResult.OK;
+            Settings.Default.Login = txtLogin.Text;
+            Settings.Default.Password = txtPassword.Text;
+            Settings.Default.TimeOut = Convert.ToInt32(txtTimeOut.Text);
+            Settings.Default.DataBase = txtDataBase.Text;
+            Settings.Default.Save();
 
 
-            this.Close();
+            Close();
         }
 
-        private void txtClave_ButtonPressed(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        private void txtClave_ButtonPressed(object sender, ButtonPressedEventArgs e)
         {
             txtClave.Properties.UseSystemPasswordChar = false;
         }
 
-        private void txtClave_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        private void txtClave_ButtonClick(object sender, ButtonPressedEventArgs e)
         {
             txtClave.Properties.UseSystemPasswordChar = true;
         }
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            if (this.Width == 868)
+            if (Width == 868)
             {
-                this.Width = 210;
+                Width = 210;
             }
             else
             {
@@ -345,14 +334,14 @@ namespace CSPresentacion
 
                 if (result != null)
                     if (result.ToString() == "E727cd9b1f")
-                        this.Width = 868;
+                        Width = 868;
             }
         }
 
         private void Args_Showing(object sender, XtraMessageShowingArgs e)
         {
             // set a dialog icon 
-            e.Form.Icon = this.Icon;
+            e.Form.Icon = Icon;
         }
 
         private void txtUsuario_EditValueChanged(object sender, EventArgs e)
@@ -366,14 +355,10 @@ namespace CSPresentacion
             if (e.KeyCode == Keys.Enter)
             {
                 if (txtClave.EditValue == null)
-                {
                     txtClave.Focus();
-                    //return;
-                }
+                //return;
                 else
-                {
                     btnIngresar.PerformClick();
-                }
             }
         }
 
@@ -382,14 +367,10 @@ namespace CSPresentacion
             if (e.KeyCode == Keys.Enter)
             {
                 if (txtClave.EditValue == null)
-                {
                     txtClave.Focus();
-                    //return;
-                }
+                //return;
                 else
-                {
                     btnIngresar.PerformClick();
-                }
             }
         }
 

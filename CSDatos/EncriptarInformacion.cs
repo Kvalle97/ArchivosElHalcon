@@ -1,21 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace CSDatos
 {
     /// <summary>
-    /// Encriptar Información.
+    ///     Encriptar Información.
     /// </summary>
     public class EncriptarInformacion
     {
-        private string key;
+        private readonly string key;
 
         /// <summary>
-        /// Constructor de la clase Encriptar
+        ///     Constructor de la clase Encriptar
         /// </summary>
         public EncriptarInformacion()
         {
@@ -25,23 +22,22 @@ namespace CSDatos
         }
 
         /// <summary>
-        /// Cifrar una cadena utilizando el método de cifrado. Regresa un texto de cifrado.
+        ///     Cifrar una cadena utilizando el método de cifrado. Regresa un texto de cifrado.
         /// </summary>
         /// <param name="texto">cadena de caracteres que se va a encriptar</param>
         /// <returns></returns>
-        /// 
         public string Encriptar(string texto)
         {
             //arreglo de bytes donde guardaremos la llave
             byte[] keyArray;
             //arreglo de bytes donde guardaremos el texto que vamos a encriptar
-            byte[] Arreglo_a_Cifrar = UTF8Encoding.UTF8.GetBytes(texto);
+            byte[] Arreglo_a_Cifrar = Encoding.UTF8.GetBytes(texto);
 
             //se utilizan las clases de encriptacion proveidas por el Framework
             //Algritmo MD5
             MD5CryptoServiceProvider hashmd5 = new MD5CryptoServiceProvider();
             //se guarda la llave para que se le realice hashing
-            keyArray = hashmd5.ComputeHash(UTF8Encoding.UTF8.GetBytes(key));
+            keyArray = hashmd5.ComputeHash(Encoding.UTF8.GetBytes(key));
             hashmd5.Clear();
 
             //Algoritmo 3DAS
@@ -61,7 +57,7 @@ namespace CSDatos
         }
 
         /// <summary>
-        /// Desencripta un texto usando el metodo de doble cadena Regresa una cadena desencriptada. 
+        ///     Desencripta un texto usando el metodo de doble cadena Regresa una cadena desencriptada.
         /// </summary>
         /// <param name="cipherString">cadena encriptada</param>
         /// <param name="useHashing">Puedes usar el Hasing para encriptar estos datos? pasa true si la respuesta es si</param>
@@ -76,7 +72,7 @@ namespace CSDatos
             //se llama a las clases ke tienen los algoritmos de encriptacion
             //se le aplica hashing
             MD5CryptoServiceProvider hashmd5 = new MD5CryptoServiceProvider();
-            keyArray = hashmd5.ComputeHash(UTF8Encoding.UTF8.GetBytes(key));
+            keyArray = hashmd5.ComputeHash(Encoding.UTF8.GetBytes(key));
             hashmd5.Clear();
 
             TripleDESCryptoServiceProvider tdes = new TripleDESCryptoServiceProvider();
@@ -88,10 +84,8 @@ namespace CSDatos
             byte[] resultArray = cTransform.TransformFinalBlock(Array_a_Descifrar, 0, Array_a_Descifrar.Length);
 
             tdes.Clear();
-            string res = UTF8Encoding.UTF8.GetString(resultArray);
+            string res = Encoding.UTF8.GetString(resultArray);
             return res;
         }
-
     }
-
 }

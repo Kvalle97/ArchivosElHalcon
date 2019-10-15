@@ -1,23 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using DevExpress.XtraPrinting.Preview;
 
 namespace CSPresentacion.Sistema.Utilidades
 {
     /// <summary>
-    /// Clase de reporte general
+    ///     Clase de reporte general
     /// </summary>
     public partial class ReporteGeneral : UserControl
     {
         /// <summary>
-        /// Constructor
+        ///     Constructor
         /// </summary>
         public ReporteGeneral()
         {
@@ -25,8 +17,8 @@ namespace CSPresentacion.Sistema.Utilidades
         }
 
         /// <summary>
-        /// Acceso al document viewer
+        ///     Acceso al document viewer
         /// </summary>
-        public DocumentViewer DocumtViewer => dvReportes;
+        public DocumentViewer DocumtViewer { get; private set; }
     }
 }
