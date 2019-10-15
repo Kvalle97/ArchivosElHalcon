@@ -1,154 +1,61 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using CSDatos;
-using DevExpress.Utils;
-using DevExpress.Utils.Extensions;
 using DevExpress.XtraEditors;
-using DevExpress.XtraGrid.Columns;
-using DevExpress.XtraGrid.Views.Grid;
 
 namespace CSNegocios.Servicios.General
 {
     /// <summary>
-    /// Ofrece la funcionalidad base de un servicio.
+    ///     Ofrece la funcionalidad base de un servicio.
     /// </summary>
     public class ServicioBase
     {
         /// <summary>
-        /// Obtjeto data set de uso común entre los servicios.
+        ///     Obtjeto data set de uso común entre los servicios.
         /// </summary>
         protected DataSet dataSet = new DataSet();
 
         /// <summary>
-        /// Error Gw
-        /// </summary>
-        protected string errorGw;
-
-        /// <summary>
-        /// Obtjeto data table de uso común entre los servicios.
+        ///     Obtjeto data table de uso común entre los servicios.
         /// </summary>
         protected DataTable dataTable = new DataTable();
 
         /// <summary>
-        /// String sql, de uso  común entre los servicios
+        ///     Error Gw
+        /// </summary>
+        protected string errorGw;
+
+        /// <summary>
+        ///     String sql, de uso  común entre los servicios
         /// </summary>
         protected string strSql;
 
         /// <summary>
-        /// Usar esta funcion para insertar nulo cuando se necesite
+        ///     Usar esta funcion para insertar nulo cuando se necesite
         /// </summary>
         /// <param name="objeto">Objeto</param>
         /// <returns></returns>
-        protected object RevisarSiEsNuloSql(Object objeto)
+        protected object RevisarSiEsNuloSql(object objeto)
         {
             if (objeto != null)
             {
                 if (objeto is string)
-                {
-                    if (String.IsNullOrWhiteSpace((string) objeto))
-                    {
+                    if (string.IsNullOrWhiteSpace((string) objeto))
                         return DBNull.Value;
-                    }
-                }
 
                 return objeto;
             }
-            else
-            {
-                return DBNull.Value;
-            }
+
+            return DBNull.Value;
         }
 
-        /// <summary>
-        /// Cargar Data Table.
-        /// </summary>
-        /// <param name="consulta"></param>
-        /// <returns></returns>
-        protected DataTable CargarDataTable(string consulta)
-        {
-            try
-            {
-                this.dataSet = new DataSet();
-
-                this.dataSet = Coneccion.LlenarDataSet_II(consulta, ref errorGw);
-
-                return dataSet.Tables[0];
-            }
-            catch (Exception ex)
-            {
-                Personalizar.Mensaje_Error = ex.ToString();
-                throw;
-            }
-        }
 
         /// <summary>
-        /// Cargar Data Set
+        ///     Cargar sucursales.
         /// </summary>
-        /// <param name="consulta"></param>
-        /// <returns></returns>
-        protected DataSet CargarDataSet(string consulta)
-        {
-            try
-            {
-                this.dataSet = new DataSet();
-
-                this.dataSet = Coneccion.LlenarDataSet_II(consulta, ref errorGw);
-
-                return dataSet;
-            }
-            catch (Exception ex)
-            {
-                Personalizar.Mensaje_Error = ex.ToString();
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// Cargar Grupo O Linea
-        /// </summary>
-        /// <param name="lue"></param>
-        public void CargarGrupoOLinea(LookUpEdit lue)
-        {
-            lue.Properties.DataSource = Coneccion.EjecutarSpDataTable("spGrupoOLinea", null);
-
-            lue.Properties.ValueMember = "Id";
-            lue.Properties.DisplayMember = "GrupoOLinea";
-
-            lue.ItemIndex = 0;
-        }
-
-        /// <summary>
-        /// Agregar Documento referencia
-        /// </summary>
-        /// <param name="referencias"></param>
-        /// <param name="idLogin"></param>
-        /// <param name="agregar"></param>
-        /// <returns></returns>
-        public int AgregarDocumentoReferencia(DataTable referencias, int idLogin, bool agregar)
-        {
-            return Coneccion.EjecutarSP("spAgregarDocumentoReferencia", cmd =>
-            {
-                SqlParameter tblParameter = cmd.Parameters.AddWithValue("@Pack", referencias);
-
-                tblParameter.SqlDbType = SqlDbType.Structured;
-                tblParameter.TypeName = "DOCUMENTOREFERENCIAPACK";
-
-                cmd.Parameters.Add(new SqlParameter("@IdLogin", SqlDbType.Int)).Value = idLogin;
-                cmd.Parameters.Add(new SqlParameter("@Agregar", SqlDbType.Bit)).Value = agregar;
-
-                return 0;
-            });
-        }
-
-        /// <summary>
-        /// Cargar sucursales.
-        /// </summary>
-        /// <param name="lue"></param>
+        /// <param name="lue">LookUpEdit</param>
+        /// <param name="incluirTodas">Incluir todas las sucursales ?</param>
         public void CargarSucursales(LookUpEdit lue, bool incluirTodas)
         {
             strSql = "exec SpInvCargarSucursales";
@@ -175,7 +82,153 @@ namespace CSNegocios.Servicios.General
         }
 
         /// <summary>
-        /// Guardar Documento
+        ///     Cargar Data Table.
+        /// </summary>
+        /// <param name="consulta">Consulta sql</param>
+        /// <returns></returns>
+        protected DataTable CargarDataTable(string consulta)
+        {
+            try
+            {
+                dataSet = new DataSet();
+
+                dataSet = Coneccion.LlenarDataSet_II(consulta, ref errorGw);
+
+                return dataSet.Tables[0];
+            }
+            catch (Exception ex)
+            {
+                Personalizar.Mensaje_Error = ex.ToString();
+                throw;
+            }
+        }
+
+        /// <summary>
+        ///     Cargar Data Set
+        /// </summary>
+        /// <param name="consulta">consulta sql</param>
+        /// <returns></returns>
+        protected DataSet CargarDataSet(string consulta)
+        {
+            try
+            {
+                dataSet = new DataSet();
+
+                dataSet = Coneccion.LlenarDataSet_II(consulta, ref errorGw);
+
+                return dataSet;
+            }
+            catch (Exception ex)
+            {
+                Personalizar.Mensaje_Error = ex.ToString();
+                throw;
+            }
+        }
+
+        /// <summary>
+        ///     Cargar Grupo O Linea
+        /// </summary>
+        /// <param name="lue">LookUpEdit</param>
+        public void CargarGrupoOLinea(LookUpEdit lue)
+        {
+            lue.Properties.DataSource = Coneccion.EjecutarSpDataTable("spGrupoOLinea", null);
+
+            lue.Properties.ValueMember = "Id";
+            lue.Properties.DisplayMember = "GrupoOLinea";
+
+            lue.ItemIndex = 0;
+        }
+
+        /// <summary>
+        ///     Agregar Documento referencia
+        /// </summary>
+        /// <param name="referencias">DataTable</param>
+        /// <param name="idLogin">Id Login</param>
+        /// <param name="agregar">agregar ?</param>
+        /// <returns></returns>
+        public int AgregarDocumentoReferencia(DataTable referencias, int idLogin, bool agregar)
+        {
+            return Coneccion.EjecutarSp("spAgregarDocumentoReferencia", cmd =>
+            {
+                SqlParameter tblParameter = cmd.Parameters.AddWithValue("@Pack", referencias);
+
+                tblParameter.SqlDbType = SqlDbType.Structured;
+                tblParameter.TypeName = "DOCUMENTOREFERENCIAPACK";
+
+                cmd.Parameters.Add(new SqlParameter("@IdLogin", SqlDbType.Int)).Value = idLogin;
+                cmd.Parameters.Add(new SqlParameter("@Agregar", SqlDbType.Bit)).Value = agregar;
+
+                return 0;
+            });
+        }
+
+        /// <summary>
+        ///     Cargar proveedores
+        /// </summary>
+        /// <param name="glue"></param>
+        public void CargarProveedores(GridLookUpEdit glue)
+        {
+            dataTable = null;
+
+            dataTable = Coneccion.EjecutarSpDataTable("sp_ListarProveedores", cmd =>
+            {
+                cmd.Parameters.Add(new SqlParameter("CargarTodos", SqlDbType.Bit)).Value = true;
+
+                return 0;
+            });
+
+            glue.Properties.DataSource = dataTable;
+            glue.Properties.DisplayMember = "Proveedor";
+            glue.Properties.ValueMember = "Id";
+            glue.ForceInitialize();
+            glue.Properties.PopupFormWidth = 500;
+
+            if (glue.GetSelectedDataRow() == null)
+                glue.EditValue = dataTable.Rows.Count > 0 ? dataTable.Rows[0]["Id"] : null;
+        }
+
+        /// <summary>
+        ///     Cargar Sucursales
+        /// </summary>
+        /// <param name="glue"></param>
+        /// <param name="nacional"></param>
+        public void CargarProveedores(GridLookUpEdit glue, bool nacional = false)
+        {
+            glue.Properties.DataSource = Coneccion.EjecutarTextTable(
+                "SELECT IdProveedor as CODIGO, Descripción_Proveedor AS PROVEEDOR, case when [Local]=1" +
+                " then 'Nacional' else 'Internacional' end AS NACIONAL  from Proveedores  Where" +
+                " IdProveedor <> '000000' and [Local]=@nacional union select '000000', 'Todos los Proveedores', " +
+                "'-' Order by IdProveedor,Descripción_Proveedor",
+                cmd =>
+                {
+                    cmd.Parameters.Add(new SqlParameter("@nacional", SqlDbType.Bit)).Value = nacional;
+                    return 0;
+                });
+
+            glue.Properties.ValueMember = "CODIGO";
+            glue.Properties.DisplayMember = "PROVEEDOR";
+
+            glue.ForceInitialize();
+
+            glue.Properties.PopupFormWidth = 500;
+
+            if (glue.GetSelectedDataRow() == null) glue.EditValue = "000000";
+        }
+
+        /// <summary>
+        ///     Obtiene el periodo bloqueado de la base de datos contabilidad.
+        ///     Los movimientos contables deben ser a periodores mayores que este.
+        /// </summary>
+        /// <returns></returns>
+        public int ObtenerBloqueoDePeriodoAPartirDe()
+        {
+            return Convert.ToInt32(
+                Coneccion.ObterResultadoText("select Bloqueo from Contabilidad.dbo.información;",
+                    null));
+        }
+
+        /// <summary>
+        ///     Guardar Documento
         /// </summary>
         /// <param name="noDoc"></param>
         /// <param name="idTipoDoc"></param>
@@ -227,7 +280,7 @@ namespace CSNegocios.Servicios.General
             int sucursalDestino, string retenciones, decimal montoDeRetencion,
             string comentarios, bool tarjeta)
         {
-            return Coneccion.EjecutarSP("SP_GUARDAR_DOCUMENTO", command =>
+            return Coneccion.EjecutarSp("SP_GUARDAR_DOCUMENTO", command =>
             {
                 command.Parameters.Add(new SqlParameter("NoDoc", SqlDbType.Int)).Value = noDoc;
                 command.Parameters.Add(new SqlParameter("IdTipoDoc", SqlDbType.Int)).Value = idTipoDoc;
@@ -283,7 +336,7 @@ namespace CSNegocios.Servicios.General
         }
 
         /// <summary>
-        /// Obtener tipo Documento
+        ///     Obtener tipo Documento
         /// </summary>
         /// <param name="movimiento"></param>
         /// <param name="empresa"></param>
@@ -299,16 +352,13 @@ namespace CSNegocios.Servicios.General
                 return 0;
             });
 
-            if (dataTable.Rows.Count > 0)
-            {
-                return Int32.Parse(dataTable.Rows[0][0].ToString());
-            }
+            if (dataTable.Rows.Count > 0) return int.Parse(dataTable.Rows[0][0].ToString());
 
             return null;
         }
 
         /// <summary>
-        /// Obtener documento referencia.
+        ///     Obtener documento referencia.
         /// </summary>
         /// <param name="noDoc"></param>
         /// <param name="idTipoDoc"></param>

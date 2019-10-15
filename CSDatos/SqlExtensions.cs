@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Diagnostics;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Threading;
 
 namespace CSDatos
 {
     /// <summary>
-    /// Extensiones sql.
+    ///     Extensiones sql.
     /// </summary>
     public static class SqlExtensions
     {

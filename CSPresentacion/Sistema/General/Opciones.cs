@@ -1,78 +1,72 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CSPresentacion.Sistema.General
+﻿namespace CSPresentacion.Sistema.General
 {
     /// <summary>
-    /// Opciones que pueden llevar los formularios
+    ///     Opciones que pueden llevar los formularios
     /// </summary>
     public enum Opciones
     {
         /// <summary>
-        /// Ultimo
+        ///     Ultimo
         /// </summary>
         Ultimo,
 
         /// <summary>
-        /// Anterior
+        ///     Anterior
         /// </summary>
         Anterior,
 
         /// <summary>
-        /// Siguiente
+        ///     Siguiente
         /// </summary>
         Siguiente,
 
         /// <summary>
-        /// Primero
+        ///     Primero
         /// </summary>
         Primero,
 
         /// <summary>
-        /// Nuevo
+        ///     Nuevo
         /// </summary>
         Nuevo,
 
         /// <summary>
-        /// Guardar
+        ///     Guardar
         /// </summary>
         Guardar,
 
         /// <summary>
-        /// Aplicar
+        ///     Aplicar
         /// </summary>
         Aplicar,
 
         /// <summary>
-        /// Anular
+        ///     Anular
         /// </summary>
         Anular,
 
         /// <summary>
-        /// Buscar
+        ///     Buscar
         /// </summary>
         Buscar,
 
         /// <summary>
-        /// Eliminar
+        ///     Eliminar
         /// </summary>
         Eliminar,
 
         /// <summary>
-        /// Imprimir
+        ///     Imprimir
         /// </summary>
         Imprimir,
 
         /// <summary>
-        /// Cerrar
+        ///     Cerrar
         /// </summary>
         Cerrar,
 
         /// <summary>
-        /// Revertir Aplicar
+        ///     Revertir Aplicar
         /// </summary>
         RevertirAplicar
     }

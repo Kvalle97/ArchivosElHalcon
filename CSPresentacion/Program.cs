@@ -1,46 +1,42 @@
-﻿using DevExpress.LookAndFeel;
-using DevExpress.UserSkins;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System;
 using System.Windows.Forms;
+using CSPresentacion.Properties;
+using DevExpress.LookAndFeel;
+using DevExpress.UserSkins;
 
 namespace CSPresentacion
 {
-    static class Program
+    internal static class Program
     {
         /// <summary>
-        /// Punto de entrada principal para la aplicación.
+        ///     Punto de entrada principal para la aplicación.
         /// </summary>
         [STAThread]
-        static void Main()
+        private static void Main()
         {
-            if (Properties.Settings.Default.UpgradeRequired)
+            if (Settings.Default.UpgradeRequired)
             {
-                Properties.Settings.Default.Upgrade();
-                Properties.Settings.Default.UpgradeRequired = false;
-                Properties.Settings.Default.Save();
-                
+                Settings.Default.Upgrade();
+                Settings.Default.UpgradeRequired = false;
+                Settings.Default.Save();
             }
 
             BonusSkins.Register();
 
             UserLookAndFeel defaultLF = UserLookAndFeel.Default;
-            
+
             defaultLF.UseWindowsXPTheme = false;
             defaultLF.Style = LookAndFeelStyle.Skin;
-            
+
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            
-            if (Properties.Settings.Default.Recordar == true)
+
+            if (Settings.Default.Recordar)
             {
-                defaultLF.SkinName = Properties.Settings.Default.UserSkin;
-                defaultLF.SetSkinStyle("The Bezier", Properties.Settings.Default.UserPalette);
+                defaultLF.SkinName = Settings.Default.UserSkin;
+                defaultLF.SetSkinStyle("The Bezier", Settings.Default.UserPalette);
             }
             else
             {
@@ -48,13 +44,11 @@ namespace CSPresentacion
             }
 
 
-           
             FrmLogin frm = new FrmLogin();
 
             frm.ShowDialog();
 
             if (frm.DialogResult == DialogResult.OK)
-            {
                 try
                 {
                     Application.Run(new FrmMain());
@@ -63,7 +57,6 @@ namespace CSPresentacion
                 {
                     MessageBox.Show(ex.ToString());
                 }
-            }        
         }
     }
 }

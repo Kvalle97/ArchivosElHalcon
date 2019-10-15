@@ -1,181 +1,175 @@
-﻿using DevExpress.Utils;
+﻿using System;
+using DevExpress.Utils;
 using DevExpress.XtraEditors;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Mail;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace CSPresentacion
 {
     /// <summary>
-    /// Global
+    ///     Global
     /// </summary>
     public static class Global
     {
         /// <summary>
-        /// Nueva password
+        ///     Nueva password
         /// </summary>
         public static string NuevaPassword { get; set; }
 
         /// <summary>
-        /// Nombre de la compania
+        ///     Nombre de la compania
         /// </summary>
         public static string NombreCompany { get; set; }
 
 
         //*******************************************Reembolso*****************
         /// <summary>
-        /// Fecha inicial
+        ///     Fecha inicial
         /// </summary>
         public static DateEdit FechaFinal { get; set; }
 
         /// <summary>
-        /// Habilitar
+        ///     Habilitar
         /// </summary>
-        public static Boolean Habilitar { get; set; }
+        public static bool Habilitar { get; set; }
 
         /// <summary>
-        /// Gerencia
+        ///     Gerencia
         /// </summary>
         public static string Gerencia { get; set; }
 
         /// <summary>
-        /// Usuario Reporte
+        ///     Usuario Reporte
         /// </summary>
         public static string UsuarioReporte { get; set; }
 
         /// <summary>
-        /// Reembolso contabilidad
+        ///     Reembolso contabilidad
         /// </summary>
-        public static Boolean ReembolsoContabilidad { get; set; }
+        public static bool ReembolsoContabilidad { get; set; }
 
         /// <summary>
-        /// Mostrar todas las sucursales
+        ///     Mostrar todas las sucursales
         /// </summary>
         public static bool MostrarTodasLasSucursales { get; set; }
 
         /// <summary>
-        /// Usuario busqueda
+        ///     Usuario busqueda
         /// </summary>
         public static string UsuarioBusqueda { get; set; }
 
         /// <summary>
-        /// Documento  aplicado
+        ///     Documento  aplicado
         /// </summary>
-        public static Boolean DocumentoAplicado { get; set; }
+        public static bool DocumentoAplicado { get; set; }
 
         /// <summary>
-        /// Id Empresa reporte
+        ///     Id Empresa reporte
         /// </summary>
         public static string IdEmpresaReporte { get; set; }
 
         /// <summary>
-        /// Oritentacion pagina
+        ///     Oritentacion pagina
         /// </summary>
-        public static Boolean OrientacionPagina { get; set; }
+        public static bool OrientacionPagina { get; set; }
 
         /// <summary>
-        /// Id Pendientes
+        ///     Id Pendientes
         /// </summary>
         public static string IDPendientes { get; set; }
 
         /// <summary>
-        /// Opcion cheque
+        ///     Opcion cheque
         /// </summary>
         public static int OpcionCheque { get; set; }
 
 
         //*********************************************************************
         /// <summary>
-        /// NOmbre de la sucursal
+        ///     NOmbre de la sucursal
         /// </summary>
         public static string NombreSucursal { get; set; }
 
         /// <summary>
-        /// Nombre de la empresa
+        ///     Nombre de la empresa
         /// </summary>
         public static string NombreEmpresa { get; set; }
 
         /// <summary>
-        /// Id Login
+        ///     Id Login
         /// </summary>
         public static int IDLoguin { get; set; }
 
         /// <summary>
-        /// Computadora
+        ///     Computadora
         /// </summary>
         public static string PC { get; set; }
 
         /// <summary>
-        /// Version sistema local
+        ///     Version sistema local
         /// </summary>
         public static string VersionSistemaLocal { get; set; }
 
         /// <summary>
-        /// Usuario
+        ///     Usuario
         /// </summary>
         public static string User { get; set; }
 
         /// <summary>
-        /// Doble click
+        ///     Doble click
         /// </summary>
-        public static Boolean DoubleClick { get; set; }
+        public static bool DoubleClick { get; set; }
 
         /// <summary>
-        /// Doble click pendiente
+        ///     Doble click pendiente
         /// </summary>
         public static bool DoubleClickPendiente { get; set; }
 
         /// <summary>
-        /// Ip publico
+        ///     Ip publico
         /// </summary>
         public static string IPPublico { get; set; }
 
         /// <summary>
-        /// Ip local
+        ///     Ip local
         /// </summary>
         public static string IPLocal { get; set; }
 
         /// <summary>
-        /// Nombre de la ip
+        ///     Nombre de la ip
         /// </summary>
         public static string Nombre_IP { get; set; }
 
         /// <summary>
-        /// Id empresa
+        ///     Id empresa
         /// </summary>
         public static string ID_Empresa { get; set; }
 
         /// <summary>
-        /// Estado del servidor
+        ///     Estado del servidor
         /// </summary>
         public static string EstadoServidor { get; set; }
 
         /// <summary>
-        /// Nombre Archivo INi
+        ///     Nombre Archivo INi
         /// </summary>
         public static string NombreArchivoIni { get; set; }
 
         /// <summary>
-        /// Nombre Skin
+        ///     Nombre Skin
         /// </summary>
         public static string NombreSkin { get; set; }
 
         /// <summary>
-        /// Quitar Comillas
+        ///     Quitar Comillas
         /// </summary>
         /// <param name="Valor"></param>
         /// <returns></returns>
         public static string QuitarComillas(string Valor)
         {
-            return Valor.Replace("'", " ").ToString().Replace('"', ' ');
+            return Valor.Replace("'", " ").Replace('"', ' ');
         }
 
         /// <summary>
-        /// Sql Date hasta
+        ///     Sql Date hasta
         /// </summary>
         /// <param name="dt"></param>
         /// <returns></returns>
@@ -212,7 +206,7 @@ namespace CSPresentacion
         }
 
         /// <summary>
-        /// Sql Date
+        ///     Sql Date
         /// </summary>
         /// <param name="dt"></param>
         /// <returns></returns>
@@ -247,7 +241,7 @@ namespace CSPresentacion
         }
 
         /// <summary>
-        /// Array to String
+        ///     Array to String
         /// </summary>
         /// <param name="arr"></param>
         /// <returns></returns>
@@ -255,17 +249,13 @@ namespace CSPresentacion
         {
             string text = "";
             if (arr == null)
-            {
                 text = "Empty...";
-            }
             else
-            {
                 for (int i = 0; i <= arr.Length - 1; i++)
                 {
                     int num = arr[i];
-                    text = text + ((string.IsNullOrEmpty(text)) ? "" : ";") + num.ToString();
+                    text = text + (string.IsNullOrEmpty(text) ? "" : ";") + num;
                 }
-            }
 
             return text;
         }

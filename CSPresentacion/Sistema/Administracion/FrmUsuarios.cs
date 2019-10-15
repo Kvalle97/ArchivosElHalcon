@@ -1,28 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using CSNegocios.Servicios;
 using CSPresentacion.Sistema.General;
 
 namespace CSPresentacion.Sistema.Administracion
 {
     /// <summary>
-    /// Formulario de usuarios
+    ///     Formulario de usuarios
     /// </summary>
     public partial class FrmUsuarios : FrmBase
     {
+        private static FrmUsuarios childInstance;
 
-        private static FrmUsuarios childInstance = null;
+        private readonly ServicioUsuarios servicioUsuarios = new ServicioUsuarios();
 
-        private ServicioUsuarios servicioUsuarios = new ServicioUsuarios();
         /// <summary>
-        /// Constructor
+        ///     Constructor
         /// </summary>
         public FrmUsuarios()
         {
@@ -30,7 +22,7 @@ namespace CSPresentacion.Sistema.Administracion
         }
 
         /// <summary>
-        /// Crear una nueva instancia
+        ///     Crear una nueva instancia
         /// </summary>
         /// <returns></returns>
         public static FrmUsuarios Instance()
@@ -39,13 +31,18 @@ namespace CSPresentacion.Sistema.Administracion
             {
                 childInstance = new FrmUsuarios();
 
-                childInstance.MostrarBotones(true, Opciones.Guardar, Opciones.Cerrar, Opciones.Nuevo, Opciones.Eliminar);
+                childInstance.MostrarBotones(true, Opciones.Guardar, Opciones.Cerrar, Opciones.Nuevo,
+                    Opciones.Eliminar);
 
-                childInstance.MostrarCaptionEnBotones(true, Opciones.Guardar, Opciones.Cerrar, Opciones.Nuevo, Opciones.Eliminar);
+                childInstance.MostrarCaptionEnBotones(true, Opciones.Guardar, Opciones.Cerrar, Opciones.Nuevo,
+                    Opciones.Eliminar);
             }
+
+            childInstance.BringToFront();
+
             return childInstance;
         }
-        
+
         private void FrmUsuarios_Load(object sender, EventArgs e)
         {
             servicioUsuarios.CargarUsuarios(gcUsuarios, gvUsuarios);

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Drawing;
@@ -9,43 +11,43 @@ using System.IO;
 using System.Linq;
 using System.Net.Mail;
 using System.Reflection;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using CSNegocios;
-using CSNegocios.Global;
 using CSPresentacion.Properties;
-using CSPresentacion.Sistema.General;
-using CSPresentacion.Sistema.General.Buscador;
 using DevExpress.Utils;
 using DevExpress.XtraBars;
 using DevExpress.XtraBars.Ribbon;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.DXErrorProvider;
 using DevExpress.XtraEditors.Mask;
+using ActualizadorHalcon;
 
 namespace CSPresentacion.Sistema.Utilidades
 {
     /// <summary>
-    /// Clase de ayuda para el control de UI
+    ///     Clase de ayuda para el control de UI
     /// </summary>
     public class UIHelper
     {
-        private static bool enviarCorreo = false;
+        private static readonly bool enviarCorreo = false;
 
         /// <summary>
-        /// Iniciar Spin Edit
+        ///     Habilita el mostrar cuando no hay actualizaciones nuevas
+        /// </summary>
+        public static bool MostrarNoHayNuevasActualizaciones { get; set; }
+
+        /// <summary>
+        ///     Iniciar Spin Edit
         /// </summary>
         /// <param name="edits"></param>
         public static void InciarSpinEdits(params SpinEdit[] edits)
         {
-            foreach (SpinEdit spin in edits)
-            {
-                spin.Value = 0;
-            }
+            foreach (SpinEdit spin in edits) spin.Value = 0;
         }
 
         /// <summary>
-        /// Validar Spin Edit
+        ///     Validar Spin Edit
         /// </summary>
         /// <param name="dxErrorProvider"></param>
         /// <param name="edits"></param>
@@ -53,19 +55,17 @@ namespace CSPresentacion.Sistema.Utilidades
         public static bool ValidarSpinEdits(DXErrorProvider dxErrorProvider, params SpinEdit[] edits)
         {
             foreach (SpinEdit spin in edits)
-            {
                 if (spin.Value <= 0)
                 {
-                    UIHelper.AlertarDeError(dxErrorProvider, spin, "El dato no es valido");
+                    AlertarDeError(dxErrorProvider, spin, "El dato no es valido");
                     return false;
                 }
-            }
 
             return true;
         }
 
         /// <summary>
-        /// Guarda un archivo de invio de correo, con problemas u errores ocurridos
+        ///     Guarda un archivo de invio de correo, con problemas u errores ocurridos
         /// </summary>
         /// <param name="message"></param>
         /// <param name="filename"></param>
@@ -79,7 +79,7 @@ namespace CSPresentacion.Sistema.Utilidades
                 {
                     var binaryWriter = new BinaryWriter(filestream);
                     //Write the Unsent header to the file so the mail client knows this mail must be presented in "New message" mode
-                    binaryWriter.Write(System.Text.Encoding.UTF8.GetBytes("X-Unsent: 1" + Environment.NewLine));
+                    binaryWriter.Write(Encoding.UTF8.GetBytes("X-Unsent: 1" + Environment.NewLine));
                 }
 
                 var assembly = typeof(SmtpClient).Assembly;
@@ -96,7 +96,7 @@ namespace CSPresentacion.Sistema.Utilidades
                 var sendMethod = typeof(MailMessage).GetMethod("Send", BindingFlags.Instance | BindingFlags.NonPublic);
 
                 sendMethod.Invoke(message, BindingFlags.Instance | BindingFlags.NonPublic, null,
-                    new object[] {mailWriter, true, true}, null);
+                    new[] {mailWriter, true, true}, null);
 
                 // Finally get reflection info for Close() method on our MailWriter
                 var closeMethod = mailWriter.GetType()
@@ -109,7 +109,7 @@ namespace CSPresentacion.Sistema.Utilidades
         }
 
         /// <summary>
-        /// Envia un correo de notificacion, con el archivo tipo correo guardado.
+        ///     Envia un correo de notificacion, con el archivo tipo correo guardado.
         /// </summary>
         /// <param name="tiempo"></param>
         /// <param name="log"></param>
@@ -122,7 +122,7 @@ namespace CSPresentacion.Sistema.Utilidades
 
             mailMessage.To.Add("informatica@elhalcon.com.ni");
 
-            mailMessage.Subject = "Error en el sistema de importaciones, " + tiempo;
+            mailMessage.Subject = "Error en el sistema de administracion, " + tiempo;
             mailMessage.IsBodyHtml = true;
             mailMessage.Body = "<span style='font-size: 12pt; color: red;'>Error del sistema: </span>" + mensajeCorto +
                                "<br/><br/><span style='font-weight: bold; color: black;'>Correo generado por el sistema </span>";
@@ -130,12 +130,9 @@ namespace CSPresentacion.Sistema.Utilidades
             mailMessage.Attachments.Add(new Attachment(log));
             mailMessage.Attachments.Add(new Attachment(captura));
 
-            string direcotorio = "C:\\HalconLogs\\Importaciones\\Correos\\";
+            string direcotorio = "C:\\HalconLogs\\Administracion\\Correos\\";
 
-            if (!Directory.Exists(direcotorio))
-            {
-                Directory.CreateDirectory(direcotorio);
-            }
+            if (!Directory.Exists(direcotorio)) Directory.CreateDirectory(direcotorio);
 
             string filename = direcotorio + "reporte.eml";
 
@@ -147,19 +144,16 @@ namespace CSPresentacion.Sistema.Utilidades
         }
 
         /// <summary>
-        /// Muestra la excepción al usuario.
+        ///     Muestra la excepción al usuario.
         /// </summary>
         /// <param name="e"></param>
         public static void MostrarError(Exception e)
         {
-            string folder = "C:\\HalconLogs\\"+ Datos_Globales.Sistema + "\\";
+            string folder = "C:\\HalconLogs\\Administracion\\";
 
             string tiempo = DateTime.Now.ToString(CultureInfo.CurrentCulture);
             string tiempoFileName = DateTime.Now.ToFileTime().ToString();
-            if (!Directory.Exists(folder))
-            {
-                Directory.CreateDirectory(folder);
-            }
+            if (!Directory.Exists(folder)) Directory.CreateDirectory(folder);
 
             string nombreDelArchivo =
                 folder + "log_" + tiempoFileName + ".txt";
@@ -171,7 +165,7 @@ namespace CSPresentacion.Sistema.Utilidades
                 "Stack Trace:" + e.StackTrace,
                 "Time:" + tiempo,
                 "Computadora: " + Datos_Globales.PC,
-                "IdLogin: " + Datos_Globales.IdLogin.ToString(),
+                "IdLogin: " + Datos_Globales.IdLogin,
                 "Usuario: " + Datos_Globales.Usuario,
                 "Versión del sistema: " + Datos_Globales.VersionSistemaLocal,
                 "Ip: " + Datos_Globales.IPLocal
@@ -189,29 +183,23 @@ namespace CSPresentacion.Sistema.Utilidades
             if (Datos_Globales.Correo != null && enviarCorreo)
             {
                 if (XtraMessageBox.Show(
-                        "Ocurrio el siguiente error: '" + e.ToString() + "', " +
+                        "Ocurrio el siguiente error: '" + e + "', " +
                         "<color=red>¿ Desea enviar un correo para notificarlo ? </color>",
                         "",
                         MessageBoxButtons.YesNo,
                         MessageBoxIcon.Error,
                         MessageBoxDefaultButton.Button2, DefaultBoolean.True
                     ) == DialogResult.Yes)
-                {
                     EnviarCorreoDeNotificacion(tiempo, nombreDelArchivo, captura, e.Message);
-                }
             }
             else
             {
                 string mensaje = "";
 
                 if (e is SqlException)
-                {
                     mensaje = e.Message;
-                }
                 else
-                {
                     mensaje = e.ToString();
-                }
 
 
                 AlertarDeError("Ocurrio el siguiente error: '" + mensaje + "', notifique al administrador.");
@@ -219,7 +207,7 @@ namespace CSPresentacion.Sistema.Utilidades
         }
 
         /// <summary>
-        /// Obtener Periodo Actual
+        ///     Obtener Periodo Actual
         /// </summary>
         /// <returns></returns>
         public static int ObtenerPeriodoActual()
@@ -231,7 +219,7 @@ namespace CSPresentacion.Sistema.Utilidades
         }
 
         /// <summary>
-        /// Obtener Periodo Actual
+        ///     Obtener Periodo Actual
         /// </summary>
         /// <param name="dateTime">Fecha</param>
         /// <returns></returns>
@@ -241,33 +229,27 @@ namespace CSPresentacion.Sistema.Utilidades
         }
 
         /// <summary>
-        /// Enable Components
+        ///     Enable Components
         /// </summary>
         /// <param name="enable"></param>
         /// <param name="components"></param>
         public static void EnableComponents(bool enable, params Control[] components)
         {
-            foreach (Control control in components)
-            {
-                control.Enabled = enable;
-            }
+            foreach (Control control in components) control.Enabled = enable;
         }
 
         /// <summary>
-        /// Show Components
+        ///     Show Components
         /// </summary>
         /// <param name="show"></param>
         /// <param name="components"></param>
         public static void ShowComponents(bool show, params Control[] components)
         {
-            foreach (Control control in components)
-            {
-                control.Visible = show;
-            }
+            foreach (Control control in components) control.Visible = show;
         }
 
         /// <summary>
-        /// Obtener Imagen
+        ///     Obtener Imagen
         /// </summary>
         /// <param name="image"></param>
         /// <returns></returns>
@@ -282,7 +264,7 @@ namespace CSPresentacion.Sistema.Utilidades
         }
 
         /// <summary>
-        /// Obtener Imagen O Archivo
+        ///     Obtener Imagen O Archivo
         /// </summary>
         /// <param name="file"></param>
         /// <returns></returns>
@@ -307,7 +289,7 @@ namespace CSPresentacion.Sistema.Utilidades
         }
 
         /// <summary>
-        /// Agregar Imagen
+        ///     Agregar Imagen
         /// </summary>
         /// <param name="pictureEdit"></param>
         /// <param name="image"></param>
@@ -326,7 +308,7 @@ namespace CSPresentacion.Sistema.Utilidades
         }
 
         /// <summary>
-        /// Alerta de error
+        ///     Alerta de error
         /// </summary>
         /// <param name="errorProvider"></param>
         /// <param name="control"></param>
@@ -342,7 +324,7 @@ namespace CSPresentacion.Sistema.Utilidades
         }
 
         /// <summary>
-        /// Alerta de error
+        ///     Alerta de error
         /// </summary>
         /// <param name="errorProvider"></param>
         /// <param name="control"></param>
@@ -358,22 +340,20 @@ namespace CSPresentacion.Sistema.Utilidades
         }
 
         /// <summary>
-        /// Alerta al  usuario de errores de validacion
+        ///     Alerta al  usuario de errores de validacion
         /// </summary>
         /// <param name="errorProvider"></param>
         /// <param name="lstErrores"></param>
         public static void AlertarDeError(DXErrorProvider errorProvider, List<Error> lstErrores)
         {
-            string mensaje = "Ocurrieron los siguientes errores: \n\n";
+            string mensaje = "Ocurrieron los siguientes problemas: \n\n";
 
             int flag = 1;
 
             foreach (Error error in lstErrores)
             {
                 if (error.ControlAlertar != null)
-                {
                     errorProvider.SetError(error.ControlAlertar, error.DescripcionDelError);
-                }
 
                 mensaje += Convert.ToString(flag)
                            + " ) " + error.DescripcionDelError + "\n";
@@ -384,7 +364,7 @@ namespace CSPresentacion.Sistema.Utilidades
         }
 
         /// <summary>
-        /// Alerta de error
+        ///     Alerta de error
         /// </summary>
         /// <param name="mensaje"></param>
         public static void AlertarDeError(string mensaje)
@@ -395,7 +375,7 @@ namespace CSPresentacion.Sistema.Utilidades
 
 
         /// <summary>
-        /// Trunca el decimal dado a la precision especifica.
+        ///     Trunca el decimal dado a la precision especifica.
         /// </summary>
         /// <param name="value"></param>
         /// <param name="precision"></param>
@@ -408,41 +388,37 @@ namespace CSPresentacion.Sistema.Utilidades
         }
 
         /// <summary>
-        /// Obtiene el peso del archivo.
+        ///     Obtiene el peso del archivo.
         /// </summary>
         /// <param name="fileName"></param>
         /// <returns></returns>
         public static string ObtenerPesoDeArchivo(string fileName)
         {
-            string peso = String.Empty;
+            string peso = string.Empty;
             decimal pesoDecimal = 0;
 
             FileInfo fileInfo = new FileInfo(fileName);
 
             if (fileInfo.Exists)
             {
-                if ((fileInfo.Length / 1024) > 1024)
+                if (fileInfo.Length / 1024 > 1024)
                 {
-                    pesoDecimal = (Convert.ToDecimal(fileInfo.Length) / 1024) / 1024;
+                    pesoDecimal = Convert.ToDecimal(fileInfo.Length) / 1024 / 1024;
 
                     pesoDecimal = TruncarDecimal(pesoDecimal, 2);
 
                     if (pesoDecimal < 10)
-                    {
                         peso = "Mayor";
-                    }
                     else
-                    {
-                        peso = pesoDecimal.ToString() + " Mb";
-                    }
+                        peso = pesoDecimal.ToString(CultureInfo.InvariantCulture) + " Mb";
                 }
                 else
                 {
-                    pesoDecimal = (Convert.ToDecimal(fileInfo.Length) / 1024);
+                    pesoDecimal = Convert.ToDecimal(fileInfo.Length) / 1024;
 
                     pesoDecimal = TruncarDecimal(pesoDecimal, 2);
 
-                    return pesoDecimal.ToString() + " Kb";
+                    return pesoDecimal + " Kb";
                 }
             }
 
@@ -450,7 +426,7 @@ namespace CSPresentacion.Sistema.Utilidades
         }
 
         /// <summary>
-        /// Esta El Archivo Usandose ?
+        ///     Esta El Archivo Usandose ?
         /// </summary>
         /// <param name="path"></param>
         /// <returns></returns>
@@ -463,9 +439,7 @@ namespace CSPresentacion.Sistema.Utilidades
                 FileInfo fileInfo = new FileInfo(path);
 
                 if (fileInfo.Exists)
-                {
                     fileStream = new FileStream(path, FileMode.Open, FileAccess.ReadWrite, FileShare.None);
-                }
             }
             catch (Exception e)
             {
@@ -474,65 +448,51 @@ namespace CSPresentacion.Sistema.Utilidades
             }
             finally
             {
-                if (fileStream != null)
-                {
-                    fileStream.Close();
-                }
+                if (fileStream != null) fileStream.Close();
             }
 
             return false;
         }
 
         /// <summary>
-        /// Crea un evento que dirige al siguiente control al presionar la tecla enter.
+        ///     Crea un evento que dirige al siguiente control al presionar la tecla enter.
         /// </summary>
         /// <param name="seItems"></param>
         public static void IrAlSiguienteControl(params SpinEdit[] seItems)
         {
             foreach (SpinEdit se in seItems)
-            {
                 se.KeyUp += (sender, args) =>
                 {
-                    if (args.KeyCode == Keys.Enter)
-                    {
-                        SendKeys.Send("{TAB}");
-                    }
+                    if (args.KeyCode == Keys.Enter) SendKeys.Send("{TAB}");
                 };
-            }
         }
 
         /// <summary>
-        /// Crea un evento que dirige al siguiente control al presionar la tecla enter.
+        ///     Crea un evento que dirige al siguiente control al presionar la tecla enter.
         /// </summary>
         /// <param name="teItems"></param>
         public static void IrAlSiguienteControl(params TextEdit[] teItems)
         {
             foreach (TextEdit te in teItems)
-            {
                 te.KeyUp += (sender, args) =>
                 {
                     if (args.KeyCode == Keys.Enter)
-                    {
-                        if (!String.IsNullOrWhiteSpace(te.Text))
-                        {
+                        if (!string.IsNullOrWhiteSpace(te.Text))
                             SendKeys.Send("{TAB}");
-                        }
-                    }
                 };
-            }
         }
 
         /// <summary>
-        /// Convierte un datepicker a periodo, deja seleccionar unicamente el mes y año.
+        ///     Convierte un datepicker a periodo, deja seleccionar unicamente el mes y año.
         /// </summary>
         /// <param name="dp"></param>
         public static void ConvertirDatePickerAPeriodPicker(DateEdit dp)
         {
             dp.Properties.VistaCalendarInitialViewStyle =
-                DevExpress.XtraEditors.VistaCalendarInitialViewStyle.YearView;
+                VistaCalendarInitialViewStyle.YearView;
             dp.Properties.VistaCalendarViewStyle =
-                DevExpress.XtraEditors.VistaCalendarViewStyle.YearView;
-            dp.Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.True;
+                VistaCalendarViewStyle.YearView;
+            dp.Properties.VistaDisplayMode = DefaultBoolean.True;
 
             dp.Properties.Mask.EditMask = "MMMM año yyyy";
             dp.Properties.Mask.MaskType = MaskType.DateTime;
@@ -540,7 +500,17 @@ namespace CSPresentacion.Sistema.Utilidades
         }
 
         /// <summary>
-        /// Validar Pantallas
+        ///     Regresa una descripcion del periodo
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <returns></returns>
+        public static string ObtenerDescripcionDelPeriodo(DateTime dt)
+        {
+            return dt.ToString("MMMM yyyy").ToUpper();
+        }
+
+        /// <summary>
+        ///     Validar Pantallas
         /// </summary>
         /// <param name="lstDePantallas">Diccionario de pantallas</param>
         /// <param name="rpModulo">Ribbon Page que tine las pantallas del modulo</param>
@@ -548,14 +518,11 @@ namespace CSPresentacion.Sistema.Utilidades
         public static void ValidarPantallas(List<string> lstDePantallas, RibbonPage rpModulo,
             string[] excepciones = null)
         {
-            foreach (RibbonPageGroup rpg in rpModulo.Groups)
-            {
-                QuitarSiNoTienePermiso(rpg, excepciones, lstDePantallas);
-            }
+            foreach (RibbonPageGroup rpg in rpModulo.Groups) QuitarSiNoTienePermiso(rpg, excepciones, lstDePantallas);
         }
 
         /// <summary>
-        /// Validar Pantallas
+        ///     Validar Pantallas
         /// </summary>
         /// <param name="lstDePantallas"></param>
         /// <param name="excepciones"></param>
@@ -563,14 +530,11 @@ namespace CSPresentacion.Sistema.Utilidades
         public static void ValidarPantallas(List<string> lstDePantallas, string[] excepciones = null,
             params RibbonPageGroup[] rpgGroups)
         {
-            foreach (RibbonPageGroup rpg in rpgGroups)
-            {
-                QuitarSiNoTienePermiso(rpg, excepciones, lstDePantallas);
-            }
+            foreach (RibbonPageGroup rpg in rpgGroups) QuitarSiNoTienePermiso(rpg, excepciones, lstDePantallas);
         }
 
         /// <summary>
-        /// Quitar si no tiene permiso
+        ///     Quitar si no tiene permiso
         /// </summary>
         /// <param name="rpg"></param>
         /// <param name="excepciones"></param>
@@ -578,8 +542,7 @@ namespace CSPresentacion.Sistema.Utilidades
         private static void QuitarSiNoTienePermiso(RibbonPageGroup rpg, string[] excepciones,
             List<string> lstDePantallas)
         {
-            foreach (Object item in rpg.ItemLinks)
-            {
+            foreach (object item in rpg.ItemLinks)
                 if (item.GetType() == typeof(BarButtonItemLink))
                 {
                     BarButtonItemLink btn = item as BarButtonItemLink;
@@ -587,76 +550,173 @@ namespace CSPresentacion.Sistema.Utilidades
                     if (btn != null)
                     {
                         if (excepciones != null)
-                        {
                             if (excepciones.Contains(btn.Caption))
-                            {
                                 continue;
-                            }
-                        }
 
-                        if (!lstDePantallas.Contains(SinEspacionEnBlanco(btn.Caption)))
-                        {
-                            btn.Item.Enabled = false;
-                        }
+                        if (!lstDePantallas.Contains(SinEspacionEnBlanco(btn.Caption), StringComparer.OrdinalIgnoreCase)
+                        ) btn.Item.Enabled = false;
                     }
                 }
-            }
         }
 
         /// <summary>
-        /// Resetear modulos
+        ///     Resetear modulos
         /// </summary>
         /// <param name="rp"></param>
         public static void ResetearModulo(RibbonPage rp)
         {
-            foreach (RibbonPageGroup rpg in rp.Groups)
-            {
-                ResetBotones(rpg);
-            }
+            foreach (RibbonPageGroup rpg in rp.Groups) ResetBotones(rpg);
         }
 
         /// <summary>
-        /// Resetear modulos
+        ///     Resetear modulos
         /// </summary>
         /// <param name="coleccion"></param>
         public static void ResetearModulo(params RibbonPageGroup[] coleccion)
         {
-            foreach (RibbonPageGroup rpg in coleccion)
-            {
-                ResetBotones(rpg);
-            }
+            foreach (RibbonPageGroup rpg in coleccion) ResetBotones(rpg);
         }
 
         /// <summary>
-        /// Resetea el boton
+        ///     Resetea el boton
         /// </summary>
         /// <param name="rpg"></param>
         private static void ResetBotones(RibbonPageGroup rpg)
         {
             List<BarButtonItemLink> aQuitar = new List<BarButtonItemLink>();
 
-            foreach (Object item in rpg.ItemLinks)
-            {
+            foreach (object item in rpg.ItemLinks)
                 if (item.GetType() == typeof(BarButtonItemLink))
                 {
                     BarButtonItemLink btn = item as BarButtonItemLink;
 
-                    if (btn != null)
-                    {
-                        btn.Item.Enabled = true;
-                    }
+                    if (btn != null) btn.Item.Enabled = true;
                 }
-            }
         }
 
         /// <summary>
-        /// Sin Espacios en blanco
+        ///     Sin Espacios en blanco
         /// </summary>
         /// <param name="original"></param>
         /// <returns></returns>
         public static string SinEspacionEnBlanco(string original)
         {
             return Regex.Replace(original, @"\s+", "");
+        }
+
+        /// <summary>
+        ///     Crea el evento para ver las actualizaciones
+        /// </summary>
+        public static void CrearEventoDeActualizacion()
+        {
+            AutoUpdater.CheckForUpdateEvent += args =>
+            {
+                if (args != null)
+                {
+                    if (args.IsUpdateAvailable)
+                    {
+                        DialogResult dialogResult;
+                        if (args.Mandatory)
+                            dialogResult =
+                                XtraMessageBox.Show(
+                                    $@"Hay una nueva versión del sistema disponible ({args.CurrentVersion}). Usted está usando la versión ({args.InstalledVersion}). Presiona OK para actualizar.",
+                                    @"Actualización disponible",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Information);
+                        else
+                            dialogResult =
+                                XtraMessageBox.Show(
+                                    $@"Hay una nueva versión del sistema disponible ({args.CurrentVersion}). 
+Usted está usando la versión ({args.InstalledVersion}). ¿ Quiere actualizar ahora ?",
+                                    @"Actualización disponible",
+                                    MessageBoxButtons.YesNo,
+                                    MessageBoxIcon.Information);
+
+                        // Uncomment the following line if you want to show standard update dialog instead.
+                        // AutoUpdater.ShowUpdateForm();
+
+                        if (dialogResult.Equals(DialogResult.Yes) || dialogResult.Equals(DialogResult.OK))
+                            try
+                            {
+                                AutoUpdater.DownloadUpdate();
+                                Application.Exit();
+                            }
+                            catch (Exception exception)
+                            {
+                                XtraMessageBox.Show(exception.Message, exception.GetType().ToString(),
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Error);
+                            }
+                    }
+                    else if (MostrarNoHayNuevasActualizaciones)
+                    {
+                        XtraMessageBox.Show(@"No hay ninguna actualización disponible",
+                            @"No hay actualizaciones nuevas.",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        MostrarNoHayNuevasActualizaciones = false;
+                    }
+                }
+                else
+                {
+                    XtraMessageBox.Show(
+                        @"No hemos podido buscar actualizaciones, revisa tu conección a internet e intetalo de nuevo más tarde",
+                        @"Fallo en busqueda de actualizaciones", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            };
+        }
+
+        /// <summary>
+        ///     Buscar actualizaciones
+        /// </summary>
+        public static void BuscarActualizaciones()
+        {
+            AutoUpdater.Start("https://gitlab.com/sistemas-halc-n/archivos-json/raw/master/Updater2.xml");
+        }
+
+        /// <summary>
+        ///     Realiza una pregunta con respuesta de si o no
+        /// </summary>
+        /// <param name="pregunta"></param>
+        /// <returns></returns>
+        public static DialogResult PreguntarSN(string pregunta)
+        {
+            return XtraMessageBox.Show(pregunta, "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+        }
+
+        /// <summary>
+        ///     Convertir Data Table
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="dt"></param>
+        /// <returns></returns>
+        public static List<T> ConvertirDataTable<T>(DataTable dt)
+        {
+            return (from DataRow row in dt.Rows select ObtenerItem<T>(row)).ToList();
+        }
+
+        /// <summary>
+        ///     Obtener item
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="dr"></param>
+        /// <returns></returns>
+        public static T ObtenerItem<T>(DataRow dr)
+        {
+            Type temp = typeof(T);
+            T obj = Activator.CreateInstance<T>();
+
+            foreach (DataColumn column in dr.Table.Columns)
+            {
+                PropertyInfo prop = temp.GetProperties()
+                    .FirstOrDefault(x => string.Equals(x.Name, SinEspacionEnBlanco(column.ColumnName),
+                        StringComparison.CurrentCultureIgnoreCase));
+
+                if (prop == null) continue;
+                prop.SetValue(obj, dr[column.ColumnName] is DBNull ? null : dr[column.ColumnName], null);
+            }
+
+            return obj;
         }
     }
 }

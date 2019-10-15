@@ -1,39 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using DevExpress.XtraBars;
 using CSNegocios;
+using CSPresentacion.Properties;
 using CSPresentacion.Sistema.Administracion;
 using CSPresentacion.Sistema.General;
-using DevExpress.LookAndFeel;
-using DevExpress.XtraEditors;
 using CSPresentacion.Sistema.Utilidades;
+using DevExpress.LookAndFeel;
+using DevExpress.XtraBars;
 using DevExpress.XtraBars.Ribbon;
+using DevExpress.XtraEditors;
 
 namespace CSPresentacion
 {
     /// <summary>
-    /// Formulario principal
+    ///     Formulario principal
     /// </summary>
-    public partial class FrmMain : DevExpress.XtraBars.Ribbon.RibbonForm
+    public partial class FrmMain : RibbonForm
     {
-        private bool preguntarSucursal = false;
-
-        private static List<string> lstDePantallas = new List<string>()
+        private static readonly List<string> lstDePantallas = new List<string>
         {
             "Usuarios",
-            "Administracióndesistemas"
+            "Sistemasypantallas"
         };
+
+        private readonly bool preguntarSucursal = false;
 
 
         /// <summary>
-        /// Constructor
+        ///     Constructor
         /// </summary>
         public FrmMain()
         {
@@ -44,7 +40,7 @@ namespace CSPresentacion
         #region Funciones
 
         /// <summary>
-        /// Agrega al MDI el formulario correspindiente
+        ///     Agrega al MDI el formulario correspindiente
         /// </summary>
         /// <param name="form">Formulario</param>
         private void AgregarAlMdi(Form form)
@@ -54,7 +50,7 @@ namespace CSPresentacion
         }
 
         /// <summary>
-        /// Mostrar manual de usuario
+        ///     Mostrar manual de usuario
         /// </summary>
         private void MostrarManualDeUsuario()
         {
@@ -66,7 +62,7 @@ namespace CSPresentacion
 
             frmPdfViewer.CargarDocumento(path);
             frmPdfViewer.WindowState = FormWindowState.Maximized;
-            frmPdfViewer.Icon = this.Icon;
+            frmPdfViewer.Icon = Icon;
             frmPdfViewer.Text = "Manual de usuario";
             frmPdfViewer.ShowDialog();
         }
@@ -85,10 +81,10 @@ namespace CSPresentacion
 
         private void skinPaletteRibbonGalleryBarItem1_ItemClick(object sender, ItemClickEventArgs e)
         {
-            if (Properties.Settings.Default.Recordar == true)
+            if (Settings.Default.Recordar)
             {
-                Properties.Settings.Default.UserPalette = UserLookAndFeel.Default.ActiveSvgPaletteName;
-                Properties.Settings.Default.Save();
+                Settings.Default.UserPalette = UserLookAndFeel.Default.ActiveSvgPaletteName;
+                Settings.Default.Save();
             }
 
             OperacionesGlobal.EjecutarConsulta("update halcon.dbo.usuarios set Paleta = '" +
@@ -97,15 +93,15 @@ namespace CSPresentacion
         }
 
         private void skinPaletteRibbonGalleryBarItem1_GalleryItemClick(object sender,
-            DevExpress.XtraBars.Ribbon.GalleryItemClickEventArgs e)
+            GalleryItemClickEventArgs e)
         {
-            if (Properties.Settings.Default.Recordar == true)
+            if (Settings.Default.Recordar)
             {
-                Properties.Settings.Default.UserPalette = e.Item.Value.ToString();
-                Properties.Settings.Default.Save();
+                Settings.Default.UserPalette = e.Item.Value.ToString();
+                Settings.Default.Save();
             }
 
-            OperacionesGlobal.EjecutarConsulta("update halcon.dbo.usuarios set Paleta = '" + e.Item.Value.ToString() +
+            OperacionesGlobal.EjecutarConsulta("update halcon.dbo.usuarios set Paleta = '" + e.Item.Value +
                                                "' where Usuario = '" + Datos_Globales.Usuario + "'");
         }
 
@@ -120,7 +116,7 @@ namespace CSPresentacion
                                                  Datos_Globales.Usuario + "') AS n");
 
             UIHelper.ValidarPantallas(lstDePantallas, rpModulos,
-                new string[] {"Reportes", "Importaciones en transito"});
+                new[] {"Reportes", "Importaciones en transito"});
 
             if (preguntarSucursal)
             {
@@ -128,14 +124,14 @@ namespace CSPresentacion
                 {
                     case 0:
                         XtraMessageBox.Show("Este usuario no tiene Sucursales Asociadas");
-                        this.Close();
+                        Close();
                         break;
 
                     case 1:
                         Datos_Globales.IdSucursal = OperacionesGlobal.numGet_Int(
                             "select halcon.[dbo].[fxObtenerUsuarioIDEmpresa]('" + Datos_Globales.Usuario + "')");
                         Datos_Globales.NombreSucursal = OperacionesGlobal.strGet_String(
-                            "select halcon.[dbo].[fxObtenerNombreSucursal](" + Datos_Globales.IdSucursal.ToString() +
+                            "select halcon.[dbo].[fxObtenerNombreSucursal](" + Datos_Globales.IdSucursal +
                             ") as Sucursal", "Halcon");
 
 
@@ -145,38 +141,34 @@ namespace CSPresentacion
                         FrmSucursales frm = new FrmSucursales();
                         frm.ShowDialog();
                         if (frm.DialogResult != DialogResult.OK)
-                            this.Close();
+                            Close();
                         break;
                 }
 
-                this.barSucursal.Caption = "Sucursal: " + Datos_Globales.NombreSucursal;
-                this.barSucursal.Visibility = BarItemVisibility.Always;
+                barSucursal.Caption = "Sucursal: " + Datos_Globales.NombreSucursal;
+                barSucursal.Visibility = BarItemVisibility.Always;
 
                 Datos_Globales.ID_Empresa = Datos_Globales.IdSucursal.ToString();
             }
             else
             {
-                this.barSucursal.Visibility = BarItemVisibility.Never;
+                barSucursal.Visibility = BarItemVisibility.Never;
                 Datos_Globales.IdSucursal = -1;
                 Datos_Globales.ID_Empresa = null;
                 Datos_Globales.NombreSucursal = null;
             }
 
-            this.barUsuario.Caption = "Usuario: " + Datos_Globales.Usuario;
-            this.barLogin.Caption = "ID: " + Datos_Globales.IdLogin.ToString();
-            this.barTC.Caption = "TC: " + OperacionesGlobal.Obtener_TC();
-            this.barVersion.Caption = "Version: " + Datos_Globales.VersionSistemaLocal;
+            barUsuario.Caption = "Usuario: " + Datos_Globales.Usuario;
+            barLogin.Caption = "ID: " + Datos_Globales.IdLogin;
+            barTC.Caption = "TC: " + OperacionesGlobal.Obtener_TC();
+            barVersion.Caption = "Version: " + Datos_Globales.VersionSistemaLocal;
             //**********Parte nueva************/
-            this.barIP.Caption = "IP: " + Datos_Globales.IPLocal;
+            barIP.Caption = "IP: " + Datos_Globales.IPLocal;
 
             if (Datos_Globales.NombreSucursal != null)
-            {
-                this.Text = "Sistema de administración, " + Datos_Globales.NombreSucursal;
-            }
+                Text = "Sistema de administración, " + Datos_Globales.NombreSucursal;
             else
-            {
-                this.Text = "Sistema de administración";
-            }
+                Text = "Sistema de administración";
         }
 
         private void btnFormulario_ItemClick(object sender, ItemClickEventArgs e)
@@ -215,19 +207,18 @@ namespace CSPresentacion
 
         private void btnCerrarSesion_ItemClick(object sender, ItemClickEventArgs e)
         {
-            this.MdiChildren.ToList().ForEach(x => x.Close());
+            MdiChildren.ToList().ForEach(x => x.Close());
 
             if (!MdiChildren.Any())
             {
-                this.Hide();
+                Hide();
 
                 if (new FrmLogin().ShowDialog() == DialogResult.OK)
-                {
                     try
                     {
                         UIHelper.ResetearModulo(rpModulos);
 
-                        this.Show();
+                        Show();
 
                         IniciarMain();
                     }
@@ -235,12 +226,9 @@ namespace CSPresentacion
                     {
                         MessageBox.Show(ex.ToString());
                     }
-                }
 
                 else
-                {
                     Application.Exit();
-                }
             }
         }
 
@@ -283,14 +271,19 @@ namespace CSPresentacion
         {
             try
             {
-                AgregarAlMdi(FrmAdministracionDeSistema.Instance());
+                AgregarAlMdi(FrmSistemasyPantallas.Instance());
             }
             catch (Exception exception)
             {
                 UIHelper.MostrarError(exception);
             }
         }
+
         #endregion
 
+        private void btnPermisos_ItemClick(object sender, ItemClickEventArgs e)
+        {
+
+        }
     }
 }

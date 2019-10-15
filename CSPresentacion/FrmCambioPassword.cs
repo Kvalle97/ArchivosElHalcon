@@ -1,28 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using DevExpress.XtraEditors;
 using CSNegocios;
+using DevExpress.XtraEditors;
 
 namespace CSPresentacion
 {
     /// <summary>
-    /// Formulario cambio de password
+    ///     Formulario cambio de password
     /// </summary>
-    public partial class FrmCambioPassword : DevExpress.XtraEditors.XtraForm
+    public partial class FrmCambioPassword : XtraForm
     {
-        private Logueo loguin = new Logueo();
-        private string UsuarioResp;
+        private readonly Logueo loguin = new Logueo();
+        private readonly string UsuarioResp;
 
 
         /// <summary>
-        /// Constructor
+        ///     Constructor
         /// </summary>
         /// <param name="Usuario"></param>
         public FrmCambioPassword(string Usuario)
@@ -34,7 +29,7 @@ namespace CSPresentacion
         #region Metodos
 
         /// <summary>
-        /// Validar contraseña
+        ///     Validar contraseña
         /// </summary>
         /// <param name="pwd"></param>
         /// <param name="minLength"></param>
@@ -47,14 +42,14 @@ namespace CSPresentacion
             int numNumbers = 1, int numSpecial = 2)
         {
             // Replace [A-Z] with \p{Lu}, to allow for Unicode uppercase letters.
-            System.Text.RegularExpressions.Regex upper = new System.Text.RegularExpressions.Regex("[A-Z]");
-            System.Text.RegularExpressions.Regex lower = new System.Text.RegularExpressions.Regex("[a-z]");
-            System.Text.RegularExpressions.Regex number = new System.Text.RegularExpressions.Regex("[0-9]");
+            Regex upper = new Regex("[A-Z]");
+            Regex lower = new Regex("[a-z]");
+            Regex number = new Regex("[0-9]");
             // Special is "none of the above".
-            System.Text.RegularExpressions.Regex special = new System.Text.RegularExpressions.Regex("[^a-zA-Z0-9]");
+            Regex special = new Regex("[^a-zA-Z0-9]");
 
             // Check the length.
-            if ((pwd.Length) < minLength)
+            if (pwd.Length < minLength)
                 return false;
             // Check for minimum number of occurrences.
             if (upper.Matches(pwd).Count < numUpper)
@@ -86,13 +81,13 @@ namespace CSPresentacion
                 loguin.User = UsuarioResp;
                 object PassW = loguin.ObtenerPassword(loguin);
 
-                if (PassW.ToString() != this.txtpasswordactual.Text.Trim())
+                if (PassW.ToString() != txtpasswordactual.Text.Trim())
                 {
                     MessageBox.Show("La Contraseña Actual no es Correcta", Global.NombreEmpresa, MessageBoxButtons.OK,
                         MessageBoxIcon.Exclamation);
-                    this.txtpasswordactual.SelectionStart = 0;
-                    this.txtpasswordactual.SelectionLength = this.txtpasswordactual.Text.Length;
-                    this.txtpasswordactual.Focus();
+                    txtpasswordactual.SelectionStart = 0;
+                    txtpasswordactual.SelectionLength = txtpasswordactual.Text.Length;
+                    txtpasswordactual.Focus();
                     return;
                 }
 
@@ -101,23 +96,23 @@ namespace CSPresentacion
                 //MessageBox.Show(password + " is complex: " + ValidatePassword(password));
 
 
-                if (this.txtpasswordnueva.Text.Trim() != this.txtpasswordrepita.Text.Trim())
+                if (txtpasswordnueva.Text.Trim() != txtpasswordrepita.Text.Trim())
                 {
                     MessageBox.Show("No Coincide la Contraseña", Global.NombreEmpresa, MessageBoxButtons.OK,
                         MessageBoxIcon.Exclamation);
-                    this.txtpasswordnueva.SelectionStart = 0;
-                    this.txtpasswordnueva.SelectionLength = this.txtpasswordnueva.Text.Length;
-                    this.txtpasswordnueva.Focus();
+                    txtpasswordnueva.SelectionStart = 0;
+                    txtpasswordnueva.SelectionLength = txtpasswordnueva.Text.Length;
+                    txtpasswordnueva.Focus();
                     return;
                 }
 
-                if (ValidatePassword(this.txtpasswordnueva.Text.Trim()) == false)
+                if (ValidatePassword(txtpasswordnueva.Text.Trim()) == false)
                 {
                     MessageBox.Show("La Contraseña es Muy Débil", Global.NombreEmpresa, MessageBoxButtons.OK,
                         MessageBoxIcon.Exclamation);
-                    this.txtpasswordnueva.SelectionStart = 0;
-                    this.txtpasswordnueva.SelectionLength = this.txtpasswordnueva.Text.Length;
-                    this.txtpasswordnueva.Focus();
+                    txtpasswordnueva.SelectionStart = 0;
+                    txtpasswordnueva.SelectionLength = txtpasswordnueva.Text.Length;
+                    txtpasswordnueva.Focus();
                     return;
                 }
 
@@ -128,14 +123,14 @@ namespace CSPresentacion
                 ds.Clear();
 
                 usuario.Usuario = UsuarioResp;
-                usuario.Password = this.txtpasswordrepita.Text.Trim();
+                usuario.Password = txtpasswordrepita.Text.Trim();
                 usuario.Opcion = 1;
                 usuario.Actualizar_Password(usuario);
 
-                Global.NuevaPassword = this.txtpasswordrepita.Text.Trim();
-                this.DialogResult = System.Windows.Forms.DialogResult.OK;
+                Global.NuevaPassword = txtpasswordrepita.Text.Trim();
+                DialogResult = DialogResult.OK;
 
-                this.Close();
+                Close();
             }
             catch (Exception ex)
             {
@@ -145,67 +140,64 @@ namespace CSPresentacion
 
         private void txtpasswordactual_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == (char) (13))
+            if (e.KeyChar == (char) 13)
             {
-                if (this.txtpasswordactual.Text.Trim() == "")
+                if (txtpasswordactual.Text.Trim() == "")
                 {
                     MessageBox.Show("Debe de escribir la Contraseña Actual", Global.NombreEmpresa, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    this.txtpasswordactual.SelectionStart = 0;
-                    this.txtpasswordactual.SelectionLength = this.txtpasswordactual.Text.Length;
-                    this.txtpasswordactual.Focus();
-                    return;
+                    txtpasswordactual.SelectionStart = 0;
+                    txtpasswordactual.SelectionLength = txtpasswordactual.Text.Length;
+                    txtpasswordactual.Focus();
                 }
                 else
                 {
-                    this.txtpasswordnueva.Focus();
+                    txtpasswordnueva.Focus();
                 }
             }
         }
 
         private void txtpasswordnueva_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == (char) (13))
+            if (e.KeyChar == (char) 13)
             {
-                if (this.txtpasswordnueva.Text.Trim() == "")
+                if (txtpasswordnueva.Text.Trim() == "")
                 {
                     MessageBox.Show("Debe de escribir la Nueva Contraseña", Global.NombreEmpresa, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    this.txtpasswordnueva.SelectionStart = 0;
-                    this.txtpasswordnueva.SelectionLength = this.txtpasswordnueva.Text.Length;
-                    this.txtpasswordnueva.Focus();
-                    return;
+                    txtpasswordnueva.SelectionStart = 0;
+                    txtpasswordnueva.SelectionLength = txtpasswordnueva.Text.Length;
+                    txtpasswordnueva.Focus();
                 }
                 else
                 {
-                    this.txtpasswordrepita.Focus();
+                    txtpasswordrepita.Focus();
                 }
             }
         }
 
         private void txtpasswordrepita_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == (char) (13))
+            if (e.KeyChar == (char) 13)
             {
-                if (this.txtpasswordrepita.Text.Trim() == "")
+                if (txtpasswordrepita.Text.Trim() == "")
                 {
                     MessageBox.Show("Debe de repetir la Contraseña", Global.NombreEmpresa, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    this.txtpasswordrepita.SelectionStart = 0;
-                    this.txtpasswordrepita.SelectionLength = this.txtpasswordrepita.Text.Length;
-                    this.txtpasswordrepita.Focus();
-                    return;
+                    txtpasswordrepita.SelectionStart = 0;
+                    txtpasswordrepita.SelectionLength = txtpasswordrepita.Text.Length;
+                    txtpasswordrepita.Focus();
                 }
                 else
                 {
-                    this.btnaceptar.Focus();
+                    btnaceptar.Focus();
                 }
             }
         }
 
         private void btncancelar_Click(object sender, EventArgs e)
         {
-            this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            DialogResult = DialogResult.Cancel;
         }
 
         #endregion

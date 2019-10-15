@@ -1,84 +1,72 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CSPresentacion
+﻿namespace CSPresentacion
 {
     /// <summary>
-    /// Datos Globales
+    ///     Datos Globales
     /// </summary>
-    class Datos_Globales
+    internal class Datos_Globales
     {
-        private static string sistema = "Proveedores";
-
         /// <summary>
-        /// Nombre del sistema.
+        ///     Nombre del sistema.
         /// </summary>
-        public static string Sistema
-        {
-            get { return sistema; }
-            set { sistema = value; }
-        }
+        public static string Sistema { get; set; } = "Proveedores";
 
         /// <summary>
-        /// Ip Local
+        ///     Ip Local
         /// </summary>
         public static string IPLocal { get; set; }
 
         /// <summary>
-        /// Id Empresa
+        ///     Id Empresa
         /// </summary>
         public static string ID_Empresa { get; set; }
 
         /// <summary>
-        /// Version del sistem
+        ///     Version del sistem
         /// </summary>
         public static string VersionSistemaLocal { get; set; }
 
         /// <summary>
-        /// Id de la sucursal
+        ///     Id de la sucursal
         /// </summary>
         public static int IdSucursal { get; set; }
 
         /// <summary>
-        /// Nombre de la sucursal
+        ///     Nombre de la sucursal
         /// </summary>
         public static string NombreSucursal { get; set; }
 
         /// <summary>
-        /// Computadora
+        ///     Computadora
         /// </summary>
         public static string PC { get; set; }
 
         /// <summary>
-        /// Id Login
+        ///     Id Login
         /// </summary>
         public static int IdLogin { get; set; }
 
         /// <summary>
-        /// Titulo de la empresa
+        ///     Titulo de la empresa
         /// </summary>
         public static string TituloEmpresa { get; set; }
 
         /// <summary>
-        /// Usuario
+        ///     Usuario
         /// </summary>
         public static string Usuario { get; set; }
 
         /// <summary>
-        /// Nueva password
+        ///     Nueva password
         /// </summary>
         public static string NuevaPassword { get; set; }
 
         /// <summary>
-        /// Paleta del usuario
+        ///     Paleta del usuario
         /// </summary>
         public static string userPalette { get; set; }
 
         /// <summary>
-        /// Correo
+        ///     Correo
         /// </summary>
         public static string Correo { get; set; }
     }

@@ -1,24 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using DevExpress.XtraEditors;
 using CSNegocios;
+using DevExpress.XtraEditors;
 
 namespace CSPresentacion
 {
     /// <summary>
-    /// Formulario Sucursales
+    ///     Formulario Sucursales
     /// </summary>
-    public partial class FrmSucursales : DevExpress.XtraEditors.XtraForm
+    public partial class FrmSucursales : XtraForm
     {
         /// <summary>
-        /// Constructor
+        ///     Constructor
         /// </summary>
         public FrmSucursales()
         {
@@ -43,20 +36,16 @@ namespace CSPresentacion
             Datos_Globales.IdSucursal = Convert.ToInt32(lueSucursales.EditValue);
             Datos_Globales.NombreSucursal = lueSucursales.Text;
 
-            if (this.chkRecordarSucursal.Checked)
-            {
+            if (chkRecordarSucursal.Checked)
                 if (OperacionesGlobal.numGet_Int("exec halcon.dbo.spActualizarIdSucursalUsuario '" +
                                                  Datos_Globales.Usuario + "', " +
-                                                 Datos_Globales.IdSucursal.ToString()) != 1)
-                {
+                                                 Datos_Globales.IdSucursal) != 1)
                     // Si el resultado es distinto de 1 el usuario no existe o esta duplicado
                     XtraMessageBox.Show(
                         "Hay un problema con su usuario, por favor contacte al Administrador del Sistema");
-                }
-            }
 
-            this.DialogResult = DialogResult.OK;
-            this.Close();
+            DialogResult = DialogResult.OK;
+            Close();
         }
 
         #endregion

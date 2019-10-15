@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CSDatos;
+﻿using CSDatos;
 using CSNegocios.Servicios.General;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid;
@@ -12,12 +7,12 @@ using DevExpress.XtraGrid.Views.Grid;
 namespace CSNegocios.Servicios
 {
     /// <summary>
-    /// Servicio Usuarioss
+    ///     Servicio Usuarioss
     /// </summary>
     public class ServicioUsuarios : ServicioBase
     {
         /// <summary>
-        /// Cargar usuarios
+        ///     Cargar usuarios
         /// </summary>
         /// <param name="gc"></param>
         /// <param name="gv"></param>
@@ -28,11 +23,12 @@ namespace CSNegocios.Servicios
             if (gc.DataSource != null)
             {
                 gv.ActiveFilterString = "[Activo] == true";
+                gv.Columns["IdUsuario"].Visible = false;
             }
         }
 
         /// <summary>
-        /// Cargar Niveles
+        ///     Cargar Niveles
         /// </summary>
         /// <param name="lue"></param>
         public void CargarNiveles(LookUpEdit lue)
@@ -41,7 +37,7 @@ namespace CSNegocios.Servicios
 
             lue.Properties.ValueMember = "IDNIVEL";
             lue.Properties.DisplayMember = "NIVEL";
-            
+
             lue.Properties.ForceInitialize();
 
             lue.ItemIndex = 0;

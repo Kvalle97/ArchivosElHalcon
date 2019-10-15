@@ -49,10 +49,12 @@
   <ItemGroup>
     <Compile Include="Global\TipoDocumento.cs" />
     <Compile Include="Logueo.cs" />
+    <Compile Include="Modelos\SistemaOModulo.cs" />
     <Compile Include="OperacionesGlobal.cs" />
     <Compile Include="Personalizar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Servicios\General\ServicioBase.cs" />
+    <Compile Include="Servicios\ServicioSistemasyPantallas.cs" />
     <Compile Include="Servicios\ServicioUsuarios.cs" />
     <Compile Include="Usuarios.cs" />
   </ItemGroup>
@@ -62,9 +64,7 @@
       <Name>CSDatos</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Modelos\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

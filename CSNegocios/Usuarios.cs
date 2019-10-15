@@ -1,214 +1,21 @@
-﻿using CSDatos;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using CSDatos;
 
 namespace CSNegocios
 {
     /// <summary>
-    /// Clase de usarios, proporcionado en la plantilla base.
+    ///     Clase de usarios, proporcionado en la plantilla base.
     /// </summary>
     public class Usuarios
     {
-        private EncriptarInformacion encripta = new EncriptarInformacion();
         private DataSet dataSet = new DataSet();
+        private readonly EncriptarInformacion encripta = new EncriptarInformacion();
         private string ErrorGW;
 
-        #region propiedades
 
         /// <summary>
-        /// Nombres del usuario
-        /// </summary>
-        public string Nombres { get; set; }
-
-        /// <summary>
-        /// Apellidos
-        /// </summary>
-        public string Apellidos { get; set; }
-
-        /// <summary>
-        /// Usuario
-        /// </summary>
-        public string Usuario { get; set; }
-
-        /// <summary>
-        /// Usuario del sistema
-        /// </summary>
-        public string UsuarioSistema { get; set; }
-
-        /// <summary>
-        /// Usuario original
-        /// </summary>
-        public string UsuarioOriginal { get; set; }
-
-        /// <summary>
-        /// IdEmpresa ubicacion
-        /// </summary>
-        public int IdEmpresaUbicacion { get; set; }
-
-        /// <summary>
-        /// Contraseña
-        /// </summary>
-        public string Password { get; set; }
-
-        /// <summary>
-        /// Opción
-        /// </summary>
-        public int Opcion { get; set; }
-
-        /// <summary>
-        /// Área
-        /// </summary>
-        public string Area { get; set; }
-
-        /// <summary>
-        /// Id Usario
-        /// </summary>
-        public int IdUsuario { get; set; }
-
-        /// <summary>
-        /// Id Login
-        /// </summary>
-        public int IdLogin { get; set; }
-
-        /// <summary>
-        /// SMOWNERID
-        /// </summary>
-        public string SMOWNERID { get; set; }
-
-        /// <summary>
-        /// Id Acceso
-        /// </summary>
-        public int IdAcceso { get; set; }
-
-        /// <summary>
-        /// Id correo
-        /// </summary>
-        public int IDCorreo { get; set; }
-
-        /// <summary>
-        /// Editar otras cuentas
-        /// </summary>
-        public int EditarOtrasCuentas { get; set; }
-
-        /// <summary>
-        /// Id sucursal
-        /// </summary>
-        public int IdSucursal { get; set; }
-
-        /// <summary>
-        /// Id nivel
-        /// </summary>
-        public int IdNivel { get; set; }
-
-        /// <summary>
-        /// Ventas ?
-        /// </summary>
-        public bool Ventas { get; set; }
-
-        /// <summary>
-        /// Inventario ?
-        /// </summary>
-        public bool Inventario { get; set; }
-
-        /// <summary>
-        /// Compras ?
-        /// </summary>
-        public bool Compras { get; set; }
-
-        /// <summary>
-        /// Produccion ?
-        /// </summary>
-        public bool Produccion { get; set; }
-
-        /// <summary>
-        /// Cartera ?
-        /// </summary>
-        public bool Cartera { get; set; }
-
-        /// <summary>
-        /// Caja ?
-        /// </summary>
-        public bool Caja { get; set; }
-
-        /// <summary>
-        /// Bancos ?
-        /// </summary>
-        public bool Bancos { get; set; }
-
-        /// <summary>
-        /// Administración ?
-        /// </summary>
-        public bool Administracion { get; set; }
-
-        /// <summary>
-        /// Proveedores ?
-        /// </summary>
-        public bool Proveedores { get; set; }
-
-        /// <summary>
-        /// Proyecto >
-        /// </summary>
-        public bool Proyecto { get; set; }
-
-        /// <summary>
-        /// Telefono
-        /// </summary>
-        public string Telefono { get; set; }
-
-        /// <summary>
-        /// Id descuento
-        /// </summary>
-        public int IdDescuento { get; set; }
-
-        /// <summary>
-        /// Mostrar crm
-        /// </summary>
-        public int Mostrar_CRM { get; set; }
-
-        /// <summary>
-        /// Computadora
-        /// </summary>
-        public string PC { get; set; }
-
-        /// <summary>
-        /// Descripcion del  usario
-        /// </summary>
-        public string Descripcion_Usuario { get; set; }
-
-        /// <summary>
-        /// Index inicial
-        /// </summary>
-        public int startIndex { get; set; }
-
-        /// <summary>
-        /// Index final
-        /// </summary>
-        public int endIndex { get; set; }
-
-        /// <summary>
-        /// Correo
-        /// </summary>
-        public string Correo { get; set; }
-
-        /// <summary>
-        /// Activo
-        /// </summary>
-        public int Activo { get; set; }
-
-        /// <summary>
-        /// Descuento máximo
-        /// </summary>
-        public int DescuentoMax { get; set; }
-
-        #endregion
-
-
-        /// <summary>
-        /// Encriptar clave
+        ///     Encriptar clave
         /// </summary>
         /// <param name="clave"></param>
         /// <returns></returns>
@@ -219,7 +26,7 @@ namespace CSNegocios
         }
 
         /// <summary>
-        /// Desencriptar informacion
+        ///     Desencriptar informacion
         /// </summary>
         /// <param name="clave"></param>
         /// <returns></returns>
@@ -235,7 +42,7 @@ namespace CSNegocios
         //}
 
         /// <summary>
-        /// Guardar usuario
+        ///     Guardar usuario
         /// </summary>
         /// <param name="U"></param>
         /// <returns></returns>
@@ -261,7 +68,7 @@ namespace CSNegocios
         }
 
         /// <summary>
-        /// Guardar correo temporal del usuario
+        ///     Guardar correo temporal del usuario
         /// </summary>
         /// <param name="U"></param>
         /// <returns></returns>
@@ -281,7 +88,7 @@ namespace CSNegocios
         }
 
         /// <summary>
-        /// Guardar sucursal temporal del usario
+        ///     Guardar sucursal temporal del usario
         /// </summary>
         /// <param name="U"></param>
         /// <returns></returns>
@@ -302,7 +109,7 @@ namespace CSNegocios
 
 
         /// <summary>
-        /// Cargar usarios
+        ///     Cargar usarios
         /// </summary>
         /// <param name="usuario"></param>
         /// <returns></returns>
@@ -313,7 +120,7 @@ namespace CSNegocios
         }
 
         /// <summary>
-        /// Cargar usuario unico
+        ///     Cargar usuario unico
         /// </summary>
         /// <param name="usuario"></param>
         /// <returns></returns>
@@ -323,7 +130,7 @@ namespace CSNegocios
         }
 
         /// <summary>
-        /// Get like usuario
+        ///     Get like usuario
         /// </summary>
         /// <param name="usuario"></param>
         /// <returns></returns>
@@ -336,7 +143,7 @@ namespace CSNegocios
         }
 
         /// <summary>
-        /// Actualizar password
+        ///     Actualizar password
         /// </summary>
         /// <param name="usuario"></param>
         /// <returns></returns>
@@ -348,7 +155,7 @@ namespace CSNegocios
         }
 
         /// <summary>
-        /// Actualizar usuario
+        ///     Actualizar usuario
         /// </summary>
         /// <param name="usuario"></param>
         /// <returns></returns>
@@ -362,7 +169,7 @@ namespace CSNegocios
         }
 
         /// <summary>
-        /// Temporal usarios
+        ///     Temporal usarios
         /// </summary>
         /// <param name="u"></param>
         /// <returns></returns>
@@ -375,7 +182,7 @@ namespace CSNegocios
         }
 
         /// <summary>
-        /// Cargar temporal usarios
+        ///     Cargar temporal usarios
         /// </summary>
         /// <param name="U"></param>
         /// <returns></returns>
@@ -401,7 +208,7 @@ namespace CSNegocios
         //}
 
         /// <summary>
-        /// Cargar
+        ///     Cargar
         /// </summary>
         /// <param name="sqlQuery"></param>
         /// <returns></returns>
@@ -409,9 +216,9 @@ namespace CSNegocios
         {
             try
             {
-                this.dataSet = new DataSet();
+                dataSet = new DataSet();
 
-                Coneccion.Leer(ref this.dataSet, sqlQuery, ref ErrorGW);
+                Coneccion.Leer(ref dataSet, sqlQuery, ref ErrorGW);
 
                 return dataSet.Tables[0];
             }
@@ -423,7 +230,7 @@ namespace CSNegocios
         }
 
         /// <summary>
-        /// Cargar usuarios temporal
+        ///     Cargar usuarios temporal
         /// </summary>
         /// <param name="u"></param>
         /// <returns></returns>
@@ -433,7 +240,7 @@ namespace CSNegocios
         }
 
         /// <summary>
-        /// Cargar usarios reporte
+        ///     Cargar usarios reporte
         /// </summary>
         /// <param name="u"></param>
         /// <returns></returns>
@@ -443,7 +250,7 @@ namespace CSNegocios
         }
 
         /// <summary>
-        /// Cargar correos usuarios
+        ///     Cargar correos usuarios
         /// </summary>
         /// <param name="u"></param>
         /// <returns></returns>
@@ -454,7 +261,7 @@ namespace CSNegocios
         }
 
         /// <summary>
-        /// Operaciones generales
+        ///     Operaciones generales
         /// </summary>
         /// <param name="sqlQuery"></param>
         /// <returns></returns>
@@ -475,5 +282,194 @@ namespace CSNegocios
                 throw;
             }
         }
+
+        #region propiedades
+
+        /// <summary>
+        ///     Nombres del usuario
+        /// </summary>
+        public string Nombres { get; set; }
+
+        /// <summary>
+        ///     Apellidos
+        /// </summary>
+        public string Apellidos { get; set; }
+
+        /// <summary>
+        ///     Usuario
+        /// </summary>
+        public string Usuario { get; set; }
+
+        /// <summary>
+        ///     Usuario del sistema
+        /// </summary>
+        public string UsuarioSistema { get; set; }
+
+        /// <summary>
+        ///     Usuario original
+        /// </summary>
+        public string UsuarioOriginal { get; set; }
+
+        /// <summary>
+        ///     IdEmpresa ubicacion
+        /// </summary>
+        public int IdEmpresaUbicacion { get; set; }
+
+        /// <summary>
+        ///     Contraseña
+        /// </summary>
+        public string Password { get; set; }
+
+        /// <summary>
+        ///     Opción
+        /// </summary>
+        public int Opcion { get; set; }
+
+        /// <summary>
+        ///     Área
+        /// </summary>
+        public string Area { get; set; }
+
+        /// <summary>
+        ///     Id Usario
+        /// </summary>
+        public int IdUsuario { get; set; }
+
+        /// <summary>
+        ///     Id Login
+        /// </summary>
+        public int IdLogin { get; set; }
+
+        /// <summary>
+        ///     SMOWNERID
+        /// </summary>
+        public string SMOWNERID { get; set; }
+
+        /// <summary>
+        ///     Id Acceso
+        /// </summary>
+        public int IdAcceso { get; set; }
+
+        /// <summary>
+        ///     Id correo
+        /// </summary>
+        public int IDCorreo { get; set; }
+
+        /// <summary>
+        ///     Editar otras cuentas
+        /// </summary>
+        public int EditarOtrasCuentas { get; set; }
+
+        /// <summary>
+        ///     Id sucursal
+        /// </summary>
+        public int IdSucursal { get; set; }
+
+        /// <summary>
+        ///     Id nivel
+        /// </summary>
+        public int IdNivel { get; set; }
+
+        /// <summary>
+        ///     Ventas ?
+        /// </summary>
+        public bool Ventas { get; set; }
+
+        /// <summary>
+        ///     Inventario ?
+        /// </summary>
+        public bool Inventario { get; set; }
+
+        /// <summary>
+        ///     Compras ?
+        /// </summary>
+        public bool Compras { get; set; }
+
+        /// <summary>
+        ///     Produccion ?
+        /// </summary>
+        public bool Produccion { get; set; }
+
+        /// <summary>
+        ///     Cartera ?
+        /// </summary>
+        public bool Cartera { get; set; }
+
+        /// <summary>
+        ///     Caja ?
+        /// </summary>
+        public bool Caja { get; set; }
+
+        /// <summary>
+        ///     Bancos ?
+        /// </summary>
+        public bool Bancos { get; set; }
+
+        /// <summary>
+        ///     Administración ?
+        /// </summary>
+        public bool Administracion { get; set; }
+
+        /// <summary>
+        ///     Proveedores ?
+        /// </summary>
+        public bool Proveedores { get; set; }
+
+        /// <summary>
+        ///     Proyecto >
+        /// </summary>
+        public bool Proyecto { get; set; }
+
+        /// <summary>
+        ///     Telefono
+        /// </summary>
+        public string Telefono { get; set; }
+
+        /// <summary>
+        ///     Id descuento
+        /// </summary>
+        public int IdDescuento { get; set; }
+
+        /// <summary>
+        ///     Mostrar crm
+        /// </summary>
+        public int Mostrar_CRM { get; set; }
+
+        /// <summary>
+        ///     Computadora
+        /// </summary>
+        public string PC { get; set; }
+
+        /// <summary>
+        ///     Descripcion del  usario
+        /// </summary>
+        public string Descripcion_Usuario { get; set; }
+
+        /// <summary>
+        ///     Index inicial
+        /// </summary>
+        public int startIndex { get; set; }
+
+        /// <summary>
+        ///     Index final
+        /// </summary>
+        public int endIndex { get; set; }
+
+        /// <summary>
+        ///     Correo
+        /// </summary>
+        public string Correo { get; set; }
+
+        /// <summary>
+        ///     Activo
+        /// </summary>
+        public int Activo { get; set; }
+
+        /// <summary>
+        ///     Descuento máximo
+        /// </summary>
+        public int DescuentoMax { get; set; }
+
+        #endregion
     }
 }

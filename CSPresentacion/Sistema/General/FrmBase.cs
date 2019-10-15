@@ -1,36 +1,81 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using CSNegocios.Servicios.General;
-using DevExpress.Utils;
+﻿using System.Windows.Forms;
 using DevExpress.XtraBars;
 using DevExpress.XtraEditors;
 
 namespace CSPresentacion.Sistema.General
 {
     /// <summary>
-    /// Formulario base, ofrece la funcionalidad básica que usualmente se usará en cada pantalla del sistema.
+    ///     Formulario base, ofrece la funcionalidad básica que usualmente se usará en cada pantalla del sistema.
     /// </summary>
-    public partial class FrmBase : DevExpress.XtraEditors.XtraForm
+    public partial class FrmBase : XtraForm
     {
         /// <summary>
-        /// Constructor del formulario base
+        ///     Constructor del formulario base
         /// </summary>
         public FrmBase()
         {
             InitializeComponent();
         }
 
+        #region  Metódos de sobrecarga.
+
+        /// <inheritdoc />
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            bool ret = false;
+            switch (keyData)
+            {
+                case Keys.Control | Keys.Down:
+                    ret = AccionarBoton(btnIrAlUltimoRegistro);
+                    break;
+                case Keys.Control | Keys.Left:
+                    ret = AccionarBoton(btnIrAlRegistroAnterior);
+                    break;
+                case Keys.Control | Keys.Right:
+                    ret = AccionarBoton(btnIrAlSiguienteRegistro);
+                    break;
+                case Keys.Control | Keys.Up:
+                    ret = AccionarBoton(btnIrAlPrimerRegistro);
+                    break;
+                case Keys.Control | Keys.N:
+                    ret = AccionarBoton(btnNuevo);
+                    break;
+                case Keys.Control | Keys.G:
+                    ret = AccionarBoton(btnGuardar);
+                    break;
+                case Keys.Control | Keys.Delete:
+                    ret = AccionarBoton(btnAnular);
+                    break;
+                case Keys.Control | Keys.F11:
+                    ret = AccionarBoton(btnAplicar);
+                    break;
+                case Keys.Control | Keys.B:
+                    ret = AccionarBoton(btnBuscar);
+                    break;
+                case Keys.Control | Keys.E:
+                    ret = AccionarBoton(btnEliminar);
+                    break;
+                case Keys.Control | Keys.I:
+                    ret = AccionarBoton(btnImprimir);
+                    break;
+                case Keys.Control | Keys.S:
+                    ret = AccionarBoton(btnSalir);
+                    break;
+                case Keys.Control | Keys.R:
+                    ret = AccionarBoton(btnRevertirAnular);
+                    break;
+            }
+
+
+            return ret;
+        }
+
+        #endregion
+
         #region Funciones
 
         /// <summary>
-        /// Dispara el llamado al boton si es valido
+        ///     Dispara el llamado al boton si es valido
         /// </summary>
         /// <param name="btn"></param>
         /// <returns></returns>
@@ -46,9 +91,7 @@ namespace CSPresentacion.Sistema.General
         }
 
         /// <summary>
-        /// 
-        /// Activa o desactiva las opciones del formulario base
-        /// 
+        ///     Activa o desactiva las opciones del formulario base
         /// </summary>
         /// <param name="mostrar">Activar</param>
         /// <param name="opcion">Opcion</param>
@@ -57,7 +100,6 @@ namespace CSPresentacion.Sistema.General
             BarItemVisibility visibility = mostrar ? BarItemVisibility.Always : BarItemVisibility.Never;
 
             foreach (Opciones op in opcion)
-            {
                 switch (op)
                 {
                     case Opciones.Ultimo:
@@ -127,13 +169,10 @@ namespace CSPresentacion.Sistema.General
 
                         break;
                 }
-            }
         }
 
         /// <summary>
-        /// 
-        /// Activa o desactiva el mostrar el  caption en los botones
-        /// 
+        ///     Activa o desactiva el mostrar el  caption en los botones
         /// </summary>
         /// <param name="mostrar">Activar</param>
         /// <param name="opcion">Opcion</param>
@@ -142,7 +181,6 @@ namespace CSPresentacion.Sistema.General
             BarItemPaintStyle visibility = mostrar ? BarItemPaintStyle.CaptionGlyph : BarItemPaintStyle.Standard;
 
             foreach (Opciones op in opcion)
-            {
                 switch (op)
                 {
                     case Opciones.Ultimo:
@@ -212,20 +250,16 @@ namespace CSPresentacion.Sistema.General
 
                         break;
                 }
-            }
         }
 
         /// <summary>
-        /// 
-        /// Activa o desactiva el boton
-        /// 
+        ///     Activa o desactiva el boton
         /// </summary>
         /// <param name="activar">Activar</param>
         /// <param name="opcion">Opcion</param>
         protected void ActivarBoton(bool activar, params Opciones[] opcion)
         {
             foreach (Opciones op in opcion)
-            {
                 switch (op)
                 {
                     case Opciones.Ultimo:
@@ -295,96 +329,95 @@ namespace CSPresentacion.Sistema.General
 
                         break;
                 }
-            }
         }
 
         /// <summary>
-        /// Se llama al presionar el boton ir a Ultimo
+        ///     Se llama al presionar el boton ir a Ultimo
         /// </summary>
         protected virtual void UltimoEvent()
         {
         }
 
         /// <summary>
-        /// Se llama al presionar el boton ir al Anterior
+        ///     Se llama al presionar el boton ir al Anterior
         /// </summary>
         protected virtual void AnteriorEvent()
         {
         }
 
         /// <summary>
-        /// Se llama al presionar el boton ir al Siguiente
+        ///     Se llama al presionar el boton ir al Siguiente
         /// </summary>
         protected virtual void SiguienteEvent()
         {
         }
 
         /// <summary>
-        /// Se llama al presionar el boton ir al Primero
+        ///     Se llama al presionar el boton ir al Primero
         /// </summary>
         protected virtual void PrimeroEvent()
         {
         }
 
         /// <summary>
-        /// Se llama al presionar el boton Nuevo
+        ///     Se llama al presionar el boton Nuevo
         /// </summary>
         protected virtual void NuevoEvent()
         {
         }
 
         /// <summary>
-        /// Se llama al presionar el boton Nuevo
+        ///     Se llama al presionar el boton Nuevo
         /// </summary>
         protected virtual void GuardarEvent()
         {
         }
 
         /// <summary>
-        /// Se llama al presionar el boton anular.
+        ///     Se llama al presionar el boton anular.
         /// </summary>
         protected virtual void AnularEvent()
         {
         }
 
         /// <summary>
-        /// Se llama al presionar el boton aplicar
+        ///     Se llama al presionar el boton aplicar
         /// </summary>
         protected virtual void AplicarEvent()
         {
         }
 
         /// <summary>
-        /// Se llama al presionar el boton Nuevo
+        ///     Se llama al presionar el boton Nuevo
         /// </summary>
         protected virtual void BuscarEvent()
         {
         }
 
         /// <summary>
-        /// Se llama al presionar el boton Eliminar
+        ///     Se llama al presionar el boton Eliminar
         /// </summary>
         protected virtual void EliminarEvent()
         {
         }
 
         /// <summary>
-        /// Se llama al presionar el boton Nuevo
+        ///     Se llama al presionar el boton Nuevo
         /// </summary>
         protected virtual void ImprimirEvent()
         {
         }
 
         /// <summary>
-        /// Se llama al presionar el boton cerrar
+        ///     Se llama al presionar el boton cerrar
         /// </summary>
         protected virtual void CerrarEvent()
         {
-            this.Close();
+            Close();
         }
 
         /// <summary>
-        /// Se llama al presionar el boton revertir.
+        ///     Se llama al presionar el boton revertir.
         /// </summary>
         protected virtual void RevertirAplicarEvent()
         {
@@ -394,52 +427,52 @@ namespace CSPresentacion.Sistema.General
 
         #region Eventos
 
-        private void btnIrAlUltimoRegistro_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void btnIrAlUltimoRegistro_ItemClick(object sender, ItemClickEventArgs e)
         {
             UltimoEvent();
         }
 
-        private void btnIrAlRegistroAnterior_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void btnIrAlRegistroAnterior_ItemClick(object sender, ItemClickEventArgs e)
         {
             AnteriorEvent();
         }
 
-        private void btnIrAlSiguienteRegistro_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void btnIrAlSiguienteRegistro_ItemClick(object sender, ItemClickEventArgs e)
         {
             SiguienteEvent();
         }
 
-        private void btnIrAlPrimerRegistro_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void btnIrAlPrimerRegistro_ItemClick(object sender, ItemClickEventArgs e)
         {
             PrimeroEvent();
         }
 
-        private void btnNuevo_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void btnNuevo_ItemClick(object sender, ItemClickEventArgs e)
         {
             NuevoEvent();
         }
 
-        private void btnGuardar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void btnGuardar_ItemClick(object sender, ItemClickEventArgs e)
         {
             GuardarEvent();
         }
 
-        private void btnBuscar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void btnBuscar_ItemClick(object sender, ItemClickEventArgs e)
         {
             BuscarEvent();
         }
 
-        private void btnEliminar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void btnEliminar_ItemClick(object sender, ItemClickEventArgs e)
         {
             EliminarEvent();
         }
 
-        private void btnImprimir_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void btnImprimir_ItemClick(object sender, ItemClickEventArgs e)
         {
             ImprimirEvent();
         }
 
-        private void btnSalir_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void btnSalir_ItemClick(object sender, ItemClickEventArgs e)
         {
             CerrarEvent();
         }
@@ -457,61 +490,6 @@ namespace CSPresentacion.Sistema.General
         private void btnRevertirAnular_ItemClick(object sender, ItemClickEventArgs e)
         {
             RevertirAplicarEvent();
-        }
-
-        #endregion
-
-        #region  Metódos de sobrecarga.
-
-        /// <inheritdoc />
-        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
-        {
-            bool ret = false;
-            switch (keyData)
-            {
-                case (Keys.Control | Keys.Down):
-                    ret = AccionarBoton(btnIrAlUltimoRegistro);
-                    break;
-                case (Keys.Control | Keys.Left):
-                    ret = AccionarBoton(btnIrAlRegistroAnterior);
-                    break;
-                case (Keys.Control | Keys.Right):
-                    ret = AccionarBoton(btnIrAlSiguienteRegistro);
-                    break;
-                case (Keys.Control | Keys.Up):
-                    ret = AccionarBoton(btnIrAlPrimerRegistro);
-                    break;
-                case (Keys.Control | Keys.N):
-                    ret = AccionarBoton(btnNuevo);
-                    break;
-                case (Keys.Control | Keys.G):
-                    ret = AccionarBoton(btnGuardar);
-                    break;
-                case (Keys.Control | Keys.Delete):
-                    ret = AccionarBoton(btnAnular);
-                    break;
-                case (Keys.Control | Keys.F11):
-                    ret = AccionarBoton(btnAplicar);
-                    break;
-                case (Keys.Control | Keys.B):
-                    ret = AccionarBoton(btnBuscar);
-                    break;
-                case (Keys.Control | Keys.E):
-                    ret = AccionarBoton(btnEliminar);
-                    break;
-                case (Keys.Control | Keys.I):
-                    ret = AccionarBoton(btnImprimir);
-                    break;
-                case (Keys.Control | Keys.S):
-                    ret = AccionarBoton(btnSalir);
-                    break;
-                case (Keys.Control | Keys.R):
-                    ret = AccionarBoton(btnRevertirAnular);
-                    break;
-            }
-
-
-            return ret;
         }
 
         #endregion

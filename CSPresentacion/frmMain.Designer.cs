@@ -64,7 +64,7 @@
             this.barButtonItem4 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem5 = new DevExpress.XtraBars.BarButtonItem();
             this.btnNacionalEInternacional = new DevExpress.XtraBars.BarButtonItem();
-            this.btnAdministracionDeSistema = new DevExpress.XtraBars.BarButtonItem();
+            this.btnSistemasYPantallas = new DevExpress.XtraBars.BarButtonItem();
             this.rpModulos = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.rpAdministracion = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rpConfiguracion = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -76,6 +76,7 @@
             this.xtraTabbedMdiManager1 = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.btnPermisos = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager1)).BeginInit();
             this.SuspendLayout();
@@ -118,9 +119,10 @@
             this.barButtonItem4,
             this.barButtonItem5,
             this.btnNacionalEInternacional,
-            this.btnAdministracionDeSistema});
+            this.btnSistemasYPantallas,
+            this.btnPermisos});
             this.ribbon.Location = new System.Drawing.Point(0, 0);
-            this.ribbon.MaxItemId = 49;
+            this.ribbon.MaxItemId = 50;
             this.ribbon.Name = "ribbon";
             this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.rpModulos,
@@ -369,14 +371,14 @@
             this.btnNacionalEInternacional.Id = 45;
             this.btnNacionalEInternacional.Name = "btnNacionalEInternacional";
             // 
-            // btnAdministracionDeSistema
+            // btnSistemasYPantallas
             // 
-            this.btnAdministracionDeSistema.Caption = "Administración de sistemas";
-            this.btnAdministracionDeSistema.Id = 48;
-            this.btnAdministracionDeSistema.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnAdministradorDeSistema.ImageOptions.Image")));
-            this.btnAdministracionDeSistema.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnAdministradorDeSistema.ImageOptions.LargeImage")));
-            this.btnAdministracionDeSistema.Name = "btnAdministracionDeSistema";
-            this.btnAdministracionDeSistema.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnAdministradorDeSistema_ItemClick);
+            this.btnSistemasYPantallas.Caption = "Sistemas y pantallas";
+            this.btnSistemasYPantallas.Id = 48;
+            this.btnSistemasYPantallas.ImageOptions.Image = global::CSPresentacion.Properties.Resources.sensible;
+            this.btnSistemasYPantallas.Name = "btnSistemasYPantallas";
+            this.btnSistemasYPantallas.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.btnSistemasYPantallas.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnAdministradorDeSistema_ItemClick);
             // 
             // rpModulos
             // 
@@ -388,7 +390,8 @@
             // rpAdministracion
             // 
             this.rpAdministracion.ItemLinks.Add(this.btnUsuarios);
-            this.rpAdministracion.ItemLinks.Add(this.btnAdministracionDeSistema);
+            this.rpAdministracion.ItemLinks.Add(this.btnSistemasYPantallas);
+            this.rpAdministracion.ItemLinks.Add(this.btnPermisos);
             this.rpAdministracion.Name = "rpAdministracion";
             this.rpAdministracion.Text = "Administración";
             // 
@@ -458,6 +461,15 @@
             // 
             this.ribbonPageGroup5.Name = "ribbonPageGroup5";
             this.ribbonPageGroup5.Text = "ribbonPageGroup5";
+            // 
+            // btnPermisos
+            // 
+            this.btnPermisos.Caption = "Acciones o permisos";
+            this.btnPermisos.Id = 49;
+            this.btnPermisos.ImageOptions.Image = global::CSPresentacion.Properties.Resources.permiso;
+            this.btnPermisos.Name = "btnPermisos";
+            this.btnPermisos.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.btnPermisos.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnPermisos_ItemClick);
             // 
             // FrmMain
             // 
@@ -529,6 +541,7 @@
         private DevExpress.XtraBars.BarButtonItem barButtonItem4;
         private DevExpress.XtraBars.BarButtonItem barButtonItem5;
         private DevExpress.XtraBars.BarButtonItem btnNacionalEInternacional;
-        private DevExpress.XtraBars.BarButtonItem btnAdministracionDeSistema;
+        private DevExpress.XtraBars.BarButtonItem btnSistemasYPantallas;
+        private DevExpress.XtraBars.BarButtonItem btnPermisos;
     }
 }

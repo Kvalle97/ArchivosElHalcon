@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.xtraScrollableControl1 = new DevExpress.XtraEditors.XtraScrollableControl();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
             this.checkEdit1 = new DevExpress.XtraEditors.CheckEdit();
@@ -40,6 +41,7 @@
             this.txtNombreDePantalla = new DevExpress.XtraEditors.TextEdit();
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.btnNuevoSistemaOModulo = new DevExpress.XtraEditors.SimpleButton();
             this.btnQuitarSistema = new DevExpress.XtraEditors.SimpleButton();
             this.btnGuardarSistema = new DevExpress.XtraEditors.SimpleButton();
             this.gcSistemaOModulo = new DevExpress.XtraGrid.GridControl();
@@ -52,6 +54,7 @@
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.txtNombreSistema = new DevExpress.XtraEditors.TextEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.dxErrorProvider = new DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider(this.components);
             this.xtraScrollableControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
@@ -68,6 +71,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.meDescripcionSistema.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNombreAMostrarSistema.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNombreSistema.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dxErrorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // xtraScrollableControl1
@@ -152,6 +156,7 @@
             // 
             this.meDescripcionPantalla.Location = new System.Drawing.Point(237, 54);
             this.meDescripcionPantalla.Name = "meDescripcionPantalla";
+            this.meDescripcionPantalla.Properties.MaxLength = 250;
             this.meDescripcionPantalla.Size = new System.Drawing.Size(244, 184);
             this.meDescripcionPantalla.TabIndex = 14;
             // 
@@ -174,6 +179,7 @@
             // 
             // groupControl1
             // 
+            this.groupControl1.Controls.Add(this.btnNuevoSistemaOModulo);
             this.groupControl1.Controls.Add(this.btnQuitarSistema);
             this.groupControl1.Controls.Add(this.btnGuardarSistema);
             this.groupControl1.Controls.Add(this.gcSistemaOModulo);
@@ -191,21 +197,32 @@
             this.groupControl1.TabIndex = 0;
             this.groupControl1.Text = "Sistemas o modulos";
             // 
+            // btnNuevoSistemaOModulo
+            // 
+            this.btnNuevoSistemaOModulo.Location = new System.Drawing.Point(87, 200);
+            this.btnNuevoSistemaOModulo.Name = "btnNuevoSistemaOModulo";
+            this.btnNuevoSistemaOModulo.Size = new System.Drawing.Size(64, 23);
+            this.btnNuevoSistemaOModulo.TabIndex = 21;
+            this.btnNuevoSistemaOModulo.Text = "Nuevo";
+            this.btnNuevoSistemaOModulo.Click += new System.EventHandler(this.btnNuevoSistemaOModulo_Click);
+            // 
             // btnQuitarSistema
             // 
-            this.btnQuitarSistema.Location = new System.Drawing.Point(98, 200);
+            this.btnQuitarSistema.Location = new System.Drawing.Point(157, 200);
             this.btnQuitarSistema.Name = "btnQuitarSistema";
-            this.btnQuitarSistema.Size = new System.Drawing.Size(75, 23);
+            this.btnQuitarSistema.Size = new System.Drawing.Size(64, 23);
             this.btnQuitarSistema.TabIndex = 20;
             this.btnQuitarSistema.Text = "Quitar";
+            this.btnQuitarSistema.Click += new System.EventHandler(this.btnQuitarSistema_Click);
             // 
             // btnGuardarSistema
             // 
             this.btnGuardarSistema.Location = new System.Drawing.Point(17, 200);
             this.btnGuardarSistema.Name = "btnGuardarSistema";
-            this.btnGuardarSistema.Size = new System.Drawing.Size(75, 23);
+            this.btnGuardarSistema.Size = new System.Drawing.Size(64, 23);
             this.btnGuardarSistema.TabIndex = 19;
             this.btnGuardarSistema.Text = "Guardar";
+            this.btnGuardarSistema.Click += new System.EventHandler(this.btnGuardarSistema_Click);
             // 
             // gcSistemaOModulo
             // 
@@ -226,6 +243,7 @@
             this.gvSistemaOModulo.OptionsView.ShowAutoFilterRow = true;
             this.gvSistemaOModulo.OptionsView.ShowGroupPanel = false;
             this.gvSistemaOModulo.ViewCaption = "Sistemas o modulos";
+            this.gvSistemaOModulo.DoubleClick += new System.EventHandler(this.gvSistemaOModulo_DoubleClick);
             // 
             // txtLinkActualizadorSistema
             // 
@@ -257,6 +275,7 @@
             // 
             this.meDescripcionSistema.Location = new System.Drawing.Point(237, 54);
             this.meDescripcionSistema.Name = "meDescripcionSistema";
+            this.meDescripcionSistema.Properties.MaxLength = 250;
             this.meDescripcionSistema.Size = new System.Drawing.Size(244, 184);
             this.meDescripcionSistema.TabIndex = 14;
             // 
@@ -293,6 +312,10 @@
             this.labelControl1.TabIndex = 10;
             this.labelControl1.Text = "Nombre";
             // 
+            // dxErrorProvider
+            // 
+            this.dxErrorProvider.ContainerControl = this;
+            // 
             // FrmSistemasyPantallas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -300,7 +323,8 @@
             this.ClientSize = new System.Drawing.Size(1137, 497);
             this.Controls.Add(this.xtraScrollableControl1);
             this.Name = "FrmSistemasyPantallas";
-            this.Text = "Administrador de sistemas";
+            this.Text = "Sistemas y pantallas";
+            this.Load += new System.EventHandler(this.FrmSistemasyPantallas_Load);
             this.xtraScrollableControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
             this.groupControl2.ResumeLayout(false);
@@ -319,6 +343,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.meDescripcionSistema.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNombreAMostrarSistema.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNombreSistema.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dxErrorProvider)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -349,5 +374,7 @@
         private DevExpress.XtraEditors.TextEdit txtNombreDePantalla;
         private DevExpress.XtraEditors.LabelControl labelControl8;
         private DevExpress.XtraEditors.CheckEdit checkEdit1;
+        private DevExpress.XtraEditors.SimpleButton btnNuevoSistemaOModulo;
+        private DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider dxErrorProvider;
     }
 }

@@ -1,5 +1,7 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="CSPresentacion.Properties" GeneratedClassName="Settings">
+
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)"
+              GeneratedClassNamespace="CSPresentacion.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
     <Setting Name="User" Type="System.String" Scope="User">
@@ -18,11 +20,13 @@
       <Value Profile="(Default)">-1</Value>
     </Setting>
     <Setting Name="halconConnectionString" Type="(Connection string)" Scope="Application">
-      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
-&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;ConnectionString&gt;Data Source=192.168.0.2;Initial Catalog=halcon;User ID=sa;Password=E727cd9b1f&lt;/ConnectionString&gt;
-  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
-&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <DesignTimeValue Profile="(Default)">
+        &lt;?xml version="1.0" encoding="utf-16"?&gt;
+        &lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+        &lt;ConnectionString&gt;Data Source=192.168.0.2;Initial Catalog=halcon;User ID=sa;Password=E727cd9b1f&lt;/ConnectionString&gt;
+        &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
+        &lt;/SerializableConnectionString&gt;
+      </DesignTimeValue>
       <Value Profile="(Default)">Data Source=192.168.0.2;Initial Catalog=halcon;User ID=sa;Password=E727cd9b1f</Value>
     </Setting>
     <Setting Name="Login" Type="System.String" Scope="User">
@@ -38,12 +42,14 @@
       <Value Profile="(Default)">300</Value>
     </Setting>
     <Setting Name="ServerAddress" Type="System.Collections.Specialized.StringCollection" Scope="User">
-      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
-&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;string&gt;192.168.0.2&lt;/string&gt;
-  &lt;string&gt;186.77.179.194&lt;/string&gt;
-  &lt;string&gt;138.117.6.60&lt;/string&gt;
-&lt;/ArrayOfString&gt;</Value>
+      <Value Profile="(Default)">
+        &lt;?xml version="1.0" encoding="utf-16"?&gt;
+        &lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+        &lt;string&gt;192.168.0.2&lt;/string&gt;
+        &lt;string&gt;186.77.179.194&lt;/string&gt;
+        &lt;string&gt;138.117.6.60&lt;/string&gt;
+        &lt;/ArrayOfString&gt;
+      </Value>
     </Setting>
     <Setting Name="RecordarSucursal" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
