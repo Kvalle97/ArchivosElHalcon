@@ -65,6 +65,7 @@
             this.barButtonItem5 = new DevExpress.XtraBars.BarButtonItem();
             this.btnNacionalEInternacional = new DevExpress.XtraBars.BarButtonItem();
             this.btnSistemasYPantallas = new DevExpress.XtraBars.BarButtonItem();
+            this.btnPermisos = new DevExpress.XtraBars.BarButtonItem();
             this.rpModulos = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.rpAdministracion = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rpConfiguracion = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -76,9 +77,13 @@
             this.xtraTabbedMdiManager1 = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.btnPermisos = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem6 = new DevExpress.XtraBars.BarButtonItem();
+            this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
+            this.btnReporteUsuarios = new DevExpress.XtraBars.BarButtonItem();
+            this.btnAccionesUsuarioReporte = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbon
@@ -120,9 +125,12 @@
             this.barButtonItem5,
             this.btnNacionalEInternacional,
             this.btnSistemasYPantallas,
-            this.btnPermisos});
+            this.btnPermisos,
+            this.barButtonItem6,
+            this.btnReporteUsuarios,
+            this.btnAccionesUsuarioReporte});
             this.ribbon.Location = new System.Drawing.Point(0, 0);
-            this.ribbon.MaxItemId = 50;
+            this.ribbon.MaxItemId = 53;
             this.ribbon.Name = "ribbon";
             this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.rpModulos,
@@ -380,6 +388,15 @@
             this.btnSistemasYPantallas.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.btnSistemasYPantallas.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnAdministradorDeSistema_ItemClick);
             // 
+            // btnPermisos
+            // 
+            this.btnPermisos.Caption = "Acciones o permisos";
+            this.btnPermisos.Id = 49;
+            this.btnPermisos.ImageOptions.Image = global::CSPresentacion.Properties.Resources.permiso;
+            this.btnPermisos.Name = "btnPermisos";
+            this.btnPermisos.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.btnPermisos.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnPermisos_ItemClick);
+            // 
             // rpModulos
             // 
             this.rpModulos.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -392,6 +409,7 @@
             this.rpAdministracion.ItemLinks.Add(this.btnUsuarios);
             this.rpAdministracion.ItemLinks.Add(this.btnSistemasYPantallas);
             this.rpAdministracion.ItemLinks.Add(this.btnPermisos);
+            this.rpAdministracion.ItemLinks.Add(this.barButtonItem6);
             this.rpAdministracion.Name = "rpAdministracion";
             this.rpAdministracion.Text = "Administración";
             // 
@@ -462,14 +480,35 @@
             this.ribbonPageGroup5.Name = "ribbonPageGroup5";
             this.ribbonPageGroup5.Text = "ribbonPageGroup5";
             // 
-            // btnPermisos
+            // barButtonItem6
             // 
-            this.btnPermisos.Caption = "Acciones o permisos";
-            this.btnPermisos.Id = 49;
-            this.btnPermisos.ImageOptions.Image = global::CSPresentacion.Properties.Resources.permiso;
-            this.btnPermisos.Name = "btnPermisos";
-            this.btnPermisos.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
-            this.btnPermisos.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnPermisos_ItemClick);
+            this.barButtonItem6.ActAsDropDown = true;
+            this.barButtonItem6.ButtonStyle = DevExpress.XtraBars.BarButtonStyle.DropDown;
+            this.barButtonItem6.Caption = "Reportes";
+            this.barButtonItem6.DropDownControl = this.popupMenu1;
+            this.barButtonItem6.Id = 50;
+            this.barButtonItem6.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem6.ImageOptions.Image")));
+            this.barButtonItem6.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem6.ImageOptions.LargeImage")));
+            this.barButtonItem6.Name = "barButtonItem6";
+            // 
+            // popupMenu1
+            // 
+            this.popupMenu1.ItemLinks.Add(this.btnReporteUsuarios);
+            this.popupMenu1.ItemLinks.Add(this.btnAccionesUsuarioReporte);
+            this.popupMenu1.Name = "popupMenu1";
+            this.popupMenu1.Ribbon = this.ribbon;
+            // 
+            // btnReporteUsuarios
+            // 
+            this.btnReporteUsuarios.Caption = "Usuarios";
+            this.btnReporteUsuarios.Id = 51;
+            this.btnReporteUsuarios.Name = "btnReporteUsuarios";
+            // 
+            // btnAccionesUsuarioReporte
+            // 
+            this.btnAccionesUsuarioReporte.Caption = "Acciones de usuarios";
+            this.btnAccionesUsuarioReporte.Id = 52;
+            this.btnAccionesUsuarioReporte.Name = "btnAccionesUsuarioReporte";
             // 
             // FrmMain
             // 
@@ -483,12 +522,13 @@
             this.Name = "FrmMain";
             this.Ribbon = this.ribbon;
             this.StatusBar = this.ribbonStatusBar;
-            this.Text = "Sistema de importaciones";
+            this.Text = " ";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmMain_FormClosed);
             this.Load += new System.EventHandler(this.frmMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -543,5 +583,9 @@
         private DevExpress.XtraBars.BarButtonItem btnNacionalEInternacional;
         private DevExpress.XtraBars.BarButtonItem btnSistemasYPantallas;
         private DevExpress.XtraBars.BarButtonItem btnPermisos;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem6;
+        private DevExpress.XtraBars.PopupMenu popupMenu1;
+        private DevExpress.XtraBars.BarButtonItem btnReporteUsuarios;
+        private DevExpress.XtraBars.BarButtonItem btnAccionesUsuarioReporte;
     }
 }

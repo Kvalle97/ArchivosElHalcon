@@ -318,7 +318,7 @@ namespace CSPresentacion.Sistema.Utilidades
             errorProvider.SetError(control, mensaje);
 
             XtraMessageBox.Show(mensaje, "",
-                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
             control.Select();
         }
@@ -336,7 +336,7 @@ namespace CSPresentacion.Sistema.Utilidades
             control.Select();
 
             return XtraMessageBox.Show(mensaje, "",
-                MessageBoxButtons.YesNo, MessageBoxIcon.Error);
+                MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
         }
 
         /// <summary>
@@ -360,7 +360,7 @@ namespace CSPresentacion.Sistema.Utilidades
                 flag++;
             }
 
-            XtraMessageBox.Show(mensaje, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            XtraMessageBox.Show(mensaje, "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
         /// <summary>
@@ -370,7 +370,7 @@ namespace CSPresentacion.Sistema.Utilidades
         public static void AlertarDeError(string mensaje)
         {
             XtraMessageBox.Show(mensaje, "",
-                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
 
@@ -679,7 +679,7 @@ Usted está usando la versión ({args.InstalledVersion}). ¿ Quiere actualizar a
         /// </summary>
         /// <param name="pregunta"></param>
         /// <returns></returns>
-        public static DialogResult PreguntarSN(string pregunta)
+        public static DialogResult PreguntarSn(string pregunta)
         {
             return XtraMessageBox.Show(pregunta, "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
         }
@@ -705,6 +705,8 @@ Usted está usando la versión ({args.InstalledVersion}). ¿ Quiere actualizar a
         {
             Type temp = typeof(T);
             T obj = Activator.CreateInstance<T>();
+
+            if (dr == null) return obj;
 
             foreach (DataColumn column in dr.Table.Columns)
             {

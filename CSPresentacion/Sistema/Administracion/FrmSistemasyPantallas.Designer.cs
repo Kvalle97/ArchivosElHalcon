@@ -31,9 +31,10 @@
             this.components = new System.ComponentModel.Container();
             this.xtraScrollableControl1 = new DevExpress.XtraEditors.XtraScrollableControl();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
-            this.checkEdit1 = new DevExpress.XtraEditors.CheckEdit();
+            this.btnNuevoPantalla = new DevExpress.XtraEditors.SimpleButton();
             this.btnQuitarPantalla = new DevExpress.XtraEditors.SimpleButton();
             this.btnGuardarPantalla = new DevExpress.XtraEditors.SimpleButton();
+            this.ckbEsReporte = new DevExpress.XtraEditors.CheckEdit();
             this.gcPantallas = new DevExpress.XtraGrid.GridControl();
             this.gvPantallas = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
@@ -58,7 +59,7 @@
             this.xtraScrollableControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ckbEsReporte.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcPantallas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPantallas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.meDescripcionPantalla.Properties)).BeginInit();
@@ -86,9 +87,10 @@
             // 
             // groupControl2
             // 
-            this.groupControl2.Controls.Add(this.checkEdit1);
+            this.groupControl2.Controls.Add(this.btnNuevoPantalla);
             this.groupControl2.Controls.Add(this.btnQuitarPantalla);
             this.groupControl2.Controls.Add(this.btnGuardarPantalla);
+            this.groupControl2.Controls.Add(this.ckbEsReporte);
             this.groupControl2.Controls.Add(this.gcPantallas);
             this.groupControl2.Controls.Add(this.labelControl6);
             this.groupControl2.Controls.Add(this.meDescripcionPantalla);
@@ -100,29 +102,40 @@
             this.groupControl2.TabIndex = 1;
             this.groupControl2.Text = "Pantallas";
             // 
-            // checkEdit1
+            // btnNuevoPantalla
             // 
-            this.checkEdit1.Location = new System.Drawing.Point(17, 83);
-            this.checkEdit1.Name = "checkEdit1";
-            this.checkEdit1.Properties.Caption = "Es reporte";
-            this.checkEdit1.Size = new System.Drawing.Size(75, 20);
-            this.checkEdit1.TabIndex = 21;
+            this.btnNuevoPantalla.Location = new System.Drawing.Point(87, 200);
+            this.btnNuevoPantalla.Name = "btnNuevoPantalla";
+            this.btnNuevoPantalla.Size = new System.Drawing.Size(64, 23);
+            this.btnNuevoPantalla.TabIndex = 24;
+            this.btnNuevoPantalla.Text = "Nuevo";
+            this.btnNuevoPantalla.Click += new System.EventHandler(this.btnNuevoPantalla_Click);
             // 
             // btnQuitarPantalla
             // 
-            this.btnQuitarPantalla.Location = new System.Drawing.Point(98, 200);
+            this.btnQuitarPantalla.Location = new System.Drawing.Point(157, 200);
             this.btnQuitarPantalla.Name = "btnQuitarPantalla";
-            this.btnQuitarPantalla.Size = new System.Drawing.Size(75, 23);
-            this.btnQuitarPantalla.TabIndex = 20;
+            this.btnQuitarPantalla.Size = new System.Drawing.Size(64, 23);
+            this.btnQuitarPantalla.TabIndex = 23;
             this.btnQuitarPantalla.Text = "Quitar";
+            this.btnQuitarPantalla.Click += new System.EventHandler(this.btnQuitarPantalla_Click);
             // 
             // btnGuardarPantalla
             // 
             this.btnGuardarPantalla.Location = new System.Drawing.Point(17, 200);
             this.btnGuardarPantalla.Name = "btnGuardarPantalla";
-            this.btnGuardarPantalla.Size = new System.Drawing.Size(75, 23);
-            this.btnGuardarPantalla.TabIndex = 19;
+            this.btnGuardarPantalla.Size = new System.Drawing.Size(64, 23);
+            this.btnGuardarPantalla.TabIndex = 22;
             this.btnGuardarPantalla.Text = "Guardar";
+            this.btnGuardarPantalla.Click += new System.EventHandler(this.btnGuardarPantalla_Click);
+            // 
+            // ckbEsReporte
+            // 
+            this.ckbEsReporte.Location = new System.Drawing.Point(17, 83);
+            this.ckbEsReporte.Name = "ckbEsReporte";
+            this.ckbEsReporte.Properties.Caption = "Es reporte";
+            this.ckbEsReporte.Size = new System.Drawing.Size(75, 20);
+            this.ckbEsReporte.TabIndex = 21;
             // 
             // gcPantallas
             // 
@@ -143,6 +156,7 @@
             this.gvPantallas.OptionsView.ShowAutoFilterRow = true;
             this.gvPantallas.OptionsView.ShowGroupPanel = false;
             this.gvPantallas.ViewCaption = "Sistemas o modulos";
+            this.gvPantallas.DoubleClick += new System.EventHandler(this.gvPantallas_DoubleClick);
             // 
             // labelControl6
             // 
@@ -164,6 +178,7 @@
             // 
             this.txtNombreDePantalla.Location = new System.Drawing.Point(17, 53);
             this.txtNombreDePantalla.Name = "txtNombreDePantalla";
+            this.txtNombreDePantalla.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtNombreDePantalla.Properties.Mask.EditMask = "\\S*";
             this.txtNombreDePantalla.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
             this.txtNombreDePantalla.Size = new System.Drawing.Size(214, 20);
@@ -329,7 +344,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
             this.groupControl2.ResumeLayout(false);
             this.groupControl2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ckbEsReporte.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcPantallas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPantallas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.meDescripcionPantalla.Properties)).EndInit();
@@ -365,16 +380,17 @@
         private DevExpress.XtraEditors.SimpleButton btnQuitarSistema;
         private DevExpress.XtraEditors.SimpleButton btnGuardarSistema;
         private DevExpress.XtraEditors.GroupControl groupControl2;
-        private DevExpress.XtraEditors.SimpleButton btnQuitarPantalla;
-        private DevExpress.XtraEditors.SimpleButton btnGuardarPantalla;
         private DevExpress.XtraGrid.GridControl gcPantallas;
         private DevExpress.XtraGrid.Views.Grid.GridView gvPantallas;
         private DevExpress.XtraEditors.LabelControl labelControl6;
         private DevExpress.XtraEditors.MemoEdit meDescripcionPantalla;
         private DevExpress.XtraEditors.TextEdit txtNombreDePantalla;
         private DevExpress.XtraEditors.LabelControl labelControl8;
-        private DevExpress.XtraEditors.CheckEdit checkEdit1;
+        private DevExpress.XtraEditors.CheckEdit ckbEsReporte;
         private DevExpress.XtraEditors.SimpleButton btnNuevoSistemaOModulo;
         private DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider dxErrorProvider;
+        private DevExpress.XtraEditors.SimpleButton btnNuevoPantalla;
+        private DevExpress.XtraEditors.SimpleButton btnQuitarPantalla;
+        private DevExpress.XtraEditors.SimpleButton btnGuardarPantalla;
     }
 }

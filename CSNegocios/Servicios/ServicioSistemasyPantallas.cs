@@ -84,7 +84,7 @@ namespace CSNegocios.Servicios
                        cmd =>
                        {
                            cmd.Parameters.Add(new SqlParameter("@Id", SqlDbType.Int)).Value = id;
-                           cmd.Parameters.Add(new SqlParameter("@Nombre", SqlDbType.Int)).Value = id;
+                           cmd.Parameters.Add(new SqlParameter("@Nombre", SqlDbType.NVarChar)).Value = id;
 
                            return 0;
                        })) > 0;
@@ -93,7 +93,7 @@ namespace CSNegocios.Servicios
         /// <summary>
         /// Eliminar Sistemao
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">Id</param>
         public void EliminarSistemaOModulo(int id)
         {
             Coneccion.EjecutarSpText("delete SistemaOModulo where Id = @Id;", cmd =>
@@ -102,6 +102,85 @@ namespace CSNegocios.Servicios
 
                 return 0;
             });
+        }
+
+        /// <summary>
+        /// Mostrar Pantallas
+        /// </summary>
+        /// <param name="gc">Grid Control</param>
+        /// <param name="gv">Grid View</param>
+        public void MostrarPantallas(GridControl gc, GridView gv)
+        {
+            gc.DataSource = Coneccion.EjecutarTextTable("select Id, Nombre, Descripcion from Pantalla", null);
+
+            gv.Columns["Id"].Visible = false;
+        }
+
+        /// <summary>
+        /// Guardar Pantalla
+        /// </summary>
+        /// <param name="pantalla"></param>
+        public void GuardarPantalla(Pantalla pantalla)
+        {
+            Coneccion.EjecutarSp("spGuardarPantalla", cmd =>
+                {
+                    cmd.Parameters.Add(new SqlParameter("@Id", SqlDbType.Int)).Value = pantalla.Id;
+                    cmd.Parameters.Add(new SqlParameter("@Nombre", SqlDbType.NVarChar)).Value = pantalla.Nombre;
+                    cmd.Parameters.Add(new SqlParameter("@Descripcion", SqlDbType.NVarChar)).Value = RevisarSiEsNuloSql(pantalla.Descripcion);
+                    cmd.Parameters.Add(new SqlParameter("@EsReporte", SqlDbType.Bit)).Value = pantalla.EsReporte;
+
+                    return 0;
+                });
+        }
+
+        /// <summary>
+        /// El nombre de la pantalla esta en uso?
+        /// </summary>
+        /// <param name="pantallaId"></param>
+        /// <param name="pantallaNombre"></param>
+        /// <returns></returns>
+        public bool ElNombreDeLaPantallaEstaEnUso(int pantallaId, string pantallaNombre)
+        {
+            return Convert.ToInt32(Coneccion.ObterResultadoText(
+                       "select COUNT(*) from SistemaOModulo where Id <> @Id and Nombre = @Nombre",
+                       cmd =>
+                       {
+                           cmd.Parameters.Add(new SqlParameter("@Id", SqlDbType.Int)).Value = pantallaId;
+                           cmd.Parameters.Add(new SqlParameter("@Nombre", SqlDbType.NVarChar)).Value = pantallaNombre;
+
+                           return 0;
+                       })) > 0;
+        }
+
+        /// <summary>
+        /// Eliminar pantalla
+        /// </summary>
+        /// <param name="pantallaId"></param>
+        public void EliminarPantalla(int pantallaId)
+        {
+            Coneccion.EjecutarSpText("delete Pantalla where Id = @Id", cmd =>
+                {
+                    cmd.Parameters.Add(new SqlParameter("@Id", SqlDbType.Int)).Value = pantallaId;
+                    return 0;
+                });
+        }
+
+        /// <summary>
+        /// Obtener Pantalla
+        /// </summary>
+        /// <param name="idPantalla"></param>
+        /// <returns></returns>
+        public DataRow ObtenerPantalla(int idPantalla)
+        {
+            dataTable = Coneccion.EjecutarTextTable("select * from Pantalla where Id = @Id", cmd =>
+            {
+                cmd.Parameters.Add(new SqlParameter("@Id", SqlDbType.Int)).Value = idPantalla;
+
+                return 0;
+            });
+
+            if (dataTable != null && dataTable.Rows.Count > 0) return dataTable.Rows[0];
+            return null;
         }
     }
 }

@@ -3,7 +3,6 @@ using System.Data.SqlClient;
 using System.Windows.Forms;
 using CSNegocios.Modelos;
 using CSNegocios.Servicios;
-using CSPresentacion.Sistema.General;
 using CSPresentacion.Sistema.Utilidades;
 using DevExpress.XtraEditors;
 
@@ -17,6 +16,7 @@ namespace CSPresentacion.Sistema.Administracion
         private static FrmSistemasyPantallas childlInstance;
         private readonly ServicioSistemasyPantallas servicioSistemasyPantallas = new ServicioSistemasyPantallas();
         private SistemaOModulo sistemaOModulo = new SistemaOModulo();
+        private Pantalla pantalla = new Pantalla();
 
         /// <summary>
         ///     Constructor
@@ -52,6 +52,13 @@ namespace CSPresentacion.Sistema.Administracion
             meDescripcionSistema.Text = sistemaOModulo.Descripcion;
         }
 
+        private void CargarPantalla()
+        {
+            txtNombreDePantalla.Text = pantalla.Nombre;
+            ckbEsReporte.Checked = pantalla.EsReporte;
+            meDescripcionPantalla.Text = pantalla.Descripcion;
+        }
+
         #endregion
 
         #region Eventos
@@ -61,6 +68,7 @@ namespace CSPresentacion.Sistema.Administracion
             try
             {
                 servicioSistemasyPantallas.MostrarSistemas(gcSistemaOModulo, gvSistemaOModulo);
+                servicioSistemasyPantallas.MostrarPantallas(gcPantallas, gvPantallas);
             }
             catch (Exception exception)
             {
@@ -70,9 +78,20 @@ namespace CSPresentacion.Sistema.Administracion
 
         private void btnNuevoSistemaOModulo_Click(object sender, EventArgs e)
         {
-            dxErrorProvider.ClearErrors();
-            sistemaOModulo = new SistemaOModulo();
-            CargarSistemaOModulo();
+            try
+            {
+                dxErrorProvider.ClearErrors();
+
+                sistemaOModulo = new SistemaOModulo();
+
+                servicioSistemasyPantallas.MostrarSistemas(gcSistemaOModulo, gvSistemaOModulo);
+
+                CargarSistemaOModulo();
+            }
+            catch (Exception exception)
+            {
+                UIHelper.MostrarError(exception);
+            }
         }
 
         private void gvSistemaOModulo_DoubleClick(object sender, EventArgs e)
@@ -136,11 +155,11 @@ namespace CSPresentacion.Sistema.Administracion
             {
                 if (sistemaOModulo.Id <= 0)
                 {
-                        UIHelper.AlertarDeError("Primero seleccione un sistema o modulo");
+                    UIHelper.AlertarDeError("Primero seleccione un sistema o modulo");
                 }
                 else
                 {
-                    if (UIHelper.PreguntarSN($"Esta seguro que desea eliminar {sistemaOModulo.Nombre}") ==
+                    if (UIHelper.PreguntarSn($"Esta seguro que desea eliminar {sistemaOModulo.Nombre}") ==
                         DialogResult.Yes)
                     {
                         servicioSistemasyPantallas.EliminarSistemaOModulo(sistemaOModulo.Id);
@@ -150,6 +169,103 @@ namespace CSPresentacion.Sistema.Administracion
             catch (SqlException exception)
             {
                 UIHelper.MostrarError(exception);
+            }
+            catch (Exception exception)
+            {
+                UIHelper.MostrarError(exception);
+            }
+        }
+
+        private void btnNuevoPantalla_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                dxErrorProvider.ClearErrors();
+
+                pantalla = new Pantalla();
+
+                servicioSistemasyPantallas.MostrarPantallas(gcPantallas, gvPantallas);
+
+                CargarPantalla();
+            }
+            catch (Exception exception)
+            {
+                UIHelper.MostrarError(exception);
+            }
+        }
+
+        private void btnGuardarPantalla_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                dxErrorProvider.ClearErrors();
+
+                if (string.IsNullOrWhiteSpace(txtNombreDePantalla.Text))
+                {
+                    UIHelper.AlertarDeError(dxErrorProvider, txtNombreDePantalla, "Nombre de la pantalla no valida");
+                    return;
+                }
+
+                if (servicioSistemasyPantallas.ElNombreDeLaPantallaEstaEnUso(pantalla.Id, pantalla.Nombre))
+                {
+                    UIHelper.AlertarDeError(dxErrorProvider, txtNombreDePantalla, "El nombre ya esta siendo usado");
+                    return;
+                }
+
+                pantalla.Nombre = txtNombreDePantalla.Text;
+                pantalla.EsReporte = ckbEsReporte.Checked;
+                pantalla.Descripcion = meDescripcionPantalla.Text;
+
+                servicioSistemasyPantallas.GuardarPantalla(pantalla);
+
+                btnNuevoPantalla.PerformClick();
+            }
+            catch (Exception exception)
+            {
+                UIHelper.MostrarError(exception);
+            }
+        }
+
+        private void btnQuitarPantalla_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (pantalla.Id > 0)
+                {
+                    if (UIHelper.PreguntarSn($"Está seguro que desea eliminar la panta {pantalla.Nombre}") ==
+                        DialogResult.Yes)
+                    {
+                        servicioSistemasyPantallas.EliminarPantalla(pantalla.Id);
+
+                        btnNuevoPantalla.PerformClick();
+                    }
+                }
+                else
+                {
+                    UIHelper.AlertarDeError("Primero seleccione una pantalla");
+                }
+            }
+            catch (SqlException exception)
+            {
+                UIHelper.MostrarError(exception);
+            }
+            catch (Exception exception)
+            {
+                UIHelper.MostrarError(exception);
+            }
+        }
+
+        private void gvPantallas_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                if (gvPantallas.FocusedRowHandle < 0) return;
+
+                pantalla = UIHelper.ObtenerItem<Pantalla>(
+                    servicioSistemasyPantallas.ObtenerPantalla(
+                        Convert.ToInt32(gvPantallas.GetFocusedDataRow()["Id"])));
+                
+                CargarPantalla();
             }
             catch (Exception exception)
             {

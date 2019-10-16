@@ -142,6 +142,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Sistema\Administracion\FrmAccionesyPermisos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sistema\Administracion\FrmAccionesyPermisos.Designer.cs">
+      <DependentUpon>FrmAccionesyPermisos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sistema\Administracion\FrmSistemasyPantallas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -206,6 +212,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sistema\Administracion\FrmAccionesyPermisos.resx">
+      <DependentUpon>FrmAccionesyPermisos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sistema\Administracion\FrmSistemasyPantallas.resx">
       <DependentUpon>FrmSistemasyPantallas.cs</DependentUpon>
