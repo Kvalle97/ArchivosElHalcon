@@ -56,6 +56,8 @@
             this.txtNombreSistema = new DevExpress.XtraEditors.TextEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.dxErrorProvider = new DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider(this.components);
+            this.ckcbAccionesEnPantalla = new DevExpress.XtraEditors.CheckedComboBoxEdit();
+            this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.xtraScrollableControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
@@ -73,6 +75,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtNombreAMostrarSistema.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNombreSistema.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxErrorProvider)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ckcbAccionesEnPantalla.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // xtraScrollableControl1
@@ -87,6 +90,8 @@
             // 
             // groupControl2
             // 
+            this.groupControl2.Controls.Add(this.labelControl5);
+            this.groupControl2.Controls.Add(this.ckcbAccionesEnPantalla);
             this.groupControl2.Controls.Add(this.btnNuevoPantalla);
             this.groupControl2.Controls.Add(this.btnQuitarPantalla);
             this.groupControl2.Controls.Add(this.btnGuardarPantalla);
@@ -156,6 +161,7 @@
             this.gvPantallas.OptionsView.ShowAutoFilterRow = true;
             this.gvPantallas.OptionsView.ShowGroupPanel = false;
             this.gvPantallas.ViewCaption = "Sistemas o modulos";
+            this.gvPantallas.KeyUp += new System.Windows.Forms.KeyEventHandler(this.gvPantallas_KeyUp);
             this.gvPantallas.DoubleClick += new System.EventHandler(this.gvPantallas_DoubleClick);
             // 
             // labelControl6
@@ -258,6 +264,7 @@
             this.gvSistemaOModulo.OptionsView.ShowAutoFilterRow = true;
             this.gvSistemaOModulo.OptionsView.ShowGroupPanel = false;
             this.gvSistemaOModulo.ViewCaption = "Sistemas o modulos";
+            this.gvSistemaOModulo.KeyUp += new System.Windows.Forms.KeyEventHandler(this.gvSistemaOModulo_KeyUp);
             this.gvSistemaOModulo.DoubleClick += new System.EventHandler(this.gvSistemaOModulo_DoubleClick);
             // 
             // txtLinkActualizadorSistema
@@ -331,6 +338,24 @@
             // 
             this.dxErrorProvider.ContainerControl = this;
             // 
+            // ckcbAccionesEnPantalla
+            // 
+            this.ckcbAccionesEnPantalla.Enabled = false;
+            this.ckcbAccionesEnPantalla.Location = new System.Drawing.Point(17, 127);
+            this.ckcbAccionesEnPantalla.Name = "ckcbAccionesEnPantalla";
+            this.ckcbAccionesEnPantalla.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.ckcbAccionesEnPantalla.Size = new System.Drawing.Size(214, 20);
+            this.ckcbAccionesEnPantalla.TabIndex = 25;
+            // 
+            // labelControl5
+            // 
+            this.labelControl5.Location = new System.Drawing.Point(17, 108);
+            this.labelControl5.Name = "labelControl5";
+            this.labelControl5.Size = new System.Drawing.Size(118, 13);
+            this.labelControl5.TabIndex = 26;
+            this.labelControl5.Text = "Acciones de la pantalla";
+            // 
             // FrmSistemasyPantallas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -359,6 +384,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtNombreAMostrarSistema.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNombreSistema.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxErrorProvider)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ckcbAccionesEnPantalla.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -392,5 +418,7 @@
         private DevExpress.XtraEditors.SimpleButton btnNuevoPantalla;
         private DevExpress.XtraEditors.SimpleButton btnQuitarPantalla;
         private DevExpress.XtraEditors.SimpleButton btnGuardarPantalla;
+        private DevExpress.XtraEditors.LabelControl labelControl5;
+        private DevExpress.XtraEditors.CheckedComboBoxEdit ckcbAccionesEnPantalla;
     }
 }

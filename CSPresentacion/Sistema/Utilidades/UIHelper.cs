@@ -696,6 +696,19 @@ Usted está usando la versión ({args.InstalledVersion}). ¿ Quiere actualizar a
         }
 
         /// <summary>
+        /// Convertir DataTable A Lista Simple
+        /// </summary>
+        /// <typeparam name="T">Tipo de dato</typeparam>
+        /// <param name="dt">Data table</param>
+        /// <param name="nombreDeColumna">Nombre de la columna a cambiar</param>
+        /// <returns></returns>
+        public static List<T> ConvertirDataTableAListaSimple<T>(DataTable dt, string nombreDeColumna)
+        {
+            if (!typeof(T).IsPrimitive) throw new Exception("Solo datos primitivos :)");
+            return dt.Rows.OfType<DataRow>().Select(dr => dr.Field<T>(nombreDeColumna)).ToList();
+        }
+
+        /// <summary>
         ///     Obtener item
         /// </summary>
         /// <typeparam name="T"></typeparam>

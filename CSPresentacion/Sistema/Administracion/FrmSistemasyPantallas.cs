@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 using CSNegocios.Modelos;
@@ -54,6 +55,21 @@ namespace CSPresentacion.Sistema.Administracion
 
         private void CargarPantalla()
         {
+            if (pantalla.Id != 0)
+            {
+                servicioSistemasyPantallas.MostrarAcciones(ckcbAccionesEnPantalla);
+                ckcbAccionesEnPantalla.Enabled = true;
+
+                ckcbAccionesEnPantalla.SetEditValue(
+                    UIHelper.ConvertirDataTableAListaSimple<int>(
+                        servicioSistemasyPantallas.ObtenerAccionesDeLaPantalla(pantalla.Id), "IdAccion"));
+            }
+            else
+            {
+                ckcbAccionesEnPantalla.SetEditValue(null);
+                ckcbAccionesEnPantalla.Enabled = false;
+            }
+
             txtNombreDePantalla.Text = pantalla.Nombre;
             ckbEsReporte.Checked = pantalla.EsReporte;
             meDescripcionPantalla.Text = pantalla.Descripcion;
@@ -69,6 +85,7 @@ namespace CSPresentacion.Sistema.Administracion
             {
                 servicioSistemasyPantallas.MostrarSistemas(gcSistemaOModulo, gvSistemaOModulo);
                 servicioSistemasyPantallas.MostrarPantallas(gcPantallas, gvPantallas);
+                servicioSistemasyPantallas.MostrarAcciones(ckcbAccionesEnPantalla);
             }
             catch (Exception exception)
             {
@@ -218,6 +235,14 @@ namespace CSPresentacion.Sistema.Administracion
 
                 servicioSistemasyPantallas.GuardarPantalla(pantalla);
 
+                // Guardando acciones de la pantalla
+
+                if (pantalla.Id != 0)
+                {
+                    servicioSistemasyPantallas.GuardarAccioneDePantalla(pantalla.Id,
+                         (List<object>) ckcbAccionesEnPantalla.EditValue);
+                }
+
                 btnNuevoPantalla.PerformClick();
             }
             catch (Exception exception)
@@ -264,7 +289,45 @@ namespace CSPresentacion.Sistema.Administracion
                 pantalla = UIHelper.ObtenerItem<Pantalla>(
                     servicioSistemasyPantallas.ObtenerPantalla(
                         Convert.ToInt32(gvPantallas.GetFocusedDataRow()["Id"])));
-                
+
+                CargarPantalla();
+            }
+            catch (Exception exception)
+            {
+                UIHelper.MostrarError(exception);
+            }
+        }
+
+        private void gvSistemaOModulo_KeyUp(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode != Keys.Enter) return;
+                if (gvSistemaOModulo.FocusedRowHandle < 0) return;
+
+                sistemaOModulo = UIHelper.ObtenerItem<SistemaOModulo>(
+                    servicioSistemasyPantallas.ObtenerSistemaOModulo(
+                        Convert.ToInt32(gvSistemaOModulo.GetFocusedDataRow()["Id"])));
+
+                CargarSistemaOModulo();
+            }
+            catch (Exception exception)
+            {
+                UIHelper.MostrarError(exception);
+            }
+        }
+
+        private void gvPantallas_KeyUp(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode != Keys.Enter) return;
+                if (gvPantallas.FocusedRowHandle < 0) return;
+
+                pantalla = UIHelper.ObtenerItem<Pantalla>(
+                    servicioSistemasyPantallas.ObtenerPantalla(
+                        Convert.ToInt32(gvPantallas.GetFocusedDataRow()["Id"])));
+
                 CargarPantalla();
             }
             catch (Exception exception)

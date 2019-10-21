@@ -51,6 +51,7 @@
     <Compile Include="Logueo.cs" />
     <Compile Include="Modelos\Accion.cs" />
     <Compile Include="Modelos\Pantalla.cs" />
+    <Compile Include="Modelos\Rol.cs" />
     <Compile Include="Modelos\SistemaOModulo.cs" />
     <Compile Include="OperacionesGlobal.cs" />
     <Compile Include="Personalizar.cs" />
