@@ -22,7 +22,8 @@ namespace CSPresentacion
         private static readonly List<string> lstDePantallas = new List<string>
         {
             "Usuarios",
-            "Sistemasypantallas"
+            "Sistemasypantallas",
+            "Accionesopermisos"
         };
 
         private readonly bool preguntarSucursal = false;
@@ -278,12 +279,13 @@ namespace CSPresentacion
                 UIHelper.MostrarError(exception);
             }
         }
+        
+        private void btnPermisos_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            AgregarAlMdi(FrmAccionesyPermisos.Instance());
+        }
 
         #endregion
 
-        private void btnPermisos_ItemClick(object sender, ItemClickEventArgs e)
-        {
-
-        }
     }
 }

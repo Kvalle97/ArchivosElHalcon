@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using CSDatos;
 using CSNegocios.Modelos;
 using CSNegocios.Servicios.General;
+using DevExpress.XtraEditors;
+using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Grid;
 
@@ -84,7 +86,7 @@ namespace CSNegocios.Servicios
                        cmd =>
                        {
                            cmd.Parameters.Add(new SqlParameter("@Id", SqlDbType.Int)).Value = id;
-                           cmd.Parameters.Add(new SqlParameter("@Nombre", SqlDbType.Int)).Value = id;
+                           cmd.Parameters.Add(new SqlParameter("@Nombre", SqlDbType.NVarChar)).Value = id;
 
                            return 0;
                        })) > 0;
@@ -93,7 +95,7 @@ namespace CSNegocios.Servicios
         /// <summary>
         /// Eliminar Sistemao
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">Id</param>
         public void EliminarSistemaOModulo(int id)
         {
             Coneccion.EjecutarSpText("delete SistemaOModulo where Id = @Id;", cmd =>
@@ -102,6 +104,143 @@ namespace CSNegocios.Servicios
 
                 return 0;
             });
+        }
+
+        /// <summary>
+        /// Mostrar Pantallas
+        /// </summary>
+        /// <param name="gc">Grid Control</param>
+        /// <param name="gv">Grid View</param>
+        public void MostrarPantallas(GridControl gc, GridView gv)
+        {
+            gc.DataSource = Coneccion.EjecutarTextTable("select Id, Nombre, Descripcion from Pantalla", null);
+
+            gv.Columns["Id"].Visible = false;
+        }
+
+        /// <summary>
+        /// Guardar Pantalla
+        /// </summary>
+        /// <param name="pantalla"></param>
+        public void GuardarPantalla(Pantalla pantalla)
+        {
+            Coneccion.EjecutarSp("spGuardarPantalla", cmd =>
+            {
+                cmd.Parameters.Add(new SqlParameter("@Id", SqlDbType.Int)).Value = pantalla.Id;
+                cmd.Parameters.Add(new SqlParameter("@Nombre", SqlDbType.NVarChar)).Value = pantalla.Nombre;
+                cmd.Parameters.Add(new SqlParameter("@Descripcion", SqlDbType.NVarChar)).Value =
+                    RevisarSiEsNuloSql(pantalla.Descripcion);
+                cmd.Parameters.Add(new SqlParameter("@EsReporte", SqlDbType.Bit)).Value = pantalla.EsReporte;
+
+                return 0;
+            });
+        }
+
+        /// <summary>
+        /// El nombre de la pantalla esta en uso?
+        /// </summary>
+        /// <param name="pantallaId"></param>
+        /// <param name="pantallaNombre"></param>
+        /// <returns></returns>
+        public bool ElNombreDeLaPantallaEstaEnUso(int pantallaId, string pantallaNombre)
+        {
+            return Convert.ToInt32(Coneccion.ObterResultadoText(
+                       "select COUNT(*) from SistemaOModulo where Id <> @Id and Nombre = @Nombre",
+                       cmd =>
+                       {
+                           cmd.Parameters.Add(new SqlParameter("@Id", SqlDbType.Int)).Value = pantallaId;
+                           cmd.Parameters.Add(new SqlParameter("@Nombre", SqlDbType.NVarChar)).Value = pantallaNombre;
+
+                           return 0;
+                       })) > 0;
+        }
+
+        /// <summary>
+        /// Eliminar pantalla
+        /// </summary>
+        /// <param name="pantallaId"></param>
+        public void EliminarPantalla(int pantallaId)
+        {
+            Coneccion.EjecutarSpText("delete Pantalla where Id = @Id", cmd =>
+            {
+                cmd.Parameters.Add(new SqlParameter("@Id", SqlDbType.Int)).Value = pantallaId;
+                return 0;
+            });
+        }
+
+        /// <summary>
+        /// Obtener Pantalla
+        /// </summary>
+        /// <param name="idPantalla"></param>
+        /// <returns></returns>
+        public DataRow ObtenerPantalla(int idPantalla)
+        {
+            dataTable = Coneccion.EjecutarTextTable("select * from Pantalla where Id = @Id", cmd =>
+            {
+                cmd.Parameters.Add(new SqlParameter("@Id", SqlDbType.Int)).Value = idPantalla;
+
+                return 0;
+            });
+
+            if (dataTable != null && dataTable.Rows.Count > 0) return dataTable.Rows[0];
+            return null;
+        }
+
+        /// <summary>
+        /// Muestra todas las acciones en un Checked Combobox
+        /// </summary>
+        /// <param name="ckcb">Checked combobox</param>
+        public void MostrarAcciones(CheckedComboBoxEdit ckcb)
+        {
+            ckcb.Properties.DataSource = Coneccion.EjecutarTextTable(
+                "select Id, CONCAT(Nombre, IIF(Auditable = 1, ' (Auditable) ', '')) as Accion " +
+                "from Accion;", null);
+
+            ckcb.Properties.DisplayMember = "Accion";
+            ckcb.Properties.ValueMember = "Id";
+            ckcb.Properties.EditValueType = EditValueTypeCollection.List;
+        }
+
+        /// <summary>
+        /// Obtener Acciones de la pantalla
+        /// </summary>
+        /// <param name="idPantalla">Id de la pantalla</param>
+        /// <returns>Datatable</returns>
+        public DataTable ObtenerAccionesDeLaPantalla(int idPantalla)
+        {
+            return Coneccion.EjecutarTextTable("select IdAccion from AccionEnPantalla where IdPantalla = @IdPantalla;",
+                cmd =>
+                {
+                    cmd.Parameters.Add(new SqlParameter("@IdPantalla", SqlDbType.Int)).Value = idPantalla;
+                    return 0;
+                });
+        }
+
+        /// <summary>
+        /// Guardar Acciones de pantalla
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="lstAcciones">Generic list acciones</param>
+        public void GuardarAccioneDePantalla(int id, List<object> lstAcciones)
+        {
+            // Eliminamos las Acciones de pantalla
+            Coneccion.EjecutarSpText("delete AccionEnPantalla where IdPantalla = @IdPantalla;", cmd =>
+            {
+                cmd.Parameters.Add(new SqlParameter("@IdPantalla", SqlDbType.Int)).Value = id;
+                return 0;
+            });
+
+            foreach (int accion in lstAcciones)
+            {
+                Coneccion.EjecutarSpText("insert into AccionEnPantalla (IdPantalla, IdAccion)" +
+                                         " VALUES (@IdPantalla, @IdAccion)", cmd =>
+                {
+                    cmd.Parameters.Add(new SqlParameter("@IdPantalla", SqlDbType.Int)).Value = id;
+                    cmd.Parameters.Add(new SqlParameter("@IdAccion", SqlDbType.Int)).Value = accion;
+
+                    return 0;
+                });
+            }
         }
     }
 }
