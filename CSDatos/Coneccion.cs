@@ -179,7 +179,7 @@ namespace CSDatos
         /// <param name="nombreDelSp">Nombre del procedimiento</param>
         /// <param name="ejecutarAntes">Delegado para llenar el command</param>
         /// <returns></returns>
-        public static int EjecutarSp(string nombreDelSp, Func<SqlCommand, int> ejecutarAntes)
+        public static int EjecutarSp(string nombreDelSp, Action<SqlCommand> ejecutarAntes)
         {
             using (var sqlConnection = new SqlConnection())
             {
@@ -225,7 +225,7 @@ namespace CSDatos
         /// <param name="nombreDelSp"></param>
         /// <param name="ejecutarAntes"></param>
         /// <returns></returns>
-        public static int EjecutarSpText(string nombreDelSp, Func<SqlCommand, int> ejecutarAntes)
+        public static int EjecutarSpText(string nombreDelSp, Action<SqlCommand> ejecutarAntes)
         {
             using (var sqlConnection = new SqlConnection())
             {
@@ -271,7 +271,7 @@ namespace CSDatos
         /// <param name="nombreDelSp">Nombre del procedimiento</param>
         /// <param name="ejecutarAntes">Delegado para llenar el command</param>
         /// <returns></returns>
-        public static DataTable EjecutarSpDataTable(string nombreDelSp, Func<SqlCommand, int> ejecutarAntes)
+        public static DataTable EjecutarSpDataTable(string nombreDelSp, Action<SqlCommand> ejecutarAntes)
         {
             var dataTable = new DataTable();
 
@@ -323,7 +323,7 @@ namespace CSDatos
         /// <param name="nombreDelSp">Nombre del procedimiento</param>
         /// <param name="ejecutarAntes">Delegado para llenar el command</param>
         /// <returns></returns>
-        public static DataTable EjecutarTextTable(string nombreDelSp, Func<SqlCommand, int> ejecutarAntes)
+        public static DataTable EjecutarTextTable(string nombreDelSp, Action<SqlCommand> ejecutarAntes)
         {
             var dataTable = new DataTable();
 
@@ -369,57 +369,7 @@ namespace CSDatos
                 }
             }
         }
-
-        /// <summary>
-        ///     Ejecutar Store Procedure.
-        /// </summary>
-        /// <param name="nombreDelSp"></param>
-        /// <param name="ejecutarAntes"></param>
-        /// <param name="ejcutarDespues"></param>
-        /// <returns></returns>
-        public static int EjecutarSP(string nombreDelSp, Func<SqlCommand, int> ejecutarAntes,
-            Func<SqlCommand, int> ejcutarDespues)
-        {
-            using (var sqlConnection = new SqlConnection())
-            {
-                try
-                {
-                    sqlConnection.ConnectionString = CadenaConexion;
-                    sqlConnection.Open();
-
-                    using (var sqlCommand = new SqlCommand())
-                    {
-                        sqlCommand.CommandText = nombreDelSp;
-                        sqlCommand.CommandTimeout = 0;
-                        sqlCommand.CommandType = CommandType.StoredProcedure;
-                        sqlCommand.Connection = sqlConnection;
-
-                        ejecutarAntes(sqlCommand);
-
-                        var resultado = sqlCommand.ExecuteNonQuery();
-
-                        ejcutarDespues(sqlCommand);
-
-                        return resultado;
-                    }
-                }
-                catch (SqlException e)
-                {
-                    MostrarError(e);
-                    throw e;
-                }
-                catch (Exception e)
-                {
-                    MostrarError(e);
-                    throw e;
-                }
-                finally
-                {
-                    sqlConnection.Close();
-                    sqlConnection.Dispose();
-                }
-            }
-        }
+        
 
         /// <summary>
         ///     Obtener resultado del Store Procedure.
@@ -427,7 +377,7 @@ namespace CSDatos
         /// <param name="nombreDelSp"></param>
         /// <param name="ejecutarAntes"></param>
         /// <returns></returns>
-        public static object ObterResultadoSP(string nombreDelSp, Func<SqlCommand, int> ejecutarAntes)
+        public static object ObterResultadoSP(string nombreDelSp, Action<SqlCommand> ejecutarAntes)
         {
             using (var sqlConnection = new SqlConnection())
             {
@@ -676,7 +626,7 @@ namespace CSDatos
 
         public static object ObterResultadoText(
             string textoDeConsulta,
-            Func<SqlCommand, int> ejecutarAntes)
+            Action<SqlCommand> ejecutarAntes)
         {
             using (var sqlConnection = new SqlConnection())
             {

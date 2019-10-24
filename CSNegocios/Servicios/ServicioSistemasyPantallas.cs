@@ -44,7 +44,7 @@ namespace CSNegocios.Servicios
             dataTable = Coneccion.EjecutarTextTable("select * from SistemaOModulo where Id = @Id", cmd =>
             {
                 cmd.Parameters.Add(new SqlParameter("@Id", SqlDbType.Int)).Value = id;
-                return 0;
+               
             });
 
             if (dataTable != null && dataTable.Rows.Count > 0) return dataTable.Rows[0];
@@ -68,8 +68,7 @@ namespace CSNegocios.Servicios
                         RevisarSiEsNuloSql(sistemaOModulo.Descripcion);
                     cmd.Parameters.Add(new SqlParameter("@UrlActualizador", SqlDbType.NVarChar)).Value =
                         RevisarSiEsNuloSql(sistemaOModulo.UrlActualizador);
-
-                    return 0;
+                    
                 });
         }
 
@@ -87,8 +86,7 @@ namespace CSNegocios.Servicios
                        {
                            cmd.Parameters.Add(new SqlParameter("@Id", SqlDbType.Int)).Value = id;
                            cmd.Parameters.Add(new SqlParameter("@Nombre", SqlDbType.NVarChar)).Value = id;
-
-                           return 0;
+                           
                        })) > 0;
         }
 
@@ -101,8 +99,7 @@ namespace CSNegocios.Servicios
             Coneccion.EjecutarSpText("delete SistemaOModulo where Id = @Id;", cmd =>
             {
                 cmd.Parameters.Add(new SqlParameter("@Id", SqlDbType.Int)).Value = id;
-
-                return 0;
+                
             });
         }
 
@@ -131,8 +128,7 @@ namespace CSNegocios.Servicios
                 cmd.Parameters.Add(new SqlParameter("@Descripcion", SqlDbType.NVarChar)).Value =
                     RevisarSiEsNuloSql(pantalla.Descripcion);
                 cmd.Parameters.Add(new SqlParameter("@EsReporte", SqlDbType.Bit)).Value = pantalla.EsReporte;
-
-                return 0;
+                
             });
         }
 
@@ -150,8 +146,7 @@ namespace CSNegocios.Servicios
                        {
                            cmd.Parameters.Add(new SqlParameter("@Id", SqlDbType.Int)).Value = pantallaId;
                            cmd.Parameters.Add(new SqlParameter("@Nombre", SqlDbType.NVarChar)).Value = pantallaNombre;
-
-                           return 0;
+                           
                        })) > 0;
         }
 
@@ -164,7 +159,6 @@ namespace CSNegocios.Servicios
             Coneccion.EjecutarSpText("delete Pantalla where Id = @Id", cmd =>
             {
                 cmd.Parameters.Add(new SqlParameter("@Id", SqlDbType.Int)).Value = pantallaId;
-                return 0;
             });
         }
 
@@ -178,8 +172,7 @@ namespace CSNegocios.Servicios
             dataTable = Coneccion.EjecutarTextTable("select * from Pantalla where Id = @Id", cmd =>
             {
                 cmd.Parameters.Add(new SqlParameter("@Id", SqlDbType.Int)).Value = idPantalla;
-
-                return 0;
+                
             });
 
             if (dataTable != null && dataTable.Rows.Count > 0) return dataTable.Rows[0];
@@ -212,7 +205,7 @@ namespace CSNegocios.Servicios
                 cmd =>
                 {
                     cmd.Parameters.Add(new SqlParameter("@IdPantalla", SqlDbType.Int)).Value = idPantalla;
-                    return 0;
+                   
                 });
         }
 
@@ -227,7 +220,7 @@ namespace CSNegocios.Servicios
             Coneccion.EjecutarSpText("delete AccionEnPantalla where IdPantalla = @IdPantalla;", cmd =>
             {
                 cmd.Parameters.Add(new SqlParameter("@IdPantalla", SqlDbType.Int)).Value = id;
-                return 0;
+               
             });
 
             foreach (int accion in lstAcciones)
@@ -237,8 +230,7 @@ namespace CSNegocios.Servicios
                 {
                     cmd.Parameters.Add(new SqlParameter("@IdPantalla", SqlDbType.Int)).Value = id;
                     cmd.Parameters.Add(new SqlParameter("@IdAccion", SqlDbType.Int)).Value = accion;
-
-                    return 0;
+                    
                 });
             }
         }

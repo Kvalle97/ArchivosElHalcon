@@ -40,8 +40,7 @@ namespace CSNegocios.Servicios
             dataTable = Coneccion.EjecutarTextTable("select * from Accion where Id = @Id", cmd =>
             {
                 cmd.Parameters.Add(new SqlParameter("@Id", SqlDbType.Int)).Value = idAccion;
-
-                return 0;
+                
             });
 
             if (dataTable != null && dataTable.Rows.Count > 0) return dataTable.Rows[0];
@@ -62,7 +61,7 @@ namespace CSNegocios.Servicios
                            {
                                cmd.Parameters.Add(new SqlParameter("@Nombre", SqlDbType.NVarChar)).Value = nombre;
                                cmd.Parameters.Add(new SqlParameter("@Id", SqlDbType.Int)).Value = id;
-                               return 0;
+                               
                            }))
                    > 0;
         }
@@ -80,8 +79,7 @@ namespace CSNegocios.Servicios
                 cmd.Parameters.Add(new SqlParameter("@Descripcion", SqlDbType.NVarChar)).Value =
                     RevisarSiEsNuloSql(accion.Descripcion);
                 cmd.Parameters.Add(new SqlParameter("@Auditable", SqlDbType.Bit)).Value = accion.Auditable;
-
-                return 0;
+                
             });
         }
 
@@ -94,7 +92,7 @@ namespace CSNegocios.Servicios
             Coneccion.EjecutarSpText("delete Accion where Id = @Id", cmd =>
             {
                 cmd.Parameters.Add(new SqlParameter("@Id", SqlDbType.Int)).Value = id;
-                return 0;
+               
             });
         }
 
@@ -137,8 +135,7 @@ namespace CSNegocios.Servicios
             dataTable = Coneccion.EjecutarTextTable("select * from Rol where Id = @Id", cmd =>
             {
                 cmd.Parameters.Add(new SqlParameter("@Id", SqlDbType.Int)).Value = id;
-
-                return 0;
+                
             });
 
             if (dataTable != null && dataTable.Rows.Count > 0) return dataTable.Rows[0];
@@ -159,7 +156,7 @@ namespace CSNegocios.Servicios
                            {
                                cmd.Parameters.Add(new SqlParameter("@Id", SqlDbType.Int)).Value = id;
                                cmd.Parameters.Add(new SqlParameter("@Nombre", SqlDbType.NVarChar)).Value = nombre;
-                               return 0;
+                              
                            })
                    ) > 0;
         }
@@ -175,7 +172,6 @@ namespace CSNegocios.Servicios
                 cmd =>
                 {
                     cmd.Parameters.Add(new SqlParameter("@IdRol", SqlDbType.Int)).Value = idRol;
-                    return 0;
                 });
         }
 
@@ -191,8 +187,7 @@ namespace CSNegocios.Servicios
                 cmd.Parameters.Add(new SqlParameter("@Nombre", SqlDbType.NVarChar)).Value = rol.Nombre;
                 cmd.Parameters.Add(new SqlParameter("@Descripcion", SqlDbType.NVarChar)).Value = RevisarSiEsNuloSql(rol.Descripcion);
                 cmd.Parameters.Add(new SqlParameter("EsSuperAdministrador", SqlDbType.NVarChar)).Value = rol.EsSuperAdministrador;
-
-                return 0;
+                
             });
         }
         /// <summary>
@@ -204,8 +199,7 @@ namespace CSNegocios.Servicios
             Coneccion.EjecutarSpText("delete AccesoRol where IdRol = @IdRol", cmd =>
             {
                 cmd.Parameters.Add(new SqlParameter("IdRol", SqlDbType.NVarChar)).Value = id;
-
-                return 0;
+                
 
             });
         }
@@ -224,8 +218,7 @@ namespace CSNegocios.Servicios
                 cmd.Parameters.Add(new SqlParameter("@IdRol",SqlDbType.Int)).Value = idRol;
                 cmd.Parameters.Add(new SqlParameter("@IdPantalla",SqlDbType.Int)).Value = idPantalla;
                 cmd.Parameters.Add(new SqlParameter("@IdAccion",SqlDbType.Int)).Value = idAccion;
-
-                return 0;
+                
             });
         }
     }

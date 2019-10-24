@@ -220,8 +220,7 @@ namespace CSNegocios
                 object ob = Coneccion.ObterResultadoSP("spObtenerCorreoDeUsuario", cmd =>
                 {
                     cmd.Parameters.Add(new SqlParameter("Usuario", SqlDbType.NVarChar)).Value = l.User;
-
-                    return 0;
+                    
                 });
 
                 if (ob == null)
