@@ -21,7 +21,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\CSNegocios.XML</DocumentationFile>
+    <DocumentationFile>
+    </DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -50,9 +51,11 @@
     <Compile Include="Global\TipoDocumento.cs" />
     <Compile Include="Logueo.cs" />
     <Compile Include="Modelos\Accion.cs" />
+    <Compile Include="Modelos\ConjuntoAcceso.cs" />
     <Compile Include="Modelos\Pantalla.cs" />
     <Compile Include="Modelos\Rol.cs" />
     <Compile Include="Modelos\SistemaOModulo.cs" />
+    <Compile Include="Modelos\ModeloUsuario.cs" />
     <Compile Include="OperacionesGlobal.cs" />
     <Compile Include="Personalizar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

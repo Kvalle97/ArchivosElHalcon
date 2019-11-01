@@ -66,6 +66,10 @@
             this.btnNacionalEInternacional = new DevExpress.XtraBars.BarButtonItem();
             this.btnSistemasYPantallas = new DevExpress.XtraBars.BarButtonItem();
             this.btnPermisos = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem6 = new DevExpress.XtraBars.BarButtonItem();
+            this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
+            this.btnReporteUsuarios = new DevExpress.XtraBars.BarButtonItem();
+            this.btnAccionesUsuarioReporte = new DevExpress.XtraBars.BarButtonItem();
             this.rpModulos = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.rpAdministracion = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rpConfiguracion = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -77,13 +81,9 @@
             this.xtraTabbedMdiManager1 = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.barButtonItem6 = new DevExpress.XtraBars.BarButtonItem();
-            this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
-            this.btnReporteUsuarios = new DevExpress.XtraBars.BarButtonItem();
-            this.btnAccionesUsuarioReporte = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager1)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbon
@@ -397,6 +397,37 @@
             this.btnPermisos.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.btnPermisos.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnPermisos_ItemClick);
             // 
+            // barButtonItem6
+            // 
+            this.barButtonItem6.ActAsDropDown = true;
+            this.barButtonItem6.ButtonStyle = DevExpress.XtraBars.BarButtonStyle.DropDown;
+            this.barButtonItem6.Caption = "Reportes";
+            this.barButtonItem6.DropDownControl = this.popupMenu1;
+            this.barButtonItem6.Id = 50;
+            this.barButtonItem6.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem6.ImageOptions.Image")));
+            this.barButtonItem6.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem6.ImageOptions.LargeImage")));
+            this.barButtonItem6.Name = "barButtonItem6";
+            // 
+            // popupMenu1
+            // 
+            this.popupMenu1.ItemLinks.Add(this.btnReporteUsuarios);
+            this.popupMenu1.ItemLinks.Add(this.btnAccionesUsuarioReporte);
+            this.popupMenu1.Name = "popupMenu1";
+            this.popupMenu1.Ribbon = this.ribbon;
+            // 
+            // btnReporteUsuarios
+            // 
+            this.btnReporteUsuarios.Caption = "Usuarios";
+            this.btnReporteUsuarios.Id = 51;
+            this.btnReporteUsuarios.Name = "btnReporteUsuarios";
+            this.btnReporteUsuarios.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnReporteUsuarios_ItemClick);
+            // 
+            // btnAccionesUsuarioReporte
+            // 
+            this.btnAccionesUsuarioReporte.Caption = "Acciones de usuarios";
+            this.btnAccionesUsuarioReporte.Id = 52;
+            this.btnAccionesUsuarioReporte.Name = "btnAccionesUsuarioReporte";
+            // 
             // rpModulos
             // 
             this.rpModulos.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -480,36 +511,6 @@
             this.ribbonPageGroup5.Name = "ribbonPageGroup5";
             this.ribbonPageGroup5.Text = "ribbonPageGroup5";
             // 
-            // barButtonItem6
-            // 
-            this.barButtonItem6.ActAsDropDown = true;
-            this.barButtonItem6.ButtonStyle = DevExpress.XtraBars.BarButtonStyle.DropDown;
-            this.barButtonItem6.Caption = "Reportes";
-            this.barButtonItem6.DropDownControl = this.popupMenu1;
-            this.barButtonItem6.Id = 50;
-            this.barButtonItem6.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem6.ImageOptions.Image")));
-            this.barButtonItem6.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem6.ImageOptions.LargeImage")));
-            this.barButtonItem6.Name = "barButtonItem6";
-            // 
-            // popupMenu1
-            // 
-            this.popupMenu1.ItemLinks.Add(this.btnReporteUsuarios);
-            this.popupMenu1.ItemLinks.Add(this.btnAccionesUsuarioReporte);
-            this.popupMenu1.Name = "popupMenu1";
-            this.popupMenu1.Ribbon = this.ribbon;
-            // 
-            // btnReporteUsuarios
-            // 
-            this.btnReporteUsuarios.Caption = "Usuarios";
-            this.btnReporteUsuarios.Id = 51;
-            this.btnReporteUsuarios.Name = "btnReporteUsuarios";
-            // 
-            // btnAccionesUsuarioReporte
-            // 
-            this.btnAccionesUsuarioReporte.Caption = "Acciones de usuarios";
-            this.btnAccionesUsuarioReporte.Id = 52;
-            this.btnAccionesUsuarioReporte.Name = "btnAccionesUsuarioReporte";
-            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -527,8 +528,8 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmMain_FormClosed);
             this.Load += new System.EventHandler(this.frmMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

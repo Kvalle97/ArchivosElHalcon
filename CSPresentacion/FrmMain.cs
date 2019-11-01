@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using CSNegocios;
+using CSNegocios.Servicios;
 using CSPresentacion.Properties;
 using CSPresentacion.Sistema.Administracion;
 using CSPresentacion.Sistema.General;
@@ -27,7 +28,7 @@ namespace CSPresentacion
         };
 
         private readonly bool preguntarSucursal = false;
-
+        private readonly ServicioUsuarios servicioUsuarios = new ServicioUsuarios();
 
         /// <summary>
         ///     Constructor
@@ -285,7 +286,11 @@ namespace CSPresentacion
             AgregarAlMdi(FrmAccionesyPermisos.Instance());
         }
 
+        private void btnReporteUsuarios_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            AgregarAlMdi(FrmReporteUsuarios.Instance());
+        }
+        
         #endregion
-
     }
 }

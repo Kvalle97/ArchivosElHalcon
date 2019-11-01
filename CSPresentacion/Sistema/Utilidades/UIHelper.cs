@@ -733,5 +733,26 @@ Usted está usando la versión ({args.InstalledVersion}). ¿ Quiere actualizar a
 
             return obj;
         }
+        /// <summary>
+        /// Crea una contrasenia
+        /// </summary>
+        /// <param name="largo"></param>
+        /// <returns></returns>
+        public static string CrearContrasenia(int largo)
+        {
+            string _allowedChars = "abcdefghijkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ23456789!@$?";
+            Byte[] randomBytes = new Byte[largo];
+            char[] chars = new char[largo];
+            int allowedCharCount = _allowedChars.Length;
+
+            for (int i = 0; i < largo; i++)
+            {
+                Random randomObj = new Random();
+                randomObj.NextBytes(randomBytes);
+                chars[i] = _allowedChars[(int)randomBytes[i] % allowedCharCount];
+            }
+
+            return new string(chars);
+        }
     }
 }

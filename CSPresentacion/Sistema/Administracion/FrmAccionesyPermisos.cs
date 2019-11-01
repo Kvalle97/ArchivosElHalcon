@@ -21,6 +21,7 @@ namespace CSPresentacion.Sistema.Administracion
     /// </summary>
     public partial class FrmAccionesyPermisos : DevExpress.XtraEditors.XtraForm
     {
+        // ReSharper disable once InconsistentNaming
         private static FrmAccionesyPermisos childInstance = null;
         private readonly ServicioAcciones servicioAcciones = new ServicioAcciones();
         private Accion accion = new Accion();
@@ -326,15 +327,6 @@ namespace CSPresentacion.Sistema.Administracion
         }
 
         #endregion
-
-        #region Clases
-
-        class ConjuntoAcceso
-        {
-            public int IdPantalla { get; set; }
-            public int IdAccion { get; set; }
-        }
-
-        #endregion
+        
     }
 }

@@ -29,23 +29,15 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmReportViewer));
-            this.Report = new CSPresentacion.Sistema.Utilidades.ReporteGeneral();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
+            this.reporteGeneral1 = new CSPresentacion.Sistema.Utilidades.ReporteGeneral();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // report
-            // 
-            this.Report.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Report.Location = new System.Drawing.Point(2, 2);
-            this.Report.Name = "Report";
-            this.Report.Size = new System.Drawing.Size(666, 342);
-            this.Report.TabIndex = 0;
             // 
             // panelControl1
             // 
@@ -69,12 +61,20 @@
             // 
             // panelControl2
             // 
-            this.panelControl2.Controls.Add(this.Report);
+            this.panelControl2.Controls.Add(this.reporteGeneral1);
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl2.Location = new System.Drawing.Point(0, 53);
             this.panelControl2.Name = "panelControl2";
             this.panelControl2.Size = new System.Drawing.Size(670, 346);
             this.panelControl2.TabIndex = 2;
+            // 
+            // reporteGeneral1
+            // 
+            this.reporteGeneral1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.reporteGeneral1.Location = new System.Drawing.Point(2, 2);
+            this.reporteGeneral1.Name = "reporteGeneral1";
+            this.reporteGeneral1.Size = new System.Drawing.Size(666, 342);
+            this.reporteGeneral1.TabIndex = 0;
             // 
             // FrmReportViewer
             // 
@@ -99,5 +99,6 @@
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraEditors.SimpleButton simpleButton1;
         private DevExpress.XtraEditors.PanelControl panelControl2;
+        private Utilidades.ReporteGeneral reporteGeneral1;
     }
 }

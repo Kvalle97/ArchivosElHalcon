@@ -321,6 +321,23 @@ namespace CSPresentacion.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a &lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt; 
+        ///&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot; style=&quot;background-color: rgb(240, 240, 240);&quot;&gt; 
+        /// &lt;head&gt; 
+        ///  &lt;title&gt;&lt;/title&gt; 
+        ///  &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot; /&gt; 
+        ///  &lt;meta charset=&quot;utf-8&quot; /&gt; 
+        ///  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot; /&gt; 
+        ///  &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot; /&gt; 
+        ///  &lt;style type=&quot;text/css&quot;&gt; /* [resto de la cadena truncado]&quot;;.
+        /// </summary>
+        internal static string HtmlPass {
+            get {
+                return ResourceManager.GetString("HtmlPass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap info_32x32 {
