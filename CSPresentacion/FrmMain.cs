@@ -24,7 +24,8 @@ namespace CSPresentacion
         {
             "Usuarios",
             "Sistemasypantallas",
-            "Accionesopermisos"
+            "Accionesopermisos",
+            "TasaDeCambio"
         };
 
         private readonly bool preguntarSucursal = false;
@@ -290,7 +291,12 @@ namespace CSPresentacion
         {
             AgregarAlMdi(FrmReporteUsuarios.Instance());
         }
-        
+
+        private void btnTasaDeCambio_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            AgregarAlMdi(FrmTasaDeCambio.Instance());
+        }
         #endregion
+
     }
 }

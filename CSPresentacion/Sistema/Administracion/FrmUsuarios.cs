@@ -92,6 +92,8 @@ namespace CSPresentacion.Sistema.Administracion
                 ckProveedores.Checked = modeloUsuario.Proveedores;
                 ckProyecto.Checked = modeloUsuario.Proyecto;
                 ckVentas.Checked = modeloUsuario.Ventas;
+                seNumerDeDescuento.Value = modeloUsuario.IdDescuento;
+                seDescuentoMaximo.Value = servicioUsuarios.ObtenerDescuentoMaximoDelUsuario(modeloUsuario.IdUsuario);
 
                 ckbActivo.Checked = modeloUsuario.Activo == 1;
 
@@ -119,10 +121,8 @@ namespace CSPresentacion.Sistema.Administracion
                         UIHelper.ConvertirDataTable<ConjuntoAcceso>(
                             servicioUsuarios.ObtenerAccesosDeUsuario(modeloUsuario.IdUsuario));
 
-                    for (int i = 0; i < gvAcceso.RowCount; i++)
+                    for (int i = 0; i < gvAcceso.RowCount + 1; i++)
                     {
-                        DataRowView dr = (DataRowView) gvAcceso.GetRow(i);
-
                         int childCount = gvAcceso.GetChildRowCount(i);
 
                         for (int j = 0; j < childCount; j++)
@@ -200,7 +200,7 @@ namespace CSPresentacion.Sistema.Administracion
 
                 servidor.SendCompleted += (sender, args) =>
                 {
-                    alertControl1.Show(this, "Correo enviado con exito", "Se envió el correo al destinatario",
+                    alertControl.Show(this, "Correo enviado con exito", "Se envió el correo al destinatario",
                         Resources.adjuntar);
                 };
             }
@@ -271,9 +271,18 @@ namespace CSPresentacion.Sistema.Administracion
 
         private void btnCambiarContrasenia_Click(object sender, EventArgs e)
         {
-            EnviarCorreo(TipoDeCuerpoEnCorreo.Bienvenida);
+            if (UIHelper.PreguntarSn($"¿ Está seguro que quiere cambiar la contraseña de {modeloUsuario.Usuario} ?") ==
+                DialogResult.Yes)
+            {
+                EnviarCorreo(TipoDeCuerpoEnCorreo.Bienvenida);
+            }
         }
 
         #endregion
+
+        private void tabOpcionesGenerales_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

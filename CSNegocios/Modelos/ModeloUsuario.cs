@@ -17,10 +17,12 @@ namespace CSNegocios.Modelos
         /// Id usuario
         /// </summary>
         public int IdUsuario { get; set; }
+
         /// <summary>
         /// Usuaruio
         /// </summary>
         public string Usuario { get; set; }
+
         /// <summary>
         /// Nombres
         /// </summary>
@@ -36,11 +38,12 @@ namespace CSNegocios.Modelos
         /// o no fue aplicado correctamente
         /// </summary>
         public int IdNivel { get; set; }
+
         /// <summary>
         /// Telefono
         /// </summary>
         public string Telefono { get; set; }
-        
+
         /// <summary>
         /// Id Empresa ubicacion
         /// </summary>
@@ -51,6 +54,10 @@ namespace CSNegocios.Modelos
         /// </summary>
         public int Activo { get; set; }
 
+        /// <summary>
+        /// Id Descuento
+        /// </summary>
+        public int IdDescuento { get; set; }
 
         #endregion
 
@@ -70,7 +77,5 @@ namespace CSNegocios.Modelos
         public bool Proyecto { get; set; }
 
         #endregion
-
-        
     }
 }

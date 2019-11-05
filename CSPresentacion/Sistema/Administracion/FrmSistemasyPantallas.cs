@@ -223,7 +223,7 @@ namespace CSPresentacion.Sistema.Administracion
                     return;
                 }
 
-                if (servicioSistemasyPantallas.ElNombreDeLaPantallaEstaEnUso(pantalla.Id, pantalla.Nombre))
+                if (servicioSistemasyPantallas.ElNombreDeLaPantallaEstaEnUso(pantalla.Id, txtNombreDePantalla.Text))
                 {
                     UIHelper.AlertarDeError(dxErrorProvider, txtNombreDePantalla, "El nombre ya esta siendo usado");
                     return;

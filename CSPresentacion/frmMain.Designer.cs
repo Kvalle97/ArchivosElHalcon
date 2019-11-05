@@ -70,6 +70,7 @@
             this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
             this.btnReporteUsuarios = new DevExpress.XtraBars.BarButtonItem();
             this.btnAccionesUsuarioReporte = new DevExpress.XtraBars.BarButtonItem();
+            this.btnTasaDeCambio = new DevExpress.XtraBars.BarButtonItem();
             this.rpModulos = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.rpAdministracion = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rpConfiguracion = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -128,9 +129,10 @@
             this.btnPermisos,
             this.barButtonItem6,
             this.btnReporteUsuarios,
-            this.btnAccionesUsuarioReporte});
+            this.btnAccionesUsuarioReporte,
+            this.btnTasaDeCambio});
             this.ribbon.Location = new System.Drawing.Point(0, 0);
-            this.ribbon.MaxItemId = 53;
+            this.ribbon.MaxItemId = 54;
             this.ribbon.Name = "ribbon";
             this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.rpModulos,
@@ -428,6 +430,15 @@
             this.btnAccionesUsuarioReporte.Id = 52;
             this.btnAccionesUsuarioReporte.Name = "btnAccionesUsuarioReporte";
             // 
+            // btnTasaDeCambio
+            // 
+            this.btnTasaDeCambio.Caption = "Tasa de cambio";
+            this.btnTasaDeCambio.Id = 53;
+            this.btnTasaDeCambio.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem7.ImageOptions.Image")));
+            this.btnTasaDeCambio.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem7.ImageOptions.LargeImage")));
+            this.btnTasaDeCambio.Name = "btnTasaDeCambio";
+            this.btnTasaDeCambio.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnTasaDeCambio_ItemClick);
+            // 
             // rpModulos
             // 
             this.rpModulos.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -441,6 +452,7 @@
             this.rpAdministracion.ItemLinks.Add(this.btnSistemasYPantallas);
             this.rpAdministracion.ItemLinks.Add(this.btnPermisos);
             this.rpAdministracion.ItemLinks.Add(this.barButtonItem6);
+            this.rpAdministracion.ItemLinks.Add(this.btnTasaDeCambio);
             this.rpAdministracion.Name = "rpAdministracion";
             this.rpAdministracion.Text = "Administración";
             // 
@@ -588,5 +600,6 @@
         private DevExpress.XtraBars.PopupMenu popupMenu1;
         private DevExpress.XtraBars.BarButtonItem btnReporteUsuarios;
         private DevExpress.XtraBars.BarButtonItem btnAccionesUsuarioReporte;
+        private DevExpress.XtraBars.BarButtonItem btnTasaDeCambio;
     }
 }

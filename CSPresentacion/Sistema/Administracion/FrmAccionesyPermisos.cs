@@ -78,7 +78,7 @@ namespace CSPresentacion.Sistema.Administracion
                     List<ConjuntoAcceso> lstConjuntoAccesos =
                         UIHelper.ConvertirDataTable<ConjuntoAcceso>(servicioAcciones.ObtenerAccesoDelRol(rol.Id));
 
-                    for (int i = 0; i < gvAcceso.RowCount; i++)
+                    for (int i = 0; i < gvAcceso.RowCount + 1; i++)
                     {
                         DataRowView dr = (DataRowView) gvAcceso.GetRow(i);
 

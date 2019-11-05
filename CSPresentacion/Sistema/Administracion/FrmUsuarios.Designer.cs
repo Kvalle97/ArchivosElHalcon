@@ -52,9 +52,6 @@
             this.txtUsuario = new DevExpress.XtraEditors.TextEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.tabOpcionesGenerales = new DevExpress.XtraTab.XtraTabPage();
-            this.seDescuentoMaximo = new DevExpress.XtraEditors.SpinEdit();
-            this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
-            this.seDescuentoMinimo = new DevExpress.XtraEditors.SpinEdit();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.ckProyecto = new DevExpress.XtraEditors.CheckEdit();
             this.ckCartera = new DevExpress.XtraEditors.CheckEdit();
@@ -77,7 +74,11 @@
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
             this.gcUsuarios = new DevExpress.XtraGrid.GridControl();
             this.gvUsuarios = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.alertControl1 = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
+            this.alertControl = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
+            this.dxErrorProvider = new DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider(this.components);
+            this.lookUpEdit1 = new DevExpress.XtraEditors.LookUpEdit();
+            this.gcCorreos = new DevExpress.XtraGrid.GridControl();
+            this.gvCorreos = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.xtraScrollableControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tabControlUsuario)).BeginInit();
             this.tabControlUsuario.SuspendLayout();
@@ -94,8 +95,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtNombres.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtUsuario.Properties)).BeginInit();
             this.tabOpcionesGenerales.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.seDescuentoMaximo.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.seDescuentoMinimo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ckProyecto.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ckCartera.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ckProveedores.Properties)).BeginInit();
@@ -106,12 +105,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.ckInventario.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ckCaja.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ckVentas.Properties)).BeginInit();
+            this.tabCorreos.SuspendLayout();
             this.tabCambioDeContrasenia.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ckComboEnviarA.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEdit11.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtContrasenia.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcUsuarios)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvUsuarios)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dxErrorProvider)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gcCorreos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvCorreos)).BeginInit();
             this.SuspendLayout();
             // 
             // xtraScrollableControl1
@@ -163,7 +167,6 @@
             // 
             // gcAcceso
             // 
-            this.gcAcceso.Enabled = false;
             this.gcAcceso.Location = new System.Drawing.Point(17, 208);
             this.gcAcceso.MainView = this.gvAcceso;
             this.gcAcceso.Name = "gcAcceso";
@@ -326,9 +329,7 @@
             // 
             // tabOpcionesGenerales
             // 
-            this.tabOpcionesGenerales.Controls.Add(this.seDescuentoMaximo);
-            this.tabOpcionesGenerales.Controls.Add(this.labelControl6);
-            this.tabOpcionesGenerales.Controls.Add(this.seDescuentoMinimo);
+            this.tabOpcionesGenerales.Controls.Add(this.lookUpEdit1);
             this.tabOpcionesGenerales.Controls.Add(this.labelControl5);
             this.tabOpcionesGenerales.Controls.Add(this.ckProyecto);
             this.tabOpcionesGenerales.Controls.Add(this.ckCartera);
@@ -343,50 +344,15 @@
             this.tabOpcionesGenerales.Name = "tabOpcionesGenerales";
             this.tabOpcionesGenerales.Size = new System.Drawing.Size(520, 422);
             this.tabOpcionesGenerales.Text = "Opciones Generales";
-            // 
-            // seDescuentoMaximo
-            // 
-            this.seDescuentoMaximo.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.seDescuentoMaximo.Location = new System.Drawing.Point(139, 118);
-            this.seDescuentoMaximo.Name = "seDescuentoMaximo";
-            this.seDescuentoMaximo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.seDescuentoMaximo.Size = new System.Drawing.Size(114, 20);
-            this.seDescuentoMaximo.TabIndex = 13;
-            // 
-            // labelControl6
-            // 
-            this.labelControl6.Location = new System.Drawing.Point(139, 98);
-            this.labelControl6.Name = "labelControl6";
-            this.labelControl6.Size = new System.Drawing.Size(97, 13);
-            this.labelControl6.TabIndex = 12;
-            this.labelControl6.Text = "Descuento máximo";
-            // 
-            // seDescuentoMinimo
-            // 
-            this.seDescuentoMinimo.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.seDescuentoMinimo.Location = new System.Drawing.Point(8, 118);
-            this.seDescuentoMinimo.Name = "seDescuentoMinimo";
-            this.seDescuentoMinimo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.seDescuentoMinimo.Size = new System.Drawing.Size(114, 20);
-            this.seDescuentoMinimo.TabIndex = 11;
+            this.tabOpcionesGenerales.Paint += new System.Windows.Forms.PaintEventHandler(this.tabOpcionesGenerales_Paint);
             // 
             // labelControl5
             // 
             this.labelControl5.Location = new System.Drawing.Point(8, 98);
             this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new System.Drawing.Size(114, 13);
+            this.labelControl5.Size = new System.Drawing.Size(96, 13);
             this.labelControl5.TabIndex = 10;
-            this.labelControl5.Text = "Número de descuento";
+            this.labelControl5.Text = "Tipo de descuento";
             // 
             // ckProyecto
             // 
@@ -470,6 +436,7 @@
             // 
             // tabCorreos
             // 
+            this.tabCorreos.Controls.Add(this.gcCorreos);
             this.tabCorreos.Name = "tabCorreos";
             this.tabCorreos.Size = new System.Drawing.Size(520, 422);
             this.tabCorreos.Text = "Correos";
@@ -571,11 +538,40 @@
             this.gvUsuarios.ViewCaption = "Usuarios";
             this.gvUsuarios.DoubleClick += new System.EventHandler(this.gvUsuarios_DoubleClick);
             // 
-            // alertControl1
+            // alertControl
             // 
-            this.alertControl1.AppearanceCaption.Options.UseTextOptions = true;
-            this.alertControl1.AppearanceCaption.TextOptions.WordWrap = DevExpress.Utils.WordWrap.NoWrap;
-            this.alertControl1.ShowPinButton = false;
+            this.alertControl.AppearanceCaption.Options.UseTextOptions = true;
+            this.alertControl.AppearanceCaption.TextOptions.WordWrap = DevExpress.Utils.WordWrap.NoWrap;
+            this.alertControl.ShowPinButton = false;
+            // 
+            // dxErrorProvider
+            // 
+            this.dxErrorProvider.ContainerControl = this;
+            // 
+            // lookUpEdit1
+            // 
+            this.lookUpEdit1.Location = new System.Drawing.Point(8, 118);
+            this.lookUpEdit1.Name = "lookUpEdit1";
+            this.lookUpEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lookUpEdit1.Size = new System.Drawing.Size(156, 20);
+            this.lookUpEdit1.TabIndex = 11;
+            // 
+            // gcCorreos
+            // 
+            this.gcCorreos.Location = new System.Drawing.Point(8, 13);
+            this.gcCorreos.MainView = this.gvCorreos;
+            this.gcCorreos.Name = "gcCorreos";
+            this.gcCorreos.Size = new System.Drawing.Size(498, 200);
+            this.gcCorreos.TabIndex = 0;
+            this.gcCorreos.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gvCorreos});
+            // 
+            // gvCorreos
+            // 
+            this.gvCorreos.GridControl = this.gcCorreos;
+            this.gvCorreos.Name = "gvCorreos";
+            this.gvCorreos.OptionsView.ShowGroupPanel = false;
             // 
             // FrmUsuarios
             // 
@@ -605,8 +601,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtUsuario.Properties)).EndInit();
             this.tabOpcionesGenerales.ResumeLayout(false);
             this.tabOpcionesGenerales.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.seDescuentoMaximo.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.seDescuentoMinimo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ckProyecto.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ckCartera.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ckProveedores.Properties)).EndInit();
@@ -617,6 +611,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.ckInventario.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ckCaja.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ckVentas.Properties)).EndInit();
+            this.tabCorreos.ResumeLayout(false);
             this.tabCambioDeContrasenia.ResumeLayout(false);
             this.tabCambioDeContrasenia.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ckComboEnviarA.Properties)).EndInit();
@@ -624,6 +619,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtContrasenia.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcUsuarios)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvUsuarios)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dxErrorProvider)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gcCorreos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvCorreos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -664,9 +663,6 @@
         private DevExpress.XtraEditors.CheckEdit ckProduccion;
         private DevExpress.XtraEditors.CheckEdit ckAdministracion;
         private DevExpress.XtraEditors.CheckEdit ckCompras;
-        private DevExpress.XtraEditors.SpinEdit seDescuentoMaximo;
-        private DevExpress.XtraEditors.LabelControl labelControl6;
-        private DevExpress.XtraEditors.SpinEdit seDescuentoMinimo;
         private DevExpress.XtraEditors.LabelControl labelControl5;
         private DevExpress.XtraEditors.SimpleButton btnGenerarContrasenia;
         private DevExpress.XtraEditors.SimpleButton btnCambiarContrasenia;
@@ -679,6 +675,10 @@
         private System.Windows.Forms.Label label4;
         private DevExpress.XtraGrid.GridControl gcAcceso;
         private DevExpress.XtraGrid.Views.Grid.GridView gvAcceso;
-        private DevExpress.XtraBars.Alerter.AlertControl alertControl1;
+        private DevExpress.XtraBars.Alerter.AlertControl alertControl;
+        private DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider dxErrorProvider;
+        private DevExpress.XtraEditors.LookUpEdit lookUpEdit1;
+        private DevExpress.XtraGrid.GridControl gcCorreos;
+        private DevExpress.XtraGrid.Views.Grid.GridView gvCorreos;
     }
 }
