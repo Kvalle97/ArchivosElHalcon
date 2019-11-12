@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSDatos", "CSDatos\CSDatos.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSNegocios", "CSNegocios\CSNegocios.csproj", "{925DC6B3-3970-4933-9E69-16A9165ED490}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Administracion", "Administracion\Administracion.vdproj", "{10885F5E-4AD7-4165-A1DD-7ADE25C29B3C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		CD_ROM|Any CPU = CD_ROM|Any CPU
@@ -48,6 +50,11 @@ Global
 		{925DC6B3-3970-4933-9E69-16A9165ED490}.Release|Any CPU.Build.0 = Release|Any CPU
 		{925DC6B3-3970-4933-9E69-16A9165ED490}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
 		{925DC6B3-3970-4933-9E69-16A9165ED490}.SingleImage|Any CPU.Build.0 = Release|Any CPU
+		{10885F5E-4AD7-4165-A1DD-7ADE25C29B3C}.CD_ROM|Any CPU.ActiveCfg = Release
+		{10885F5E-4AD7-4165-A1DD-7ADE25C29B3C}.Debug|Any CPU.ActiveCfg = Debug
+		{10885F5E-4AD7-4165-A1DD-7ADE25C29B3C}.DVD-5|Any CPU.ActiveCfg = Debug
+		{10885F5E-4AD7-4165-A1DD-7ADE25C29B3C}.Release|Any CPU.ActiveCfg = Release
+		{10885F5E-4AD7-4165-A1DD-7ADE25C29B3C}.SingleImage|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

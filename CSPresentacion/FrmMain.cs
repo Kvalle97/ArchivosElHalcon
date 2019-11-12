@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using CSNegocios;
@@ -57,17 +58,28 @@ namespace CSPresentacion
         /// </summary>
         private void MostrarManualDeUsuario()
         {
-            string path = Application.StartupPath;
+            try
+            {
+                string path = Application.StartupPath;
 
-            path = path + "\\manual" + "\\" + "manual.pdf";
+                path = path + "\\manual" + "\\" + "manual.pdf";
 
-            FrmPdfViewer frmPdfViewer = new FrmPdfViewer();
+                FrmPdfViewer frmPdfViewer = new FrmPdfViewer();
 
-            frmPdfViewer.CargarDocumento(path);
-            frmPdfViewer.WindowState = FormWindowState.Maximized;
-            frmPdfViewer.Icon = Icon;
-            frmPdfViewer.Text = "Manual de usuario";
-            frmPdfViewer.ShowDialog();
+                frmPdfViewer.CargarDocumento(path);
+                frmPdfViewer.WindowState = FormWindowState.Maximized;
+                frmPdfViewer.Icon = Icon;
+                frmPdfViewer.Text = "Manual de usuario";
+                frmPdfViewer.ShowDialog();
+            }
+            catch (FileNotFoundException e)
+            {
+                UIHelper.AlertarDeError("No tienes copiado el manual de usario, contacta con informatica");
+            }
+            catch (Exception e)
+            {
+                UIHelper.MostrarError(e);
+            }
         }
 
         #endregion
@@ -110,11 +122,16 @@ namespace CSPresentacion
 
         private void frmMain_Load(object sender, EventArgs e)
         {
+            UIHelper.CrearEventoDeActualizacion();
+
             IniciarMain();
         }
 
         private void IniciarMain()
         {
+
+            UIHelper.BuscarActualizaciones();
+
             int n = OperacionesGlobal.numGet_Int("select halcon.[dbo].[fxObtenerUsuarioEmpresas]('" +
                                                  Datos_Globales.Usuario + "') AS n");
 
@@ -281,7 +298,7 @@ namespace CSPresentacion
                 UIHelper.MostrarError(exception);
             }
         }
-        
+
         private void btnPermisos_ItemClick(object sender, ItemClickEventArgs e)
         {
             AgregarAlMdi(FrmAccionesyPermisos.Instance());
@@ -295,6 +312,11 @@ namespace CSPresentacion
         private void btnTasaDeCambio_ItemClick(object sender, ItemClickEventArgs e)
         {
             AgregarAlMdi(FrmTasaDeCambio.Instance());
+        }
+
+        private void btnAccionesUsuarioReporte_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            AgregarAlMdi(FrmReporteNavegacion.Instance());
         }
         #endregion
 

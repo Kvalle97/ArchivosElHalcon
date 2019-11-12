@@ -324,6 +324,8 @@ namespace CSPresentacion.Sistema.Administracion
             rol = new Rol();
 
             CargarRol();
+            
+            servicioAcciones.MostrarRoles(gcRoles, gvRoles);
         }
 
         #endregion

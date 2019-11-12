@@ -7,6 +7,7 @@ using System.Net.Mail;
 using System.Reflection;
 using System.Resources;
 using System.Windows.Forms;
+using CSDatos;
 using CSNegocios.Modelos;
 using CSNegocios.Servicios;
 using CSPresentacion.Properties;
@@ -92,17 +93,21 @@ namespace CSPresentacion.Sistema.Administracion
                 ckProveedores.Checked = modeloUsuario.Proveedores;
                 ckProyecto.Checked = modeloUsuario.Proyecto;
                 ckVentas.Checked = modeloUsuario.Ventas;
-                seNumerDeDescuento.Value = modeloUsuario.IdDescuento;
-                seDescuentoMaximo.Value = servicioUsuarios.ObtenerDescuentoMaximoDelUsuario(modeloUsuario.IdUsuario);
-
+                lueTipoDeDescuento.EditValue = modeloUsuario.IdDescuento;
                 ckbActivo.Checked = modeloUsuario.Activo == 1;
 
                 lueNievelDeAcceso.EditValue = modeloUsuario.IdNivel.ToString("D2");
 
-                if (modeloUsuario.IdEmpresaUbicacion != 0)
-                    lueSucursalDeOrigen.EditValue = modeloUsuario.IdEmpresaUbicacion;
-                else
+                ckComboSucursalesAsociadas.SetEditValue(UIHelper.ConvertirDataTableAListaSimple<int>(
+                    servicioUsuarios.ObtenerSucursalesAsociadas(modeloUsuario.IdUsuario), "IdEmpresa"));
+
+                ckComboRoles.SetEditValue(UIHelper.ConvertirDataTableAListaSimple<int>(
+                    servicioUsuarios.ObtenerRolesAsociados(modeloUsuario.IdUsuario), "IdRol"));
+
+                if (modeloUsuario.IdEmpresaUbicacion < 0)
                     lueSucursalDeOrigen.EditValue = null;
+                else
+                    lueSucursalDeOrigen.EditValue = modeloUsuario.IdEmpresaUbicacion;
 
                 servicioUsuarios.CargarCorreosDeUsuario(ckComboEnviarA, modeloUsuario.IdUsuario);
 
@@ -142,6 +147,8 @@ namespace CSPresentacion.Sistema.Administracion
                 }
 
                 tabCambioDeContrasenia.PageEnabled = modeloUsuario.IdUsuario != 0;
+
+                servicioUsuarios.CargarCorreos(gcCorreos, gvCorreos, modeloUsuario.IdUsuario);
             }
             catch (Exception e)
             {
@@ -164,9 +171,16 @@ namespace CSPresentacion.Sistema.Administracion
                 servidor.Port = 25;
 
                 correo.From = new MailAddress("admin@elhalcon.com.ni");
-                correo.To.Add("agaitan@elhalcon.com.ni");
-                correo.Subject = "Contraseña temporal";
-                //correo.CC.Add("informatica@elhalcon.com.ni");
+
+                List<object> lstCorreos = (List<object>) ckComboEnviarA.EditValue;
+
+                foreach (int idCorreo in lstCorreos)
+                {
+                    correo.To.Add(servicioUsuarios.ObtenerCorreo(idCorreo));
+                }
+
+                correo.Subject = "Cambio de contraseña";
+                correo.CC.Add("informatica@elhalcon.com.ni");
 
                 string cuerpo = Resources.HtmlPass;
                 string cuerpoDelCorreo = string.Empty;
@@ -221,6 +235,152 @@ namespace CSPresentacion.Sistema.Administracion
             CargarUsuario();
         }
 
+        /// <inheritdoc />
+        protected override void GuardarEvent()
+        {
+            WaitDialogForm wait = new WaitDialogForm("Por favor espere...", "Guardando usuario");
+
+            wait.Show();
+
+            try
+            {
+                // Vamos a guardar el usuario :)
+
+                if (((DataTable) gcCorreos.DataSource).Rows.Count <= 0)
+                {
+                    UIHelper.AlertarDeError("Debe agregar al menos un correo al usuario");
+                    return;
+                }
+
+                if (string.IsNullOrWhiteSpace(txtUsuario.Text))
+                {
+                    UIHelper.AlertarDeError(dxErrorProvider, txtUsuario, "El usuario es obligatorio");
+                    return;
+                }
+
+                if (servicioUsuarios.UsuarioEstaSiendoUsado(txtUsuario.Text, modeloUsuario.IdUsuario))
+                {
+                    UIHelper.AlertarDeError(dxErrorProvider, txtUsuario, "El usuario ya esta siendo usado");
+                    return;
+                }
+
+                if (string.IsNullOrWhiteSpace(txtNombres.Text))
+                {
+                    UIHelper.AlertarDeError(dxErrorProvider, txtNombres, "El nombre es obligatorio");
+                    return;
+                }
+
+                modeloUsuario.Usuario = txtUsuario.Text;
+                modeloUsuario.Nombres = txtNombres.Text;
+                modeloUsuario.Apellidos = txtApellidos.Text;
+                modeloUsuario.Telefono = txtTelefono.Text;
+
+                modeloUsuario.Administracion = ckAdministracion.Checked;
+                modeloUsuario.Bancos = ckBancos.Checked;
+                modeloUsuario.Caja = ckCaja.Checked;
+                modeloUsuario.Cartera = ckCartera.Checked;
+                modeloUsuario.Compras = ckCompras.Checked;
+                modeloUsuario.Inventario = ckInventario.Checked;
+                modeloUsuario.Produccion = ckProduccion.Checked;
+                modeloUsuario.Proveedores = ckProveedores.Checked;
+                modeloUsuario.Proyecto = ckProyecto.Checked;
+                modeloUsuario.Ventas = ckVentas.Checked;
+                modeloUsuario.IdDescuento = (int) lueTipoDeDescuento.EditValue;
+
+                // Esto se hace asi porque en sql el tipo de dato es tinyint :(
+                modeloUsuario.Activo = ckbActivo.Checked ? 1 : 0; 
+
+                modeloUsuario.IdNivel = Convert.ToInt32(lueNievelDeAcceso.EditValue);
+
+                // Si no hay una empresa de ubicacion se poner por defecto cero :)
+                if (lueSucursalDeOrigen.EditValue == null)
+                {
+                    modeloUsuario.IdEmpresaUbicacion = -1;
+                }
+                else
+                {
+                    modeloUsuario.IdEmpresaUbicacion = (int) lueSucursalDeOrigen.EditValue;
+                }
+
+                servicioUsuarios.GuardarUsuario(modeloUsuario);
+
+                // Nos servira para preguntar si queremos asignarle una contrasenia
+                // temporal a un posible nuevo usuario
+                bool preguntarPorCambioDeContra = false;
+                
+                // Si se esta ingresando un nuevo usuario
+                
+                if (modeloUsuario.IdUsuario == 0)
+                {
+                    modeloUsuario = UIHelper.ObtenerItem<ModeloUsuario>(servicioUsuarios.ObtenerUltimoUsuario());
+                    preguntarPorCambioDeContra = true;
+                }
+
+                List<CorreoM> lstCorreos = UIHelper.ConvertirDataTable<CorreoM>(
+                    gcCorreos.DataSource as DataTable);
+
+                // Guardando correos :)
+
+                lstCorreos.ForEach(correo =>
+                {
+                    servicioUsuarios.GuardarCorreoUsuario(correo.IdCorreo, correo.Correo, modeloUsuario.IdUsuario);
+                });
+
+                // Guardando empresas asociadas :)
+
+                List<object> lstEmpresasAsociadas = (List<object>) ckComboSucursalesAsociadas.EditValue;
+
+                // Eliminamos lo que hay para poner solo lo que esta en el ckCombo
+                servicioUsuarios.EliminarSucursalesAsociadas(modeloUsuario.IdUsuario);
+
+                // Guardando
+                foreach (int idEmpresa in lstEmpresasAsociadas)
+                {
+                    servicioUsuarios.GuardarSucursal(modeloUsuario.IdUsuario, modeloUsuario.Usuario, idEmpresa);
+                }
+
+                // Guardando roles asociados :)
+
+                List<object> lstRolesAsociados = (List<object>) ckComboRoles.EditValue;
+
+                // Eliminamos lo que hay para poner solo lo que esta en el ckCombo
+                servicioUsuarios.EliminarRolesAsociados(modeloUsuario.IdUsuario);
+
+                // Guardando
+                foreach (int idRol in lstRolesAsociados)
+                {
+                    servicioUsuarios.GuardarRol(modeloUsuario.IdUsuario, idRol);
+                }
+
+                if (preguntarPorCambioDeContra)
+                {
+                    servicioUsuarios.CargarCorreosDeUsuario(ckComboEnviarA, modeloUsuario.IdUsuario);
+                    ckComboEnviarA.CheckAll();
+
+                    servicioUsuarios.CambiarContraUsuario(modeloUsuario.IdUsuario,
+                        new EncriptarInformacion().Encriptar(txtContrasenia.Text), true);
+
+                    if (UIHelper.PreguntarSn("¿ Quiere crear una contraseña temporal para el usuario ?") ==
+                        DialogResult.Yes)
+                    {
+                        txtContrasenia.Text = UIHelper.CrearContrasenia(10);
+
+                        EnviarCorreo(TipoDeCuerpoEnCorreo.Bienvenida);
+                    }
+                }
+
+                NuevoEvent();
+            }
+            catch (Exception e)
+            {
+                UIHelper.MostrarError(e);
+            }
+            finally
+            {
+                wait.Close();
+            }
+        }
+
         #endregion
 
         #region Eventos
@@ -234,6 +394,11 @@ namespace CSPresentacion.Sistema.Administracion
                 servicioUsuarios.CargarNiveles(lueNievelDeAcceso);
                 servicioUsuarios.CargarRoles(ckComboRoles);
                 servicioAcciones.MostrarAccesoBase(gcAcceso, gvAcceso);
+                servicioUsuarios.CargarTipoDescuento(lueTipoDeDescuento);
+                servicioUsuarios.CargarCorreos(gcCorreos, gvCorreos, 0);
+                servicioUsuarios.CargarSucursales(ckComboSucursalesAsociadas);
+
+                ckbActivo.Checked = true;
             }
             catch (Exception exception)
             {
@@ -274,15 +439,67 @@ namespace CSPresentacion.Sistema.Administracion
             if (UIHelper.PreguntarSn($"¿ Está seguro que quiere cambiar la contraseña de {modeloUsuario.Usuario} ?") ==
                 DialogResult.Yes)
             {
-                EnviarCorreo(TipoDeCuerpoEnCorreo.Bienvenida);
+                servicioUsuarios.CambiarContraUsuario(modeloUsuario.IdUsuario,
+                    new EncriptarInformacion().Encriptar(txtContrasenia.Text), ckContraEsTemporal.Checked);
+
+                EnviarCorreo(ckContraEsTemporal.Checked
+                    ? TipoDeCuerpoEnCorreo.NuevaContraTemporal
+                    : TipoDeCuerpoEnCorreo.NuevaContra);
+            }
+        }
+
+        private void gcUsuarios_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (gvUsuarios.FocusedRowHandle < 0) return;
+            if (e.KeyCode != Keys.Enter) return;
+            try
+            {
+                modeloUsuario = UIHelper.ObtenerItem<ModeloUsuario>(
+                    servicioUsuarios.ObtenerUsuario(Convert.ToInt32(gvUsuarios.GetFocusedDataRow()["IdUsuario"])));
+
+                CargarUsuario();
+            }
+            catch (Exception exception)
+            {
+                UIHelper.MostrarError(exception);
+            }
+        }
+
+        private void gcCorreos_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (!gvCorreos.IsValidRowHandle(gvCorreos.FocusedRowHandle)) return;
+            if (e.KeyCode != Keys.Delete) return;
+
+            if (UIHelper.PreguntarSn("¿ Está seguro que quiere borrar el correo ? ") == DialogResult.Yes)
+            {
+                try
+                {
+                    CorreoM correo = UIHelper.ObtenerItem<CorreoM>(gvCorreos.GetDataRow(gvCorreos.FocusedRowHandle));
+
+                    gvAcceso.DeleteRow(gvCorreos.FocusedRowHandle);
+
+                    if (correo.IdCorreo != 0)
+                    {
+                        servicioUsuarios.BorrarCorreo(correo.IdCorreo);
+                    }
+                }
+                catch (Exception exception)
+                {
+                    UIHelper.MostrarError(exception);
+                }
             }
         }
 
         #endregion
 
-        private void tabOpcionesGenerales_Paint(object sender, PaintEventArgs e)
-        {
+        #region Clases
 
+        class CorreoM
+        {
+            public int IdCorreo { get; set; }
+            public string Correo { get; set; }
         }
+
+        #endregion
     }
 }

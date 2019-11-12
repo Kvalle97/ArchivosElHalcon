@@ -671,7 +671,7 @@ Usted está usando la versión ({args.InstalledVersion}). ¿ Quiere actualizar a
         /// </summary>
         public static void BuscarActualizaciones()
         {
-            AutoUpdater.Start("https://gitlab.com/sistemas-halc-n/archivos-json/raw/master/Updater2.xml");
+            AutoUpdater.Start("https://gitlab.com/sistemas-halc-n/archivos-json/raw/master/Administracion.xml");
         }
 
         /// <summary>

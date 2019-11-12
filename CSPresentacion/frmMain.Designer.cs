@@ -429,13 +429,14 @@
             this.btnAccionesUsuarioReporte.Caption = "Acciones de usuarios";
             this.btnAccionesUsuarioReporte.Id = 52;
             this.btnAccionesUsuarioReporte.Name = "btnAccionesUsuarioReporte";
+            this.btnAccionesUsuarioReporte.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnAccionesUsuarioReporte_ItemClick);
             // 
             // btnTasaDeCambio
             // 
             this.btnTasaDeCambio.Caption = "Tasa de cambio";
             this.btnTasaDeCambio.Id = 53;
-            this.btnTasaDeCambio.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem7.ImageOptions.Image")));
-            this.btnTasaDeCambio.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem7.ImageOptions.LargeImage")));
+            this.btnTasaDeCambio.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnTasaDeCambio.ImageOptions.Image")));
+            this.btnTasaDeCambio.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnTasaDeCambio.ImageOptions.LargeImage")));
             this.btnTasaDeCambio.Name = "btnTasaDeCambio";
             this.btnTasaDeCambio.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnTasaDeCambio_ItemClick);
             // 

@@ -37,7 +37,7 @@ namespace CSNegocios.Modelos
         /// Id de nivel de usuario, algo como roles pero al parecer no funciona
         /// o no fue aplicado correctamente
         /// </summary>
-        public int IdNivel { get; set; }
+        public int IdNivel { get; set; } = 1;
 
         /// <summary>
         /// Telefono
@@ -47,7 +47,7 @@ namespace CSNegocios.Modelos
         /// <summary>
         /// Id Empresa ubicacion
         /// </summary>
-        public int IdEmpresaUbicacion { get; set; }
+        public int IdEmpresaUbicacion { get; set; } = -1;
 
         /// <summary>
         /// Activo

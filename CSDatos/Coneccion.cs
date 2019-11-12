@@ -179,7 +179,7 @@ namespace CSDatos
         /// <param name="nombreDelSp">Nombre del procedimiento</param>
         /// <param name="ejecutarAntes">Delegado para llenar el command</param>
         /// <returns></returns>
-        public static int EjecutarSp(string nombreDelSp, Action<SqlCommand> ejecutarAntes)
+        public static int EjecutarSp(string nombreDelSp, Action<SqlCommand> ejecutarAntes = null)
         {
             using (var sqlConnection = new SqlConnection())
             {
@@ -225,7 +225,7 @@ namespace CSDatos
         /// <param name="nombreDelSp"></param>
         /// <param name="ejecutarAntes"></param>
         /// <returns></returns>
-        public static int EjecutarSpText(string nombreDelSp, Action<SqlCommand> ejecutarAntes)
+        public static int EjecutarSpText(string nombreDelSp, Action<SqlCommand> ejecutarAntes = null)
         {
             using (var sqlConnection = new SqlConnection())
             {
@@ -271,7 +271,7 @@ namespace CSDatos
         /// <param name="nombreDelSp">Nombre del procedimiento</param>
         /// <param name="ejecutarAntes">Delegado para llenar el command</param>
         /// <returns></returns>
-        public static DataTable EjecutarSpDataTable(string nombreDelSp, Action<SqlCommand> ejecutarAntes)
+        public static DataTable EjecutarSpDataTable(string nombreDelSp, Action<SqlCommand> ejecutarAntes = null)
         {
             var dataTable = new DataTable();
 
@@ -323,7 +323,7 @@ namespace CSDatos
         /// <param name="nombreDelSp">Nombre del procedimiento</param>
         /// <param name="ejecutarAntes">Delegado para llenar el command</param>
         /// <returns></returns>
-        public static DataTable EjecutarTextTable(string nombreDelSp, Action<SqlCommand> ejecutarAntes)
+        public static DataTable EjecutarTextTable(string nombreDelSp, Action<SqlCommand> ejecutarAntes = null)
         {
             var dataTable = new DataTable();
 
@@ -377,7 +377,7 @@ namespace CSDatos
         /// <param name="nombreDelSp"></param>
         /// <param name="ejecutarAntes"></param>
         /// <returns></returns>
-        public static object ObterResultadoSP(string nombreDelSp, Action<SqlCommand> ejecutarAntes)
+        public static object ObterResultadoSP(string nombreDelSp, Action<SqlCommand> ejecutarAntes = null)
         {
             using (var sqlConnection = new SqlConnection())
             {
@@ -626,7 +626,7 @@ namespace CSDatos
 
         public static object ObterResultadoText(
             string textoDeConsulta,
-            Action<SqlCommand> ejecutarAntes)
+            Action<SqlCommand> ejecutarAntes = null)
         {
             using (var sqlConnection = new SqlConnection())
             {

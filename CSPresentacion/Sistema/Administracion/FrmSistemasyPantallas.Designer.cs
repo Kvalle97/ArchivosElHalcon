@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             this.xtraScrollableControl1 = new DevExpress.XtraEditors.XtraScrollableControl();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
+            this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
+            this.ckcbAccionesEnPantalla = new DevExpress.XtraEditors.CheckedComboBoxEdit();
             this.btnNuevoPantalla = new DevExpress.XtraEditors.SimpleButton();
             this.btnQuitarPantalla = new DevExpress.XtraEditors.SimpleButton();
             this.btnGuardarPantalla = new DevExpress.XtraEditors.SimpleButton();
@@ -56,11 +58,10 @@
             this.txtNombreSistema = new DevExpress.XtraEditors.TextEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.dxErrorProvider = new DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider(this.components);
-            this.ckcbAccionesEnPantalla = new DevExpress.XtraEditors.CheckedComboBoxEdit();
-            this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.xtraScrollableControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ckcbAccionesEnPantalla.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ckbEsReporte.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcPantallas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPantallas)).BeginInit();
@@ -75,7 +76,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtNombreAMostrarSistema.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNombreSistema.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxErrorProvider)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ckcbAccionesEnPantalla.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // xtraScrollableControl1
@@ -106,6 +106,24 @@
             this.groupControl2.Size = new System.Drawing.Size(498, 473);
             this.groupControl2.TabIndex = 1;
             this.groupControl2.Text = "Pantallas";
+            // 
+            // labelControl5
+            // 
+            this.labelControl5.Location = new System.Drawing.Point(17, 108);
+            this.labelControl5.Name = "labelControl5";
+            this.labelControl5.Size = new System.Drawing.Size(118, 13);
+            this.labelControl5.TabIndex = 26;
+            this.labelControl5.Text = "Acciones de la pantalla";
+            // 
+            // ckcbAccionesEnPantalla
+            // 
+            this.ckcbAccionesEnPantalla.Enabled = false;
+            this.ckcbAccionesEnPantalla.Location = new System.Drawing.Point(17, 127);
+            this.ckcbAccionesEnPantalla.Name = "ckcbAccionesEnPantalla";
+            this.ckcbAccionesEnPantalla.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.ckcbAccionesEnPantalla.Size = new System.Drawing.Size(214, 20);
+            this.ckcbAccionesEnPantalla.TabIndex = 25;
             // 
             // btnNuevoPantalla
             // 
@@ -271,9 +289,6 @@
             // 
             this.txtLinkActualizadorSistema.Location = new System.Drawing.Point(17, 153);
             this.txtLinkActualizadorSistema.Name = "txtLinkActualizadorSistema";
-            this.txtLinkActualizadorSistema.Properties.Mask.EditMask = "http://((((\\w+-*)|(-*\\w+))+\\.*((\\w+-*)|(-*\\w+))+)|(((\\w+-*)|(-*\\w+))+))((((\\w+-*)" +
-    "|(-*\\w+))+\\.*((\\w+-*)|(-*\\w+))+)|(((\\w+-*)|(-*\\w+))+))+\\.[A-Za-z]+";
-            this.txtLinkActualizadorSistema.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
             this.txtLinkActualizadorSistema.Size = new System.Drawing.Size(214, 20);
             this.txtLinkActualizadorSistema.TabIndex = 17;
             // 
@@ -338,24 +353,6 @@
             // 
             this.dxErrorProvider.ContainerControl = this;
             // 
-            // ckcbAccionesEnPantalla
-            // 
-            this.ckcbAccionesEnPantalla.Enabled = false;
-            this.ckcbAccionesEnPantalla.Location = new System.Drawing.Point(17, 127);
-            this.ckcbAccionesEnPantalla.Name = "ckcbAccionesEnPantalla";
-            this.ckcbAccionesEnPantalla.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.ckcbAccionesEnPantalla.Size = new System.Drawing.Size(214, 20);
-            this.ckcbAccionesEnPantalla.TabIndex = 25;
-            // 
-            // labelControl5
-            // 
-            this.labelControl5.Location = new System.Drawing.Point(17, 108);
-            this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new System.Drawing.Size(118, 13);
-            this.labelControl5.TabIndex = 26;
-            this.labelControl5.Text = "Acciones de la pantalla";
-            // 
             // FrmSistemasyPantallas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -369,6 +366,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
             this.groupControl2.ResumeLayout(false);
             this.groupControl2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ckcbAccionesEnPantalla.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ckbEsReporte.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcPantallas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPantallas)).EndInit();
@@ -384,7 +382,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtNombreAMostrarSistema.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNombreSistema.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxErrorProvider)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ckcbAccionesEnPantalla.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
