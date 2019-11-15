@@ -192,6 +192,12 @@
     <Compile Include="Sistema\Administracion\FrmTasaDeCambio.Designer.cs">
       <DependentUpon>FrmTasaDeCambio.cs</DependentUpon>
     </Compile>
+    <Compile Include="Sistema\Administracion\FrmDocumentos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sistema\Administracion\FrmDocumentos.Designer.cs">
+      <DependentUpon>FrmDocumentos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sistema\Administracion\FrmTombola.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -284,6 +290,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Sistema\Administracion\FrmTasaDeCambio.resx">
       <DependentUpon>FrmTasaDeCambio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sistema\Administracion\FrmDocumentos.resx">
+      <DependentUpon>FrmDocumentos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sistema\Administracion\FrmTombola.resx">
       <DependentUpon>FrmTombola.cs</DependentUpon>

@@ -26,7 +26,8 @@ namespace CSPresentacion
             "Usuarios",
             "Sistemasypantallas",
             "Accionesopermisos",
-            "TasaDeCambio"
+            "TasaDeCambio",
+            "Documentos"
         };
 
         private readonly bool preguntarSucursal = false;
@@ -318,7 +319,12 @@ namespace CSPresentacion
         {
             AgregarAlMdi(FrmReporteNavegacion.Instance());
         }
+        private void btnDocumentos_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            AgregarAlMdi(FrmDocumentos.Instance());
+        }
         #endregion
 
+        
     }
 }

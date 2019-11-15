@@ -60,6 +60,8 @@
     <Compile Include="Modelos\SistemaOModulo.cs" />
     <Compile Include="Modelos\ModeloUsuario.cs" />
     <Compile Include="Modelos\TasaDeCambio.cs" />
+    <Compile Include="Modelos\TipoDocumento.cs" />
+    <Compile Include="Modelos\TipoMovimiento.cs" />
     <Compile Include="OperacionesGlobal.cs" />
     <Compile Include="Personalizar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -70,6 +72,8 @@
     </Compile>
     <Compile Include="Servicios\General\ServicioBase.cs" />
     <Compile Include="Servicios\ServicioAcciones.cs" />
+    <Compile Include="Servicios\ServicioDocumentos.cs" />
+    <Compile Include="Servicios\ServicioNavegacion.cs" />
     <Compile Include="Servicios\ServicioSistemasyPantallas.cs" />
     <Compile Include="Servicios\ServicioTasaDeCambio.cs" />
     <Compile Include="Servicios\ServicioUsuarios.cs" />
