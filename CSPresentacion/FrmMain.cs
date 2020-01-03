@@ -21,13 +21,15 @@ namespace CSPresentacion
     /// </summary>
     public partial class FrmMain : RibbonForm
     {
-        private static readonly List<string> lstDePantallas = new List<string>
+        private static readonly List<string> LstDePantallas = new List<string>
         {
             "Usuarios",
             "Sistemasypantallas",
             "Accionesopermisos",
             "TasaDeCambio",
-            "Documentos"
+            "Documentos",
+            "Información",
+            "Bodegas"
         };
 
         private readonly bool preguntarSucursal = false;
@@ -51,6 +53,7 @@ namespace CSPresentacion
         private void AgregarAlMdi(Form form)
         {
             form.MdiParent = this;
+            form.Icon = this.Icon;
             form.Show();
         }
 
@@ -130,13 +133,12 @@ namespace CSPresentacion
 
         private void IniciarMain()
         {
-
             UIHelper.BuscarActualizaciones();
 
             int n = OperacionesGlobal.numGet_Int("select halcon.[dbo].[fxObtenerUsuarioEmpresas]('" +
                                                  Datos_Globales.Usuario + "') AS n");
 
-            UIHelper.ValidarPantallas(lstDePantallas, rpModulos,
+            UIHelper.ValidarPantallas(LstDePantallas, rpModulos,
                 new[] {"Reportes", "Importaciones en transito"});
 
             if (preguntarSucursal)
@@ -319,12 +321,25 @@ namespace CSPresentacion
         {
             AgregarAlMdi(FrmReporteNavegacion.Instance());
         }
+
         private void btnDocumentos_ItemClick(object sender, ItemClickEventArgs e)
         {
             AgregarAlMdi(FrmDocumentos.Instance());
         }
-        #endregion
 
-        
+        private void btnInformacion_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            var frmInformacion = FrmInformacion.Instance();
+            frmInformacion.Icon = this.Icon;
+
+            frmInformacion.ShowDialog();
+        }
+
+        private void btnBodegas_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            AgregarAlMdi(FrmBodegas.Instance());
+        }
+
+        #endregion
     }
 }

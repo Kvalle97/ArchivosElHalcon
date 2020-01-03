@@ -99,7 +99,7 @@ namespace CSPresentacion.Sistema.Administracion
 
             // En excel comienza en uno
             // pero agregamos un salto para que omita el encabezado
-            for (int filas = 1; filas < rowCount; filas++)
+            for (int filas = 1; filas < rowCount + 1; filas++)
             {
                 // Fecha esta en uno
                 string fecha = Convert.ToString(xlRange.Cells[filas, 1].Value);
@@ -114,7 +114,16 @@ namespace CSPresentacion.Sistema.Administracion
 
                 Console.WriteLine($@"Tasa: {tasaVal}, Fecha: {fecha}");
 
-                var fechaVal = DateTime.ParseExact(fecha, "d/MM/yyyy hh:mm:ss", CultureInfo.InvariantCulture);
+                DateTime fechaVal = DateTime.Now;
+
+                bool success = DateTime.TryParseExact(fecha, "d/MM/yyyy hh:mm:ss", CultureInfo.InvariantCulture,
+                    DateTimeStyles.AdjustToUniversal, out fechaVal);
+
+                if (!success)
+                {
+                    DateTime.TryParseExact(fecha, "d/M/yyyy hh:mm:ss", CultureInfo.InvariantCulture,
+                        DateTimeStyles.AdjustToUniversal, out fechaVal);
+                }
 
                 lstTasaDeCambio.Add(new TasaDeCambioM() {Fecha = fechaVal, TasaDeCambio = tasaVal});
             }
@@ -158,6 +167,26 @@ namespace CSPresentacion.Sistema.Administracion
             Limpiar();
         }
 
+        /// <inheritdoc />
+        protected override void GuardarEvent()
+        {
+            try
+            {
+                servicioTasaDeCambio.GuardarTc(new TasaDeCambioM()
+                    {
+                        Fecha = dpFecha.DateTime.Date,
+                        TasaDeCambio = seTc.Value
+                    }, Datos_Globales.Usuario, seTcGerencial.Value,
+                    ckSobreeEscribir.Checked);
+
+                XtraMessageBox.Show("Guardado");
+            }
+            catch (Exception e)
+            {
+                UIHelper.MostrarError(e);
+            }
+        }
+
         #endregion
 
         #region Eventos
@@ -193,7 +222,6 @@ namespace CSPresentacion.Sistema.Administracion
                         $" de cambio que hay en el Excel. Si hay una repetida {avisoDeSobreEscritura} ¿ Desea continuar ?") ==
                     DialogResult.Yes)
                 {
-                    
                     WaitDialogForm wait = new WaitDialogForm("Por favor espere...", "Guardando");
 
                     wait.Show();
@@ -243,7 +271,8 @@ namespace CSPresentacion.Sistema.Administracion
 
                 try
                 {
-                    servicioTasaDeCambio.InsertarTcDelMes(dpFecha.DateTime, false, Datos_Globales.Usuario);
+                    servicioTasaDeCambio.InsertarTcDelMes(dpFecha.DateTime, ckSobreeEscribir.Checked,
+                        Datos_Globales.Usuario);
 
                     wait.Close();
 

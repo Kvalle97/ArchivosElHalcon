@@ -53,6 +53,8 @@ namespace CSNegocios.Servicios
 
             List<TasaDeCambioM> lstTasaDeCambio = new List<TasaDeCambioM>();
 
+            if (nodeList.Count <= 0) throw new Exception("El servicio no devolvio nada :)");
+
             foreach (XmlNode node in nodeList)
             {
                 lstTasaDeCambio.Add(new TasaDeCambioM()

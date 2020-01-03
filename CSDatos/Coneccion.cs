@@ -725,7 +725,7 @@ namespace CSDatos
             try
             {
                 CadenaConexion =
-                    "Connection Timeout=30;Persist Security Info=False;Server=" + server + ";Database=" + database +
+                    "Connection Timeout=5000;Persist Security Info=False;Server=" + server + ";Database=" + database +
                     ";Password=" + pas + ";User ID=" + user;
                 return CadenaConexion;
             }

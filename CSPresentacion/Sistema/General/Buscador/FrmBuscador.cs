@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
+using CSNegocios.Servicios;
 using CSPresentacion.Sistema.Utilidades;
 using DevExpress.Utils;
 using DevExpress.XtraEditors;
@@ -14,11 +15,17 @@ namespace CSPresentacion.Sistema.General.Buscador
     /// </summary>
     public partial class FrmBuscador : XtraForm
     {
+        private readonly ServicioDocumentos servicioDocumentos = new ServicioDocumentos();
+
         /// <summary>
         ///     Tipo buscador
         /// </summary>
         public enum TipoBuscador
         {
+            /// <summary>
+            /// Crea un dialogo que muestra las brechas del buscador
+            /// </summary>
+            BrechasEnTipoDoc
         }
 
 
@@ -34,11 +41,20 @@ namespace CSPresentacion.Sistema.General.Buscador
             {
                 InitializeComponent();
 
-                WaitDialogForm wait;
+                WaitDialogForm wait = new WaitDialogForm("Por favor espere...", "Cargando");
 
+                wait.Show();
                 switch (tipoBuscador)
                 {
+                    case TipoBuscador.BrechasEnTipoDoc:
+
+                        servicioDocumentos.CargarBrechasDelTipoDoc(gcBuscador, gvBuscador);
+                        gvBuscador.ViewCaption = "Brechas";
+                        
+                        break;
                 }
+
+                wait.Close();
             }
             catch (Exception ex)
             {
@@ -126,6 +142,8 @@ namespace CSPresentacion.Sistema.General.Buscador
                 {
                     if (gvBuscador.GetFocusedDataSourceRowIndex() >= 0)
                     {
+                        ValorDeLaCelda =
+                            gvBuscador.GetRowCellValue(gvBuscador.FocusedRowHandle, gvBuscador.FocusedColumn);
                         DataRow = gvBuscador.GetDataRow(gvBuscador.FocusedRowHandle);
 
                         DialogResult = DialogResult.OK;
@@ -157,6 +175,8 @@ namespace CSPresentacion.Sistema.General.Buscador
 
                     if (gvBuscador.GetFocusedDataSourceRowIndex() >= 0)
                     {
+                        ValorDeLaCelda =
+                            gvBuscador.GetRowCellValue(gvBuscador.FocusedRowHandle, gvBuscador.FocusedColumn);
                         DataRow = gvBuscador.GetDataRow(gvBuscador.FocusedRowHandle);
 
                         DialogResult = DialogResult.OK;
@@ -177,6 +197,8 @@ namespace CSPresentacion.Sistema.General.Buscador
 
                 if (gvBuscador.GetFocusedDataSourceRowIndex() >= 0)
                 {
+                    ValorDeLaCelda =
+                        gvBuscador.GetRowCellValue(gvBuscador.FocusedRowHandle, gvBuscador.FocusedColumn);
                     DataRow = gvBuscador.GetDataRow(gvBuscador.FocusedRowHandle);
 
                     DialogResult = DialogResult.OK;
@@ -196,6 +218,11 @@ namespace CSPresentacion.Sistema.General.Buscador
         ///     Fila obtenida de la busqueda
         /// </summary>
         public DataRow DataRow { get; private set; }
+
+        /// <summary>
+        /// Tiene el valor de la celda seleccionada
+        /// </summary>
+        public object ValorDeLaCelda { get; set; }
 
         /// <summary>
         ///     Seleccion multiple ?

@@ -71,6 +71,9 @@
             this.btnReporteUsuarios = new DevExpress.XtraBars.BarButtonItem();
             this.btnAccionesUsuarioReporte = new DevExpress.XtraBars.BarButtonItem();
             this.btnTasaDeCambio = new DevExpress.XtraBars.BarButtonItem();
+            this.btnDocumentos = new DevExpress.XtraBars.BarButtonItem();
+            this.btnInformacion = new DevExpress.XtraBars.BarButtonItem();
+            this.btnBodegas = new DevExpress.XtraBars.BarButtonItem();
             this.rpModulos = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.rpAdministracion = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rpConfiguracion = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -79,10 +82,9 @@
             this.rpAyuda = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.rpgManualDeUsuario = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
-            this.xtraTabbedMdiManager1 = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.btnDocumentos = new DevExpress.XtraBars.BarButtonItem();
+            this.xtraTabbedMdiManager1 = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager1)).BeginInit();
@@ -132,9 +134,11 @@
             this.btnReporteUsuarios,
             this.btnAccionesUsuarioReporte,
             this.btnTasaDeCambio,
-            this.btnDocumentos});
+            this.btnDocumentos,
+            this.btnInformacion,
+            this.btnBodegas});
             this.ribbon.Location = new System.Drawing.Point(0, 0);
-            this.ribbon.MaxItemId = 55;
+            this.ribbon.MaxItemId = 58;
             this.ribbon.Name = "ribbon";
             this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.rpModulos,
@@ -442,6 +446,35 @@
             this.btnTasaDeCambio.Name = "btnTasaDeCambio";
             this.btnTasaDeCambio.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnTasaDeCambio_ItemClick);
             // 
+            // btnDocumentos
+            // 
+            this.btnDocumentos.Caption = "Documentos";
+            this.btnDocumentos.Id = 54;
+            this.btnDocumentos.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnDocumentos.ImageOptions.Image")));
+            this.btnDocumentos.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnDocumentos.ImageOptions.LargeImage")));
+            this.btnDocumentos.Name = "btnDocumentos";
+            this.btnDocumentos.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDocumentos_ItemClick);
+            // 
+            // btnInformacion
+            // 
+            this.btnInformacion.Caption = "Información";
+            this.btnInformacion.Id = 56;
+            this.btnInformacion.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnInformacion.ImageOptions.Image")));
+            this.btnInformacion.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnInformacion.ImageOptions.LargeImage")));
+            this.btnInformacion.Name = "btnInformacion";
+            this.btnInformacion.RibbonStyle = ((DevExpress.XtraBars.Ribbon.RibbonItemStyles)((DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large | DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithText)));
+            this.btnInformacion.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnInformacion_ItemClick);
+            // 
+            // btnBodegas
+            // 
+            this.btnBodegas.Caption = "Bodegas";
+            this.btnBodegas.Id = 57;
+            this.btnBodegas.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnBodegas.ImageOptions.Image")));
+            this.btnBodegas.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnBodegas.ImageOptions.LargeImage")));
+            this.btnBodegas.Name = "btnBodegas";
+            this.btnBodegas.RibbonStyle = ((DevExpress.XtraBars.Ribbon.RibbonItemStyles)((DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large | DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithText)));
+            this.btnBodegas.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnBodegas_ItemClick);
+            // 
             // rpModulos
             // 
             this.rpModulos.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -457,6 +490,8 @@
             this.rpAdministracion.ItemLinks.Add(this.barButtonItem6);
             this.rpAdministracion.ItemLinks.Add(this.btnTasaDeCambio);
             this.rpAdministracion.ItemLinks.Add(this.btnDocumentos);
+            this.rpAdministracion.ItemLinks.Add(this.btnInformacion);
+            this.rpAdministracion.ItemLinks.Add(this.btnBodegas);
             this.rpAdministracion.Name = "rpAdministracion";
             this.rpAdministracion.Text = "Administración";
             // 
@@ -512,11 +547,6 @@
             this.ribbonStatusBar.Ribbon = this.ribbon;
             this.ribbonStatusBar.Size = new System.Drawing.Size(903, 26);
             // 
-            // xtraTabbedMdiManager1
-            // 
-            this.xtraTabbedMdiManager1.ClosePageButtonShowMode = DevExpress.XtraTab.ClosePageButtonShowMode.InAllTabPageHeaders;
-            this.xtraTabbedMdiManager1.MdiParent = this;
-            // 
             // ribbonPageGroup3
             // 
             this.ribbonPageGroup3.Name = "ribbonPageGroup3";
@@ -527,14 +557,10 @@
             this.ribbonPageGroup5.Name = "ribbonPageGroup5";
             this.ribbonPageGroup5.Text = "ribbonPageGroup5";
             // 
-            // btnDocumentos
+            // xtraTabbedMdiManager1
             // 
-            this.btnDocumentos.Caption = "Documentos";
-            this.btnDocumentos.Id = 54;
-            this.btnDocumentos.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem7.ImageOptions.Image")));
-            this.btnDocumentos.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem7.ImageOptions.LargeImage")));
-            this.btnDocumentos.Name = "btnDocumentos";
-            this.btnDocumentos.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDocumentos_ItemClick);
+            this.xtraTabbedMdiManager1.ClosePageButtonShowMode = DevExpress.XtraTab.ClosePageButtonShowMode.InAllTabPageHeaders;
+            this.xtraTabbedMdiManager1.MdiParent = this;
             // 
             // FrmMain
             // 
@@ -572,7 +598,6 @@
         private DevExpress.XtraBars.BarSubItem btnReportes;
         private DevExpress.XtraBars.BarButtonItem btnReporteTabular;
         private DevExpress.XtraBars.BarButtonItem btnReportePivote;
-        private DevExpress.XtraTabbedMdi.XtraTabbedMdiManager xtraTabbedMdiManager1;
         private DevExpress.XtraBars.BarHeaderItem barUsuario;
         private DevExpress.XtraBars.BarStaticItem barStaticItem1;
         private DevExpress.XtraBars.BarHeaderItem barSucursal;
@@ -615,5 +640,8 @@
         private DevExpress.XtraBars.BarButtonItem btnAccionesUsuarioReporte;
         private DevExpress.XtraBars.BarButtonItem btnTasaDeCambio;
         private DevExpress.XtraBars.BarButtonItem btnDocumentos;
+        private DevExpress.XtraBars.BarButtonItem btnInformacion;
+        private DevExpress.XtraTabbedMdi.XtraTabbedMdiManager xtraTabbedMdiManager1;
+        private DevExpress.XtraBars.BarButtonItem btnBodegas;
     }
 }

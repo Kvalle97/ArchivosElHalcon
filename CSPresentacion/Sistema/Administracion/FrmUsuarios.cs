@@ -232,6 +232,9 @@ namespace CSPresentacion.Sistema.Administracion
         protected override void NuevoEvent()
         {
             modeloUsuario = new ModeloUsuario();
+            
+            servicioUsuarios.CargarUsuarios(gcUsuarios, gvUsuarios);
+
             CargarUsuario();
         }
 

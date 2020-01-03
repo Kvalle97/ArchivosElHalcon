@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 namespace CSNegocios.Modelos
 {
     public class TipoMovimiento
-    {      
+    {
+        public int IdTipoMov { get; set; } = 0;
+        public string TipoMov { get; set; }
+        public int Afectaciones { get; set; }
+        public double Presupuesto { get; set; }
     }
 }

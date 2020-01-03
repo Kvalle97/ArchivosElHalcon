@@ -297,7 +297,7 @@ namespace CSPresentacion.Sistema.Utilidades
         {
             if (image == null)
             {
-                pictureEdit.Image = Resources.LOGO_en_BMP;
+                pictureEdit.Image = null;
             }
             else
             {

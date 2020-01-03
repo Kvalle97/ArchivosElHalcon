@@ -55,6 +55,7 @@
     <Compile Include="Logueo.cs" />
     <Compile Include="Modelos\Accion.cs" />
     <Compile Include="Modelos\ConjuntoAcceso.cs" />
+    <Compile Include="Modelos\Informacion.cs" />
     <Compile Include="Modelos\Pantalla.cs" />
     <Compile Include="Modelos\Rol.cs" />
     <Compile Include="Modelos\SistemaOModulo.cs" />
@@ -73,6 +74,7 @@
     <Compile Include="Servicios\General\ServicioBase.cs" />
     <Compile Include="Servicios\ServicioAcciones.cs" />
     <Compile Include="Servicios\ServicioDocumentos.cs" />
+    <Compile Include="Servicios\ServicioInformacion.cs" />
     <Compile Include="Servicios\ServicioNavegacion.cs" />
     <Compile Include="Servicios\ServicioSistemasyPantallas.cs" />
     <Compile Include="Servicios\ServicioTasaDeCambio.cs" />
