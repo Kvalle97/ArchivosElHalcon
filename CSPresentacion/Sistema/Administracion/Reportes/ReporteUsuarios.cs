@@ -12,6 +12,5 @@ namespace CSPresentacion.Sistema.Administracion.Reportes
         {
             InitializeComponent();
         }
-
     }
 }

@@ -58,9 +58,8 @@ namespace CSPresentacion.Sistema.Administracion
         {
             dxErrorProvider.ClearErrors();
 
-            tipoMovimiento = new TipoMovimiento();
+            tipoMovimiento = new TipoMovimiento {IdTipoMov = -1};
 
-            tipoMovimiento.IdTipoMov = -1;
 
             CargarTipoMovimiento();
         }

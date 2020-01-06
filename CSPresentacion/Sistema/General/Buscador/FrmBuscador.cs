@@ -50,7 +50,7 @@ namespace CSPresentacion.Sistema.General.Buscador
 
                         servicioDocumentos.CargarBrechasDelTipoDoc(gcBuscador, gvBuscador);
                         gvBuscador.ViewCaption = "Brechas";
-                        
+
                         break;
                 }
 

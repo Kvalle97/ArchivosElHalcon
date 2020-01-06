@@ -733,6 +733,7 @@ Usted está usando la versión ({args.InstalledVersion}). ¿ Quiere actualizar a
 
             return obj;
         }
+
         /// <summary>
         /// Crea una contrasenia
         /// </summary>
@@ -749,7 +750,7 @@ Usted está usando la versión ({args.InstalledVersion}). ¿ Quiere actualizar a
             {
                 Random randomObj = new Random();
                 randomObj.NextBytes(randomBytes);
-                chars[i] = _allowedChars[(int)randomBytes[i] % allowedCharCount];
+                chars[i] = _allowedChars[(int) randomBytes[i] % allowedCharCount];
             }
 
             return new string(chars);

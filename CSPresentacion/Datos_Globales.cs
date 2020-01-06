@@ -18,8 +18,8 @@
                                                      "la siguiente contraseña";
 
         public static readonly string Bienvenida = $"Te damos la Bienvenida al Halcón. {saltoHtml}" +
-                                                     "Se ha creado para ti el usuario <b>@Usuario</b> para que puedas " +
-                                                     "iniciar sesión con la siguiente contraseña";
+                                                   "Se ha creado para ti el usuario <b>@Usuario</b> para que puedas " +
+                                                   "iniciar sesión con la siguiente contraseña";
 
         /// <summary>
         ///     Nombre del sistema.

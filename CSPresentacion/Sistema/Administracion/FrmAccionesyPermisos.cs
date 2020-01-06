@@ -87,7 +87,7 @@ namespace CSPresentacion.Sistema.Administracion
                         for (int j = 0; j < childCount; j++)
                         {
                             int childRowHandle = gvAcceso.GetChildRowHandle(i, j);
-                            
+
                             int idPantalla = Convert.ToInt32(gvAcceso.GetDataRow(childRowHandle)[0]);
 
                             int idAccion = Convert.ToInt32(gvAcceso.GetDataRow(childRowHandle)[2]);
@@ -324,11 +324,10 @@ namespace CSPresentacion.Sistema.Administracion
             rol = new Rol();
 
             CargarRol();
-            
+
             servicioAcciones.MostrarRoles(gcRoles, gvRoles);
         }
 
         #endregion
-        
     }
 }

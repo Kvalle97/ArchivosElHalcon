@@ -64,7 +64,7 @@ namespace CSPresentacion.Sistema.Administracion
             informacion.Ruc = txtRuc.Text;
             informacion.Direccion = meDireccion.Text;
 
-            WaitDialogForm wait= new WaitDialogForm("Por favor espere...", "Guardando");
+            WaitDialogForm wait = new WaitDialogForm("Por favor espere...", "Guardando");
 
             wait.Show();
 

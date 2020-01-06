@@ -73,6 +73,7 @@
     </Compile>
     <Compile Include="Servicios\General\ServicioBase.cs" />
     <Compile Include="Servicios\ServicioAcciones.cs" />
+    <Compile Include="Servicios\ServicioBodegas.cs" />
     <Compile Include="Servicios\ServicioDocumentos.cs" />
     <Compile Include="Servicios\ServicioInformacion.cs" />
     <Compile Include="Servicios\ServicioNavegacion.cs" />

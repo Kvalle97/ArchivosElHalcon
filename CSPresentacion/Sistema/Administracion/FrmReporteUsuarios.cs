@@ -23,6 +23,7 @@ namespace CSPresentacion.Sistema.Administracion
         // ReSharper disable once InconsistentNaming
         private static FrmReporteUsuarios childInstance = null;
         private readonly ServicioUsuarios servioUsuarios = new ServicioUsuarios();
+
         /// <summary>
         /// Constructor
         /// </summary>
@@ -79,7 +80,7 @@ namespace CSPresentacion.Sistema.Administracion
             }
             finally
             {
-                if(!waitDialog.IsDisposed) waitDialog.Close();
+                if (!waitDialog.IsDisposed) waitDialog.Close();
             }
         }
 
@@ -87,7 +88,6 @@ namespace CSPresentacion.Sistema.Administracion
 
         #region Eventos
 
-        
         private void lueSucursal_EditValueChanged(object sender, EventArgs e)
         {
             CargarReporte();
@@ -97,19 +97,19 @@ namespace CSPresentacion.Sistema.Administracion
         {
             CargarReporte();
         }
-        
+
         private void FrmReporteUsuarios_Load(object sender, EventArgs e)
         {
             try
             {
-                servioUsuarios.CargarSucursales(lueSucursal,true);
+                servioUsuarios.CargarSucursales(lueSucursal, true);
             }
             catch (Exception exception)
             {
                 UIHelper.MostrarError(exception);
             }
         }
-        #endregion
 
+        #endregion
     }
 }

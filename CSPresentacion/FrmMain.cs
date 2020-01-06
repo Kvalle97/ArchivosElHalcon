@@ -56,7 +56,26 @@ namespace CSPresentacion
             form.Icon = this.Icon;
             form.Show();
         }
+        
+        /// <summary>
+        /// Mostrar como dialog
+        /// </summary>
+        /// <param name="form"></param>
+        /// <param name="isFixed"></param>
+        private void MostrarComoDialog(Form form, bool isFixed = false)
+        {
+            if (form != null)
+            {
+                form.Icon = this.Icon;
+                form.ShowDialog();
 
+                if (isFixed)
+                {
+                    form.FormBorderStyle = FormBorderStyle.FixedToolWindow;
+                    form.StartPosition = FormStartPosition.CenterScreen;
+                }
+            }
+        }
         /// <summary>
         ///     Mostrar manual de usuario
         /// </summary>
@@ -329,15 +348,29 @@ namespace CSPresentacion
 
         private void btnInformacion_ItemClick(object sender, ItemClickEventArgs e)
         {
-            var frmInformacion = FrmInformacion.Instance();
-            frmInformacion.Icon = this.Icon;
-
-            frmInformacion.ShowDialog();
+            MostrarComoDialog(FrmInformacion.Instance());
         }
 
         private void btnBodegas_ItemClick(object sender, ItemClickEventArgs e)
         {
-            AgregarAlMdi(FrmBodegas.Instance());
+        }
+
+        private void btnTipoBodega_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            MostrarComoDialog(FrmBodegas.Instance(FrmBodegas.PantallaMostrar.TipoBodega));
+        }
+
+        private void btnBodega_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            MostrarComoDialog(FrmBodegas.Instance(FrmBodegas.PantallaMostrar.Bodega));
+        }
+
+        private void btnBodegasEnDocumentos_ItemClick(object sender, ItemClickEventArgs e)
+        {
+        }
+
+        private void btnControlTipoBodega_ItemClick(object sender, ItemClickEventArgs e)
+        {
         }
 
         #endregion

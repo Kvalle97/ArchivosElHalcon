@@ -232,7 +232,7 @@ namespace CSPresentacion.Sistema.Administracion
         protected override void NuevoEvent()
         {
             modeloUsuario = new ModeloUsuario();
-            
+
             servicioUsuarios.CargarUsuarios(gcUsuarios, gvUsuarios);
 
             CargarUsuario();
@@ -291,7 +291,7 @@ namespace CSPresentacion.Sistema.Administracion
                 modeloUsuario.IdDescuento = (int) lueTipoDeDescuento.EditValue;
 
                 // Esto se hace asi porque en sql el tipo de dato es tinyint :(
-                modeloUsuario.Activo = ckbActivo.Checked ? 1 : 0; 
+                modeloUsuario.Activo = ckbActivo.Checked ? 1 : 0;
 
                 modeloUsuario.IdNivel = Convert.ToInt32(lueNievelDeAcceso.EditValue);
 
@@ -310,9 +310,9 @@ namespace CSPresentacion.Sistema.Administracion
                 // Nos servira para preguntar si queremos asignarle una contrasenia
                 // temporal a un posible nuevo usuario
                 bool preguntarPorCambioDeContra = false;
-                
+
                 // Si se esta ingresando un nuevo usuario
-                
+
                 if (modeloUsuario.IdUsuario == 0)
                 {
                     modeloUsuario = UIHelper.ObtenerItem<ModeloUsuario>(servicioUsuarios.ObtenerUltimoUsuario());

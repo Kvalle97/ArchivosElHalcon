@@ -22,6 +22,7 @@ namespace CSPresentacion.Sistema.Administracion
         // ReSharper disable once InconsistentNaming
         private static FrmReporteNavegacion childInstance;
         private readonly ServicioNavegacion servicioNavegacion = new ServicioNavegacion();
+
         /// <summary>
         /// Constructor
         /// </summary>
@@ -49,14 +50,14 @@ namespace CSPresentacion.Sistema.Administracion
         }
 
         #region Eventos
-        
+
         private void FrmReporteNavegacion_Load(object sender, EventArgs e)
         {
             dpDesde.DateTime = DateTime.Now.Date;
             dpHasta.DateTime = DateTime.Now.Date;
             servicioNavegacion.CargarUsarios(glueUsuarios);
         }
-        
+
         private void btnVerReporte_Click(object sender, EventArgs e)
         {
             try
@@ -80,7 +81,7 @@ namespace CSPresentacion.Sistema.Administracion
                 UIHelper.MostrarError(exception);
             }
         }
-        #endregion
 
+        #endregion
     }
 }
