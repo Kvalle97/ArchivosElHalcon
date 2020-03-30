@@ -96,6 +96,16 @@ namespace CSPresentacion.Sistema.Administracion
                 lueTipoDeDescuento.EditValue = modeloUsuario.IdDescuento;
                 ckbActivo.Checked = modeloUsuario.Activo == 1;
 
+                // PERMISOS INVENTARIO
+
+                ckPermitirRealizarTraslados.Checked = modeloUsuario.PermitirRealizarTraslados;
+                ckGuardarPrestamos.Checked = modeloUsuario.GuardarPrestamos;
+                ckAplicarPrestamos.Checked = modeloUsuario.AplicarPrestamos;
+                ckAutorizarST.Checked = modeloUsuario.AutorizarST;
+                ckPermitirDepCompras.Checked = modeloUsuario.PermitirDepCompras;
+                ckGirarPreIngresos.Checked = modeloUsuario.GirarPreingresos;
+
+                // FIN PERMISOS INVENTARIO
                 lueNievelDeAcceso.EditValue = modeloUsuario.IdNivel.ToString("D2");
 
                 ckComboSucursalesAsociadas.SetEditValue(UIHelper.ConvertirDataTableAListaSimple<int>(
@@ -290,6 +300,14 @@ namespace CSPresentacion.Sistema.Administracion
                 modeloUsuario.Ventas = ckVentas.Checked;
                 modeloUsuario.IdDescuento = (int) lueTipoDeDescuento.EditValue;
 
+
+                modeloUsuario.PermitirRealizarTraslados = ckPermitirRealizarTraslados.Checked;
+                modeloUsuario.GuardarPrestamos = ckGuardarPrestamos.Checked;
+                modeloUsuario.AplicarPrestamos = ckAplicarPrestamos.Checked;
+                modeloUsuario.AutorizarST = ckAutorizarST.Checked;
+                modeloUsuario.PermitirDepCompras = ckPermitirDepCompras.Checked;
+                modeloUsuario.GirarPreingresos = ckGirarPreIngresos.Checked;
+
                 // Esto se hace asi porque en sql el tipo de dato es tinyint :(
                 modeloUsuario.Activo = ckbActivo.Checked ? 1 : 0;
 
@@ -320,7 +338,7 @@ namespace CSPresentacion.Sistema.Administracion
                 }
 
                 List<CorreoM> lstCorreos = UIHelper.ConvertirDataTable<CorreoM>(
-                    gcCorreos.DataSource as DataTable);
+                    (DataTable) gcCorreos.DataSource);
 
                 // Guardando correos :)
 

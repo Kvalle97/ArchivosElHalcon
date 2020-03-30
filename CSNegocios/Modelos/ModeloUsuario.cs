@@ -76,6 +76,20 @@ namespace CSNegocios.Modelos
         public bool Proveedores { get; set; }
         public bool Proyecto { get; set; }
 
+        #region PermisosKevin
+
+        
+        public bool PermitirRealizarTraslados { get; set; }
+        public bool GuardarPrestamos { get; set; }
+        public bool AplicarPrestamos { get; set; }
+
+        // ReSharper disable once InconsistentNaming
+        public bool AutorizarST { get; set; }
+        public bool PermitirDepCompras { get; set; }
+        public bool GirarPreingresos { get; set; }
+
+        #endregion
+
         #endregion
     }
 }

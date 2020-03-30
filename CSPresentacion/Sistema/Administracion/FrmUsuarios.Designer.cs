@@ -79,6 +79,13 @@
             this.gvUsuarios = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.alertControl = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
             this.dxErrorProvider = new DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider(this.components);
+            this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.ckPermitirRealizarTraslados = new DevExpress.XtraEditors.CheckEdit();
+            this.ckGuardarPrestamos = new DevExpress.XtraEditors.CheckEdit();
+            this.ckAplicarPrestamos = new DevExpress.XtraEditors.CheckEdit();
+            this.ckGirarPreIngresos = new DevExpress.XtraEditors.CheckEdit();
+            this.ckPermitirDepCompras = new DevExpress.XtraEditors.CheckEdit();
+            this.ckAutorizarST = new DevExpress.XtraEditors.CheckEdit();
             this.xtraScrollableControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tabControlUsuario)).BeginInit();
             this.tabControlUsuario.SuspendLayout();
@@ -116,6 +123,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.gcUsuarios)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvUsuarios)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxErrorProvider)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
+            this.groupControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ckPermitirRealizarTraslados.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ckGuardarPrestamos.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ckAplicarPrestamos.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ckGirarPreIngresos.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ckPermitirDepCompras.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ckAutorizarST.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // xtraScrollableControl1
@@ -332,6 +347,7 @@
             // 
             // tabOpcionesGenerales
             // 
+            this.tabOpcionesGenerales.Controls.Add(this.groupControl1);
             this.tabOpcionesGenerales.Controls.Add(this.lueTipoDeDescuento);
             this.tabOpcionesGenerales.Controls.Add(this.labelControl5);
             this.tabOpcionesGenerales.Controls.Add(this.ckProyecto);
@@ -580,6 +596,68 @@
             // 
             this.dxErrorProvider.ContainerControl = this;
             // 
+            // groupControl1
+            // 
+            this.groupControl1.Controls.Add(this.ckGirarPreIngresos);
+            this.groupControl1.Controls.Add(this.ckPermitirDepCompras);
+            this.groupControl1.Controls.Add(this.ckAutorizarST);
+            this.groupControl1.Controls.Add(this.ckAplicarPrestamos);
+            this.groupControl1.Controls.Add(this.ckGuardarPrestamos);
+            this.groupControl1.Controls.Add(this.ckPermitirRealizarTraslados);
+            this.groupControl1.Location = new System.Drawing.Point(8, 154);
+            this.groupControl1.Name = "groupControl1";
+            this.groupControl1.Size = new System.Drawing.Size(496, 157);
+            this.groupControl1.TabIndex = 12;
+            this.groupControl1.Text = "Permisos inventario";
+            // 
+            // ckPermitirRealizarTraslados
+            // 
+            this.ckPermitirRealizarTraslados.Location = new System.Drawing.Point(18, 48);
+            this.ckPermitirRealizarTraslados.Name = "ckPermitirRealizarTraslados";
+            this.ckPermitirRealizarTraslados.Properties.Caption = "Permitir Realizar Traslados";
+            this.ckPermitirRealizarTraslados.Size = new System.Drawing.Size(157, 20);
+            this.ckPermitirRealizarTraslados.TabIndex = 0;
+            // 
+            // ckGuardarPrestamos
+            // 
+            this.ckGuardarPrestamos.Location = new System.Drawing.Point(18, 75);
+            this.ckGuardarPrestamos.Name = "ckGuardarPrestamos";
+            this.ckGuardarPrestamos.Properties.Caption = "Guardar Prestamos";
+            this.ckGuardarPrestamos.Size = new System.Drawing.Size(157, 20);
+            this.ckGuardarPrestamos.TabIndex = 1;
+            // 
+            // ckAplicarPrestamos
+            // 
+            this.ckAplicarPrestamos.Location = new System.Drawing.Point(18, 102);
+            this.ckAplicarPrestamos.Name = "ckAplicarPrestamos";
+            this.ckAplicarPrestamos.Properties.Caption = "Aplicar Prestamos";
+            this.ckAplicarPrestamos.Size = new System.Drawing.Size(147, 20);
+            this.ckAplicarPrestamos.TabIndex = 2;
+            // 
+            // ckGirarPreIngresos
+            // 
+            this.ckGirarPreIngresos.Location = new System.Drawing.Point(219, 102);
+            this.ckGirarPreIngresos.Name = "ckGirarPreIngresos";
+            this.ckGirarPreIngresos.Properties.Caption = "Girar Preingresos";
+            this.ckGirarPreIngresos.Size = new System.Drawing.Size(156, 20);
+            this.ckGirarPreIngresos.TabIndex = 5;
+            // 
+            // ckPermitirDepCompras
+            // 
+            this.ckPermitirDepCompras.Location = new System.Drawing.Point(219, 75);
+            this.ckPermitirDepCompras.Name = "ckPermitirDepCompras";
+            this.ckPermitirDepCompras.Properties.Caption = "Permitir Dep Compras";
+            this.ckPermitirDepCompras.Size = new System.Drawing.Size(210, 20);
+            this.ckPermitirDepCompras.TabIndex = 4;
+            // 
+            // ckAutorizarST
+            // 
+            this.ckAutorizarST.Location = new System.Drawing.Point(219, 48);
+            this.ckAutorizarST.Name = "ckAutorizarST";
+            this.ckAutorizarST.Properties.Caption = "AutorizarST";
+            this.ckAutorizarST.Size = new System.Drawing.Size(123, 20);
+            this.ckAutorizarST.TabIndex = 3;
+            // 
             // FrmUsuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -630,6 +708,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.gcUsuarios)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvUsuarios)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxErrorProvider)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
+            this.groupControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ckPermitirRealizarTraslados.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ckGuardarPrestamos.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ckAplicarPrestamos.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ckGirarPreIngresos.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ckPermitirDepCompras.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ckAutorizarST.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -687,5 +773,12 @@
         private DevExpress.XtraEditors.LookUpEdit lueTipoDeDescuento;
         private DevExpress.XtraGrid.GridControl gcCorreos;
         private DevExpress.XtraGrid.Views.Grid.GridView gvCorreos;
+        private DevExpress.XtraEditors.GroupControl groupControl1;
+        private DevExpress.XtraEditors.CheckEdit ckGirarPreIngresos;
+        private DevExpress.XtraEditors.CheckEdit ckPermitirDepCompras;
+        private DevExpress.XtraEditors.CheckEdit ckAutorizarST;
+        private DevExpress.XtraEditors.CheckEdit ckAplicarPrestamos;
+        private DevExpress.XtraEditors.CheckEdit ckGuardarPrestamos;
+        private DevExpress.XtraEditors.CheckEdit ckPermitirRealizarTraslados;
     }
 }

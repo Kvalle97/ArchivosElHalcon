@@ -288,6 +288,15 @@ namespace CSNegocios.Servicios
                     cmd.Parameters.Add(new SqlParameter("Proveedores", SqlDbType.Bit)).Value =
                         modeloUsuario.Proveedores;
                     cmd.Parameters.Add(new SqlParameter("Proyecto", SqlDbType.Bit)).Value = modeloUsuario.Proyecto;
+
+                    // PERMISOS INVENTARIO
+                    cmd.Parameters.Add(new SqlParameter("PermitirRealizarTraslados", SqlDbType.Bit)).Value = modeloUsuario.PermitirRealizarTraslados;
+                    cmd.Parameters.Add(new SqlParameter("GuardarPrestamos", SqlDbType.Bit)).Value = modeloUsuario.GuardarPrestamos;
+                    cmd.Parameters.Add(new SqlParameter("AplicarPrestamos", SqlDbType.Bit)).Value = modeloUsuario.AplicarPrestamos;
+                    cmd.Parameters.Add(new SqlParameter("AutorizarST", SqlDbType.Bit)).Value = modeloUsuario.AutorizarST;
+                    cmd.Parameters.Add(new SqlParameter("PermitirDepCompras", SqlDbType.Bit)).Value = modeloUsuario.PermitirDepCompras;
+                    cmd.Parameters.Add(new SqlParameter("GirarPreingresos", SqlDbType.Bit)).Value = modeloUsuario.GirarPreingresos;
+
                 });
         }
 

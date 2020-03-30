@@ -29,7 +29,8 @@ namespace CSPresentacion
             "TasaDeCambio",
             "Documentos",
             "Información",
-            "Bodegas"
+            //"Bodegas", 
+            //"Formatos"
         };
 
         private readonly bool preguntarSucursal = false;
@@ -56,7 +57,7 @@ namespace CSPresentacion
             form.Icon = this.Icon;
             form.Show();
         }
-        
+
         /// <summary>
         /// Mostrar como dialog
         /// </summary>
@@ -76,6 +77,7 @@ namespace CSPresentacion
                 }
             }
         }
+
         /// <summary>
         ///     Mostrar manual de usuario
         /// </summary>
@@ -158,7 +160,9 @@ namespace CSPresentacion
                                                  Datos_Globales.Usuario + "') AS n");
 
             UIHelper.ValidarPantallas(LstDePantallas, rpModulos,
-                new[] {"Reportes", "Importaciones en transito"});
+                new[] {
+                    "Reportes",
+                    "Importaciones en transito"});
 
             if (preguntarSucursal)
             {
@@ -374,5 +378,15 @@ namespace CSPresentacion
         }
 
         #endregion
+
+        private void btnFormatos_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            AgregarAlMdi(new FrmFormatos());
+        }
+
+        private void btnReportesModulos_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            new FrmDiseniadorDeReportes().Show();
+        }
     }
 }
