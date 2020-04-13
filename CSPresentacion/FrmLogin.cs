@@ -89,7 +89,7 @@ namespace CSPresentacion
             lblVersion.Text = "v" + version;
             Datos_Globales.VersionSistemaLocal = version;
 
-            Width = 210;
+            Width = 210; 
             txtLogin.EditValue = Settings.Default.Login;
             txtPassword.EditValue = Settings.Default.Password;
             txtTimeOut.EditValue = Settings.Default.TimeOut;

@@ -157,8 +157,7 @@ namespace CSNegocios.Servicios.General
 
                 cmd.Parameters.Add(new SqlParameter("@IdLogin", SqlDbType.Int)).Value = idLogin;
                 cmd.Parameters.Add(new SqlParameter("@Agregar", SqlDbType.Bit)).Value = agregar;
-
-                return 0;
+                
             });
         }
 
@@ -173,8 +172,7 @@ namespace CSNegocios.Servicios.General
             dataTable = Coneccion.EjecutarSpDataTable("sp_ListarProveedores", cmd =>
             {
                 cmd.Parameters.Add(new SqlParameter("CargarTodos", SqlDbType.Bit)).Value = true;
-
-                return 0;
+                
             });
 
             glue.Properties.DataSource = dataTable;
@@ -202,7 +200,7 @@ namespace CSNegocios.Servicios.General
                 cmd =>
                 {
                     cmd.Parameters.Add(new SqlParameter("@nacional", SqlDbType.Bit)).Value = nacional;
-                    return 0;
+                    
                 });
 
             glue.Properties.ValueMember = "CODIGO";
@@ -330,8 +328,7 @@ namespace CSNegocios.Servicios.General
                     RevisarSiEsNuloSql(comentarios);
                 command.Parameters.Add(new SqlParameter("Tarjeta", SqlDbType.Bit)).Value =
                     tarjeta;
-
-                return 0;
+                
             });
         }
 
@@ -348,8 +345,7 @@ namespace CSNegocios.Servicios.General
             {
                 command.Parameters.Add(new SqlParameter("TipoMov", SqlDbType.Int)).Value = movimiento;
                 command.Parameters.Add(new SqlParameter("Empresa", SqlDbType.Int)).Value = empresa;
-
-                return 0;
+                
             });
 
             if (dataTable.Rows.Count > 0) return int.Parse(dataTable.Rows[0][0].ToString());
@@ -369,8 +365,7 @@ namespace CSNegocios.Servicios.General
             {
                 cmd.Parameters.Add(new SqlParameter("NoDoc", SqlDbType.Int)).Value = noDoc;
                 cmd.Parameters.Add(new SqlParameter("IdTipoDoc", SqlDbType.Int)).Value = idTipoDoc;
-
-                return 0;
+                
             });
         }
     }

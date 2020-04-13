@@ -223,7 +223,7 @@ namespace CSPresentacion.Sistema.Administracion
                     return;
                 }
 
-                if (servicioSistemasyPantallas.ElNombreDeLaPantallaEstaEnUso(pantalla.Id, pantalla.Nombre))
+                if (servicioSistemasyPantallas.ElNombreDeLaPantallaEstaEnUso(pantalla.Id, txtNombreDePantalla.Text))
                 {
                     UIHelper.AlertarDeError(dxErrorProvider, txtNombreDePantalla, "El nombre ya esta siendo usado");
                     return;
@@ -240,7 +240,7 @@ namespace CSPresentacion.Sistema.Administracion
                 if (pantalla.Id != 0)
                 {
                     servicioSistemasyPantallas.GuardarAccioneDePantalla(pantalla.Id,
-                         (List<object>) ckcbAccionesEnPantalla.EditValue);
+                        (List<object>) ckcbAccionesEnPantalla.EditValue);
                 }
 
                 btnNuevoPantalla.PerformClick();

@@ -21,6 +21,7 @@ namespace CSPresentacion.Sistema.Administracion
     /// </summary>
     public partial class FrmAccionesyPermisos : DevExpress.XtraEditors.XtraForm
     {
+        // ReSharper disable once InconsistentNaming
         private static FrmAccionesyPermisos childInstance = null;
         private readonly ServicioAcciones servicioAcciones = new ServicioAcciones();
         private Accion accion = new Accion();
@@ -77,7 +78,7 @@ namespace CSPresentacion.Sistema.Administracion
                     List<ConjuntoAcceso> lstConjuntoAccesos =
                         UIHelper.ConvertirDataTable<ConjuntoAcceso>(servicioAcciones.ObtenerAccesoDelRol(rol.Id));
 
-                    for (int i = 0; i < gvAcceso.RowCount; i++)
+                    for (int i = 0; i < gvAcceso.RowCount + 1; i++)
                     {
                         DataRowView dr = (DataRowView) gvAcceso.GetRow(i);
 
@@ -86,7 +87,7 @@ namespace CSPresentacion.Sistema.Administracion
                         for (int j = 0; j < childCount; j++)
                         {
                             int childRowHandle = gvAcceso.GetChildRowHandle(i, j);
-                            
+
                             int idPantalla = Convert.ToInt32(gvAcceso.GetDataRow(childRowHandle)[0]);
 
                             int idAccion = Convert.ToInt32(gvAcceso.GetDataRow(childRowHandle)[2]);
@@ -323,16 +324,8 @@ namespace CSPresentacion.Sistema.Administracion
             rol = new Rol();
 
             CargarRol();
-        }
 
-        #endregion
-
-        #region Clases
-
-        class ConjuntoAcceso
-        {
-            public int IdPantalla { get; set; }
-            public int IdAccion { get; set; }
+            servicioAcciones.MostrarRoles(gcRoles, gvRoles);
         }
 
         #endregion

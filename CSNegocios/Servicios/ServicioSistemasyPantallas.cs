@@ -41,11 +41,8 @@ namespace CSNegocios.Servicios
         /// <returns></returns>
         public DataRow ObtenerSistemaOModulo(int id)
         {
-            dataTable = Coneccion.EjecutarTextTable("select * from SistemaOModulo where Id = @Id", cmd =>
-            {
-                cmd.Parameters.Add(new SqlParameter("@Id", SqlDbType.Int)).Value = id;
-                return 0;
-            });
+            dataTable = Coneccion.EjecutarTextTable("select * from SistemaOModulo where Id = @Id",
+                cmd => { cmd.Parameters.Add(new SqlParameter("@Id", SqlDbType.Int)).Value = id; });
 
             if (dataTable != null && dataTable.Rows.Count > 0) return dataTable.Rows[0];
             return null;
@@ -68,8 +65,6 @@ namespace CSNegocios.Servicios
                         RevisarSiEsNuloSql(sistemaOModulo.Descripcion);
                     cmd.Parameters.Add(new SqlParameter("@UrlActualizador", SqlDbType.NVarChar)).Value =
                         RevisarSiEsNuloSql(sistemaOModulo.UrlActualizador);
-
-                    return 0;
                 });
         }
 
@@ -86,9 +81,8 @@ namespace CSNegocios.Servicios
                        cmd =>
                        {
                            cmd.Parameters.Add(new SqlParameter("@Id", SqlDbType.Int)).Value = id;
-                           cmd.Parameters.Add(new SqlParameter("@Nombre", SqlDbType.NVarChar)).Value = id;
-
-                           return 0;
+                           cmd.Parameters.Add(new SqlParameter("@Nombre", SqlDbType.NVarChar)).Value =
+                               RevisarSiEsNuloSql(nombre);
                        })) > 0;
         }
 
@@ -98,12 +92,8 @@ namespace CSNegocios.Servicios
         /// <param name="id">Id</param>
         public void EliminarSistemaOModulo(int id)
         {
-            Coneccion.EjecutarSpText("delete SistemaOModulo where Id = @Id;", cmd =>
-            {
-                cmd.Parameters.Add(new SqlParameter("@Id", SqlDbType.Int)).Value = id;
-
-                return 0;
-            });
+            Coneccion.EjecutarSpText("delete SistemaOModulo where Id = @Id;",
+                cmd => { cmd.Parameters.Add(new SqlParameter("@Id", SqlDbType.Int)).Value = id; });
         }
 
         /// <summary>
@@ -131,8 +121,6 @@ namespace CSNegocios.Servicios
                 cmd.Parameters.Add(new SqlParameter("@Descripcion", SqlDbType.NVarChar)).Value =
                     RevisarSiEsNuloSql(pantalla.Descripcion);
                 cmd.Parameters.Add(new SqlParameter("@EsReporte", SqlDbType.Bit)).Value = pantalla.EsReporte;
-
-                return 0;
             });
         }
 
@@ -149,9 +137,8 @@ namespace CSNegocios.Servicios
                        cmd =>
                        {
                            cmd.Parameters.Add(new SqlParameter("@Id", SqlDbType.Int)).Value = pantallaId;
-                           cmd.Parameters.Add(new SqlParameter("@Nombre", SqlDbType.NVarChar)).Value = pantallaNombre;
-
-                           return 0;
+                           cmd.Parameters.Add(new SqlParameter("@Nombre", SqlDbType.NVarChar)).Value =
+                               RevisarSiEsNuloSql(pantallaNombre);
                        })) > 0;
         }
 
@@ -161,11 +148,8 @@ namespace CSNegocios.Servicios
         /// <param name="pantallaId"></param>
         public void EliminarPantalla(int pantallaId)
         {
-            Coneccion.EjecutarSpText("delete Pantalla where Id = @Id", cmd =>
-            {
-                cmd.Parameters.Add(new SqlParameter("@Id", SqlDbType.Int)).Value = pantallaId;
-                return 0;
-            });
+            Coneccion.EjecutarSpText("delete Pantalla where Id = @Id",
+                cmd => { cmd.Parameters.Add(new SqlParameter("@Id", SqlDbType.Int)).Value = pantallaId; });
         }
 
         /// <summary>
@@ -175,12 +159,8 @@ namespace CSNegocios.Servicios
         /// <returns></returns>
         public DataRow ObtenerPantalla(int idPantalla)
         {
-            dataTable = Coneccion.EjecutarTextTable("select * from Pantalla where Id = @Id", cmd =>
-            {
-                cmd.Parameters.Add(new SqlParameter("@Id", SqlDbType.Int)).Value = idPantalla;
-
-                return 0;
-            });
+            dataTable = Coneccion.EjecutarTextTable("select * from Pantalla where Id = @Id",
+                cmd => { cmd.Parameters.Add(new SqlParameter("@Id", SqlDbType.Int)).Value = idPantalla; });
 
             if (dataTable != null && dataTable.Rows.Count > 0) return dataTable.Rows[0];
             return null;
@@ -209,11 +189,7 @@ namespace CSNegocios.Servicios
         public DataTable ObtenerAccionesDeLaPantalla(int idPantalla)
         {
             return Coneccion.EjecutarTextTable("select IdAccion from AccionEnPantalla where IdPantalla = @IdPantalla;",
-                cmd =>
-                {
-                    cmd.Parameters.Add(new SqlParameter("@IdPantalla", SqlDbType.Int)).Value = idPantalla;
-                    return 0;
-                });
+                cmd => { cmd.Parameters.Add(new SqlParameter("@IdPantalla", SqlDbType.Int)).Value = idPantalla; });
         }
 
         /// <summary>
@@ -224,11 +200,8 @@ namespace CSNegocios.Servicios
         public void GuardarAccioneDePantalla(int id, List<object> lstAcciones)
         {
             // Eliminamos las Acciones de pantalla
-            Coneccion.EjecutarSpText("delete AccionEnPantalla where IdPantalla = @IdPantalla;", cmd =>
-            {
-                cmd.Parameters.Add(new SqlParameter("@IdPantalla", SqlDbType.Int)).Value = id;
-                return 0;
-            });
+            Coneccion.EjecutarSpText("delete AccionEnPantalla where IdPantalla = @IdPantalla;",
+                cmd => { cmd.Parameters.Add(new SqlParameter("@IdPantalla", SqlDbType.Int)).Value = id; });
 
             foreach (int accion in lstAcciones)
             {
@@ -237,8 +210,6 @@ namespace CSNegocios.Servicios
                 {
                     cmd.Parameters.Add(new SqlParameter("@IdPantalla", SqlDbType.Int)).Value = id;
                     cmd.Parameters.Add(new SqlParameter("@IdAccion", SqlDbType.Int)).Value = accion;
-
-                    return 0;
                 });
             }
         }

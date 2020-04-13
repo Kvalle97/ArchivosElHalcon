@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using CSNegocios;
+using CSNegocios.Servicios;
 using CSPresentacion.Properties;
 using CSPresentacion.Sistema.Administracion;
 using CSPresentacion.Sistema.General;
@@ -19,15 +21,20 @@ namespace CSPresentacion
     /// </summary>
     public partial class FrmMain : RibbonForm
     {
-        private static readonly List<string> lstDePantallas = new List<string>
+        private static readonly List<string> LstDePantallas = new List<string>
         {
             "Usuarios",
             "Sistemasypantallas",
-            "Accionesopermisos"
+            "Accionesopermisos",
+            "TasaDeCambio",
+            "Documentos",
+            "Información",
+            //"Bodegas", 
+            //"Formatos"
         };
 
         private readonly bool preguntarSucursal = false;
-
+        private readonly ServicioUsuarios servicioUsuarios = new ServicioUsuarios();
 
         /// <summary>
         ///     Constructor
@@ -47,7 +54,28 @@ namespace CSPresentacion
         private void AgregarAlMdi(Form form)
         {
             form.MdiParent = this;
+            form.Icon = this.Icon;
             form.Show();
+        }
+
+        /// <summary>
+        /// Mostrar como dialog
+        /// </summary>
+        /// <param name="form"></param>
+        /// <param name="isFixed"></param>
+        private void MostrarComoDialog(Form form, bool isFixed = false)
+        {
+            if (form != null)
+            {
+                form.Icon = this.Icon;
+                form.ShowDialog();
+
+                if (isFixed)
+                {
+                    form.FormBorderStyle = FormBorderStyle.FixedToolWindow;
+                    form.StartPosition = FormStartPosition.CenterScreen;
+                }
+            }
         }
 
         /// <summary>
@@ -55,17 +83,28 @@ namespace CSPresentacion
         /// </summary>
         private void MostrarManualDeUsuario()
         {
-            string path = Application.StartupPath;
+            try
+            {
+                string path = Application.StartupPath;
 
-            path = path + "\\manual" + "\\" + "manual.pdf";
+                path = path + "\\manual" + "\\" + "manual.pdf";
 
-            FrmPdfViewer frmPdfViewer = new FrmPdfViewer();
+                FrmPdfViewer frmPdfViewer = new FrmPdfViewer();
 
-            frmPdfViewer.CargarDocumento(path);
-            frmPdfViewer.WindowState = FormWindowState.Maximized;
-            frmPdfViewer.Icon = Icon;
-            frmPdfViewer.Text = "Manual de usuario";
-            frmPdfViewer.ShowDialog();
+                frmPdfViewer.CargarDocumento(path);
+                frmPdfViewer.WindowState = FormWindowState.Maximized;
+                frmPdfViewer.Icon = Icon;
+                frmPdfViewer.Text = "Manual de usuario";
+                frmPdfViewer.ShowDialog();
+            }
+            catch (FileNotFoundException e)
+            {
+                UIHelper.AlertarDeError("No tienes copiado el manual de usario, contacta con informatica");
+            }
+            catch (Exception e)
+            {
+                UIHelper.MostrarError(e);
+            }
         }
 
         #endregion
@@ -108,16 +147,22 @@ namespace CSPresentacion
 
         private void frmMain_Load(object sender, EventArgs e)
         {
+            UIHelper.CrearEventoDeActualizacion();
+
             IniciarMain();
         }
 
         private void IniciarMain()
         {
+            UIHelper.BuscarActualizaciones();
+
             int n = OperacionesGlobal.numGet_Int("select halcon.[dbo].[fxObtenerUsuarioEmpresas]('" +
                                                  Datos_Globales.Usuario + "') AS n");
 
-            UIHelper.ValidarPantallas(lstDePantallas, rpModulos,
-                new[] {"Reportes", "Importaciones en transito"});
+            UIHelper.ValidarPantallas(LstDePantallas, rpModulos,
+                new[] {
+                    "Reportes",
+                    "Importaciones en transito"});
 
             if (preguntarSucursal)
             {
@@ -279,13 +324,69 @@ namespace CSPresentacion
                 UIHelper.MostrarError(exception);
             }
         }
-        
+
         private void btnPermisos_ItemClick(object sender, ItemClickEventArgs e)
         {
             AgregarAlMdi(FrmAccionesyPermisos.Instance());
         }
 
+        private void btnReporteUsuarios_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            AgregarAlMdi(FrmReporteUsuarios.Instance());
+        }
+
+        private void btnTasaDeCambio_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            AgregarAlMdi(FrmTasaDeCambio.Instance());
+        }
+
+        private void btnAccionesUsuarioReporte_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            AgregarAlMdi(FrmReporteNavegacion.Instance());
+        }
+
+        private void btnDocumentos_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            AgregarAlMdi(FrmDocumentos.Instance());
+        }
+
+        private void btnInformacion_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            MostrarComoDialog(FrmInformacion.Instance());
+        }
+
+        private void btnBodegas_ItemClick(object sender, ItemClickEventArgs e)
+        {
+        }
+
+        private void btnTipoBodega_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            MostrarComoDialog(FrmBodegas.Instance(FrmBodegas.PantallaMostrar.TipoBodega));
+        }
+
+        private void btnBodega_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            MostrarComoDialog(FrmBodegas.Instance(FrmBodegas.PantallaMostrar.Bodega));
+        }
+
+        private void btnBodegasEnDocumentos_ItemClick(object sender, ItemClickEventArgs e)
+        {
+        }
+
+        private void btnControlTipoBodega_ItemClick(object sender, ItemClickEventArgs e)
+        {
+        }
+
         #endregion
 
+        private void btnFormatos_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            AgregarAlMdi(new FrmFormatos());
+        }
+
+        private void btnReportesModulos_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            new FrmDiseniadorDeReportes().Show();
+        }
     }
 }
