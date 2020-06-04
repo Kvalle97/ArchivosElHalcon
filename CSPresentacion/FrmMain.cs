@@ -29,8 +29,9 @@ namespace CSPresentacion
             "TasaDeCambio",
             "Documentos",
             "Información",
-            //"Bodegas", 
-            //"Formatos"
+            "Bodegas", 
+            "Formatos",
+            "DiseñadorDeReportes"
         };
 
         private readonly bool preguntarSucursal = false;
