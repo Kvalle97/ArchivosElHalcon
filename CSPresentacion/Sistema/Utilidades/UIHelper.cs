@@ -22,6 +22,7 @@ using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.DXErrorProvider;
 using DevExpress.XtraEditors.Mask;
 using ActualizadorHalcon;
+using DevExpress.XtraEditors.Repository;
 
 namespace CSPresentacion.Sistema.Utilidades
 {
@@ -755,5 +756,6 @@ Usted está usando la versión ({args.InstalledVersion}). ¿ Quiere actualizar a
 
             return new string(chars);
         }
+
     }
 }

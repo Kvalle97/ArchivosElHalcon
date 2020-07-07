@@ -24,6 +24,10 @@ namespace CSNegocios.Servicios
         /// <param name="gv"></param>
         public void MostrarTipoBodega(GridControl gc, GridView gv)
         {
+            gc.DataSource = null;
+            
+            gv.Columns.Clear();
+
             strSql = "select IdTipoBodega, Descripcion, " +
                      "TB, cast(Activo as bit) as Activo from Tipos_Bodegas;";
 
@@ -34,6 +38,10 @@ namespace CSNegocios.Servicios
 
         public void MostrarBodegas(GridControl gc, GridView gv)
         {
+            gc.DataSource = null;
+            
+            gv.Columns.Clear();
+
             strSql = "select b.IdBodega, b.Descripción_Bodega as Bodega, b.IdEmpresa " +
                      "from Bodegas b " +
                      "         inner join Empresas E on b.IdEmpresa = E.IdEmpresa; ";

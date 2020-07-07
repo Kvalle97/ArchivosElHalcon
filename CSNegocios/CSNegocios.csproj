@@ -55,6 +55,10 @@
     <Compile Include="Global\TipoDocumento.cs" />
     <Compile Include="Logueo.cs" />
     <Compile Include="Modelos\Accion.cs" />
+    <Compile Include="Modelos\Bodegas\Bodega.cs" />
+    <Compile Include="Modelos\Bodegas\BodegaDocumento.cs" />
+    <Compile Include="Modelos\Bodegas\ControlTipoBodega.cs" />
+    <Compile Include="Modelos\Bodegas\TipoBodega.cs" />
     <Compile Include="Modelos\ConjuntoAcceso.cs" />
     <Compile Include="Modelos\Informacion.cs" />
     <Compile Include="Modelos\Pantalla.cs" />
@@ -129,6 +133,7 @@
   <ItemGroup>
     <None Include="Web References\ni.gob.bcn.servicios\ServicioTC.disco" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
