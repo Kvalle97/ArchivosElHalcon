@@ -29,8 +29,9 @@ namespace CSPresentacion
             "TasaDeCambio",
             "Documentos",
             "Información",
-            //"Bodegas", 
-            //"Formatos"
+            "Bodegas",
+            "Formatos",
+            "DiseñadorDeReportes"
         };
 
         private readonly bool preguntarSucursal = false;
@@ -97,7 +98,7 @@ namespace CSPresentacion
                 frmPdfViewer.Text = "Manual de usuario";
                 frmPdfViewer.ShowDialog();
             }
-            catch (FileNotFoundException e)
+            catch (FileNotFoundException)
             {
                 UIHelper.AlertarDeError("No tienes copiado el manual de usario, contacta con informatica");
             }
@@ -160,9 +161,11 @@ namespace CSPresentacion
                                                  Datos_Globales.Usuario + "') AS n");
 
             UIHelper.ValidarPantallas(LstDePantallas, rpModulos,
-                new[] {
+                new[]
+                {
                     "Reportes",
-                    "Importaciones en transito"});
+                    "Importaciones en transito"
+                });
 
             if (preguntarSucursal)
             {
@@ -361,12 +364,12 @@ namespace CSPresentacion
 
         private void btnTipoBodega_ItemClick(object sender, ItemClickEventArgs e)
         {
-            MostrarComoDialog(FrmBodegas.Instance(FrmBodegas.PantallaMostrar.TipoBodega));
+            MostrarComoDialog(FrmTipoBodega.Instance());
         }
 
         private void btnBodega_ItemClick(object sender, ItemClickEventArgs e)
         {
-            MostrarComoDialog(FrmBodegas.Instance(FrmBodegas.PantallaMostrar.Bodega));
+            //MostrarComoDialog(FrmTipoBodega.Instance(FrmTipoBodega.PantallaMostrar.Bodega));
         }
 
         private void btnBodegasEnDocumentos_ItemClick(object sender, ItemClickEventArgs e)

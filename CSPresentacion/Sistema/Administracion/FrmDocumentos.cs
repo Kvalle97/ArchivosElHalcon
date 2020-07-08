@@ -69,7 +69,7 @@ namespace CSPresentacion.Sistema.Administracion
             txtIdTipoMov.Text = tipoMovimiento.IdTipoMov.ToString("D6");
             txtTipoMov.Text = tipoMovimiento.TipoMov;
             seAfectaciones.Value = tipoMovimiento.Afectaciones;
-            sePresupuesto.Value = tipoMovimiento.Afectaciones;
+            sePresupuesto.Value = Convert.ToDecimal(tipoMovimiento.Presupuesto);
         }
 
         private void LimpiarTipoDoc()
@@ -240,7 +240,7 @@ namespace CSPresentacion.Sistema.Administracion
 
                 tipoMovimiento.TipoMov = txtTipoMov.Text;
                 tipoMovimiento.Afectaciones = decimal.ToInt32(seAfectaciones.Value);
-                tipoMovimiento.Presupuesto = (double) sePresupuesto.Value;
+                tipoMovimiento.Presupuesto = Convert.ToDouble(sePresupuesto.Value);
 
                 servicioDocumentos.GuardarTipoMovimiento(tipoMovimiento, Datos_Globales.Usuario);
 
