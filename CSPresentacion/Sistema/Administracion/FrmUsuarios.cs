@@ -176,7 +176,7 @@ namespace CSPresentacion.Sistema.Administracion
             try
             {
                 MailMessage correo = new MailMessage();
-                SmtpClient servidor = new SmtpClient("192.168.0.9");
+                SmtpClient servidor = new SmtpClient("mail.elhalcon.com.ni");
 
                 servidor.Port = 25;
 
