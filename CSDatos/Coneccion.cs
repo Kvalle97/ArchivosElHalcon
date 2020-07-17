@@ -19,6 +19,7 @@ namespace CSDatos
 
         private static SqlDataAdapter cna;
 
+
         /// <summary>
         ///     Mostrar error
         /// </summary>
@@ -369,7 +370,7 @@ namespace CSDatos
                 }
             }
         }
-        
+
 
         /// <summary>
         ///     Obtener resultado del Store Procedure.
@@ -668,7 +669,7 @@ namespace CSDatos
         }
 
         #region Propiedades
-
+        
         public string User
         {
             get => user;
@@ -694,6 +695,14 @@ namespace CSDatos
             set => database = value;
         }
 
+        public static string UserStatic => user;
+
+        public static string PaswordStatic => pasword;
+
+        public static string ServerStatic => server;
+
+        public static string DataBaseStatic => database;
+
         public static string CadenaConexion { get; private set; }
 
         #endregion
@@ -712,10 +721,10 @@ namespace CSDatos
 
         public Coneccion(string user, string pas, string server, string database)
         {
-            User = user;
-            Pasword = pas;
-            Server = server;
-            Database = database;
+            this.User = user;
+            this.Pasword = pas;
+            this.Server = server;
+            this.Database = database;
             EstablecerCadenaConexion(user, pas, server, database);
         }
 

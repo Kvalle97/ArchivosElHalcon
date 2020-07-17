@@ -391,5 +391,17 @@ namespace CSPresentacion
         {
             new FrmDiseniadorDeReportes().Show();
         }
+
+        private void btnDiseniadorDeReportes_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            if (UIHelper.PreguntarSn("Responde si para diseniador no para viewer") == DialogResult.Yes)
+            {
+                new FrmDashboardDesingner().Show();
+            }
+            else
+            {
+                new FrmDashboardViewer().Show();
+            }
+        }
     }
 }

@@ -183,5 +183,14 @@ namespace CSNegocios
         {
             return Coneccion.EjecutarConsulta(consulta);
         }
+
+
+        public static string User => Coneccion.UserStatic;
+
+        public static string Pasword => Coneccion.PaswordStatic;
+
+        public static string Server => Coneccion.ServerStatic;
+
+        public static string DataBase => Coneccion.DataBaseStatic;
     }
 }

@@ -30,6 +30,7 @@ namespace CSPresentacion.Sistema.Administracion
 
         private readonly ServicioAcciones servicioAcciones = new ServicioAcciones();
         private readonly ServicioUsuarios servicioUsuarios = new ServicioUsuarios();
+        private int idFirma = 0;
 
         private enum TipoDeCuerpoEnCorreo
         {
@@ -156,8 +157,9 @@ namespace CSPresentacion.Sistema.Administracion
                     }
                 }
 
-                tabCambioDeContrasenia.PageEnabled = modeloUsuario.IdUsuario != 0;
+                tabAdministrarFirmas.PageEnabled = tabCambioDeContrasenia.PageEnabled = modeloUsuario.IdUsuario != 0;
 
+                servicioUsuarios.FirmasDisponiblesPorUsuario(lstBoxFirmas, modeloUsuario.IdUsuario);
                 servicioUsuarios.CargarCorreos(gcCorreos, gvCorreos, modeloUsuario.IdUsuario);
             }
             catch (Exception e)
@@ -176,9 +178,8 @@ namespace CSPresentacion.Sistema.Administracion
             try
             {
                 MailMessage correo = new MailMessage();
-                SmtpClient servidor = new SmtpClient("192.168.0.9");
+                SmtpClient servidor = new SmtpClient("mail.elhalcon.com.ni") {Port = 25};
 
-                servidor.Port = 25;
 
                 correo.From = new MailAddress("admin@elhalcon.com.ni");
 
@@ -519,6 +520,63 @@ namespace CSPresentacion.Sistema.Administracion
         {
             public int IdCorreo { get; set; }
             public string Correo { get; set; }
+        }
+
+        private void btnAgregarNuevaFirma_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void btnQuitarNuevaFirma_Click(object sender, EventArgs e)
+        {
+            if (lstBoxFirmas.SelectedItem is null)
+            {
+                UIHelper.AlertarDeError("Primero seleccione una firma");
+            }
+        }
+
+        private void btnGuardarFirma_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtNombreFirma.Text))
+            {
+                UIHelper.AlertarDeError(
+                    "Por favor establezca un nombre para que el usuario pueda identificar la firma");
+                return;
+            }
+
+            if (peVistaPreviaFirma.Image is null)
+            {
+                UIHelper.AlertarDeError("Suba una imagen con click derecho agregar imagen...");
+                return;
+            }
+
+            servicioUsuarios.GuardarFirmaUsuario(idFirma, modeloUsuario.IdUsuario, txtNombreFirma.Text,
+                UIHelper.ObtenerImagen(peVistaPreviaFirma.Image));
+
+            servicioUsuarios.FirmasDisponiblesPorUsuario(lstBoxFirmas, modeloUsuario.IdUsuario);
+        }
+
+        private void btnNuevoFirma_Click(object sender, EventArgs e)
+        {
+            idFirma = 0;
+            peVistaPreviaFirma.Image = null;
+            txtNombreFirma.Enabled = true;
+            txtNombreFirma.Text = string.Empty;
+        }
+
+        private void lstBoxFirmas_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (lstBoxFirmas.SelectedItem is null)
+            {
+                btnNuevoFirma.PerformClick();
+            }
+            else
+            {
+                var drSelected = (DataRowView) lstBoxFirmas.SelectedItem;
+                var dr = servicioUsuarios.ObtenerFirmaOSello(Convert.ToInt32(drSelected["Id"]));
+                txtNombreFirma.Text = Convert.ToString(dr["Nombre"]);
+
+                UIHelper.AgregarImagen(peVistaPreviaFirma, (byte[]) dr["FirmaOSello"]);
+            }
         }
 
         #endregion

@@ -92,6 +92,7 @@
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.xtraTabbedMdiManager1 = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
+            this.btnDiseniadorDeReportes = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenu2)).BeginInit();
@@ -151,9 +152,10 @@
             this.btnBodegasEnDocumentos,
             this.barButtonItem7,
             this.btnFormatos,
-            this.btnReportesModulos});
+            this.btnReportesModulos,
+            this.btnDiseniadorDeReportes});
             this.ribbon.Location = new System.Drawing.Point(0, 0);
-            this.ribbon.MaxItemId = 65;
+            this.ribbon.MaxItemId = 66;
             this.ribbon.Name = "ribbon";
             this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.rpModulos,
@@ -567,6 +569,7 @@
             this.rpAdministracion.ItemLinks.Add(this.btnBodegas);
             this.rpAdministracion.ItemLinks.Add(this.btnFormatos);
             this.rpAdministracion.ItemLinks.Add(this.btnReportesModulos);
+            this.rpAdministracion.ItemLinks.Add(this.btnDiseniadorDeReportes);
             this.rpAdministracion.Name = "rpAdministracion";
             this.rpAdministracion.Text = "Administración";
             // 
@@ -636,6 +639,15 @@
             // 
             this.xtraTabbedMdiManager1.ClosePageButtonShowMode = DevExpress.XtraTab.ClosePageButtonShowMode.InAllTabPageHeaders;
             this.xtraTabbedMdiManager1.MdiParent = this;
+            // 
+            // btnDiseniadorDeReportes
+            // 
+            this.btnDiseniadorDeReportes.Caption = "Diseñador de reportes";
+            this.btnDiseniadorDeReportes.Id = 65;
+            this.btnDiseniadorDeReportes.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnDiseniadorDeReportes.ImageOptions.Image")));
+            this.btnDiseniadorDeReportes.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnDiseniadorDeReportes.ImageOptions.LargeImage")));
+            this.btnDiseniadorDeReportes.Name = "btnDiseniadorDeReportes";
+            this.btnDiseniadorDeReportes.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDiseniadorDeReportes_ItemClick);
             // 
             // FrmMain
             // 
@@ -726,5 +738,6 @@
         private DevExpress.XtraBars.BarButtonItem barButtonItem7;
         private DevExpress.XtraBars.BarButtonItem btnFormatos;
         private DevExpress.XtraBars.BarButtonItem btnReportesModulos;
+        private DevExpress.XtraBars.BarButtonItem btnDiseniadorDeReportes;
     }
 }

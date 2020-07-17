@@ -17,6 +17,25 @@ namespace CSNegocios.Servicios
     /// </summary>
     public class ServicioUsuarios : ServicioBase
     {
+        public DataRow ObtenerFirmaOSello(int idFirma)
+        {
+            strSql = $"select Nombre,FirmaOSello from FirmaOSelloDeUsuario where Id = {idFirma};";
+
+            dataTable = Coneccion.EjecutarTextTable(strSql);
+
+            return dataTable != null && dataTable.Rows.Count > 0 ? dataTable.Rows[0] : null;
+        }
+
+        public void FirmasDisponiblesPorUsuario(ListBoxControl lstBoxControl, int idUsuario)
+        {
+            strSql = $"select Id, Nombre from FirmaOSelloDeUsuario where IdUsuario = {idUsuario};";
+            
+            lstBoxControl.ValueMember = "Id";
+            lstBoxControl.DisplayMember = "Nombre";
+            lstBoxControl.DataSource = Coneccion.EjecutarTextTable(strSql);
+          
+        }
+
         /// <summary>
         ///     Cargar usuarios
         /// </summary>
@@ -261,7 +280,7 @@ namespace CSNegocios.Servicios
                     cmd.Parameters.Add(new SqlParameter("IdNivel", SqlDbType.TinyInt)).Value = modeloUsuario.IdNivel;
                     cmd.Parameters.Add(new SqlParameter("Telefono", SqlDbType.NVarChar)).Value =
                         RevisarSiEsNuloSql(modeloUsuario.Telefono);
-                    
+
                     if (modeloUsuario.IdEmpresaUbicacion < 0)
                     {
                         cmd.Parameters.Add(new SqlParameter("IdEmpresaUbicacion", SqlDbType.Int)).Value =
@@ -290,13 +309,18 @@ namespace CSNegocios.Servicios
                     cmd.Parameters.Add(new SqlParameter("Proyecto", SqlDbType.Bit)).Value = modeloUsuario.Proyecto;
 
                     // PERMISOS INVENTARIO
-                    cmd.Parameters.Add(new SqlParameter("PermitirRealizarTraslados", SqlDbType.Bit)).Value = modeloUsuario.PermitirRealizarTraslados;
-                    cmd.Parameters.Add(new SqlParameter("GuardarPrestamos", SqlDbType.Bit)).Value = modeloUsuario.GuardarPrestamos;
-                    cmd.Parameters.Add(new SqlParameter("AplicarPrestamos", SqlDbType.Bit)).Value = modeloUsuario.AplicarPrestamos;
-                    cmd.Parameters.Add(new SqlParameter("AutorizarST", SqlDbType.Bit)).Value = modeloUsuario.AutorizarST;
-                    cmd.Parameters.Add(new SqlParameter("PermitirDepCompras", SqlDbType.Bit)).Value = modeloUsuario.PermitirDepCompras;
-                    cmd.Parameters.Add(new SqlParameter("GirarPreingresos", SqlDbType.Bit)).Value = modeloUsuario.GirarPreingresos;
-
+                    cmd.Parameters.Add(new SqlParameter("PermitirRealizarTraslados", SqlDbType.Bit)).Value =
+                        modeloUsuario.PermitirRealizarTraslados;
+                    cmd.Parameters.Add(new SqlParameter("GuardarPrestamos", SqlDbType.Bit)).Value =
+                        modeloUsuario.GuardarPrestamos;
+                    cmd.Parameters.Add(new SqlParameter("AplicarPrestamos", SqlDbType.Bit)).Value =
+                        modeloUsuario.AplicarPrestamos;
+                    cmd.Parameters.Add(new SqlParameter("AutorizarST", SqlDbType.Bit)).Value =
+                        modeloUsuario.AutorizarST;
+                    cmd.Parameters.Add(new SqlParameter("PermitirDepCompras", SqlDbType.Bit)).Value =
+                        modeloUsuario.PermitirDepCompras;
+                    cmd.Parameters.Add(new SqlParameter("GirarPreingresos", SqlDbType.Bit)).Value =
+                        modeloUsuario.GirarPreingresos;
                 });
         }
 
@@ -364,6 +388,17 @@ namespace CSNegocios.Servicios
         public void EliminarRolesAsociados(int idUsuario)
         {
             Coneccion.EjecutarSpText($"delete UsuarioRol where IdUsuario = {idUsuario}");
+        }
+
+        public void GuardarFirmaUsuario(int idFirma, int idUsuario, string nombreFirma, byte[] image)
+        {
+            Coneccion.EjecutarSp("spGuardarFirmaDelUsuario", cmd =>
+            {
+                cmd.Parameters.Add(new SqlParameter("IdFirma", SqlDbType.Int)).Value = idFirma;
+                cmd.Parameters.Add(new SqlParameter("IdUsuario", SqlDbType.Int)).Value = idUsuario;
+                cmd.Parameters.Add(new SqlParameter("NombreFirma", SqlDbType.NVarChar)).Value = nombreFirma;
+                cmd.Parameters.Add(new SqlParameter("FirmaOSello", SqlDbType.Image)).Value = image;
+            });
         }
     }
 }
