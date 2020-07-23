@@ -81,6 +81,8 @@
             this.barButtonItem7 = new DevExpress.XtraBars.BarButtonItem();
             this.btnFormatos = new DevExpress.XtraBars.BarButtonItem();
             this.btnReportesModulos = new DevExpress.XtraBars.BarButtonItem();
+            this.btnDiseniadorDeReportes = new DevExpress.XtraBars.BarButtonItem();
+            this.btnVerReporte = new DevExpress.XtraBars.BarButtonItem();
             this.rpModulos = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.rpAdministracion = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rpConfiguracion = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -92,7 +94,7 @@
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.xtraTabbedMdiManager1 = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
-            this.btnDiseniadorDeReportes = new DevExpress.XtraBars.BarButtonItem();
+            this.btnDashboard = new DevExpress.XtraBars.BarSubItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenu2)).BeginInit();
@@ -153,9 +155,11 @@
             this.barButtonItem7,
             this.btnFormatos,
             this.btnReportesModulos,
-            this.btnDiseniadorDeReportes});
+            this.btnDiseniadorDeReportes,
+            this.btnVerReporte,
+            this.btnDashboard});
             this.ribbon.Location = new System.Drawing.Point(0, 0);
-            this.ribbon.MaxItemId = 66;
+            this.ribbon.MaxItemId = 68;
             this.ribbon.Name = "ribbon";
             this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.rpModulos,
@@ -550,6 +554,23 @@
             this.btnReportesModulos.Name = "btnReportesModulos";
             this.btnReportesModulos.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnReportesModulos_ItemClick);
             // 
+            // btnDiseniadorDeReportes
+            // 
+            this.btnDiseniadorDeReportes.Caption = "Diseñador de dashboard";
+            this.btnDiseniadorDeReportes.Id = 65;
+            this.btnDiseniadorDeReportes.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnDiseniadorDeReportes.ImageOptions.Image")));
+            this.btnDiseniadorDeReportes.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnDiseniadorDeReportes.ImageOptions.LargeImage")));
+            this.btnDiseniadorDeReportes.Name = "btnDiseniadorDeReportes";
+            this.btnDiseniadorDeReportes.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDiseniadorDeReportes_ItemClick);
+            // 
+            // btnVerReporte
+            // 
+            this.btnVerReporte.Caption = "Ver dashboards";
+            this.btnVerReporte.Id = 66;
+            this.btnVerReporte.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnVerReporte.ImageOptions.SvgImage")));
+            this.btnVerReporte.Name = "btnVerReporte";
+            this.btnVerReporte.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnVerReporte_ItemClick);
+            // 
             // rpModulos
             // 
             this.rpModulos.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -570,6 +591,8 @@
             this.rpAdministracion.ItemLinks.Add(this.btnFormatos);
             this.rpAdministracion.ItemLinks.Add(this.btnReportesModulos);
             this.rpAdministracion.ItemLinks.Add(this.btnDiseniadorDeReportes);
+            this.rpAdministracion.ItemLinks.Add(this.btnVerReporte);
+            this.rpAdministracion.ItemLinks.Add(this.btnDashboard);
             this.rpAdministracion.Name = "rpAdministracion";
             this.rpAdministracion.Text = "Administración";
             // 
@@ -640,14 +663,12 @@
             this.xtraTabbedMdiManager1.ClosePageButtonShowMode = DevExpress.XtraTab.ClosePageButtonShowMode.InAllTabPageHeaders;
             this.xtraTabbedMdiManager1.MdiParent = this;
             // 
-            // btnDiseniadorDeReportes
+            // btnDashboard
             // 
-            this.btnDiseniadorDeReportes.Caption = "Diseñador de reportes";
-            this.btnDiseniadorDeReportes.Id = 65;
-            this.btnDiseniadorDeReportes.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnDiseniadorDeReportes.ImageOptions.Image")));
-            this.btnDiseniadorDeReportes.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnDiseniadorDeReportes.ImageOptions.LargeImage")));
-            this.btnDiseniadorDeReportes.Name = "btnDiseniadorDeReportes";
-            this.btnDiseniadorDeReportes.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDiseniadorDeReportes_ItemClick);
+            this.btnDashboard.Caption = "Dashboard";
+            this.btnDashboard.Id = 67;
+            this.btnDashboard.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barSubItem1.ImageOptions.SvgImage")));
+            this.btnDashboard.Name = "btnDashboard";
             // 
             // FrmMain
             // 
@@ -739,5 +760,7 @@
         private DevExpress.XtraBars.BarButtonItem btnFormatos;
         private DevExpress.XtraBars.BarButtonItem btnReportesModulos;
         private DevExpress.XtraBars.BarButtonItem btnDiseniadorDeReportes;
+        private DevExpress.XtraBars.BarButtonItem btnVerReporte;
+        private DevExpress.XtraBars.BarSubItem btnDashboard;
     }
 }

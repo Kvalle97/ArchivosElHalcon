@@ -317,6 +317,50 @@ namespace CSDatos
             }
         }
 
+        public static DataTable EjecutarTextDataTable(string nombreDelSp, Action<SqlCommand> ejecutarAntes = null)
+        {
+            var dataTable = new DataTable();
+
+            using (var sqlConnection = new SqlConnection())
+            {
+                try
+                {
+                    sqlConnection.ConnectionString = CadenaConexion;
+                    sqlConnection.Open();
+
+                    using (var sqlCommand = new SqlCommand())
+                    {
+                        sqlCommand.CommandTimeout = 0;
+                        sqlCommand.CommandText = nombreDelSp;
+                        sqlCommand.CommandType = CommandType.Text;
+                        sqlCommand.Connection = sqlConnection;
+
+                        ejecutarAntes?.Invoke(sqlCommand);
+
+                        var sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+
+                        sqlDataAdapter.Fill(dataTable);
+
+                        return dataTable;
+                    }
+                }
+                catch (SqlException e)
+                {
+                    MostrarError(e);
+                    throw;
+                }
+                catch (Exception e)
+                {
+                    MostrarError(e);
+                    throw;
+                }
+                finally
+                {
+                    sqlConnection.Close();
+                    sqlConnection.Dispose();
+                }
+            }
+        }
 
         /// <summary>
         ///     EJecutar SP Text

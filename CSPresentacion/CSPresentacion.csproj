@@ -213,6 +213,18 @@
     <Compile Include="Sistema\Administracion\FrmFormatos.Designer.cs">
       <DependentUpon>FrmFormatos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Sistema\Administracion\FrmGuardarDashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sistema\Administracion\FrmGuardarDashboard.Designer.cs">
+      <DependentUpon>FrmGuardarDashboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sistema\Administracion\FrmImageSelector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sistema\Administracion\FrmImageSelector.Designer.cs">
+      <DependentUpon>FrmImageSelector.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sistema\Administracion\FrmInformacion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -344,6 +356,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Sistema\Administracion\FrmFormatos.resx">
       <DependentUpon>FrmFormatos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sistema\Administracion\FrmGuardarDashboard.resx">
+      <DependentUpon>FrmGuardarDashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sistema\Administracion\FrmImageSelector.resx">
+      <DependentUpon>FrmImageSelector.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sistema\Administracion\FrmInformacion.resx">
       <DependentUpon>FrmInformacion.cs</DependentUpon>

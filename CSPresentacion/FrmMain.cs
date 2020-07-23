@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -31,7 +32,9 @@ namespace CSPresentacion
             "Información",
             "Bodegas",
             "Formatos",
-            "DiseñadorDeReportes"
+            "DiseñadorDeReportes",
+            "DiseñadorDeDashboard",
+            "VerDashboards"
         };
 
         private readonly bool preguntarSucursal = false;
@@ -218,6 +221,25 @@ namespace CSPresentacion
                 Text = "Sistema de administración, " + Datos_Globales.NombreSucursal;
             else
                 Text = "Sistema de administración";
+
+            btnDashboard.ClearLinks();
+
+            foreach (DataRow dr in new ServicioDashboard().DashboardDisponibles().Rows)
+            {
+                int id = Convert.ToInt32(dr["Id"]);
+                var item = new BarButtonItem()
+                {
+                    Caption = Convert.ToString(dr["NombreAMostrar"]),
+                    Name = "Dashboard_" + Convert.ToInt32(dr["Id"])
+                };
+
+                item.ItemClick += delegate(object sender, ItemClickEventArgs args)
+                {
+                    new FrmDashboardViewer(id) {MdiParent = this}.Show();
+                };
+
+                btnDashboard.AddItem(item);
+            }
         }
 
         private void btnFormulario_ItemClick(object sender, ItemClickEventArgs e)
@@ -394,14 +416,13 @@ namespace CSPresentacion
 
         private void btnDiseniadorDeReportes_ItemClick(object sender, ItemClickEventArgs e)
         {
-            if (UIHelper.PreguntarSn("Responde si para diseniador no para viewer") == DialogResult.Yes)
-            {
-                new FrmDashboardDesingner().Show();
-            }
-            else
-            {
-                new FrmDashboardViewer().Show();
-            }
+            new FrmDashboardDesingner().Show();
+        }
+
+        private void btnVerReporte_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            //new FrmImageSelector().Show();
+            //new FrmDashboardViewer().Show();
         }
     }
 }

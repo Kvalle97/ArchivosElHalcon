@@ -41,56 +41,56 @@ namespace CSPresentacion.Sistema.Administracion
         }
         private void reportDesigner1_DesignPanelLoaded(object sender, DesignerLoadedEventArgs e)
         {
-            XRDesignPanel panel = (XRDesignPanel) sender;
+            //XRDesignPanel panel = (XRDesignPanel) sender;
 
-            ReportCommandHandler commandHandler = new ReportCommandHandler(panel);
+            //ReportCommandHandler commandHandler = new ReportCommandHandler(panel);
 
-            reportDesigner1.AddCommandHandler(commandHandler);
+            //reportDesigner1.AddCommandHandler(commandHandler);
         }
 
         class ReportCommandHandler : ICommandHandler
         {
             private XRDesignPanel panel;
 
-            public ReportCommandHandler(XRDesignPanel panel)
-            {
-                this.panel = panel;
-            }
+            //public ReportCommandHandler(XRDesignPanel panel)
+            //{
+            //    this.panel = panel;
+            //}
 
             public void HandleCommand(ReportCommand command, object[] args)
             {
-                switch (command)
-                {
-                    case ReportCommand.SaveFileAs:
+                ////switch (command)
+                ////{
+                ////    case ReportCommand.SaveFileAs:
 
-                        XtraMessageBox.Show("SAVE FILE AS");
+                ////        XtraMessageBox.Show("SAVE FILE AS");
 
-                        break;
-                    case ReportCommand.SaveAll:
-                        XtraMessageBox.Show("SAVE ALL");
+                ////        break;
+                ////    case ReportCommand.SaveAll:
+                ////        XtraMessageBox.Show("SAVE ALL");
 
-                        break;
-                    case ReportCommand.SaveFile:
-                        XtraMessageBox.Show("SAVE FILE ");
+                ////        break;
+                ////    case ReportCommand.SaveFile:
+                ////        XtraMessageBox.Show("SAVE FILE ");
 
-                        break;
-                    case ReportCommand.OpenFile:
+                ////        break;
+                ////    case ReportCommand.OpenFile:
 
-                        Localizer.Active = new ConfiguracionDialogos();
+                ////        Localizer.Active = new ConfiguracionDialogos();
 
-                        switch (XtraMessageBox.Show("Donde desea buscar el reporte", "", MessageBoxButtons.YesNo))
-                        {
-                            case DialogResult.Yes:
-                                break;
-                            case DialogResult.No:
-                                break;
-                            default:
-                                throw new ArgumentOutOfRangeException();
-                        }
+                ////        switch (XtraMessageBox.Show("Donde desea buscar el reporte", "", MessageBoxButtons.YesNo))
+                ////        {
+                ////            case DialogResult.Yes:
+                ////                break;
+                ////            case DialogResult.No:
+                ////                break;
+                ////            default:
+                ////                throw new ArgumentOutOfRangeException();
+                ////        }
 
-                        Localizer.Active = Localizer.CreateDefaultLocalizer();
-                        break;
-                }
+                ////        Localizer.Active = Localizer.CreateDefaultLocalizer();
+                ////        break;
+                ////}
             }
 
             public bool CanHandleCommand(ReportCommand command, ref bool useNextHandler)

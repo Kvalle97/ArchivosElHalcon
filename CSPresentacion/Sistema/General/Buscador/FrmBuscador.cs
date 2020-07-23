@@ -25,7 +25,8 @@ namespace CSPresentacion.Sistema.General.Buscador
             /// <summary>
             /// Crea un dialogo que muestra las brechas del buscador
             /// </summary>
-            BrechasEnTipoDoc
+            BrechasEnTipoDoc,
+            Dashboards
         }
 
 
@@ -46,6 +47,12 @@ namespace CSPresentacion.Sistema.General.Buscador
                 wait.Show();
                 switch (tipoBuscador)
                 {
+                    case TipoBuscador.Dashboards:
+                        ServicioDashboard servicioDashboard = new ServicioDashboard();
+
+                        servicioDashboard.CargarDashboardDisponibles(gcBuscador, gvBuscador);
+                        gvBuscador.ViewCaption = "Dashboards";
+                        break;
                     case TipoBuscador.BrechasEnTipoDoc:
 
                         servicioDocumentos.CargarBrechasDelTipoDoc(gcBuscador, gvBuscador);
