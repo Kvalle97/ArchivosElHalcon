@@ -31,7 +31,7 @@ namespace CSNegocios.Servicios
             lue.EditValue = null;
         }
 
-        public void Guardar(int? id, string nombre, int? idSistemaOModulo, string xml)
+        public void Guardar(int? id, string nombre, int? idSistemaOModulo, string xml, bool esSubReporte)
         {
             Coneccion.EjecutarSp("spGuardarDashboard", cmd =>
             {
@@ -40,12 +40,13 @@ namespace CSNegocios.Servicios
                 cmd.Parameters.Add(new SqlParameter("SistemaOModulo", SqlDbType.Int)).Value =
                     RevisarSiEsNuloSql(idSistemaOModulo);
                 cmd.Parameters.Add(new SqlParameter("Nombre", SqlDbType.NVarChar)).Value = nombre;
+                cmd.Parameters.Add(new SqlParameter("EsSubReporte", SqlDbType.Bit)).Value = esSubReporte;
             });
         }
 
         public DataTable DashboardDisponibles()
         {
-            strSql = "select Id, NombreAMostrar from Dashboard;";
+            strSql = "select Id, NombreAMostrar from Dashboard where EsSubReporte = 0 or EsSubReporte is null;";
 
             return Coneccion.EjecutarTextTable(strSql);
         }
@@ -61,17 +62,41 @@ namespace CSNegocios.Servicios
 
         public void CargarDashboardDisponibles(GridControl gc, GridView gv)
         {
-            strSql = "select d.Id, SOM.NombreAMostrar as Sistema, d.NombreAMostrar as Dashboard " +
+            strSql = "select d.Id, d.NombreAMostrar as Dashboard " +
                      "from Dashboard d " +
                      "         left join SistemaOModulo SOM on d.SistemaOModulo = SOM.Id; ";
 
             gc.DataSource = Coneccion.EjecutarTextDataTable(strSql);
         }
 
+        public void CargarDashboardDisponibles(LookUpEdit lue)
+        {
+            strSql = "select d.Id, SOM.NombreAMostrar as Sistema, d.NombreAMostrar as Dashboard " +
+                     "from Dashboard d " +
+                     "         left join SistemaOModulo SOM on d.SistemaOModulo = SOM.Id " +
+                     "where d.EsSubReporte =1; ";
+
+            lue.Properties.DataSource = Coneccion.EjecutarTextDataTable(strSql);
+            lue.Properties.ValueMember = "Id";
+            lue.Properties.DisplayMember = "Dashboard";
+            lue.ItemIndex = 0;
+        }
+
         public string ObtenerNombreDelDashboard(int id)
         {
             return Convert.ToString(
                 Coneccion.ObterResultadoText($"select NombreAMostrar from Dashboard where Id = {id}"));
+        }
+
+        public DataRow CargarSubReporte(string itemName, int dashboardId)
+        {
+            strSql =
+                $"select SubDashboardId, Param from SubReportesPorDashboard where DashboardId = {dashboardId} " +
+                $"and ItemName = '{itemName}';";
+
+            dataTable = Coneccion.EjecutarTextDataTable(strSql);
+
+            return dataTable != null && dataTable.Rows.Count > 0 ? dataTable.Rows[0] : null;
         }
     }
 }

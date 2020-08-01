@@ -33,7 +33,7 @@ namespace CSPresentacion.Sistema.Administracion
 
             if (frmBuscador.ShowDialog() == DialogResult.OK)
             {
-                string tempFile = Path.GetTempPath() + new Guid().ToString() + ".xml";
+                string tempFile = Path.GetTempPath() + "Desing_" + DateTime.Now.ToFileTime().ToString() + ".xml";
 
                 fromLoadDb = true;
 
@@ -50,13 +50,13 @@ namespace CSPresentacion.Sistema.Administracion
 
         private void btnGuardarABaseDeDatos_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            string tempPath = Path.GetTempPath() + Guid.NewGuid().ToString() + ".xml";
+            string tempPath = Path.GetTempPath() + "Desing_" + DateTime.Now.ToFileTime().ToString() + ".xml";
 
             dashboardDesigner1.Dashboard.SaveToXml(tempPath);
 
             string xmlCode = File.ReadAllText(tempPath);
 
-            new FrmGuardarDashboard(idDashboard, xmlCode).ShowDialog();
+            new FrmGuardarDashboard(idDashboard, xmlCode, dashboardDesigner1.Dashboard).ShowDialog();
 
             File.Delete(tempPath);
 

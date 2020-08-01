@@ -17,6 +17,7 @@ using DevExpress.DataAccess;
 using DevExpress.DataAccess.ConnectionParameters;
 using DevExpress.DataAccess.Sql;
 using DevExpress.Utils;
+using DevExpress.Utils.Extensions;
 using DevExpress.XtraEditors;
 
 namespace CSPresentacion.Sistema.Administracion
@@ -25,12 +26,13 @@ namespace CSPresentacion.Sistema.Administracion
     {
         private readonly ServicioDashboard servicioDashboard = new ServicioDashboard();
         private readonly int dashboardId;
+        private ParametroPorDefecto parametroPorDefecto = null;
 
-
-        public FrmDashboardViewer(int dashboarId)
+        public FrmDashboardViewer(int dashboarId, ParametroPorDefecto parametroPorDefecto = null)
         {
             this.dashboardId = dashboarId;
             InitializeComponent();
+            this.parametroPorDefecto = parametroPorDefecto;
             this.WindowState = FormWindowState.Maximized;
         }
 
@@ -38,12 +40,12 @@ namespace CSPresentacion.Sistema.Administracion
         {
             try
             {
-                string tempFile = Path.GetTempPath() + new Guid().ToString() + ".xml";
+                string tempFile = Path.GetTempPath() + "Viewer_" + DateTime.Now.ToFileTime().ToString() + ".xml";
 
                 File.WriteAllText(tempFile, servicioDashboard.ObtenerDashboard(id));
 
-
                 dashboardViewer1.LoadDashboard(tempFile);
+
 
                 File.Delete(tempFile);
             }
@@ -53,15 +55,48 @@ namespace CSPresentacion.Sistema.Administracion
             }
         }
 
+
         private void FrmDashboardViewer_Load(object sender, EventArgs e)
         {
             dashboardViewer1.ConfigureDataConnection += DashboardViewer1OnConfigureDataConnection;
             dashboardViewer1.DashboardItemClick += DashboardViewer1OnDashboardItemClick;
+            dashboardViewer1.CustomParameters += DashboardViewer1OnCustomParameters;
         }
+
+        private void DashboardViewer1OnCustomParameters(object sender, CustomParametersEventArgs e)
+        {
+            //if (parametroPorDefecto != null)
+            //{
+            //    dashboardViewer1.Dashboard.Parameters[parametroPorDefecto.Nombre].Value = parametroPorDefecto.Valor;
+
+            foreach (var parm in e.Parameters)
+            {
+                if (parm is DashboardParameter @prmS && parametroPorDefecto != null &&
+                    @prmS.Name == parametroPorDefecto.Nombre)
+                {
+                    prmS.Value = parametroPorDefecto.Valor;
+                    dashboardViewer1.Dashboard.Parameters[parametroPorDefecto.Nombre].Value = parametroPorDefecto.Valor;
+                    parametroPorDefecto = null;
+                }
+            }
+
+            //}
+        }
+
 
         private void DashboardViewer1OnDashboardItemClick(object sender, DashboardItemMouseActionEventArgs e)
         {
-            new FrmDashboardViewer(3) {MdiParent = this.MdiParent}.Show();
+            if (e.GetAxisPoint() != null)
+            {
+                DataRow dr = servicioDashboard.CargarSubReporte(e.DashboardItemName, dashboardId);
+
+                if (dr != null)
+                {
+                    new FrmDashboardViewer(Convert.ToInt32(dr["SubDashboardId"]),
+                            new ParametroPorDefecto(e.GetAxisPoint().Value, Convert.ToString(dr["Param"])))
+                        {MdiParent = this.MdiParent}.Show();
+                }
+            }
         }
 
         private void DashboardViewer1OnConfigureDataConnection(object sender,

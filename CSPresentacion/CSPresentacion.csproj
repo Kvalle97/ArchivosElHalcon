@@ -312,6 +312,7 @@
     <Compile Include="Sistema\General\Opciones.cs" />
     <Compile Include="Sistema\Utilidades\Accion.cs" />
     <Compile Include="Sistema\Utilidades\Error.cs" />
+    <Compile Include="Sistema\Utilidades\ParametroPorDefecto.cs" />
     <Compile Include="Sistema\Utilidades\ReporteGeneral.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -319,6 +320,7 @@
       <DependentUpon>ReporteGeneral.cs</DependentUpon>
     </Compile>
     <Compile Include="Sistema\Utilidades\ScreenCapture.cs" />
+    <Compile Include="Sistema\Utilidades\SubDashboard.cs" />
     <Compile Include="Sistema\Utilidades\UIHelper.cs" />
     <EmbeddedResource Include="FrmCambioPassword.resx">
       <DependentUpon>FrmCambioPassword.cs</DependentUpon>
