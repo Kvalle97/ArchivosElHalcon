@@ -44,6 +44,12 @@ namespace CSNegocios.Servicios
             });
         }
 
+        public DataTable  ObtenerParametrosHerdados(int idSubDashboard)
+        {
+            return Coneccion.EjecutarTextDataTable($"select ParamName from SubReportesPorDashboardParameterosHereados sph " +
+                                                   $"inner join SubReportesPorDashboard SRPD on sph.Id = SRPD.Id where SRPD.DashboardId = {idSubDashboard};");
+        }
+
         public DataTable DashboardDisponibles()
         {
             strSql = "select Id, NombreAMostrar from Dashboard where EsSubReporte = 0 or EsSubReporte is null;";

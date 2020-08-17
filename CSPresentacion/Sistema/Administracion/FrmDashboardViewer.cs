@@ -1,23 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using CSNegocios;
 using CSNegocios.Servicios;
 using CSPresentacion.Sistema.Utilidades;
 using DevExpress.DashboardCommon;
 using DevExpress.DashboardWin;
-using DevExpress.DataAccess;
 using DevExpress.DataAccess.ConnectionParameters;
-using DevExpress.DataAccess.Sql;
-using DevExpress.Utils;
-using DevExpress.Utils.Extensions;
 using DevExpress.XtraEditors;
 
 namespace CSPresentacion.Sistema.Administracion
@@ -27,12 +18,15 @@ namespace CSPresentacion.Sistema.Administracion
         private readonly ServicioDashboard servicioDashboard = new ServicioDashboard();
         private readonly int dashboardId;
         private ParametroPorDefecto parametroPorDefecto = null;
+        private List<ParametroPorDefecto> parametrosHeredados;
 
-        public FrmDashboardViewer(int dashboarId, ParametroPorDefecto parametroPorDefecto = null)
+        public FrmDashboardViewer(int dashboarId, ParametroPorDefecto parametroPorDefecto = null,
+            List<ParametroPorDefecto> parametrosHeredados = null)
         {
             this.dashboardId = dashboarId;
-            InitializeComponent();
+            this.parametrosHeredados = parametrosHeredados;
             this.parametroPorDefecto = parametroPorDefecto;
+            InitializeComponent();
             this.WindowState = FormWindowState.Maximized;
         }
 
@@ -65,10 +59,6 @@ namespace CSPresentacion.Sistema.Administracion
 
         private void DashboardViewer1OnCustomParameters(object sender, CustomParametersEventArgs e)
         {
-            //if (parametroPorDefecto != null)
-            //{
-            //    dashboardViewer1.Dashboard.Parameters[parametroPorDefecto.Nombre].Value = parametroPorDefecto.Valor;
-
             foreach (var parm in e.Parameters)
             {
                 if (parm is DashboardParameter @prmS && parametroPorDefecto != null &&
@@ -76,11 +66,19 @@ namespace CSPresentacion.Sistema.Administracion
                 {
                     prmS.Value = parametroPorDefecto.Valor;
                     dashboardViewer1.Dashboard.Parameters[parametroPorDefecto.Nombre].Value = parametroPorDefecto.Valor;
+
+                    if (parametrosHeredados != null)
+                    {
+                        foreach (var parametrosHeredado in parametrosHeredados)
+                        {
+                            dashboardViewer1.Dashboard.Parameters[parametrosHeredado.Nombre].Value =
+                                parametrosHeredado.Valor;
+                        }
+                    }
+
                     parametroPorDefecto = null;
                 }
             }
-
-            //}
         }
 
 
@@ -92,8 +90,26 @@ namespace CSPresentacion.Sistema.Administracion
 
                 if (dr != null)
                 {
+                    DataTable dtParametrosHeredados =
+                        servicioDashboard.ObtenerParametrosHerdados(Convert.ToInt32(dr["SubDashboardId"]));
+
+                    List<ParametroPorDefecto> lstParametrosHeredados = new List<ParametroPorDefecto>();
+
+
+                    if (dtParametrosHeredados != null)
+                    {
+                        foreach (var paramName in UIHelper.ConvertirDataTableAListaSimple<string>(dtParametrosHeredados,
+                            "ParamName"))
+                        {
+                            lstParametrosHeredados.Add(new ParametroPorDefecto(
+                                this.dashboardViewer1.Parameters[paramName].SelectedValue, paramName));
+                        }
+                    }
+
+
                     new FrmDashboardViewer(Convert.ToInt32(dr["SubDashboardId"]),
-                            new ParametroPorDefecto(e.GetAxisPoint().Value, Convert.ToString(dr["Param"])))
+                            new ParametroPorDefecto(e.GetAxisPoint().Value, Convert.ToString(dr["Param"])),
+                            lstParametrosHeredados)
                         {MdiParent = this.MdiParent}.Show();
                 }
             }

@@ -184,13 +184,13 @@ namespace CSPresentacion.Sistema.Utilidades
             if (Datos_Globales.Correo != null && enviarCorreo)
             {
                 if (XtraMessageBox.Show(
-                        "Ocurrio el siguiente error: '" + e + "', " +
-                        "<color=red>¿ Desea enviar un correo para notificarlo ? </color>",
-                        "",
-                        MessageBoxButtons.YesNo,
-                        MessageBoxIcon.Error,
-                        MessageBoxDefaultButton.Button2, DefaultBoolean.True
-                    ) == DialogResult.Yes)
+                    "Ocurrio el siguiente error: '" + e + "', " +
+                    "<color=red>¿ Desea enviar un correo para notificarlo ? </color>",
+                    "",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Error,
+                    MessageBoxDefaultButton.Button2, DefaultBoolean.True
+                ) == DialogResult.Yes)
                     EnviarCorreoDeNotificacion(tiempo, nombreDelArchivo, captura, e.Message);
             }
             else
@@ -705,8 +705,11 @@ Usted está usando la versión ({args.InstalledVersion}). ¿ Quiere actualizar a
         /// <returns></returns>
         public static List<T> ConvertirDataTableAListaSimple<T>(DataTable dt, string nombreDeColumna)
         {
-            if (!typeof(T).IsPrimitive) throw new Exception("Solo datos primitivos :)");
-            return dt.Rows.OfType<DataRow>().Select(dr => dr.Field<T>(nombreDeColumna)).ToList();
+            if (typeof(T) == typeof(string) || typeof(T).IsPrimitive)
+            {
+                return dt.Rows.OfType<DataRow>().Select(dr => dr.Field<T>(nombreDeColumna)).ToList();
+            }
+            else throw new Exception("Solo datos primitivos :)");
         }
 
         /// <summary>
@@ -718,10 +721,9 @@ Usted está usando la versión ({args.InstalledVersion}). ¿ Quiere actualizar a
         public static T ObtenerItem<T>(DataRow dr)
         {
             Type temp = typeof(T);
+
             T obj = Activator.CreateInstance<T>();
-
             if (dr == null) return obj;
-
             foreach (DataColumn column in dr.Table.Columns)
             {
                 PropertyInfo prop = temp.GetProperties()
@@ -745,9 +747,11 @@ Usted está usando la versión ({args.InstalledVersion}). ¿ Quiere actualizar a
             string _allowedChars = "abcdefghijkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ23456789!@$?";
             Byte[] randomBytes = new Byte[largo];
             char[] chars = new char[largo];
-            int allowedCharCount = _allowedChars.Length;
 
-            for (int i = 0; i < largo; i++)
+            int allowedCharCount = _allowedChars.Length;
+            for (int i = 0;
+                i < largo;
+                i++)
             {
                 Random randomObj = new Random();
                 randomObj.NextBytes(randomBytes);
@@ -756,6 +760,5 @@ Usted está usando la versión ({args.InstalledVersion}). ¿ Quiere actualizar a
 
             return new string(chars);
         }
-
     }
 }
