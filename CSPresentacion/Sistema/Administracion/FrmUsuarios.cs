@@ -181,6 +181,7 @@ namespace CSPresentacion.Sistema.Administracion
                 SmtpClient servidor = new SmtpClient("mail.elhalcon.com.ni") {Port = 25};
 
 
+
                 correo.From = new MailAddress("admin@elhalcon.com.ni");
 
                 List<object> lstCorreos = (List<object>) ckComboEnviarA.EditValue;
