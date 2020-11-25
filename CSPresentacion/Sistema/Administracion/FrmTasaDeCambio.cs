@@ -206,7 +206,7 @@ namespace CSPresentacion.Sistema.Administracion
 
         private void btnCargarExcel_Click(object sender, EventArgs e)
         {
-            var openFileDialog = new OpenFileDialog
+            var openFileDialog = new XtraOpenFileDialog
             {
                 // ReSharper disable once LocalizableElement
                 Filter = "Excel files(*.xls; *.xlsx;)|*.xls; *.xlsx;"

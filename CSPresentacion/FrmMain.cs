@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -8,12 +9,14 @@ using CSNegocios;
 using CSNegocios.Servicios;
 using CSPresentacion.Properties;
 using CSPresentacion.Sistema.Administracion;
+using CSPresentacion.Sistema.Administracion.Bodega;
 using CSPresentacion.Sistema.General;
 using CSPresentacion.Sistema.Utilidades;
 using DevExpress.LookAndFeel;
 using DevExpress.XtraBars;
 using DevExpress.XtraBars.Ribbon;
 using DevExpress.XtraEditors;
+using DevExpress.XtraSpellChecker;
 
 namespace CSPresentacion
 {
@@ -22,20 +25,20 @@ namespace CSPresentacion
     /// </summary>
     public partial class FrmMain : RibbonForm
     {
-        private static readonly List<string> LstDePantallas = new List<string>
-        {
-            "Usuarios",
-            "Sistemasypantallas",
-            "Accionesopermisos",
-            "TasaDeCambio",
-            "Documentos",
-            "Información",
-            "Bodegas",
-            "Formatos",
-            "DiseñadorDeReportes",
-            "DiseñadorDeDashboard",
-            "VerDashboards"
-        };
+        // private static readonly List<string> LstDePantallas = new List<string>
+        // {
+        //     "Usuarios",
+        //     "Sistemasypantallas",
+        //     "Accionesopermisos",
+        //     "TasaDeCambio",
+        //     "Documentos",
+        //     "Información",
+        //     "Bodegas",
+        //     "Formatos",
+        //     "DiseñadorDeReportes",
+        //     "DiseñadorDeDashboard",
+        //     "VerDashboards"
+        // };
 
         private readonly bool preguntarSucursal = false;
         private readonly ServicioUsuarios servicioUsuarios = new ServicioUsuarios();
@@ -69,17 +72,15 @@ namespace CSPresentacion
         /// <param name="isFixed"></param>
         private void MostrarComoDialog(Form form, bool isFixed = false)
         {
-            if (form != null)
+            if (form == null) return;
+            form.Icon = this.Icon;
+            if (isFixed)
             {
-                form.Icon = this.Icon;
-                form.ShowDialog();
-
-                if (isFixed)
-                {
-                    form.FormBorderStyle = FormBorderStyle.FixedToolWindow;
-                    form.StartPosition = FormStartPosition.CenterScreen;
-                }
+                form.FormBorderStyle = FormBorderStyle.FixedToolWindow;
+                form.StartPosition = FormStartPosition.CenterScreen;
             }
+
+            form.ShowDialog();
         }
 
         /// <summary>
@@ -163,12 +164,12 @@ namespace CSPresentacion
             int n = OperacionesGlobal.numGet_Int("select halcon.[dbo].[fxObtenerUsuarioEmpresas]('" +
                                                  Datos_Globales.Usuario + "') AS n");
 
-            UIHelper.ValidarPantallas(LstDePantallas, rpModulos,
-                new[]
-                {
-                    "Reportes",
-                    "Importaciones en transito"
-                });
+            // UIHelper.ValidarPantallas(LstDePantallas, rpModulos,
+            //     new[]
+            //     {
+            //         "Reportes",
+            //         "Importaciones en transito"
+            //     });
 
             if (preguntarSucursal)
             {
@@ -402,27 +403,34 @@ namespace CSPresentacion
         {
         }
 
-        #endregion
-
         private void btnFormatos_ItemClick(object sender, ItemClickEventArgs e)
         {
             AgregarAlMdi(new FrmFormatos());
         }
 
-        private void btnReportesModulos_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            new FrmDiseniadorDeReportes().Show();
-        }
 
         private void btnDiseniadorDeReportes_ItemClick(object sender, ItemClickEventArgs e)
         {
             new FrmDashboardDesingner().Show();
         }
 
-        private void btnVerReporte_ItemClick(object sender, ItemClickEventArgs e)
+
+        private void btnSucursales_ItemClick(object sender, ItemClickEventArgs e)
         {
-            //new FrmImageSelector().Show();
-            //new FrmDashboardViewer().Show();
+            MostrarComoDialog(Sistema.Administracion.FrmAdministrarSucursales.Instance(), true);
         }
+
+        private void btnAdministracionDeBodegas_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            MostrarComoDialog(FrmAdministracionDeBodegas.Instance(),true);
+            //AgregarAlMdi(FrmTipoBodega.Instance());
+        }
+        private void btnBloqueoDeProductos_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            MostrarComoDialog(FrmBloqueoDeMargen.Instance(),true);
+        }
+        #endregion
+
+       
     }
 }

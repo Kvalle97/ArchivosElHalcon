@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using CSNegocios.Modelos;
 using CSNegocios.Servicios;
+using CSPresentacion.Sistema.General;
 using CSPresentacion.Sistema.General.Buscador;
 using CSPresentacion.Sistema.Utilidades;
 using DevExpress.Utils;
@@ -96,6 +97,21 @@ namespace CSPresentacion.Sistema.Administracion
             lueEmpresa.EditValue = tipoDocumento.IdEmpresa;
             txtImpresora.Text = tipoDocumento.Impresora;
             meComentario.Text = tipoDocumento.Comentario;
+
+            if (tipoDocumento.IdTipoDoc == 0)
+            {
+                tabCuentas.PageEnabled = false;
+
+                xtraTabControl1.SelectedTabPage = tabInfo;
+
+                gvCuentas.Columns.Clear();
+                gcCuentas.DataSource = null;
+            }
+            else
+            {
+                tabCuentas.PageEnabled = true;
+                servicioDocumentos.CargarCuentasDelTipoDocumento(gcCuentas, gvCuentas, tipoDocumento.IdTipoDoc);
+            }
         }
 
         private void CargarTodo()
@@ -331,6 +347,22 @@ namespace CSPresentacion.Sistema.Administracion
                         gvTipoMov.GetFocusedDataRow()["IdTipoMov"])));
 
                 CargarTipoMovimiento();
+            }
+            catch (Exception exception)
+            {
+                UIHelper.MostrarError(exception);
+            }
+        }
+
+        private void gvCuentas_CellValueChanged(object sender,
+            DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+        {
+            try
+            {
+                servicioDocumentos.ActualizarAtributoTipoDoc(
+                    e.Column.FieldName,
+                    Convert.ToString(gvCuentas.GetRowCellValue(gvCuentas.FocusedRowHandle, e.Column.FieldName)),
+                    tipoDocumento.IdTipoDoc);
             }
             catch (Exception exception)
             {

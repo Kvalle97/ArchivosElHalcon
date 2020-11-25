@@ -266,6 +266,7 @@ namespace CSPresentacion.Sistema.General.Buscador
             this.gvBuscador.GridControl = this.gcBuscador;
             this.gvBuscador.Name = "gvBuscador";
             this.gvBuscador.OptionsBehavior.Editable = false;
+            this.gvBuscador.OptionsView.ColumnAutoWidth = false;
             this.gvBuscador.OptionsView.ShowAutoFilterRow = true;
             this.gvBuscador.OptionsView.ShowFilterPanelMode = DevExpress.XtraGrid.Views.Base.ShowFilterPanelMode.Never;
             this.gvBuscador.OptionsView.ShowGroupPanel = false;
@@ -279,7 +280,7 @@ namespace CSPresentacion.Sistema.General.Buscador
             this.Controls.Add(this.panelControl1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupParametros);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.IconOptions.Icon = ((System.Drawing.Icon)(resources.GetObject("FrmBuscador.IconOptions.Icon")));
             this.Name = "FrmBuscador";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Buscador";

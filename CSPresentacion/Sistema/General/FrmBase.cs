@@ -1,6 +1,8 @@
-﻿using System.Windows.Forms;
+﻿using System.Globalization;
+using System.Windows.Forms;
 using DevExpress.XtraBars;
 using DevExpress.XtraEditors;
+using DevExpress.XtraSpellChecker;
 
 namespace CSPresentacion.Sistema.General
 {
@@ -15,9 +17,23 @@ namespace CSPresentacion.Sistema.General
         public FrmBase()
         {
             InitializeComponent();
+
+
+            //spellChecker1.SpellCheckMode = SpellCheckMode.AsYouType;
+            
+            //HunspellDictionary hunspellDictionary = new HunspellDictionary
+            //{
+            //    Culture = new CultureInfo("es-NI"),
+            //    DictionaryPath = System.AppDomain.CurrentDomain.BaseDirectory + "spanish-utf8.dic",
+            //    GrammarPath = System.AppDomain.CurrentDomain.BaseDirectory + "Spanish.aff"
+            //};
+            //hunspellDictionary.Load();
+
+            //spellChecker1.Dictionaries.Clear();
+            //spellChecker1.Dictionaries.Add(hunspellDictionary);
         }
 
-        #region  Metódos de sobrecarga.
+        #region Metódos de sobrecarga.
 
         /// <inheritdoc />
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)

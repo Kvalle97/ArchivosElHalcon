@@ -117,7 +117,7 @@ namespace CSPresentacion.Sistema.Administracion
         {
             try
             {
-                var openFileDialog = new OpenFileDialog
+                var openFileDialog = new XtraOpenFileDialog
                 {
                     Filter = @"Image Files(*.jpg; *.jpeg; *.gif; *.bmp; *.png;)|*.jpg; *.jpeg; *.gif; *.bmp; *.png"
                 };

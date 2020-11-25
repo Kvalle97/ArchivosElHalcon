@@ -81,9 +81,6 @@ namespace CSPresentacion.Sistema.General.Buscador
             {
                 InitializeComponent();
 
-                switch (tipoBuscador)
-                {
-                }
             }
             catch (Exception ex)
             {

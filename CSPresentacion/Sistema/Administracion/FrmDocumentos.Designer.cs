@@ -71,11 +71,12 @@
             this.tabComentario = new DevExpress.XtraTab.XtraTabPage();
             this.meComentario = new DevExpress.XtraEditors.MemoEdit();
             this.tabCuentas = new DevExpress.XtraTab.XtraTabPage();
-            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gcCuentas = new DevExpress.XtraGrid.GridControl();
+            this.gvCuentas = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gcTipoDoc = new DevExpress.XtraGrid.GridControl();
             this.gvTipoDoc = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.dxErrorProvider = new DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider(this.components);
+            this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcTipoMov)).BeginInit();
@@ -103,8 +104,8 @@
             this.tabComentario.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.meComentario.Properties)).BeginInit();
             this.tabCuentas.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gcCuentas)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvCuentas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcTipoDoc)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvTipoDoc)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxErrorProvider)).BeginInit();
@@ -277,7 +278,7 @@
             this.groupControl2.Controls.Add(this.gcTipoDoc);
             this.groupControl2.Location = new System.Drawing.Point(353, 12);
             this.groupControl2.Name = "groupControl2";
-            this.groupControl2.Size = new System.Drawing.Size(449, 329);
+            this.groupControl2.Size = new System.Drawing.Size(605, 329);
             this.groupControl2.TabIndex = 1;
             this.groupControl2.Text = "Tipos de documentos";
             // 
@@ -306,7 +307,7 @@
             this.xtraTabControl1.Location = new System.Drawing.Point(5, 30);
             this.xtraTabControl1.Name = "xtraTabControl1";
             this.xtraTabControl1.SelectedTabPage = this.tabInfo;
-            this.xtraTabControl1.Size = new System.Drawing.Size(439, 166);
+            this.xtraTabControl1.Size = new System.Drawing.Size(595, 166);
             this.xtraTabControl1.TabIndex = 11;
             this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.tabInfo,
@@ -315,6 +316,7 @@
             // 
             // tabInfo
             // 
+            this.tabInfo.Controls.Add(this.labelControl10);
             this.tabInfo.Controls.Add(this.seIdTipoDoc);
             this.tabInfo.Controls.Add(this.btnBuscarBrechas);
             this.tabInfo.Controls.Add(this.txtTipoDocumento);
@@ -335,7 +337,7 @@
             this.tabInfo.Controls.Add(this.glueTipoMovimiento);
             this.tabInfo.Controls.Add(this.labelControl3);
             this.tabInfo.Name = "tabInfo";
-            this.tabInfo.Size = new System.Drawing.Size(437, 137);
+            this.tabInfo.Size = new System.Drawing.Size(593, 137);
             this.tabInfo.Text = "Información general";
             // 
             // seIdTipoDoc
@@ -461,7 +463,7 @@
             // 
             // ckbActivo
             // 
-            this.ckbActivo.Location = new System.Drawing.Point(358, 81);
+            this.ckbActivo.Location = new System.Drawing.Point(446, 55);
             this.ckbActivo.Name = "ckbActivo";
             this.ckbActivo.Properties.Caption = "Activo";
             this.ckbActivo.Size = new System.Drawing.Size(82, 20);
@@ -574,29 +576,29 @@
             // 
             // tabCuentas
             // 
-            this.tabCuentas.Controls.Add(this.gridControl1);
+            this.tabCuentas.Controls.Add(this.gcCuentas);
             this.tabCuentas.Name = "tabCuentas";
             this.tabCuentas.PageEnabled = false;
             this.tabCuentas.Size = new System.Drawing.Size(437, 137);
             this.tabCuentas.Text = "Cuentas";
             // 
-            // gridControl1
+            // gcCuentas
             // 
-            this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControl1.Location = new System.Drawing.Point(0, 0);
-            this.gridControl1.MainView = this.gridView1;
-            this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(437, 137);
-            this.gridControl1.TabIndex = 11;
-            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
+            this.gcCuentas.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gcCuentas.Location = new System.Drawing.Point(0, 0);
+            this.gcCuentas.MainView = this.gvCuentas;
+            this.gcCuentas.Name = "gcCuentas";
+            this.gcCuentas.Size = new System.Drawing.Size(437, 137);
+            this.gcCuentas.TabIndex = 11;
+            this.gcCuentas.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gvCuentas});
             // 
-            // gridView1
+            // gvCuentas
             // 
-            this.gridView1.GridControl = this.gridControl1;
-            this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsBehavior.Editable = false;
-            this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gvCuentas.GridControl = this.gcCuentas;
+            this.gvCuentas.Name = "gvCuentas";
+            this.gvCuentas.OptionsView.ShowGroupPanel = false;
+            this.gvCuentas.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gvCuentas_CellValueChanged);
             // 
             // gcTipoDoc
             // 
@@ -606,7 +608,7 @@
             this.gcTipoDoc.Location = new System.Drawing.Point(5, 231);
             this.gcTipoDoc.MainView = this.gvTipoDoc;
             this.gcTipoDoc.Name = "gcTipoDoc";
-            this.gcTipoDoc.Size = new System.Drawing.Size(439, 93);
+            this.gcTipoDoc.Size = new System.Drawing.Size(595, 93);
             this.gcTipoDoc.TabIndex = 10;
             this.gcTipoDoc.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvTipoDoc});
@@ -625,11 +627,21 @@
             // 
             this.dxErrorProvider.ContainerControl = this;
             // 
+            // labelControl10
+            // 
+            this.labelControl10.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.labelControl10.Appearance.Options.UseFont = true;
+            this.labelControl10.Location = new System.Drawing.Point(358, 95);
+            this.labelControl10.Name = "labelControl10";
+            this.labelControl10.Size = new System.Drawing.Size(52, 13);
+            this.labelControl10.TabIndex = 38;
+            this.labelControl10.Text = "Impresora";
+            // 
             // FrmDocumentos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(806, 345);
+            this.ClientSize = new System.Drawing.Size(962, 345);
             this.Controls.Add(this.groupControl2);
             this.Controls.Add(this.groupControl1);
             this.Name = "FrmDocumentos";
@@ -664,8 +676,8 @@
             this.tabComentario.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.meComentario.Properties)).EndInit();
             this.tabCuentas.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gcCuentas)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvCuentas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcTipoDoc)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvTipoDoc)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxErrorProvider)).EndInit();
@@ -709,8 +721,8 @@
         private DevExpress.XtraTab.XtraTabPage tabCuentas;
         private DevExpress.XtraTab.XtraTabPage tabComentario;
         private DevExpress.XtraEditors.MemoEdit meComentario;
-        private DevExpress.XtraGrid.GridControl gridControl1;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraGrid.GridControl gcCuentas;
+        private DevExpress.XtraGrid.Views.Grid.GridView gvCuentas;
         private DevExpress.XtraEditors.SimpleButton btnGuardarDoc;
         private DevExpress.XtraEditors.SimpleButton btnNuevoMov;
         private DevExpress.XtraEditors.SimpleButton btnNuevoDoc;
@@ -721,5 +733,6 @@
         private DevExpress.XtraEditors.SimpleButton btnBuscarBrechas;
         private DevExpress.XtraEditors.SpinEdit seIdTipoDoc;
         private DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider dxErrorProvider;
+        private DevExpress.XtraEditors.LabelControl labelControl10;
     }
 }

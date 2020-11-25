@@ -52,7 +52,7 @@ namespace CSNegocios.Modelos
         /// <summary>
         /// Activo
         /// </summary>
-        public int Activo { get; set; }
+        public int Activo { get; set; } = 1;
 
         /// <summary>
         /// Id Descuento

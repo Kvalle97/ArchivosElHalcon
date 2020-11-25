@@ -59,11 +59,9 @@ namespace CSPresentacion.Sistema.Administracion
             {
                 childInstance = new FrmUsuarios();
 
-                childInstance.MostrarBotones(true, Opciones.Guardar, Opciones.Cerrar, Opciones.Nuevo,
-                    Opciones.Eliminar);
+                childInstance.MostrarBotones(true, Opciones.Guardar, Opciones.Cerrar, Opciones.Nuevo);
 
-                childInstance.MostrarCaptionEnBotones(true, Opciones.Guardar, Opciones.Cerrar, Opciones.Nuevo,
-                    Opciones.Eliminar);
+                childInstance.MostrarCaptionEnBotones(true, Opciones.Guardar, Opciones.Cerrar, Opciones.Nuevo);
             }
 
             childInstance.BringToFront();
@@ -181,8 +179,7 @@ namespace CSPresentacion.Sistema.Administracion
                 SmtpClient servidor = new SmtpClient("mail.elhalcon.com.ni") {Port = 25};
 
 
-
-                correo.From = new MailAddress("admin@elhalcon.com.ni");
+                correo.From = new MailAddress("informatica@elhalcon.com.ni");
 
                 List<object> lstCorreos = (List<object>) ckComboEnviarA.EditValue;
 
@@ -219,7 +216,7 @@ namespace CSPresentacion.Sistema.Administracion
                 correo.Body = cuerpo;
                 correo.IsBodyHtml = true;
 
-                servidor.Credentials = new NetworkCredential("admin@elhalcon.com.ni", "e8ad1bHjr");
+                servidor.Credentials = new NetworkCredential("informatica@elhalcon.com.ni", "E727cd9b1f");
                 servidor.EnableSsl = false;
 
                 servidor.SendAsync(correo, null);
@@ -311,7 +308,8 @@ namespace CSPresentacion.Sistema.Administracion
                 modeloUsuario.GirarPreingresos = ckGirarPreIngresos.Checked;
 
                 // Esto se hace asi porque en sql el tipo de dato es tinyint :(
-                modeloUsuario.Activo = ckbActivo.Checked ? 1 : 0;
+                // Si el usuario es nuevo siempre se le pondrá comoa ctivo
+                modeloUsuario.Activo = modeloUsuario.IdUsuario == 0 ? 1 : ckbActivo.Checked ? 1 : 0;
 
                 modeloUsuario.IdNivel = Convert.ToInt32(lueNievelDeAcceso.EditValue);
 
@@ -351,37 +349,45 @@ namespace CSPresentacion.Sistema.Administracion
 
                 // Guardando empresas asociadas :)
 
-                List<object> lstEmpresasAsociadas = (List<object>) ckComboSucursalesAsociadas.EditValue;
+                List<object> lstEmpresasAsociadas = ckComboSucursalesAsociadas.EditValue as List<object>;
+
 
                 // Eliminamos lo que hay para poner solo lo que esta en el ckCombo
                 servicioUsuarios.EliminarSucursalesAsociadas(modeloUsuario.IdUsuario);
 
-                // Guardando
-                foreach (int idEmpresa in lstEmpresasAsociadas)
+
+                if (lstEmpresasAsociadas != null)
                 {
-                    servicioUsuarios.GuardarSucursal(modeloUsuario.IdUsuario, modeloUsuario.Usuario, idEmpresa);
+                    // Guardando
+                    foreach (int idEmpresa in lstEmpresasAsociadas)
+                    {
+                        servicioUsuarios.GuardarSucursal(modeloUsuario.IdUsuario, modeloUsuario.Usuario, idEmpresa);
+                    }
                 }
 
                 // Guardando roles asociados :)
 
-                List<object> lstRolesAsociados = (List<object>) ckComboRoles.EditValue;
+                List<object> lstRolesAsociados = ckComboRoles.EditValue as List<object>;
+
 
                 // Eliminamos lo que hay para poner solo lo que esta en el ckCombo
                 servicioUsuarios.EliminarRolesAsociados(modeloUsuario.IdUsuario);
 
-                // Guardando
-                foreach (int idRol in lstRolesAsociados)
+
+                if (lstRolesAsociados != null)
                 {
-                    servicioUsuarios.GuardarRol(modeloUsuario.IdUsuario, idRol);
+                    // Guardando
+                    foreach (int idRol in lstRolesAsociados)
+                    {
+                        servicioUsuarios.GuardarRol(modeloUsuario.IdUsuario, idRol);
+                    }
                 }
 
                 if (preguntarPorCambioDeContra)
                 {
                     servicioUsuarios.CargarCorreosDeUsuario(ckComboEnviarA, modeloUsuario.IdUsuario);
-                    ckComboEnviarA.CheckAll();
 
-                    servicioUsuarios.CambiarContraUsuario(modeloUsuario.IdUsuario,
-                        new EncriptarInformacion().Encriptar(txtContrasenia.Text), true);
+                    ckComboEnviarA.CheckAll();
 
                     if (UIHelper.PreguntarSn("¿ Quiere crear una contraseña temporal para el usuario ?") ==
                         DialogResult.Yes)
@@ -389,6 +395,9 @@ namespace CSPresentacion.Sistema.Administracion
                         txtContrasenia.Text = UIHelper.CrearContrasenia(10);
 
                         EnviarCorreo(TipoDeCuerpoEnCorreo.Bienvenida);
+
+                        servicioUsuarios.CambiarContraUsuario(modeloUsuario.IdUsuario,
+                            new EncriptarInformacion().Encriptar(txtContrasenia.Text), true);
                     }
                 }
 

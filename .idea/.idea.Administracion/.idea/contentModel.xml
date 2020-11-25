@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\PROGRAMADOR3\AppData\Local\JetBrains\Rider2020.2\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\PROGRAMADOR3\AppData\Local\JetBrains\Rider2020.2\resharper-host\Local\Transient\Rider\v202\SolutionCaches\_Administracion.1743123426.00" t="ExcludeRecursive" />
+    <e p="C:\Users\PROGRAMADOR3\Documents\Halcon\ProyectoAdministracion" t="IncludeFlat">
+      <e p="Administracion" t="IncludeRecursive">
+        <e p="Administracion.vdproj" t="IncludeRecursive" />
+      </e>
+      <e p="Administracion.sln" t="IncludeFlat" />
+      <e p="CSDatos" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Coneccion.cs" t="Include" />
+        <e p="CSDatos.csproj" t="IncludeRecursive" />
+        <e p="EncriptarInformacion.cs" t="Include" />
+        <e p="obj" t="ExcludeRecursive" />
+        <e p="Properties" t="Include">
+          <e p="AssemblyInfo.cs" t="Include" />
+        </e>
+        <e p="SqlExtensions.cs" t="Include" />
+      </e>
+      <e p="CSNegocios" t="IncludeRecursive">
+        <e p="App.config" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="CSNegocios.csproj" t="IncludeRecursive" />
+        <e p="Global" t="Include">
+          <e p="TipoDocumento.cs" t="Include" />
+        </e>
+        <e p="Logueo.cs" t="Include" />
+        <e p="Modelos" t="Include">
+          <e p="Accion.cs" t="Include" />
+          <e p="Bodegas" t="Include">
+            <e p="Bodega.cs" t="Include" />
+            <e p="BodegaDocumento.cs" t="Include" />
+            <e p="ControlTipoBodega.cs" t="Include" />
+            <e p="TipoBodega.cs" t="Include" />
+          </e>
+          <e p="ConjuntoAcceso.cs" t="Include" />
+          <e p="Informacion.cs" t="Include" />
+          <e p="ModeloBodega.cs" t="Include" />
+          <e p="ModeloSucursal.cs" t="Include" />
+          <e p="ModeloUsuario.cs" t="Include" />
+          <e p="Pantalla.cs" t="Include" />
+          <e p="Rol.cs" t="Include" />
+          <e p="SistemaOModulo.cs" t="Include" />
+          <e p="TasaDeCambio.cs" t="Include" />
+          <e p="TipoDocumento.cs" t="Include" />
+          <e p="TipoMovimiento.cs" t="Include" />
+        </e>
+        <e p="obj" t="ExcludeRecursive" />
+        <e p="OperacionesGlobal.cs" t="Include" />
+        <e p="Personalizar.cs" t="Include" />
+        <e p="Properties" t="Include">
+          <e p="AssemblyInfo.cs" t="Include" />
+          <e p="Settings.Designer.cs" t="Include" />
+          <e p="Settings.settings" t="Include" />
+        </e>
+        <e p="Servicios" t="Include">
+          <e p="General" t="Include">
+            <e p="ServicioBase.cs" t="Include" />
+          </e>
+          <e p="ServicioAcciones.cs" t="Include" />
+          <e p="ServicioAdministracionSucursales.cs" t="Include" />
+          <e p="ServicioBodegas.cs" t="Include" />
+          <e p="ServicioDashboard.cs" t="Include" />
+          <e p="ServicioDocumentos.cs" t="Include" />
+          <e p="ServicioFormatos.cs" t="Include" />
+          <e p="ServicioInformacion.cs" t="Include" />
+          <e p="ServicioNavegacion.cs" t="Include" />
+          <e p="ServicioProducto.cs" t="Include" />
+          <e p="ServicioSistemasyPantallas.cs" t="Include" />
+          <e p="ServicioTasaDeCambio.cs" t="Include" />
+          <e p="ServicioUsuarios.cs" t="Include" />
+        </e>
+        <e p="Usuarios.cs" t="Include" />
+        <e p="Web References" t="Include">
+          <e p="ni.gob.bcn.servicios" t="Include">
+            <e p="Reference.cs" t="Include" />
+            <e p="Reference.map" t="Include" />
+            <e p="ServicioTC.disco" t="Include" />
+            <e p="ServicioTC.wsdl" t="Include" />
+          </e>
+        </e>
+      </e>
+      <e p="CSPresentacion" t="IncludeRecursive">
+        <e p="admin.ico" t="Include" />
+        <e p="App.config" t="Include" />
+        <e p="bin" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="manual" t="Include">
+              <e p="acceso.html" t="Include" />
+              <e p="cambiar_clave.html" t="Include" />
+              <e p="css" t="Include" />
+              <e p="custom.css" t="Include" />
+              <e p="de_search" t="Include" />
+              <e p="de_style.css" t="Include" />
+              <e p="drex_file_list" t="Include" />
+              <e p="drex_header_custom.png" t="Include" />
+              <e p="drex_header_custom_2.png" t="Include" />
+              <e p="drex_header_custom_3.png" t="Include" />
+              <e p="drex_header_custom_4.png" t="Include" />
+              <e p="drex_header_custom_5.png" t="Include" />
+              <e p="drex_index_custom.png" t="Include" />
+              <e p="i" t="Include" />
+              <e p="incio_de_sesion.html" t="Include" />
+              <e p="index.html" t="Include" />
+              <e p="js" t="Include" />
+              <e p="manual.chm" t="Include" />
+              <e p="selccionar_sucursal.html" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="ConfiguracionDialogos.cs" t="Include" />
+        <e p="CSPresentacion.csproj" t="IncludeRecursive" />
+        <e p="Datos_Globales.cs" t="Include" />
+        <e p="FrmCambioPassword.cs" t="Include" />
+        <e p="FrmCambioPassword.Designer.cs" t="Include" />
+        <e p="FrmCambioPassword.resx" t="Include" />
+        <e p="FrmLogin.cs" t="Include" />
+        <e p="FrmLogin.Designer.cs" t="Include" />
+        <e p="FrmLogin.resx" t="Include" />
+        <e p="FrmMain.cs" t="Include" />
+        <e p="FrmMain.Designer.cs" t="Include" />
+        <e p="FrmMain.resx" t="Include" />
+        <e p="FrmSucursales.cs" t="Include" />
+        <e p="FrmSucursales.Designer.cs" t="Include" />
+        <e p="FrmSucursales.resx" t="Include" />
+        <e p="Global.cs" t="Include" />
+        <e p="obj" t="ExcludeRecursive" />
+        <e p="packages.config" t="Include" />
+        <e p="Program.cs" t="Include" />
+        <e p="Properties" t="Include">
+          <e p="AssemblyInfo.cs" t="Include" />
+          <e p="licenses.licx" t="Include" />
+          <e p="Resources.Designer.cs" t="Include" />
+          <e p="Resources.resx" t="Include" />
+          <e p="Settings.Designer.cs" t="Include" />
+          <e p="Settings.settings" t="Include" />
+        </e>
+        <e p="Resources" t="Include">
+          <e p="actualizar.png" t="Include" />
+          <e p="adjuntar.png" t="Include" />
+          <e p="admin.png" t="Include" />
+          <e p="apply.png" t="Include" />
+          <e p="apply1.png" t="Include" />
+          <e p="applyicon.png" t="Include" />
+          <e p="Ayuda.png" t="Include" />
+          <e p="basket-empty-icon.png" t="Include" />
+          <e p="bouser_32x32.png" t="Include" />
+          <e p="buscar.png" t="Include" />
+          <e p="business_female_male_users.png" t="Include" />
+          <e p="business_female_male_users1.png" t="Include" />
+          <e p="business_male_female_users.png" t="Include" />
+          <e p="business_user.png" t="Include" />
+          <e p="Cerrar.png" t="Include" />
+          <e p="check-payment_116487.png" t="Include" />
+          <e p="closeheaderandfooter_32x32.png" t="Include" />
+          <e p="compras.png" t="Include" />
+          <e p="contabilizar.png" t="Include" />
+          <e p="delete archivo.png" t="Include" />
+          <e p="DeleteRed.bmp" t="Include" />
+          <e p="documentproperties_16x16.png" t="Include" />
+          <e p="empleado baja.png" t="Include" />
+          <e p="full_page.png" t="Include" />
+          <e p="GuardarNuevo.png" t="Include" />
+          <e p="GuardarNuevo1.png" t="Include" />
+          <e p="hide_16x16.png" t="Include" />
+          <e p="hide_32x32.png" t="Include" />
+          <e p="info_32x32.png" t="Include" />
+          <e p="LOGO en BMP.bmp" t="Include" />
+          <e p="manual2.png" t="Include" />
+          <e p="PDF.png" t="Include" />
+          <e p="Pegar.png" t="Include" />
+          <e p="permiso.png" t="Include" />
+          <e p="properties_32x32.png" t="Include" />
+          <e p="recovery.png" t="Include" />
+          <e p="reportlayoutpivottable_32x32.png" t="Include" />
+          <e p="SecurityUnlock32.png" t="Include" />
+          <e p="sensible.png" t="Include" />
+          <e p="show_16x16.png" t="Include" />
+          <e p="solicitud.png" t="Include" />
+          <e p="supplier.jpg" t="Include" />
+          <e p="window_32x32.png" t="Include" />
+          <e p="yellow_mail.png" t="Include" />
+        </e>
+        <e p="Sistema" t="Include">
+          <e p="Administracion" t="Include">
+            <e p="Bodega" t="Include">
+              <e p="FrmAdministracionDeBodegas.cs" t="Include" />
+              <e p="FrmAdministracionDeBodegas.Designer.cs" t="Include" />
+              <e p="FrmAdministracionDeBodegas.resx" t="Include" />
+              <e p="FrmTipoBodega.cs" t="Include" />
+              <e p="FrmTipoBodega.Designer.cs" t="Include" />
+              <e p="FrmTipoBodega.resx" t="Include" />
+            </e>
+            <e p="FrmAccionesyPermisos.cs" t="Include" />
+            <e p="FrmAccionesyPermisos.Designer.cs" t="Include" />
+            <e p="FrmAccionesyPermisos.resx" t="Include" />
+            <e p="FrmAdministrarSucursales.cs" t="Include" />
+            <e p="FrmAdministrarSucursales.Designer.cs" t="Include" />
+            <e p="FrmAdministrarSucursales.resx" t="Include" />
+            <e p="FrmBloqueoDeMargen.cs" t="Include" />
+            <e p="FrmBloqueoDeMargen.Designer.cs" t="Include" />
+            <e p="FrmBloqueoDeMargen.resx" t="Include" />
+            <e p="FrmDashboardDesingner.cs" t="Include" />
+            <e p="FrmDashboardDesingner.Designer.cs" t="Include" />
+            <e p="FrmDashboardDesingner.resx" t="Include" />
+            <e p="FrmDashboardViewer.cs" t="Include" />
+            <e p="FrmDashboardViewer.Designer.cs" t="Include" />
+            <e p="FrmDashboardViewer.resx" t="Include" />
+            <e p="FrmDiseniadorDeReportes.cs" t="Include" />
+            <e p="FrmDiseniadorDeReportes.Designer.cs" t="Include" />
+            <e p="FrmDiseniadorDeReportes.resx" t="Include" />
+            <e p="FrmDocumentos.cs" t="Include" />
+            <e p="FrmDocumentos.Designer.cs" t="Include" />
+            <e p="FrmDocumentos.resx" t="Include" />
+            <e p="FrmFormatos.cs" t="Include" />
+            <e p="FrmFormatos.Designer.cs" t="Include" />
+            <e p="FrmFormatos.resx" t="Include" />
+            <e p="FrmGuardarDashboard.cs" t="Include" />
+            <e p="FrmGuardarDashboard.Designer.cs" t="Include" />
+            <e p="FrmGuardarDashboard.resx" t="Include" />
+            <e p="FrmImageSelector.cs" t="Include" />
+            <e p="FrmImageSelector.Designer.cs" t="Include" />
+            <e p="FrmImageSelector.resx" t="Include" />
+            <e p="FrmInformacion.cs" t="Include" />
+            <e p="FrmInformacion.Designer.cs" t="Include" />
+            <e p="FrmInformacion.resx" t="Include" />
+            <e p="FrmReporteNavegacion.cs" t="Include" />
+            <e p="FrmReporteNavegacion.Designer.cs" t="Include" />
+            <e p="FrmReporteNavegacion.resx" t="Include" />
+            <e p="FrmReporteUsuarios.cs" t="Include" />
+            <e p="FrmReporteUsuarios.Designer.cs" t="Include" />
+            <e p="FrmReporteUsuarios.resx" t="Include" />
+            <e p="FrmSistemasyPantallas.cs" t="Include" />
+            <e p="FrmSistemasyPantallas.Designer.cs" t="Include" />
+            <e p="FrmSistemasyPantallas.resx" t="Include" />
+            <e p="FrmTasaDeCambio.cs" t="Include" />
+            <e p="FrmTasaDeCambio.Designer.cs" t="Include" />
+            <e p="FrmTasaDeCambio.resx" t="Include" />
+            <e p="FrmTombola.cs" t="Include" />
+            <e p="FrmTombola.Designer.cs" t="Include" />
+            <e p="FrmTombola.resx" t="Include" />
+            <e p="FrmUsuarios.cs" t="Include" />
+            <e p="FrmUsuarios.Designer.cs" t="Include" />
+            <e p="FrmUsuarios.resx" t="Include" />
+            <e p="Reportes" t="Include">
+              <e p="ReporteNavegacion.cs" t="Include" />
+              <e p="ReporteNavegacion.Designer.cs" t="Include" />
+              <e p="ReporteNavegacion.resx" t="Include" />
+              <e p="ReporteUsuarios.cs" t="Include" />
+              <e p="ReporteUsuarios.Designer.cs" t="Include" />
+              <e p="ReporteUsuarios.resx" t="Include" />
+            </e>
+          </e>
+          <e p="General" t="Include">
+            <e p="Buscador" t="Include">
+              <e p="FrmBuscador.cs" t="Include" />
+              <e p="FrmBuscador.Designer.cs" t="Include" />
+              <e p="FrmBuscador.resx" t="Include" />
+            </e>
+            <e p="FrmBase.cs" t="Include" />
+            <e p="FrmBase.Designer.cs" t="Include" />
+            <e p="FrmBase.resx" t="Include" />
+            <e p="FrmPdfViewer.cs" t="Include" />
+            <e p="FrmPdfViewer.Designer.cs" t="Include" />
+            <e p="FrmPdfViewer.resx" t="Include" />
+            <e p="FrmReportViewer.cs" t="Include" />
+            <e p="FrmReportViewer.Designer.cs" t="Include" />
+            <e p="FrmReportViewer.resx" t="Include" />
+            <e p="Opciones.cs" t="Include" />
+          </e>
+          <e p="Utilidades" t="Include">
+            <e p="Accion.cs" t="Include" />
+            <e p="Error.cs" t="Include" />
+            <e p="HtmlEditor.cs" t="Include" />
+            <e p="HtmlEditor.Designer.cs" t="Include" />
+            <e p="HtmlEditor.resx" t="Include" />
+            <e p="ParametroPorDefecto.cs" t="Include" />
+            <e p="ReporteGeneral.cs" t="Include" />
+            <e p="ReporteGeneral.Designer.cs" t="Include" />
+            <e p="ReporteGeneral.resx" t="Include" />
+            <e p="ScreenCapture.cs" t="Include" />
+            <e p="SubDashboard.cs" t="Include" />
+            <e p="UIHelper.cs" t="Include" />
+          </e>
+        </e>
+      </e>
+      <e p="packages" t="ExcludeRecursive" />
+    </e>
+  </component>
+</project>
