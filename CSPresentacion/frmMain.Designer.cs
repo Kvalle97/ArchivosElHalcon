@@ -196,6 +196,7 @@
             this.btnSistemasYPantallas.Id = 48;
             this.btnSistemasYPantallas.ImageOptions.Image = global::CSPresentacion.Properties.Resources.sensible;
             this.btnSistemasYPantallas.Name = "btnSistemasYPantallas";
+            this.btnSistemasYPantallas.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionInMenu;
             this.btnSistemasYPantallas.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnAdministradorDeSistema_ItemClick);
             // 
             // btnPermisos
@@ -231,7 +232,6 @@
             this.btnInformacion.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnInformacion.ImageOptions.Image")));
             this.btnInformacion.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnInformacion.ImageOptions.LargeImage")));
             this.btnInformacion.Name = "btnInformacion";
-            this.btnInformacion.RibbonStyle = ((DevExpress.XtraBars.Ribbon.RibbonItemStyles)((DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large | DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithText)));
             this.btnInformacion.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnInformacion_ItemClick);
             // 
             // btnFormatos

@@ -266,7 +266,6 @@ namespace CSPresentacion.Sistema.General.Buscador
             this.gvBuscador.GridControl = this.gcBuscador;
             this.gvBuscador.Name = "gvBuscador";
             this.gvBuscador.OptionsBehavior.Editable = false;
-            this.gvBuscador.OptionsView.ColumnAutoWidth = false;
             this.gvBuscador.OptionsView.ShowAutoFilterRow = true;
             this.gvBuscador.OptionsView.ShowFilterPanelMode = DevExpress.XtraGrid.Views.Base.ShowFilterPanelMode.Never;
             this.gvBuscador.OptionsView.ShowGroupPanel = false;

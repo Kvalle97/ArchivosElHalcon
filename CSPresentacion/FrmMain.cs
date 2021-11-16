@@ -418,7 +418,7 @@ namespace CSPresentacion
         private void btnSucursales_ItemClick(object sender, ItemClickEventArgs e)
         {
             MostrarComoDialog(Sistema.Administracion.FrmAdministrarSucursales.Instance(), true);
-        }
+        }  
 
         private void btnAdministracionDeBodegas_ItemClick(object sender, ItemClickEventArgs e)
         {
