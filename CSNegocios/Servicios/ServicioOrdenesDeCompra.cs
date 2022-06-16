@@ -30,6 +30,23 @@ namespace CSNegocios.Servicios
             gc.DataSource = Coneccion.EjecutarSpDataTable("spListarProveedoresinformatica", null);
         }
 
+
+        public void ObtenerContacto(LookUpEdit lue, int codigo)
+        {
+            dataTable = Coneccion.EjecutarSpDataTable("spObtenerContacto", cmd =>
+             {
+                 cmd.Parameters.Add(new SqlParameter("Idproveedor", SqlDbType.Int)).Value = codigo;
+
+             });
+
+
+            lue.Properties.DataSource = dataTable;
+            lue.Properties.ValueMember = "Contacto";
+            lue.Properties.DisplayMember = "Contacto";
+            lue.ItemIndex = 0;
+
+        }
+
         public int GuardarOrdendeCompra(ModeloOrdendeCompra OrdendeCompra, int idLogin, string usuario)
         {
             return Coneccion.EjecutarSp("spGuardarOrdenDeCompraInformatica", cmd =>
@@ -61,20 +78,17 @@ namespace CSNegocios.Servicios
             });
         }
 
-        public int AgregarProdutctoATemporal(string codigo, decimal cantidad, decimal costo, decimal descuento, string descripcion, int idLogin)
+        public int AgregarProdutctoATemporal(string codigo, decimal cantidad, decimal costo, string descripcion, int idLogin)
         {
             return Coneccion.EjecutarSp("spAgregarATemporalOrdenesDeCompraInformatica", cmd =>
             {
                 cmd.Parameters.Add(new SqlParameter("CodigoProducto", SqlDbType.NVarChar)).Value = codigo;
                 cmd.Parameters.Add(new SqlParameter("Cantidad", SqlDbType.Decimal)).Value = cantidad;
                 cmd.Parameters.Add(new SqlParameter("Costo", SqlDbType.Decimal)).Value = costo;
-                cmd.Parameters.Add(new SqlParameter("Descuento", SqlDbType.Decimal)).Value = descuento;
                 cmd.Parameters.Add(new SqlParameter("DescripcionProducto ", SqlDbType.NVarChar)).Value = descripcion;
                 cmd.Parameters.Add(new SqlParameter("IdLogin", SqlDbType.NVarChar)).Value = idLogin;
             });
         }
-
-
 
         public void ObtnerProductosDeLaOrden(GridControl gce, GridView gve, int idLogin, bool dolar)
         {
@@ -87,12 +101,10 @@ namespace CSNegocios.Servicios
             gve.Columns["Descripción"].Width = 500;
             gve.Columns["Cantidad"].Width = 60;
             gve.Columns["Precio_Unitario"].Width = 80;
-            gve.Columns["Descuento"].Width = 80;
-            gve.Columns["SubTotal"].Width = 80;
-            gve.Columns["%"].Width = 50;
+            gve.Columns["Total"].Width = 80;
             gve.CustomColumnDisplayText += (sender, args) =>
             {
-                if (args.Column.FieldName == "SubTotal")
+                if (args.Column.FieldName == "Total")
                 {
                     decimal costo = dolar
                         ? Convert.ToDecimal(args.Value)
@@ -102,7 +114,7 @@ namespace CSNegocios.Servicios
                 }
 
                 if (args.Column.FieldName == "Precio_Unitario") /*esta condicion me funciona para indicar al valor que esta en el*/
-                {                                               /*datagrid que me salgan 6 0 y se cambie dola o corba*/
+                {                                               /*datagrid que me salgan 6 0 y se cambie dolar o corba*/
 
                     decimal costo = dolar
                          ? Convert.ToDecimal(args.Value)
@@ -110,18 +122,6 @@ namespace CSNegocios.Servicios
 
                     args.DisplayText = costo.ToString("c2", new CultureInfo(dolar ? "en-US" : "es-NI", false));
                 }
-
-                if (args.Column.FieldName == "Descuento")
-                {
-
-                    decimal costo = dolar
-                        ? Convert.ToDecimal(args.Value)
-                        : Convert.ToDecimal(args.Value);
-
-                    args.DisplayText = costo.ToString("c2", new CultureInfo(dolar ? "en-US" : "es-NI", false));
-                }
-
-
 
             };
 
@@ -160,10 +160,6 @@ namespace CSNegocios.Servicios
                }));
         }
 
-
-
-
-
         public int LimpiarOrdenDeCompraTemporal(int idLogin, string codigo)
         {
             return Coneccion.EjecutarSp("spLimpiarTemporalOrdenesDeCompraInformatica", cmd =>
@@ -201,7 +197,6 @@ namespace CSNegocios.Servicios
 
         }
 
-
         public void CargarATemporalOrdenesDeCompra(int idOrden, int idLogin)
         {
             Coneccion.EjecutarSp("spCargarEnTemporalOrdenDeCompraInformatica", cmd =>
@@ -234,11 +229,7 @@ namespace CSNegocios.Servicios
                 ordenDeCompra.ProveedorDescripcion = Convert.ToString(dataTable.Rows[0]["Descripcion_Proveedor"]);
                 ordenDeCompra.FechaDelDocumento = Convert.ToDateTime(dataTable.Rows[0]["FechaDelDocumento"]);
                 ordenDeCompra.Contacto = Convert.ToString(dataTable.Rows[0]["Contacto"]);
-                ordenDeCompra.NoRuc = dataTable.Rows[0]["NoRuc"] != DBNull.Value
-                ? Convert.ToString(dataTable.Rows[0]["NoRuc"])
-                : null;
                 ordenDeCompra.Cerrado = Convert.ToBoolean(dataTable.Rows[0]["Cerrado"]);
-
                 ordenDeCompra.DolarizarOrdenDeCompra = Convert.ToBoolean(dataTable.Rows[0]["DolarizarOrdenDeCompra"]);
                 ordenDeCompra.ExoneradoDeIVa = Convert.ToBoolean(dataTable.Rows[0]["ExoneradoDeIva"]);
                 ordenDeCompra.Comentario = dataTable.Rows[0]["Comentario"] != DBNull.Value
@@ -247,9 +238,6 @@ namespace CSNegocios.Servicios
                 ordenDeCompra.Tc = Convert.ToDecimal(dataTable.Rows[0]["Tc"]);
 
                 return ordenDeCompra;
-
-
-
             }
 
             return null;
@@ -267,7 +255,11 @@ namespace CSNegocios.Servicios
 
 
             gv.Columns["Total"].DisplayFormat.FormatType = FormatType.Numeric;
-            gv.Columns["Total"].DisplayFormat.FormatString = "c2";
+            gv.Columns["Total"].DisplayFormat.FormatString = "N2";
+
+
+
+
         }
 
 
@@ -297,6 +289,23 @@ namespace CSNegocios.Servicios
                 cmd.Parameters.Add(new SqlParameter("@IdOrden", SqlDbType.Int)).Value = IdOrden;
             });
         }
+
+
+        public void CargarContacto(LookUpEdit lue, int IdOrden)
+        {
+            dataTable = Coneccion.EjecutarSpDataTable("spCargarContacto", cmd =>
+             {
+                 cmd.Parameters.Add(new SqlParameter("IdOrden", SqlDbType.Int)).Value = IdOrden;
+
+             });
+            lue.Properties.DataSource = dataTable;
+            lue.Properties.ValueMember = "Contacto";
+            lue.Properties.DisplayMember = "Contacto";
+            lue.ItemIndex = 0;
+
+        }
+
+
 
     }
 

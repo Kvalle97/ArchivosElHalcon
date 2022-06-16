@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using DevExpress.XtraEditors;
+using System.Windows.Forms;
 
 namespace CSPresentacion.Sistema.General.Buscador
 {
@@ -33,6 +34,9 @@ namespace CSPresentacion.Sistema.General.Buscador
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmBuscador));
             this.groupParametros = new DevExpress.XtraEditors.GroupControl();
             this.xscParametros = new DevExpress.XtraEditors.XtraScrollableControl();
+            this.dp2 = new DevExpress.XtraEditors.DateEdit();
+            this.dp3 = new DevExpress.XtraEditors.DateEdit();
+            this.dp1 = new DevExpress.XtraEditors.DateEdit();
             this.btnLimpiar = new DevExpress.XtraEditors.SimpleButton();
             this.btnBuscar = new DevExpress.XtraEditors.SimpleButton();
             this.txtFiltro3 = new DevExpress.XtraEditors.TextEdit();
@@ -53,6 +57,12 @@ namespace CSPresentacion.Sistema.General.Buscador
             ((System.ComponentModel.ISupportInitialize)(this.groupParametros)).BeginInit();
             this.groupParametros.SuspendLayout();
             this.xscParametros.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dp2.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dp2.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dp3.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dp3.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dp1.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dp1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFiltro3.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueFiltro3.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFiltro2.Properties)).BeginInit();
@@ -72,13 +82,16 @@ namespace CSPresentacion.Sistema.General.Buscador
             this.groupParametros.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupParametros.Location = new System.Drawing.Point(0, 0);
             this.groupParametros.Name = "groupParametros";
-            this.groupParametros.Size = new System.Drawing.Size(678, 102);
+            this.groupParametros.Size = new System.Drawing.Size(690, 102);
             this.groupParametros.TabIndex = 0;
             this.groupParametros.Text = "Parametros";
             this.groupParametros.Visible = false;
             // 
             // xscParametros
             // 
+            this.xscParametros.Controls.Add(this.dp2);
+            this.xscParametros.Controls.Add(this.dp3);
+            this.xscParametros.Controls.Add(this.dp1);
             this.xscParametros.Controls.Add(this.btnLimpiar);
             this.xscParametros.Controls.Add(this.btnBuscar);
             this.xscParametros.Controls.Add(this.txtFiltro3);
@@ -93,8 +106,47 @@ namespace CSPresentacion.Sistema.General.Buscador
             this.xscParametros.Dock = System.Windows.Forms.DockStyle.Fill;
             this.xscParametros.Location = new System.Drawing.Point(2, 27);
             this.xscParametros.Name = "xscParametros";
-            this.xscParametros.Size = new System.Drawing.Size(674, 73);
+            this.xscParametros.Size = new System.Drawing.Size(686, 73);
             this.xscParametros.TabIndex = 0;
+            // 
+            // dp2
+            // 
+            this.dp2.EditValue = null;
+            this.dp2.Location = new System.Drawing.Point(326, 27);
+            this.dp2.Name = "dp2";
+            this.dp2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dp2.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dp2.Size = new System.Drawing.Size(150, 20);
+            this.dp2.TabIndex = 15;
+            this.dp2.Visible = false;
+            // 
+            // dp3
+            // 
+            this.dp3.EditValue = null;
+            this.dp3.Location = new System.Drawing.Point(14, 27);
+            this.dp3.Name = "dp3";
+            this.dp3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dp3.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dp3.Size = new System.Drawing.Size(150, 20);
+            this.dp3.TabIndex = 14;
+            this.dp3.Visible = false;
+            // 
+            // dp1
+            // 
+            this.dp1.EditValue = null;
+            this.dp1.Location = new System.Drawing.Point(170, 28);
+            this.dp1.Name = "dp1";
+            this.dp1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dp1.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dp1.Size = new System.Drawing.Size(150, 20);
+            this.dp1.TabIndex = 14;
+            this.dp1.Visible = false;
             // 
             // btnLimpiar
             // 
@@ -160,7 +212,7 @@ namespace CSPresentacion.Sistema.General.Buscador
             // 
             // txtFiltro1
             // 
-            this.txtFiltro1.Location = new System.Drawing.Point(13, 28);
+            this.txtFiltro1.Location = new System.Drawing.Point(14, 28);
             this.txtFiltro1.Name = "txtFiltro1";
             this.txtFiltro1.Properties.EditValueChangedDelay = 500;
             this.txtFiltro1.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Buffered;
@@ -213,15 +265,15 @@ namespace CSPresentacion.Sistema.General.Buscador
             this.panel1.Controls.Add(this.btnCancelar);
             this.panel1.Controls.Add(this.btnAceptar);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 412);
+            this.panel1.Location = new System.Drawing.Point(0, 457);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(678, 58);
+            this.panel1.Size = new System.Drawing.Size(690, 58);
             this.panel1.TabIndex = 3;
             // 
             // btnCancelar
             // 
             this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancelar.Location = new System.Drawing.Point(442, 12);
+            this.btnCancelar.Location = new System.Drawing.Point(454, 12);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(109, 32);
             this.btnCancelar.TabIndex = 1;
@@ -231,7 +283,7 @@ namespace CSPresentacion.Sistema.General.Buscador
             // btnAceptar
             // 
             this.btnAceptar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAceptar.Location = new System.Drawing.Point(557, 12);
+            this.btnAceptar.Location = new System.Drawing.Point(569, 12);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(109, 32);
             this.btnAceptar.TabIndex = 0;
@@ -245,7 +297,7 @@ namespace CSPresentacion.Sistema.General.Buscador
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl1.Location = new System.Drawing.Point(0, 102);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(678, 310);
+            this.panelControl1.Size = new System.Drawing.Size(690, 355);
             this.panelControl1.TabIndex = 4;
             // 
             // gcBuscador
@@ -254,7 +306,7 @@ namespace CSPresentacion.Sistema.General.Buscador
             this.gcBuscador.Location = new System.Drawing.Point(0, 0);
             this.gcBuscador.MainView = this.gvBuscador;
             this.gcBuscador.Name = "gcBuscador";
-            this.gcBuscador.Size = new System.Drawing.Size(678, 310);
+            this.gcBuscador.Size = new System.Drawing.Size(690, 355);
             this.gcBuscador.TabIndex = 0;
             this.gcBuscador.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvBuscador});
@@ -275,7 +327,7 @@ namespace CSPresentacion.Sistema.General.Buscador
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(678, 470);
+            this.ClientSize = new System.Drawing.Size(690, 515);
             this.Controls.Add(this.panelControl1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupParametros);
@@ -288,6 +340,12 @@ namespace CSPresentacion.Sistema.General.Buscador
             this.groupParametros.ResumeLayout(false);
             this.xscParametros.ResumeLayout(false);
             this.xscParametros.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dp2.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dp2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dp3.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dp3.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dp1.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dp1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFiltro3.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueFiltro3.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFiltro2.Properties)).EndInit();
@@ -324,5 +382,8 @@ namespace CSPresentacion.Sistema.General.Buscador
         private DevExpress.XtraEditors.TextEdit txtFiltro2;
         private DevExpress.XtraEditors.TextEdit txtFiltro1;
         private DevExpress.XtraEditors.SimpleButton btnLimpiar;
+        private DateEdit dp2;
+        private DateEdit dp1;
+        private DateEdit dp3;
     }
 }

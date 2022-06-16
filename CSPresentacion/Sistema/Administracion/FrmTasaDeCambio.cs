@@ -125,7 +125,7 @@ namespace CSPresentacion.Sistema.Administracion
                         DateTimeStyles.AdjustToUniversal, out fechaVal);
                 }
 
-                lstTasaDeCambio.Add(new TasaDeCambioM() {Fecha = fechaVal, TasaDeCambio = tasaVal});
+                lstTasaDeCambio.Add(new TasaDeCambioM() { Fecha = fechaVal, TasaDeCambio = tasaVal });
             }
 
             decimal gerencial =
@@ -170,20 +170,30 @@ namespace CSPresentacion.Sistema.Administracion
         /// <inheritdoc />
         protected override void GuardarEvent()
         {
-            try
+            if (seTc.Value == 0)
             {
-                servicioTasaDeCambio.GuardarTc(new TasaDeCambioM()
+                XtraMessageBox.Show("Tasa de Cambio No puede Estar Vacio ");
+            }
+
+            else
+            {
+                try
+                {
+
+                    servicioTasaDeCambio.GuardarTc(new TasaDeCambioM()
                     {
                         Fecha = dpFecha.DateTime.Date,
                         TasaDeCambio = seTc.Value
                     }, Datos_Globales.Usuario, seTcGerencial.Value,
-                    ckSobreeEscribir.Checked);
+                        ckSobreeEscribir.Checked);
 
-                XtraMessageBox.Show("Guardado");
-            }
-            catch (Exception e)
-            {
-                UIHelper.MostrarError(e);
+                    XtraMessageBox.Show("Guardado");
+                }
+                catch (Exception e)
+                {
+
+                    UIHelper.MostrarError(e);
+                }
             }
         }
 
@@ -255,14 +265,15 @@ namespace CSPresentacion.Sistema.Administracion
             }
         }
 
+        // Se añadio un nuevo check  (ingreso de tc gerencial)
         private void btnTodoElMesFecha_Click(object sender, EventArgs e)
         {
             string avisoDeSobreEscritura = ckSobreeEscribir.Checked ? "se sobreescribira" : "se ignorara";
-
+            string avisoDeSobreEscritura2 = ckIngresoTCgerencial.Checked ? "se sobreescribira" : "se ignorara";
             if (
                 UIHelper.PreguntarSn(
                     "Está apunto de insertar las tasas" +
-                    $" que se obtengan del servicio del banco central. Si hay una repetida {avisoDeSobreEscritura} ¿ Desea continuar ?") ==
+                    $" que se obtengan del servicio del banco central. Si hay una repetida {avisoDeSobreEscritura},{avisoDeSobreEscritura2} ¿ Desea continuar ?") ==
                 DialogResult.Yes)
             {
                 WaitDialogForm wait = new WaitDialogForm("Por favor espere...", "Guardando tasas de cambio");
@@ -271,21 +282,24 @@ namespace CSPresentacion.Sistema.Administracion
 
                 try
                 {
-                    servicioTasaDeCambio.InsertarTcDelMes(dpFecha.DateTime, ckSobreeEscribir.Checked,
-                        Datos_Globales.Usuario);
+                    servicioTasaDeCambio.Insertartcgerencial(dpFecha.DateTime, ckSobreeEscribir.Checked, ckIngresoTCgerencial.Checked,
+                        Datos_Globales.Usuario, seTcGerencial.Value);
 
                     wait.Close();
 
-                    XtraMessageBox.Show("Listo :)");
+                    XtraMessageBox.Show("Listo");
                 }
                 catch (Exception exception)
                 {
                     if (!wait.IsDisposed) wait.Close();
                     UIHelper.MostrarError(exception);
+
+                    #endregion
                 }
             }
         }
-
-        #endregion
     }
 }
+
+
+

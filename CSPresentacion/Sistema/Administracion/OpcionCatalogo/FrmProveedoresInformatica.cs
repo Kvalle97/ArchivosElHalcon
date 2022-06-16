@@ -68,7 +68,6 @@ namespace CSPresentacion.Sistema.Opcion_Catalogo
 
             servicioProveedor.Obtenercontactosdatable(codigo, gccontacto, gvcontacto);
             proveedor = servicioProveedor.Obtenerproveedorinformatica(codigo);
-
             txtCodigo.EditValue = codigo;
             txtproveedor.Text = proveedor.Descripcion;
             txtdireccion.Text = proveedor.Dirección;
@@ -364,6 +363,61 @@ namespace CSPresentacion.Sistema.Opcion_Catalogo
             {
                 UIHelper.AlertarDeError("Primero seleccione un Contacto");
             }
+        }
+
+        private void txtproveedor_KeyUp(object sender, KeyEventArgs e)
+        {
+
+            if (e.KeyCode != Keys.Enter) return;
+            txtdireccion.Focus();
+        }
+
+        private void txtdireccion_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode != Keys.Enter) return;
+            txtnoruc.Focus();
+        }
+
+        private void txtnoruc_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode != Keys.Enter) return;
+            txtsucursal.Focus();
+        }
+
+        private void txtsucursal_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode != Keys.Enter) return;
+            txttelefono.Focus();
+        }
+
+        private void txttelefono_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode != Keys.Enter) return;
+            txtcorreo.Focus();
+        }
+
+        private void txtcorreo_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode != Keys.Enter) return;
+            txtcontacto.Focus();
+        }
+
+        private void txtcontacto_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode != Keys.Enter) return;
+            txtnocontacto.Focus();
+        }
+
+        private void txtnocontacto_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode != Keys.Enter) return;
+            txtcorreocontact.Focus();
+        }
+
+        private void txtcorreocontact_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode != Keys.Enter) return;
+            txtCargo.Focus();
         }
     }
 }

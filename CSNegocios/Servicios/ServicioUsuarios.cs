@@ -114,6 +114,7 @@ namespace CSNegocios.Servicios
         }
 
 
+
         /// <summary>
         /// Muestra sucursales
         /// </summary>
@@ -142,7 +143,9 @@ namespace CSNegocios.Servicios
             ckcb.Properties.DisplayMember = "Correo";
             ckcb.Properties.ValueMember = "IDCorreo";
             ckcb.Properties.EditValueType = EditValueTypeCollection.List;
+
         }
+
 
         /// <summary>
         /// Obtener accesos de usario
@@ -188,6 +191,52 @@ namespace CSNegocios.Servicios
             lue.ItemIndex = 0;
         }
 
+        
+        /// <summary>
+        ///  Cargar Tipo de Promotor
+        /// </summary>
+        /// <param name="prom"></param>
+        public void CargarTipoPromotor(LookUpEdit prom )
+        {
+           // strSql ="select cast(idPromotor as Int) as idPromotor,TipoPromotor from Promotores";
+          strSql ="select  * from  Promotores union all select 0,'SIN PROMOTOR'order by idPromotor asc";
+
+
+            prom.Properties.DataSource =
+                Coneccion.EjecutarTextTable(
+                    strSql,null);
+            prom.Properties.ValueMember = "idPromotor";
+            prom.Properties.DisplayMember = "TipoPromotor";
+            prom.Properties.ForceInitialize();
+
+            prom.ItemIndex = 0;
+            
+        }
+
+       
+        /// <summary>
+        ///  Cargar Tipo de Segmento 
+        /// </summary>
+        /// <param name="segm"></param>
+        public void CargarTipoSegmento (LookUpEdit segm)
+        {
+            strSql = "select cast(Id as Int) as id,Nombre from SegmentoCliente where Id < 5 ";
+
+            segm.Properties.DataSource =
+                Coneccion.EjecutarTextTable(
+                    strSql,null);
+            
+            segm.Properties.ValueMember = "id";
+            segm.Properties.DisplayMember = "Nombre";
+
+            segm.Properties.ForceInitialize();
+
+            segm.ItemIndex = 0;
+
+        }
+
+
+
         /// <summary>
         /// Carga los correos en el data table
         /// </summary>
@@ -223,6 +272,9 @@ namespace CSNegocios.Servicios
 
             return Coneccion.EjecutarTextTable(strSql);
         }
+
+
+
 
         /// <summary>
         /// Obtiene los roles asociados al usuario
@@ -277,6 +329,7 @@ namespace CSNegocios.Servicios
                     cmd.Parameters.Add(new SqlParameter("Nombres", SqlDbType.NVarChar)).Value = modeloUsuario.Nombres;
                     cmd.Parameters.Add(new SqlParameter("Apellidos", SqlDbType.NVarChar)).Value =
                         RevisarSiEsNuloSql(modeloUsuario.Apellidos);
+                    cmd.Parameters.Add(new SqlParameter("email",SqlDbType.NVarChar)).Value =modeloUsuario.email;
                     cmd.Parameters.Add(new SqlParameter("IdNivel", SqlDbType.TinyInt)).Value = modeloUsuario.IdNivel;
                     cmd.Parameters.Add(new SqlParameter("Telefono", SqlDbType.NVarChar)).Value =
                         RevisarSiEsNuloSql(modeloUsuario.Telefono);
@@ -307,8 +360,21 @@ namespace CSNegocios.Servicios
                     cmd.Parameters.Add(new SqlParameter("Proveedores", SqlDbType.Bit)).Value =
                         modeloUsuario.Proveedores;
                     cmd.Parameters.Add(new SqlParameter("Proyecto", SqlDbType.Bit)).Value = modeloUsuario.Proyecto;
-
-                    // PERMISOS INVENTARIO
+          /*0k*/    cmd.Parameters.Add(new SqlParameter("VentaCompartida", SqlDbType.Bit)).Value = modeloUsuario.VentaCompartida;
+          /*0k*/    cmd.Parameters.Add(new SqlParameter("VendedorProyectos", SqlDbType.Bit)).Value = modeloUsuario.VendedorProyectos;
+                    cmd.Parameters.Add(new SqlParameter("GerenciaComercial",SqlDbType.Bit)).Value = modeloUsuario.GerenciaComercial;
+                    cmd.Parameters.Add(new SqlParameter("PuedePonerMetas",SqlDbType.Bit)).Value = modeloUsuario.PuedePonerMetas;
+                    cmd.Parameters.Add(new SqlParameter("TieneMeta",SqlDbType.Bit)).Value = modeloUsuario.TieneMeta;
+                    cmd.Parameters.Add(new SqlParameter("VerAverias",SqlDbType.Bit)).Value = modeloUsuario.VerAverias;
+                    cmd.Parameters.Add(new SqlParameter("idPromotor",SqlDbType.TinyInt))
+                                                        .Value = modeloUsuario.idPromotor;
+                    cmd.Parameters.Add(new SqlParameter("idSegmento",SqlDbType.Int))
+                                                        .Value = modeloUsuario.idSegmento;
+                    cmd.Parameters.Add(new SqlParameter("ProformaWeb",SqlDbType.Bit)).Value = modeloUsuario.ProformaWeb;
+                    cmd.Parameters.Add(new SqlParameter("verMargen",SqlDbType.Bit)).Value = modeloUsuario.verMargen;
+                    cmd.Parameters.Add(new SqlParameter("PermitirRegalia",SqlDbType.Bit)).Value = modeloUsuario.PermitirRegalia;
+                    cmd.Parameters.Add(new SqlParameter("PagarFacturasMasAntiguas",SqlDbType.Bit)).Value = modeloUsuario.PagarFacturasMasAntiguas;
+                    cmd.Parameters.Add(new SqlParameter("Prestamos",SqlDbType.Bit)).Value = modeloUsuario.Prestamos;
                     cmd.Parameters.Add(new SqlParameter("PermitirRealizarTraslados", SqlDbType.Bit)).Value =
                         modeloUsuario.PermitirRealizarTraslados;
                     cmd.Parameters.Add(new SqlParameter("GuardarPrestamos", SqlDbType.Bit)).Value =
@@ -324,6 +390,9 @@ namespace CSNegocios.Servicios
                 });
         }
 
+        
+        
+      
         public DataRow ObtenerUltimoUsuario()
         {
             strSql = "select top (1) * from Usuarios order by FechaCreado desc;";

@@ -35,6 +35,8 @@
             this.btnCerrarSesion = new DevExpress.XtraBars.BarButtonItem();
             this.btnAdministracionDeBodegas = new DevExpress.XtraBars.BarButtonItem();
             this.btnBloqueoDeProductos = new DevExpress.XtraBars.BarButtonItem();
+            this.BtnProveedores = new DevExpress.XtraBars.BarButtonItem();
+            this.btnordendecompras = new DevExpress.XtraBars.BarButtonItem();
             this.rpModulos = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.rpAdministracion = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.btnUsuarios = new DevExpress.XtraBars.BarButtonItem();
@@ -58,6 +60,8 @@
             this.rpAyuda = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.rpgManualDeUsuario = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.btnManualDeUsuario = new DevExpress.XtraBars.BarButtonItem();
+            this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.barUsuario = new DevExpress.XtraBars.BarHeaderItem();
             this.barStaticItem1 = new DevExpress.XtraBars.BarStaticItem();
@@ -88,6 +92,7 @@
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.xtraTabbedMdiManager1 = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
+            this.btnRecalcular = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager1)).BeginInit();
             this.SuspendLayout();
@@ -101,14 +106,18 @@
             this.btnManualDeUsuarioTop,
             this.btnCerrarSesion,
             this.btnAdministracionDeBodegas,
-            this.btnBloqueoDeProductos});
+            this.btnBloqueoDeProductos,
+            this.BtnProveedores,
+            this.btnordendecompras,
+            this.btnRecalcular});
             this.ribbon.Location = new System.Drawing.Point(0, 0);
-            this.ribbon.MaxItemId = 71;
+            this.ribbon.MaxItemId = 77;
             this.ribbon.Name = "ribbon";
             this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.rpModulos,
             this.rpConfiguracion,
-            this.rpAyuda});
+            this.rpAyuda,
+            this.ribbonPage1});
             this.ribbon.QuickToolbarItemLinks.Add(this.btnManualDeUsuarioTop);
             this.ribbon.QuickToolbarItemLinks.Add(this.btnCerrarSesion);
             this.ribbon.Size = new System.Drawing.Size(903, 162);
@@ -147,6 +156,22 @@
             this.btnBloqueoDeProductos.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnBloqueoDeProductos.ImageOptions.SvgImage")));
             this.btnBloqueoDeProductos.Name = "btnBloqueoDeProductos";
             this.btnBloqueoDeProductos.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnBloqueoDeProductos_ItemClick);
+            // 
+            // BtnProveedores
+            // 
+            this.BtnProveedores.Caption = "Proveedores";
+            this.BtnProveedores.Id = 71;
+            this.BtnProveedores.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("BtnProveedores.ImageOptions.SvgImage")));
+            this.BtnProveedores.Name = "BtnProveedores";
+            this.BtnProveedores.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BtnProveedores_ItemClick);
+            // 
+            // btnordendecompras
+            // 
+            this.btnordendecompras.Caption = "Orden de Compra";
+            this.btnordendecompras.Id = 75;
+            this.btnordendecompras.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnordendecompras.ImageOptions.SvgImage")));
+            this.btnordendecompras.Name = "btnordendecompras";
+            this.btnordendecompras.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnordendecompras_ItemClick);
             // 
             // rpModulos
             // 
@@ -344,6 +369,21 @@
             this.btnManualDeUsuario.Name = "btnManualDeUsuario";
             this.btnManualDeUsuario.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.btnManualDeUsuario.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnManualDeUsuario_ItemClick);
+            // 
+            // ribbonPage1
+            // 
+            this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
+            this.ribbonPageGroup1});
+            this.ribbonPage1.Name = "ribbonPage1";
+            this.ribbonPage1.Text = "Opción Catalogo";
+            // 
+            // ribbonPageGroup1
+            // 
+            this.ribbonPageGroup1.ItemLinks.Add(this.BtnProveedores);
+            this.ribbonPageGroup1.ItemLinks.Add(this.btnordendecompras);
+            this.ribbonPageGroup1.ItemLinks.Add(this.btnRecalcular);
+            this.ribbonPageGroup1.Name = "ribbonPageGroup1";
+            this.ribbonPageGroup1.Text = "Informatica";
             // 
             // ribbonStatusBar
             // 
@@ -552,6 +592,14 @@
             this.xtraTabbedMdiManager1.ClosePageButtonShowMode = DevExpress.XtraTab.ClosePageButtonShowMode.InAllTabPageHeaders;
             this.xtraTabbedMdiManager1.MdiParent = this;
             // 
+            // btnRecalcular
+            // 
+            this.btnRecalcular.Caption = "Recalcular";
+            this.btnRecalcular.Id = 76;
+            this.btnRecalcular.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem6.ImageOptions.SvgImage")));
+            this.btnRecalcular.Name = "btnRecalcular";
+            this.btnRecalcular.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnRecalcular_ItemClick);
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -636,5 +684,10 @@
         private DevExpress.XtraBars.BarButtonItem btnSucursales;
         private DevExpress.XtraBars.BarButtonItem btnAdministracionDeBodegas;
         private DevExpress.XtraBars.BarButtonItem btnBloqueoDeProductos;
+        private DevExpress.XtraBars.BarButtonItem BtnProveedores;
+        private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage1;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
+        private DevExpress.XtraBars.BarButtonItem btnordendecompras;
+        private DevExpress.XtraBars.BarButtonItem btnRecalcular;
     }
 }

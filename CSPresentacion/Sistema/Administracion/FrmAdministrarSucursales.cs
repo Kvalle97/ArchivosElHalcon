@@ -41,6 +41,7 @@ namespace CSPresentacion.Sistema.Administracion
 
             _childInstance.MostrarBotones(true, Opciones.Nuevo, Opciones.Guardar);
 
+       
             return _childInstance;
         }
 

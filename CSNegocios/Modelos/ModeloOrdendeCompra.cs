@@ -24,16 +24,12 @@ namespace CSNegocios.Modelos
         public string NoRuc { get; set; }
         public int ProveedorCodigo { get; set; }
         public string ProveedorDescripcion { get; set; }
-        public string Proveedorconcodigo => string.Concat(NoRuc, "-- ", ProveedorDescripcion);
         public int SucursalOrigenCodigo { get; set; }
         public string SucursalOrigen =>
            string.Concat(SucursalOrigenCodigo.ToString("SUCURSAL HALCÓN CASA MATRIZ"));
         public bool Cerrado { get; set; }
         public decimal Tc { get; set; } = 0;
         public string Contacto { get; set; }
-        public string NoContacto { get; set; }
-        public string Contactoconcell => string.Concat(Contacto, "-- ", NoContacto);
-        public string Codigop { get; set; }
 
 
     }

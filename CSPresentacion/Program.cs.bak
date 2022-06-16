@@ -14,7 +14,6 @@ namespace CSPresentacion
         [STAThread]
         private static void Main()
         {
-            DevExpress.ExpressApp.FrameworkSettings.DefaultSettingsCompatibilityMode = DevExpress.ExpressApp.FrameworkSettingsCompatibilityMode.v20_1;
             if (Settings.Default.UpgradeRequired)
             {
                 Settings.Default.Upgrade();

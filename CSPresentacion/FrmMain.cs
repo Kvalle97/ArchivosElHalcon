@@ -10,7 +10,9 @@ using CSNegocios.Servicios;
 using CSPresentacion.Properties;
 using CSPresentacion.Sistema.Administracion;
 using CSPresentacion.Sistema.Administracion.Bodega;
+using CSPresentacion.Sistema.Administracion.OpcionCatalogo;
 using CSPresentacion.Sistema.General;
+using CSPresentacion.Sistema.Opcion_Catalogo;
 using CSPresentacion.Sistema.Utilidades;
 using DevExpress.LookAndFeel;
 using DevExpress.XtraBars;
@@ -417,7 +419,7 @@ namespace CSPresentacion
 
         private void btnSucursales_ItemClick(object sender, ItemClickEventArgs e)
         {
-            MostrarComoDialog(Sistema.Administracion.FrmAdministrarSucursales.Instance(), true);
+            MostrarComoDialog(FrmAdministrarSucursales.Instance(), true);
         }  
 
         private void btnAdministracionDeBodegas_ItemClick(object sender, ItemClickEventArgs e)
@@ -429,8 +431,25 @@ namespace CSPresentacion
         {
             MostrarComoDialog(FrmBloqueoDeMargen.Instance(),true);
         }
+
+
         #endregion
 
-       
+        private void BtnProveedores_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            //MostrarComoDialog(FrmProveedoresInformatica.Instance(),true);
+            AgregarAlMdi(FrmProveedoresInformatica.Instance());
+        }
+
+        private void btnordendecompras_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            AgregarAlMdi(Ordendecompra.Instance());
+
+        }
+
+        private void btnRecalcular_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            AgregarAlMdi(FrmRecalcular.Instance());
+        }
     }
 }

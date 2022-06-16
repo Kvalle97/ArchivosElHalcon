@@ -30,14 +30,15 @@
         {
             this.components = new System.ComponentModel.Container();
             this.xtraScrollableControl1 = new DevExpress.XtraEditors.XtraScrollableControl();
-            this.tabControlUsuario = new DevExpress.XtraTab.XtraTabControl();
-            this.tabDatosGenerales = new DevExpress.XtraTab.XtraTabPage();
             this.gcAcceso = new DevExpress.XtraGrid.GridControl();
             this.gvAcceso = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.tabControlUsuario = new DevExpress.XtraTab.XtraTabControl();
+            this.tabDatosGenerales = new DevExpress.XtraTab.XtraTabPage();
             this.ckComboSucursalesAsociadas = new DevExpress.XtraEditors.CheckedComboBoxEdit();
             this.label4 = new System.Windows.Forms.Label();
             this.ckbActivo = new DevExpress.XtraEditors.CheckEdit();
             this.ckComboRoles = new DevExpress.XtraEditors.CheckedComboBoxEdit();
+            this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.lueNievelDeAcceso = new DevExpress.XtraEditors.LookUpEdit();
             this.label2 = new System.Windows.Forms.Label();
@@ -47,11 +48,22 @@
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.txtApellidos = new DevExpress.XtraEditors.TextEdit();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
+            this.txtEmail = new DevExpress.XtraEditors.TextEdit();
             this.txtNombres = new DevExpress.XtraEditors.TextEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.txtUsuario = new DevExpress.XtraEditors.TextEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.tabOpcionesGenerales = new DevExpress.XtraTab.XtraTabPage();
+            this.ckVeraveria = new DevExpress.XtraEditors.CheckEdit();
+            this.ckVentaproyecto = new DevExpress.XtraEditors.CheckEdit();
+            this.ckGerenciacomercial = new DevExpress.XtraEditors.CheckEdit();
+            this.ckProformaWeb = new DevExpress.XtraEditors.CheckEdit();
+            this.ckPermitirRegalias = new DevExpress.XtraEditors.CheckEdit();
+            this.ckVerMargen = new DevExpress.XtraEditors.CheckEdit();
+            this.ckPagarfacturasA = new DevExpress.XtraEditors.CheckEdit();
+            this.ckPonermeta = new DevExpress.XtraEditors.CheckEdit();
+            this.ckTienemeta = new DevExpress.XtraEditors.CheckEdit();
+            this.ckVentaCompartida = new DevExpress.XtraEditors.CheckEdit();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.ckGirarPreIngresos = new DevExpress.XtraEditors.CheckEdit();
             this.ckPermitirDepCompras = new DevExpress.XtraEditors.CheckEdit();
@@ -59,9 +71,13 @@
             this.ckAplicarPrestamos = new DevExpress.XtraEditors.CheckEdit();
             this.ckGuardarPrestamos = new DevExpress.XtraEditors.CheckEdit();
             this.ckPermitirRealizarTraslados = new DevExpress.XtraEditors.CheckEdit();
+            this.tiposegmento = new DevExpress.XtraEditors.LookUpEdit();
+            this.tipopromotor = new DevExpress.XtraEditors.LookUpEdit();
             this.lueTipoDeDescuento = new DevExpress.XtraEditors.LookUpEdit();
+            this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
-            this.ckProyecto = new DevExpress.XtraEditors.CheckEdit();
+            this.ckPrestamo = new DevExpress.XtraEditors.CheckEdit();
             this.ckCartera = new DevExpress.XtraEditors.CheckEdit();
             this.ckProveedores = new DevExpress.XtraEditors.CheckEdit();
             this.ckProduccion = new DevExpress.XtraEditors.CheckEdit();
@@ -89,17 +105,18 @@
             this.btnNuevoFirma = new DevExpress.XtraEditors.SimpleButton();
             this.btnQuitarNuevaFirma = new DevExpress.XtraEditors.SimpleButton();
             this.peVistaPreviaFirma = new DevExpress.XtraEditors.PictureEdit();
+            this.lstBoxFirmas = new DevExpress.XtraEditors.ListBoxControl();
             this.gcUsuarios = new DevExpress.XtraGrid.GridControl();
             this.gvUsuarios = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.alertControl = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
             this.dxErrorProvider = new DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider(this.components);
-            this.lstBoxFirmas = new DevExpress.XtraEditors.ListBoxControl();
+            this.xtraOpenFileDialog1 = new DevExpress.XtraEditors.XtraOpenFileDialog(this.components);
             this.xtraScrollableControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gcAcceso)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvAcceso)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabControlUsuario)).BeginInit();
             this.tabControlUsuario.SuspendLayout();
             this.tabDatosGenerales.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gcAcceso)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvAcceso)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ckComboSucursalesAsociadas.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ckbActivo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ckComboRoles.Properties)).BeginInit();
@@ -107,9 +124,20 @@
             ((System.ComponentModel.ISupportInitialize)(this.lueSucursalDeOrigen.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTelefono.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtApellidos.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtEmail.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNombres.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtUsuario.Properties)).BeginInit();
             this.tabOpcionesGenerales.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ckVeraveria.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ckVentaproyecto.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ckGerenciacomercial.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ckProformaWeb.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ckPermitirRegalias.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ckVerMargen.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ckPagarfacturasA.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ckPonermeta.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ckTienemeta.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ckVentaCompartida.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ckGirarPreIngresos.Properties)).BeginInit();
@@ -118,8 +146,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.ckAplicarPrestamos.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ckGuardarPrestamos.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ckPermitirRealizarTraslados.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tiposegmento.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tipopromotor.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueTipoDeDescuento.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ckProyecto.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ckPrestamo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ckCartera.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ckProveedores.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ckProduccion.Properties)).BeginInit();
@@ -139,66 +169,29 @@
             this.tabAdministrarFirmas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtNombreFirma.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.peVistaPreviaFirma.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lstBoxFirmas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcUsuarios)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvUsuarios)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxErrorProvider)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lstBoxFirmas)).BeginInit();
             this.SuspendLayout();
             // 
             // xtraScrollableControl1
             // 
+            this.xtraScrollableControl1.Controls.Add(this.gcAcceso);
             this.xtraScrollableControl1.Controls.Add(this.tabControlUsuario);
             this.xtraScrollableControl1.Controls.Add(this.gcUsuarios);
             this.xtraScrollableControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.xtraScrollableControl1.Location = new System.Drawing.Point(0, 28);
             this.xtraScrollableControl1.Name = "xtraScrollableControl1";
-            this.xtraScrollableControl1.Size = new System.Drawing.Size(1137, 469);
+            this.xtraScrollableControl1.Size = new System.Drawing.Size(1137, 517);
             this.xtraScrollableControl1.TabIndex = 4;
-            // 
-            // tabControlUsuario
-            // 
-            this.tabControlUsuario.Location = new System.Drawing.Point(3, 6);
-            this.tabControlUsuario.Name = "tabControlUsuario";
-            this.tabControlUsuario.SelectedTabPage = this.tabDatosGenerales;
-            this.tabControlUsuario.Size = new System.Drawing.Size(522, 451);
-            this.tabControlUsuario.TabIndex = 1;
-            this.tabControlUsuario.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
-            this.tabDatosGenerales,
-            this.tabOpcionesGenerales,
-            this.tabCorreos,
-            this.tabCambioDeContrasenia,
-            this.tabAdministrarFirmas});
-            // 
-            // tabDatosGenerales
-            // 
-            this.tabDatosGenerales.Controls.Add(this.gcAcceso);
-            this.tabDatosGenerales.Controls.Add(this.ckComboSucursalesAsociadas);
-            this.tabDatosGenerales.Controls.Add(this.label4);
-            this.tabDatosGenerales.Controls.Add(this.ckbActivo);
-            this.tabDatosGenerales.Controls.Add(this.ckComboRoles);
-            this.tabDatosGenerales.Controls.Add(this.label3);
-            this.tabDatosGenerales.Controls.Add(this.lueNievelDeAcceso);
-            this.tabDatosGenerales.Controls.Add(this.label2);
-            this.tabDatosGenerales.Controls.Add(this.lueSucursalDeOrigen);
-            this.tabDatosGenerales.Controls.Add(this.label1);
-            this.tabDatosGenerales.Controls.Add(this.txtTelefono);
-            this.tabDatosGenerales.Controls.Add(this.labelControl4);
-            this.tabDatosGenerales.Controls.Add(this.txtApellidos);
-            this.tabDatosGenerales.Controls.Add(this.labelControl3);
-            this.tabDatosGenerales.Controls.Add(this.txtNombres);
-            this.tabDatosGenerales.Controls.Add(this.labelControl2);
-            this.tabDatosGenerales.Controls.Add(this.txtUsuario);
-            this.tabDatosGenerales.Controls.Add(this.labelControl1);
-            this.tabDatosGenerales.Name = "tabDatosGenerales";
-            this.tabDatosGenerales.Size = new System.Drawing.Size(520, 422);
-            this.tabDatosGenerales.Text = "Datos genrales";
             // 
             // gcAcceso
             // 
-            this.gcAcceso.Location = new System.Drawing.Point(17, 208);
+            this.gcAcceso.Location = new System.Drawing.Point(3, 294);
             this.gcAcceso.MainView = this.gvAcceso;
             this.gcAcceso.Name = "gcAcceso";
-            this.gcAcceso.Size = new System.Drawing.Size(500, 211);
+            this.gcAcceso.Size = new System.Drawing.Size(521, 211);
             this.gcAcceso.TabIndex = 26;
             this.gcAcceso.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvAcceso});
@@ -213,6 +206,46 @@
             this.gvAcceso.OptionsView.ShowGroupPanel = false;
             this.gvAcceso.OptionsView.ShowViewCaption = true;
             this.gvAcceso.ViewCaption = "Puede acceder a";
+            // 
+            // tabControlUsuario
+            // 
+            this.tabControlUsuario.Location = new System.Drawing.Point(3, 6);
+            this.tabControlUsuario.Name = "tabControlUsuario";
+            this.tabControlUsuario.SelectedTabPage = this.tabDatosGenerales;
+            this.tabControlUsuario.Size = new System.Drawing.Size(522, 284);
+            this.tabControlUsuario.TabIndex = 1;
+            this.tabControlUsuario.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
+            this.tabDatosGenerales,
+            this.tabOpcionesGenerales,
+            this.tabCorreos,
+            this.tabCambioDeContrasenia,
+            this.tabAdministrarFirmas});
+            // 
+            // tabDatosGenerales
+            // 
+            this.tabDatosGenerales.AutoScroll = true;
+            this.tabDatosGenerales.Controls.Add(this.ckComboSucursalesAsociadas);
+            this.tabDatosGenerales.Controls.Add(this.label4);
+            this.tabDatosGenerales.Controls.Add(this.ckbActivo);
+            this.tabDatosGenerales.Controls.Add(this.ckComboRoles);
+            this.tabDatosGenerales.Controls.Add(this.label5);
+            this.tabDatosGenerales.Controls.Add(this.label3);
+            this.tabDatosGenerales.Controls.Add(this.lueNievelDeAcceso);
+            this.tabDatosGenerales.Controls.Add(this.label2);
+            this.tabDatosGenerales.Controls.Add(this.lueSucursalDeOrigen);
+            this.tabDatosGenerales.Controls.Add(this.label1);
+            this.tabDatosGenerales.Controls.Add(this.txtTelefono);
+            this.tabDatosGenerales.Controls.Add(this.labelControl4);
+            this.tabDatosGenerales.Controls.Add(this.txtApellidos);
+            this.tabDatosGenerales.Controls.Add(this.labelControl3);
+            this.tabDatosGenerales.Controls.Add(this.txtEmail);
+            this.tabDatosGenerales.Controls.Add(this.txtNombres);
+            this.tabDatosGenerales.Controls.Add(this.labelControl2);
+            this.tabDatosGenerales.Controls.Add(this.txtUsuario);
+            this.tabDatosGenerales.Controls.Add(this.labelControl1);
+            this.tabDatosGenerales.Name = "tabDatosGenerales";
+            this.tabDatosGenerales.Size = new System.Drawing.Size(520, 255);
+            this.tabDatosGenerales.Text = "Datos Generales";
             // 
             // ckComboSucursalesAsociadas
             // 
@@ -242,17 +275,26 @@
             // 
             // ckComboRoles
             // 
-            this.ckComboRoles.Location = new System.Drawing.Point(17, 173);
+            this.ckComboRoles.Location = new System.Drawing.Point(17, 223);
             this.ckComboRoles.Name = "ckComboRoles";
             this.ckComboRoles.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.ckComboRoles.Size = new System.Drawing.Size(179, 20);
             this.ckComboRoles.TabIndex = 13;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(14, 157);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(42, 13);
+            this.label5.TabIndex = 12;
+            this.label5.Text = "Correo";
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(14, 157);
+            this.label3.Location = new System.Drawing.Point(14, 207);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(96, 13);
             this.label3.TabIndex = 12;
@@ -326,6 +368,14 @@
             this.labelControl3.TabIndex = 4;
             this.labelControl3.Text = "Apellidos";
             // 
+            // txtEmail
+            // 
+            this.txtEmail.Location = new System.Drawing.Point(17, 173);
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtEmail.Size = new System.Drawing.Size(179, 20);
+            this.txtEmail.TabIndex = 3;
+            // 
             // txtNombres
             // 
             this.txtNombres.Location = new System.Drawing.Point(17, 78);
@@ -360,10 +410,24 @@
             // 
             // tabOpcionesGenerales
             // 
+            this.tabOpcionesGenerales.Controls.Add(this.ckVeraveria);
+            this.tabOpcionesGenerales.Controls.Add(this.ckVentaproyecto);
+            this.tabOpcionesGenerales.Controls.Add(this.ckGerenciacomercial);
+            this.tabOpcionesGenerales.Controls.Add(this.ckProformaWeb);
+            this.tabOpcionesGenerales.Controls.Add(this.ckPermitirRegalias);
+            this.tabOpcionesGenerales.Controls.Add(this.ckVerMargen);
+            this.tabOpcionesGenerales.Controls.Add(this.ckPagarfacturasA);
+            this.tabOpcionesGenerales.Controls.Add(this.ckPonermeta);
+            this.tabOpcionesGenerales.Controls.Add(this.ckTienemeta);
+            this.tabOpcionesGenerales.Controls.Add(this.ckVentaCompartida);
             this.tabOpcionesGenerales.Controls.Add(this.groupControl1);
+            this.tabOpcionesGenerales.Controls.Add(this.tiposegmento);
+            this.tabOpcionesGenerales.Controls.Add(this.tipopromotor);
             this.tabOpcionesGenerales.Controls.Add(this.lueTipoDeDescuento);
+            this.tabOpcionesGenerales.Controls.Add(this.labelControl10);
+            this.tabOpcionesGenerales.Controls.Add(this.labelControl9);
             this.tabOpcionesGenerales.Controls.Add(this.labelControl5);
-            this.tabOpcionesGenerales.Controls.Add(this.ckProyecto);
+            this.tabOpcionesGenerales.Controls.Add(this.ckPrestamo);
             this.tabOpcionesGenerales.Controls.Add(this.ckCartera);
             this.tabOpcionesGenerales.Controls.Add(this.ckProveedores);
             this.tabOpcionesGenerales.Controls.Add(this.ckProduccion);
@@ -374,8 +438,90 @@
             this.tabOpcionesGenerales.Controls.Add(this.ckCaja);
             this.tabOpcionesGenerales.Controls.Add(this.ckVentas);
             this.tabOpcionesGenerales.Name = "tabOpcionesGenerales";
-            this.tabOpcionesGenerales.Size = new System.Drawing.Size(520, 422);
+            this.tabOpcionesGenerales.Size = new System.Drawing.Size(520, 255);
             this.tabOpcionesGenerales.Text = "Opciones Generales";
+            // 
+            // ckVeraveria
+            // 
+            this.ckVeraveria.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ckVeraveria.Location = new System.Drawing.Point(130, 145);
+            this.ckVeraveria.Name = "ckVeraveria";
+            this.ckVeraveria.Properties.Caption = "Ver Averias";
+            this.ckVeraveria.Size = new System.Drawing.Size(81, 20);
+            this.ckVeraveria.TabIndex = 13;
+            // 
+            // ckVentaproyecto
+            // 
+            this.ckVentaproyecto.Location = new System.Drawing.Point(5, 115);
+            this.ckVentaproyecto.Name = "ckVentaproyecto";
+            this.ckVentaproyecto.Properties.Caption = "Venta  Proyecto";
+            this.ckVentaproyecto.Size = new System.Drawing.Size(117, 20);
+            this.ckVentaproyecto.TabIndex = 13;
+            // 
+            // ckGerenciacomercial
+            // 
+            this.ckGerenciacomercial.Location = new System.Drawing.Point(5, 146);
+            this.ckGerenciacomercial.Name = "ckGerenciacomercial";
+            this.ckGerenciacomercial.Properties.Caption = "Gerencia Comercial";
+            this.ckGerenciacomercial.Size = new System.Drawing.Size(124, 20);
+            this.ckGerenciacomercial.TabIndex = 13;
+            // 
+            // ckProformaWeb
+            // 
+            this.ckProformaWeb.Location = new System.Drawing.Point(216, 115);
+            this.ckProformaWeb.Name = "ckProformaWeb";
+            this.ckProformaWeb.Properties.Caption = "Proforma Web";
+            this.ckProformaWeb.Size = new System.Drawing.Size(98, 20);
+            this.ckProformaWeb.TabIndex = 13;
+            // 
+            // ckPermitirRegalias
+            // 
+            this.ckPermitirRegalias.Location = new System.Drawing.Point(216, 82);
+            this.ckPermitirRegalias.Name = "ckPermitirRegalias";
+            this.ckPermitirRegalias.Properties.Caption = "Permitir Regalias";
+            this.ckPermitirRegalias.Size = new System.Drawing.Size(107, 20);
+            this.ckPermitirRegalias.TabIndex = 13;
+            // 
+            // ckVerMargen
+            // 
+            this.ckVerMargen.Location = new System.Drawing.Point(331, 82);
+            this.ckVerMargen.Name = "ckVerMargen";
+            this.ckVerMargen.Properties.Caption = "Ver Margen";
+            this.ckVerMargen.Size = new System.Drawing.Size(124, 20);
+            this.ckVerMargen.TabIndex = 13;
+            // 
+            // ckPagarfacturasA
+            // 
+            this.ckPagarfacturasA.Location = new System.Drawing.Point(216, 145);
+            this.ckPagarfacturasA.Name = "ckPagarfacturasA";
+            this.ckPagarfacturasA.Properties.Caption = "Pagar Facturas Antiguas";
+            this.ckPagarfacturasA.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Default;
+            this.ckPagarfacturasA.Size = new System.Drawing.Size(144, 20);
+            this.ckPagarfacturasA.TabIndex = 13;
+            // 
+            // ckPonermeta
+            // 
+            this.ckPonermeta.Location = new System.Drawing.Point(130, 84);
+            this.ckPonermeta.Name = "ckPonermeta";
+            this.ckPonermeta.Properties.Caption = "Poner Meta ";
+            this.ckPonermeta.Size = new System.Drawing.Size(92, 20);
+            this.ckPonermeta.TabIndex = 13;
+            // 
+            // ckTienemeta
+            // 
+            this.ckTienemeta.Location = new System.Drawing.Point(130, 116);
+            this.ckTienemeta.Name = "ckTienemeta";
+            this.ckTienemeta.Properties.Caption = "Tiene Meta";
+            this.ckTienemeta.Size = new System.Drawing.Size(92, 20);
+            this.ckTienemeta.TabIndex = 13;
+            // 
+            // ckVentaCompartida
+            // 
+            this.ckVentaCompartida.Location = new System.Drawing.Point(5, 84);
+            this.ckVentaCompartida.Name = "ckVentaCompartida";
+            this.ckVentaCompartida.Properties.Caption = "Venta Compartida ";
+            this.ckVentaCompartida.Size = new System.Drawing.Size(124, 20);
+            this.ckVentaCompartida.TabIndex = 13;
             // 
             // groupControl1
             // 
@@ -385,7 +531,7 @@
             this.groupControl1.Controls.Add(this.ckAplicarPrestamos);
             this.groupControl1.Controls.Add(this.ckGuardarPrestamos);
             this.groupControl1.Controls.Add(this.ckPermitirRealizarTraslados);
-            this.groupControl1.Location = new System.Drawing.Point(8, 154);
+            this.groupControl1.Location = new System.Drawing.Point(8, 233);
             this.groupControl1.Name = "groupControl1";
             this.groupControl1.Size = new System.Drawing.Size(496, 157);
             this.groupControl1.TabIndex = 12;
@@ -439,34 +585,68 @@
             this.ckPermitirRealizarTraslados.Size = new System.Drawing.Size(157, 20);
             this.ckPermitirRealizarTraslados.TabIndex = 0;
             // 
+            // tiposegmento
+            // 
+            this.tiposegmento.Location = new System.Drawing.Point(321, 207);
+            this.tiposegmento.Name = "tiposegmento";
+            this.tiposegmento.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.tiposegmento.Size = new System.Drawing.Size(130, 20);
+            this.tiposegmento.TabIndex = 11;
+            // 
+            // tipopromotor
+            // 
+            this.tipopromotor.Location = new System.Drawing.Point(159, 207);
+            this.tipopromotor.Name = "tipopromotor";
+            this.tipopromotor.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.tipopromotor.Size = new System.Drawing.Size(130, 20);
+            this.tipopromotor.TabIndex = 11;
+            // 
             // lueTipoDeDescuento
             // 
-            this.lueTipoDeDescuento.Location = new System.Drawing.Point(8, 118);
+            this.lueTipoDeDescuento.Location = new System.Drawing.Point(8, 207);
             this.lueTipoDeDescuento.Name = "lueTipoDeDescuento";
             this.lueTipoDeDescuento.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.lueTipoDeDescuento.Size = new System.Drawing.Size(156, 20);
+            this.lueTipoDeDescuento.Size = new System.Drawing.Size(124, 20);
             this.lueTipoDeDescuento.TabIndex = 11;
+            // 
+            // labelControl10
+            // 
+            this.labelControl10.Location = new System.Drawing.Point(327, 188);
+            this.labelControl10.Name = "labelControl10";
+            this.labelControl10.Size = new System.Drawing.Size(52, 13);
+            this.labelControl10.TabIndex = 10;
+            this.labelControl10.Text = "Segmento";
+            // 
+            // labelControl9
+            // 
+            this.labelControl9.Location = new System.Drawing.Point(164, 188);
+            this.labelControl9.Name = "labelControl9";
+            this.labelControl9.Size = new System.Drawing.Size(48, 13);
+            this.labelControl9.TabIndex = 10;
+            this.labelControl9.Text = "Promotor";
             // 
             // labelControl5
             // 
-            this.labelControl5.Location = new System.Drawing.Point(8, 98);
+            this.labelControl5.Location = new System.Drawing.Point(8, 188);
             this.labelControl5.Name = "labelControl5";
             this.labelControl5.Size = new System.Drawing.Size(96, 13);
             this.labelControl5.TabIndex = 10;
             this.labelControl5.Text = "Tipo de descuento";
             // 
-            // ckProyecto
+            // ckPrestamo
             // 
-            this.ckProyecto.Location = new System.Drawing.Point(389, 56);
-            this.ckProyecto.Name = "ckProyecto";
-            this.ckProyecto.Properties.Caption = "Proyecto";
-            this.ckProyecto.Size = new System.Drawing.Size(99, 20);
-            this.ckProyecto.TabIndex = 9;
+            this.ckPrestamo.Location = new System.Drawing.Point(432, 54);
+            this.ckPrestamo.Name = "ckPrestamo";
+            this.ckPrestamo.Properties.Caption = "Prestamo";
+            this.ckPrestamo.Size = new System.Drawing.Size(72, 20);
+            this.ckPrestamo.TabIndex = 9;
             // 
             // ckCartera
             // 
-            this.ckCartera.Location = new System.Drawing.Point(389, 19);
+            this.ckCartera.Location = new System.Drawing.Point(432, 19);
             this.ckCartera.Name = "ckCartera";
             this.ckCartera.Properties.Caption = "Cartera";
             this.ckCartera.Size = new System.Drawing.Size(99, 20);
@@ -474,7 +654,7 @@
             // 
             // ckProveedores
             // 
-            this.ckProveedores.Location = new System.Drawing.Point(284, 56);
+            this.ckProveedores.Location = new System.Drawing.Point(331, 51);
             this.ckProveedores.Name = "ckProveedores";
             this.ckProveedores.Properties.Caption = "Proveedores";
             this.ckProveedores.Size = new System.Drawing.Size(99, 20);
@@ -482,7 +662,7 @@
             // 
             // ckProduccion
             // 
-            this.ckProduccion.Location = new System.Drawing.Point(284, 19);
+            this.ckProduccion.Location = new System.Drawing.Point(331, 19);
             this.ckProduccion.Name = "ckProduccion";
             this.ckProduccion.Properties.Caption = "Producción";
             this.ckProduccion.Size = new System.Drawing.Size(99, 20);
@@ -490,7 +670,7 @@
             // 
             // ckAdministracion
             // 
-            this.ckAdministracion.Location = new System.Drawing.Point(179, 56);
+            this.ckAdministracion.Location = new System.Drawing.Point(5, 51);
             this.ckAdministracion.Name = "ckAdministracion";
             this.ckAdministracion.Properties.Caption = "Administración";
             this.ckAdministracion.Size = new System.Drawing.Size(99, 20);
@@ -498,7 +678,7 @@
             // 
             // ckCompras
             // 
-            this.ckCompras.Location = new System.Drawing.Point(179, 19);
+            this.ckCompras.Location = new System.Drawing.Point(216, 19);
             this.ckCompras.Name = "ckCompras";
             this.ckCompras.Properties.Caption = "Compras";
             this.ckCompras.Size = new System.Drawing.Size(99, 20);
@@ -506,7 +686,7 @@
             // 
             // ckBancos
             // 
-            this.ckBancos.Location = new System.Drawing.Point(89, 56);
+            this.ckBancos.Location = new System.Drawing.Point(216, 51);
             this.ckBancos.Name = "ckBancos";
             this.ckBancos.Properties.Caption = "Bancos";
             this.ckBancos.Size = new System.Drawing.Size(75, 20);
@@ -514,7 +694,7 @@
             // 
             // ckInventario
             // 
-            this.ckInventario.Location = new System.Drawing.Point(89, 19);
+            this.ckInventario.Location = new System.Drawing.Point(130, 19);
             this.ckInventario.Name = "ckInventario";
             this.ckInventario.Properties.Caption = "Inventario";
             this.ckInventario.Size = new System.Drawing.Size(75, 20);
@@ -522,7 +702,7 @@
             // 
             // ckCaja
             // 
-            this.ckCaja.Location = new System.Drawing.Point(8, 56);
+            this.ckCaja.Location = new System.Drawing.Point(130, 51);
             this.ckCaja.Name = "ckCaja";
             this.ckCaja.Properties.Caption = "Caja";
             this.ckCaja.Size = new System.Drawing.Size(75, 20);
@@ -530,7 +710,7 @@
             // 
             // ckVentas
             // 
-            this.ckVentas.Location = new System.Drawing.Point(8, 19);
+            this.ckVentas.Location = new System.Drawing.Point(5, 19);
             this.ckVentas.Name = "ckVentas";
             this.ckVentas.Properties.Caption = "Ventas";
             this.ckVentas.Size = new System.Drawing.Size(75, 20);
@@ -540,7 +720,7 @@
             // 
             this.tabCorreos.Controls.Add(this.gcCorreos);
             this.tabCorreos.Name = "tabCorreos";
-            this.tabCorreos.Size = new System.Drawing.Size(520, 422);
+            this.tabCorreos.Size = new System.Drawing.Size(520, 255);
             this.tabCorreos.Text = "Correos";
             // 
             // gcCorreos
@@ -549,7 +729,7 @@
             this.gcCorreos.Location = new System.Drawing.Point(0, 0);
             this.gcCorreos.MainView = this.gvCorreos;
             this.gcCorreos.Name = "gcCorreos";
-            this.gcCorreos.Size = new System.Drawing.Size(520, 422);
+            this.gcCorreos.Size = new System.Drawing.Size(520, 255);
             this.gcCorreos.TabIndex = 0;
             this.gcCorreos.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvCorreos});
@@ -574,7 +754,7 @@
             this.tabCambioDeContrasenia.Controls.Add(this.labelControl7);
             this.tabCambioDeContrasenia.Name = "tabCambioDeContrasenia";
             this.tabCambioDeContrasenia.PageEnabled = false;
-            this.tabCambioDeContrasenia.Size = new System.Drawing.Size(520, 422);
+            this.tabCambioDeContrasenia.Size = new System.Drawing.Size(520, 255);
             this.tabCambioDeContrasenia.Text = "Cambio de contraseña";
             // 
             // btnGenerarContrasenia
@@ -646,7 +826,7 @@
             this.tabAdministrarFirmas.Controls.Add(this.lstBoxFirmas);
             this.tabAdministrarFirmas.Name = "tabAdministrarFirmas";
             this.tabAdministrarFirmas.PageEnabled = false;
-            this.tabAdministrarFirmas.Size = new System.Drawing.Size(520, 422);
+            this.tabAdministrarFirmas.Size = new System.Drawing.Size(520, 255);
             this.tabAdministrarFirmas.Text = "Administrar firmas";
             // 
             // txtNombreFirma
@@ -700,6 +880,14 @@
             this.peVistaPreviaFirma.Size = new System.Drawing.Size(324, 118);
             this.peVistaPreviaFirma.TabIndex = 1;
             // 
+            // lstBoxFirmas
+            // 
+            this.lstBoxFirmas.Location = new System.Drawing.Point(8, 25);
+            this.lstBoxFirmas.Name = "lstBoxFirmas";
+            this.lstBoxFirmas.Size = new System.Drawing.Size(169, 213);
+            this.lstBoxFirmas.TabIndex = 0;
+            this.lstBoxFirmas.SelectedValueChanged += new System.EventHandler(this.lstBoxFirmas_SelectedValueChanged);
+            // 
             // gcUsuarios
             // 
             this.gcUsuarios.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -708,7 +896,7 @@
             this.gcUsuarios.Location = new System.Drawing.Point(531, 6);
             this.gcUsuarios.MainView = this.gvUsuarios;
             this.gcUsuarios.Name = "gcUsuarios";
-            this.gcUsuarios.Size = new System.Drawing.Size(594, 451);
+            this.gcUsuarios.Size = new System.Drawing.Size(594, 499);
             this.gcUsuarios.TabIndex = 0;
             this.gcUsuarios.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvUsuarios});
@@ -736,31 +924,27 @@
             // 
             this.dxErrorProvider.ContainerControl = this;
             // 
-            // lstBoxFirmas
+            // xtraOpenFileDialog1
             // 
-            this.lstBoxFirmas.Location = new System.Drawing.Point(8, 25);
-            this.lstBoxFirmas.Name = "lstBoxFirmas";
-            this.lstBoxFirmas.Size = new System.Drawing.Size(169, 213);
-            this.lstBoxFirmas.TabIndex = 0;
-            this.lstBoxFirmas.SelectedValueChanged += new System.EventHandler(this.lstBoxFirmas_SelectedValueChanged);
+            this.xtraOpenFileDialog1.FileName = "xtraOpenFileDialog1";
             // 
             // FrmUsuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1137, 497);
+            this.ClientSize = new System.Drawing.Size(1137, 545);
             this.Controls.Add(this.xtraScrollableControl1);
             this.Name = "FrmUsuarios";
             this.Text = "Usuarios del sistema";
             this.Load += new System.EventHandler(this.FrmUsuarios_Load);
             this.Controls.SetChildIndex(this.xtraScrollableControl1, 0);
             this.xtraScrollableControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gcAcceso)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvAcceso)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabControlUsuario)).EndInit();
             this.tabControlUsuario.ResumeLayout(false);
             this.tabDatosGenerales.ResumeLayout(false);
             this.tabDatosGenerales.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gcAcceso)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvAcceso)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ckComboSucursalesAsociadas.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ckbActivo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ckComboRoles.Properties)).EndInit();
@@ -768,10 +952,21 @@
             ((System.ComponentModel.ISupportInitialize)(this.lueSucursalDeOrigen.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTelefono.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtApellidos.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtEmail.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNombres.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtUsuario.Properties)).EndInit();
             this.tabOpcionesGenerales.ResumeLayout(false);
             this.tabOpcionesGenerales.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ckVeraveria.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ckVentaproyecto.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ckGerenciacomercial.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ckProformaWeb.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ckPermitirRegalias.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ckVerMargen.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ckPagarfacturasA.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ckPonermeta.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ckTienemeta.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ckVentaCompartida.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ckGirarPreIngresos.Properties)).EndInit();
@@ -780,8 +975,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.ckAplicarPrestamos.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ckGuardarPrestamos.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ckPermitirRealizarTraslados.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tiposegmento.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tipopromotor.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueTipoDeDescuento.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ckProyecto.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ckPrestamo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ckCartera.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ckProveedores.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ckProduccion.Properties)).EndInit();
@@ -803,10 +1000,10 @@
             this.tabAdministrarFirmas.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtNombreFirma.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.peVistaPreviaFirma.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lstBoxFirmas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcUsuarios)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvUsuarios)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxErrorProvider)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lstBoxFirmas)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -841,7 +1038,7 @@
         private DevExpress.XtraEditors.CheckEdit ckInventario;
         private DevExpress.XtraEditors.CheckEdit ckCaja;
         private DevExpress.XtraEditors.CheckEdit ckVentas;
-        private DevExpress.XtraEditors.CheckEdit ckProyecto;
+        private DevExpress.XtraEditors.CheckEdit ckPrestamo;
         private DevExpress.XtraEditors.CheckEdit ckCartera;
         private DevExpress.XtraEditors.CheckEdit ckProveedores;
         private DevExpress.XtraEditors.CheckEdit ckProduccion;
@@ -879,5 +1076,22 @@
         private DevExpress.XtraEditors.LabelControl labelControl6;
         private DevExpress.XtraEditors.TextEdit txtNombreFirma;
         private DevExpress.XtraEditors.ListBoxControl lstBoxFirmas;
+        private DevExpress.XtraEditors.CheckEdit ckVentaCompartida;
+        private DevExpress.XtraEditors.CheckEdit ckVeraveria;
+        private DevExpress.XtraEditors.CheckEdit ckVentaproyecto;
+        private DevExpress.XtraEditors.CheckEdit ckGerenciacomercial;
+        private DevExpress.XtraEditors.CheckEdit ckProformaWeb;
+        private DevExpress.XtraEditors.CheckEdit ckPermitirRegalias;
+        private DevExpress.XtraEditors.CheckEdit ckVerMargen;
+        private DevExpress.XtraEditors.CheckEdit ckPagarfacturasA;
+        private DevExpress.XtraEditors.CheckEdit ckPonermeta;
+        private DevExpress.XtraEditors.CheckEdit ckTienemeta;
+        private DevExpress.XtraEditors.LookUpEdit tipopromotor;
+        private DevExpress.XtraEditors.LabelControl labelControl9;
+        private DevExpress.XtraEditors.LookUpEdit tiposegmento;
+        private DevExpress.XtraEditors.LabelControl labelControl10;
+        private DevExpress.XtraEditors.XtraOpenFileDialog xtraOpenFileDialog1;
+        private System.Windows.Forms.Label label5;
+        private DevExpress.XtraEditors.TextEdit txtEmail;
     }
 }

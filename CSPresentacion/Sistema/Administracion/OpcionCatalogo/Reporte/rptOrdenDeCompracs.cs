@@ -23,7 +23,7 @@ namespace CSPresentacion.Sistema.Administracion.OpcionCatalogo.Reporte
                 xrTableCosto.TextFormatString = "US$ {0:n2}";
                 xrTableCantidad.TextFormatString = "{0:n2}";
                 xrTableSubtotalU.TextFormatString = "US$ {0:n2}";
-                xrTableDesc.TextFormatString = "US$ {0:n2}";
+               
             }
             else
             {
@@ -35,7 +35,7 @@ namespace CSPresentacion.Sistema.Administracion.OpcionCatalogo.Reporte
                 xrTableCosto.TextFormatString = "C$ {0:n2}";
                 xrTableCantidad.TextFormatString = "{0:n2}";
                 xrTableSubtotalU.TextFormatString = "C$ {0:n2}";
-                xrTableDesc.TextFormatString = "C$ {0:n2}";
+          
 
 
             }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
+using CSNegocios.Modelos;
 using CSNegocios.Servicios;
 using CSPresentacion.Sistema.Utilidades;
 using DevExpress.Utils;
@@ -17,6 +18,7 @@ namespace CSPresentacion.Sistema.General.Buscador
     {
         private readonly ServicioDocumentos servicioDocumentos = new ServicioDocumentos();
 
+
         /// <summary>
         ///     Tipo buscador
         /// </summary>
@@ -26,8 +28,11 @@ namespace CSPresentacion.Sistema.General.Buscador
             /// Crea un dialogo que muestra las brechas del buscador
             /// </summary>
             BrechasEnTipoDoc,
-            Dashboards
+            Dashboards,
+            Proveedor,
+            OrdenesDeCompra
         }
+
 
 
         private bool multiSelect;
@@ -38,6 +43,7 @@ namespace CSPresentacion.Sistema.General.Buscador
         /// <param name="tipoBuscador"></param>
         public FrmBuscador(TipoBuscador tipoBuscador)
         {
+
             try
             {
                 InitializeComponent();
@@ -57,8 +63,35 @@ namespace CSPresentacion.Sistema.General.Buscador
 
                         servicioDocumentos.CargarBrechasDelTipoDoc(gcBuscador, gvBuscador);
                         gvBuscador.ViewCaption = "Brechas";
+                        break;
+
+
+                    case TipoBuscador.Proveedor:
+
+                        ServicioOrdenesDeCompra ServicioOrdenesDeCompra = new ServicioOrdenesDeCompra();
+                        ServicioOrdenesDeCompra.ObtenerProveedores(gcBuscador, gvBuscador);
+                        gvBuscador.ViewCaption = "Proveedores Informatica";
 
                         break;
+
+                    case TipoBuscador.OrdenesDeCompra:
+                        CaptionBuscador = "Ordenes de compra";
+
+
+                        ServicioOrdenesDeCompra = new ServicioOrdenesDeCompra();
+
+                        UIHelper.ShowComponents(true, groupParametros);
+
+                        MostrarFiltroDeFechas();
+                        lueSucursal.EditValueChanged += (sender, args) => { btnBuscar.PerformClick(); };
+
+                        ServicioOrdenesDeCompra.ObtenerOrdenesDeCompra(gcBuscador, gvBuscador,
+                            dp3.DateTime, dp1.DateTime);
+
+                        btnBuscar.Visible = true;
+
+                        break;
+
                 }
 
                 wait.Close();
@@ -69,24 +102,10 @@ namespace CSPresentacion.Sistema.General.Buscador
             }
         }
 
-        /// <summary>
-        ///     Constructor
-        /// </summary>
-        /// <param name="tipoBuscador"></param>
-        /// <param name="idEmrpesa"></param>
-        /// <param name="strVal"></param>
-        public FrmBuscador(TipoBuscador tipoBuscador, int idEmrpesa, string strVal)
-        {
-            try
-            {
-                InitializeComponent();
 
-            }
-            catch (Exception ex)
-            {
-                UIHelper.MostrarError(ex);
-            }
-        }
+
+
+
 
         #region SobreCargas
 
@@ -265,6 +284,34 @@ namespace CSPresentacion.Sistema.General.Buscador
         ///     Caption que mostrara el buscador
         /// </summary>
         public string CaptionBuscador { get; set; } = "";
+
+        public string CaptionBuscadorproveedor
+        {
+            get => gvBuscador.ViewCaption;
+            set => gvBuscador.ViewCaption = value;
+        }
+
+
+        private void MostrarFiltroDeFechas(int? diferencia = null)
+        {
+            int menosMeses = -3;
+
+            if (diferencia.HasValue)
+            {
+                menosMeses = diferencia.Value;
+            }
+
+            UIHelper.ShowComponents(true, lblSucursal, lblDocumento, dp1, dp3);
+
+            lblSucursal.Text = @"Desde";
+            lblDocumento.Text = @"Hasta";
+
+            dp1.DateTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1).AddMonths(1).AddDays(-1);
+            dp3.DateTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1).AddMonths(menosMeses);
+
+
+        }
+
 
         #endregion
     }

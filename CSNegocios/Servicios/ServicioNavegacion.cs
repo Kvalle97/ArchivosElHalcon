@@ -12,6 +12,8 @@ using DevExpress.XtraEditors;
 namespace CSNegocios.Servicios
 {
     public class ServicioNavegacion : ServicioBase
+
+
     {
         public DataTable ObtenerNavegacion(int idUsuario, DateTime desde, DateTime hasta)
         {
@@ -36,6 +38,22 @@ namespace CSNegocios.Servicios
 
             glue.ForceInitialize();
             glue.EditValue = glue.Properties.GetKeyValue(0);
+        }
+
+         public void RegistrarLog(int idUsuario, int? noDoc, int? idTipoDoc, string comentario, string sistema,
+            string pantalla, string accion)
+        {
+            Coneccion.EjecutarSp("spRegistrarLog", cmd =>
+            {
+                cmd.Parameters.Add(new SqlParameter("IdUsuario", SqlDbType.Int)).Value = idUsuario;
+                cmd.Parameters.Add(new SqlParameter("NoDoc", SqlDbType.Int)).Value = RevisarSiEsNuloSql(noDoc);
+                cmd.Parameters.Add(new SqlParameter("IdTipoDoc", SqlDbType.Int)).Value = RevisarSiEsNuloSql(idTipoDoc);
+                cmd.Parameters.Add(new SqlParameter("Comentario", SqlDbType.NVarChar)).Value =
+                    RevisarSiEsNuloSql(comentario);
+                cmd.Parameters.Add(new SqlParameter("Sistema", SqlDbType.NVarChar)).Value = sistema;
+                cmd.Parameters.Add(new SqlParameter("Pantalla", SqlDbType.NVarChar)).Value = pantalla;
+                cmd.Parameters.Add(new SqlParameter("Accion", SqlDbType.NVarChar)).Value = accion;
+            });
         }
     }
 }

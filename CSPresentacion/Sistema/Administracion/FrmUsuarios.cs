@@ -27,6 +27,7 @@ namespace CSPresentacion.Sistema.Administracion
         // ReSharper disable once InconsistentNaming
         private static FrmUsuarios childInstance;
         private ModeloUsuario modeloUsuario = new ModeloUsuario();
+        
 
         private readonly ServicioAcciones servicioAcciones = new ServicioAcciones();
         private readonly ServicioUsuarios servicioUsuarios = new ServicioUsuarios();
@@ -74,13 +75,14 @@ namespace CSPresentacion.Sistema.Administracion
             WaitDialogForm wait = new WaitDialogForm("Por favor espere...", "Cargando usuario");
 
             wait.Show();
-
+            //ojo
             try
             {
                 txtUsuario.Text = modeloUsuario.Usuario;
                 txtNombres.Text = modeloUsuario.Nombres;
                 txtApellidos.Text = modeloUsuario.Apellidos;
                 txtTelefono.Text = modeloUsuario.Telefono;
+                txtEmail.Text = modeloUsuario.email;
 
                 ckAdministracion.Checked = modeloUsuario.Administracion;
                 ckBancos.Checked = modeloUsuario.Bancos;
@@ -90,11 +92,25 @@ namespace CSPresentacion.Sistema.Administracion
                 ckInventario.Checked = modeloUsuario.Inventario;
                 ckProduccion.Checked = modeloUsuario.Produccion;
                 ckProveedores.Checked = modeloUsuario.Proveedores;
-                ckProyecto.Checked = modeloUsuario.Proyecto;
+                ckPrestamo.Checked = modeloUsuario.Proyecto;
                 ckVentas.Checked = modeloUsuario.Ventas;
-                lueTipoDeDescuento.EditValue = modeloUsuario.IdDescuento;
+                lueTipoDeDescuento.EditValue = modeloUsuario.IdDescuento; /*00*/
                 ckbActivo.Checked = modeloUsuario.Activo == 1;
-
+/*ok*/          ckVentaCompartida.Checked = modeloUsuario.VentaCompartida;
+/*ok*/          ckVentaproyecto.Checked = modeloUsuario.VendedorProyectos;
+                ckGerenciacomercial.Checked=modeloUsuario.GerenciaComercial;
+                ckPonermeta.Checked=modeloUsuario.PuedePonerMetas;
+                ckTienemeta.Checked=modeloUsuario.TieneMeta;
+                ckVeraveria.Checked=modeloUsuario.VerAverias;
+                tipopromotor.EditValue=modeloUsuario.idPromotor;
+                tiposegmento.EditValue=modeloUsuario.idSegmento;
+                ckProformaWeb.Checked=modeloUsuario.ProformaWeb;
+                ckVerMargen.Checked=modeloUsuario.verMargen;
+                ckPermitirRegalias.Checked=modeloUsuario.PermitirRegalia;
+                ckPagarfacturasA.Checked=modeloUsuario.PagarFacturasMasAntiguas;
+                ckPrestamo.Checked=modeloUsuario.Prestamos;
+  
+               
                 // PERMISOS INVENTARIO
 
                 ckPermitirRealizarTraslados.Checked = modeloUsuario.PermitirRealizarTraslados;
@@ -106,10 +122,13 @@ namespace CSPresentacion.Sistema.Administracion
 
                 // FIN PERMISOS INVENTARIO
                 lueNievelDeAcceso.EditValue = modeloUsuario.IdNivel.ToString("D2");
-
+                
+               //ckComboPermiso.SetEditValue(UIHelper.ConvertirDataTableAListaSimple<int>(
+               //     servicioUsuarios.ObtenerPermisosdeusuario(modeloPermisoVentas.IdUsuario), "IdUsuario"));
+                
                 ckComboSucursalesAsociadas.SetEditValue(UIHelper.ConvertirDataTableAListaSimple<int>(
                     servicioUsuarios.ObtenerSucursalesAsociadas(modeloUsuario.IdUsuario), "IdEmpresa"));
-
+               
                 ckComboRoles.SetEditValue(UIHelper.ConvertirDataTableAListaSimple<int>(
                     servicioUsuarios.ObtenerRolesAsociados(modeloUsuario.IdUsuario), "IdRol"));
 
@@ -286,6 +305,7 @@ namespace CSPresentacion.Sistema.Administracion
                 modeloUsuario.Nombres = txtNombres.Text;
                 modeloUsuario.Apellidos = txtApellidos.Text;
                 modeloUsuario.Telefono = txtTelefono.Text;
+                modeloUsuario.email =txtEmail.Text;
 
                 modeloUsuario.Administracion = ckAdministracion.Checked;
                 modeloUsuario.Bancos = ckBancos.Checked;
@@ -295,11 +315,25 @@ namespace CSPresentacion.Sistema.Administracion
                 modeloUsuario.Inventario = ckInventario.Checked;
                 modeloUsuario.Produccion = ckProduccion.Checked;
                 modeloUsuario.Proveedores = ckProveedores.Checked;
-                modeloUsuario.Proyecto = ckProyecto.Checked;
+                modeloUsuario.Proyecto = ckPrestamo.Checked;
                 modeloUsuario.Ventas = ckVentas.Checked;
-                modeloUsuario.IdDescuento = (int) lueTipoDeDescuento.EditValue;
-
-
+                modeloUsuario.IdDescuento = (int) lueTipoDeDescuento.EditValue; //ojo
+                //nuevo keyner
+ /*ok*/         modeloUsuario.VentaCompartida =  ckVentaCompartida.Checked;
+ /*ok*/         modeloUsuario.VendedorProyectos =  ckVentaproyecto.Checked;
+ /*ok*/         modeloUsuario.GerenciaComercial= ckGerenciacomercial.Checked;
+                modeloUsuario.PuedePonerMetas=ckPonermeta.Checked;
+                modeloUsuario.TieneMeta=ckTienemeta.Checked;
+                modeloUsuario.VerAverias=ckVeraveria.Checked;
+                modeloUsuario.idPromotor=(int) tipopromotor.EditValue;
+                modeloUsuario.idSegmento=(int) tiposegmento.EditValue;
+                modeloUsuario.ProformaWeb = ckProformaWeb.Checked;
+                modeloUsuario.verMargen=ckVerMargen.Checked;
+                modeloUsuario.PermitirRegalia=ckPermitirRegalias.Checked;
+                modeloUsuario.PagarFacturasMasAntiguas=ckPagarfacturasA.Checked;
+                modeloUsuario.Prestamos=ckPrestamo.Checked;
+                //hasta aqui
+             
                 modeloUsuario.PermitirRealizarTraslados = ckPermitirRealizarTraslados.Checked;
                 modeloUsuario.GuardarPrestamos = ckGuardarPrestamos.Checked;
                 modeloUsuario.AplicarPrestamos = ckAplicarPrestamos.Checked;
@@ -324,6 +358,8 @@ namespace CSPresentacion.Sistema.Administracion
                 }
 
                 servicioUsuarios.GuardarUsuario(modeloUsuario);
+
+             
 
                 // Nos servira para preguntar si queremos asignarle una contrasenia
                 // temporal a un posible nuevo usuario
@@ -350,7 +386,6 @@ namespace CSPresentacion.Sistema.Administracion
                 // Guardando empresas asociadas :)
 
                 List<object> lstEmpresasAsociadas = ckComboSucursalesAsociadas.EditValue as List<object>;
-
 
                 // Eliminamos lo que hay para poner solo lo que esta en el ckCombo
                 servicioUsuarios.EliminarSucursalesAsociadas(modeloUsuario.IdUsuario);
@@ -424,11 +459,18 @@ namespace CSPresentacion.Sistema.Administracion
                 servicioUsuarios.CargarUsuarios(gcUsuarios, gvUsuarios);
                 servicioUsuarios.CargarSucursales(lueSucursalDeOrigen, false);
                 servicioUsuarios.CargarNiveles(lueNievelDeAcceso);
-                servicioUsuarios.CargarRoles(ckComboRoles);
+                servicioUsuarios.CargarRoles(ckComboRoles); /*ojo*/
+                servicioUsuarios.CargarTipoPromotor(tipopromotor);
+                servicioUsuarios.CargarTipoSegmento(tiposegmento);
                 servicioAcciones.MostrarAccesoBase(gcAcceso, gvAcceso);
                 servicioUsuarios.CargarTipoDescuento(lueTipoDeDescuento);
                 servicioUsuarios.CargarCorreos(gcCorreos, gvCorreos, 0);
                 servicioUsuarios.CargarSucursales(ckComboSucursalesAsociadas);
+             
+
+       
+                
+                
 
                 ckbActivo.Checked = true;
             }

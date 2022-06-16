@@ -70,7 +70,53 @@ namespace CSNegocios.Servicios
             decimal gerencial = lstTasaDeCambio.OrderByDescending(x => x.Fecha).First().TasaDeCambio;
 
             lstTasaDeCambio.ForEach(x => { GuardarTc(x, usuario, gerencial, sobreEscribir); });
+
         }
+
+
+
+
+        //Función 
+
+        public void Insertartcgerencial(DateTime fecha, bool sobreEscribir, bool cktcgerencial, string usuario, decimal spingerencial)
+        {
+            Tipo_Cambio_BCN objService = new Tipo_Cambio_BCN();
+
+            var nodeList = objService.RecuperaTC_Mes(fecha.Year, fecha.Month).ChildNodes;
+
+            List<TasaDeCambioM> lstTasaDeCambio = new List<TasaDeCambioM>();
+
+            if (nodeList.Count <= 0) throw new Exception("El servicio no devolvio nada :)");
+
+            foreach (XmlNode node in nodeList)
+            {
+                lstTasaDeCambio.Add(new TasaDeCambioM()
+                {
+                    Fecha =
+                        Convert.ToDateTime(node.ChildNodes[0].InnerText),
+                    TasaDeCambio =
+                        Convert.ToDecimal(
+                            node.ChildNodes[1].InnerText)
+                });
+            }
+
+            decimal gerencial;
+
+            if (cktcgerencial == true)
+            {
+                gerencial = spingerencial;
+            }
+            else
+            {
+                gerencial = lstTasaDeCambio.OrderByDescending(x => x.Fecha).First().TasaDeCambio;
+            }
+
+            lstTasaDeCambio.ForEach(x => { GuardarTc(x, usuario, gerencial, sobreEscribir); });
+
+        }
+
+
+
 
         public void GuardarTc(TasaDeCambioM t, string usuario, decimal tcGerencia, bool sobreeEscribir)
         {

@@ -41,6 +41,7 @@
             this.ckSobreeEscribir = new DevExpress.XtraEditors.CheckEdit();
             this.btnObtenerTasaDelaFecha = new DevExpress.XtraEditors.SimpleButton();
             this.btnTodoElMesFecha = new DevExpress.XtraEditors.SimpleButton();
+            this.ckIngresoTCgerencial = new DevExpress.XtraEditors.CheckEdit();
             ((System.ComponentModel.ISupportInitialize)(this.gcTasas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvTasas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.seTc.Properties)).BeginInit();
@@ -49,11 +50,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.dpFecha.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rgContableOHalcon.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ckSobreeEscribir.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ckIngresoTCgerencial.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // gcTasas
             // 
-            this.gcTasas.Location = new System.Drawing.Point(12, 129);
+            this.gcTasas.Location = new System.Drawing.Point(15, 155);
             this.gcTasas.MainView = this.gvTasas;
             this.gcTasas.Name = "gcTasas";
             this.gcTasas.Size = new System.Drawing.Size(777, 276);
@@ -139,9 +141,9 @@
             // 
             // btnCargarExcel
             // 
-            this.btnCargarExcel.Location = new System.Drawing.Point(459, 68);
+            this.btnCargarExcel.Location = new System.Drawing.Point(640, 122);
             this.btnCargarExcel.Name = "btnCargarExcel";
-            this.btnCargarExcel.Size = new System.Drawing.Size(172, 27);
+            this.btnCargarExcel.Size = new System.Drawing.Size(152, 27);
             this.btnCargarExcel.TabIndex = 11;
             this.btnCargarExcel.Text = "Insertar con un archivo excel";
             this.btnCargarExcel.Click += new System.EventHandler(this.btnCargarExcel_Click);
@@ -153,43 +155,52 @@
             this.rgContableOHalcon.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
             new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Contable"),
             new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Halcon")});
-            this.rgContableOHalcon.Size = new System.Drawing.Size(283, 25);
+            this.rgContableOHalcon.Size = new System.Drawing.Size(215, 25);
             this.rgContableOHalcon.TabIndex = 12;
             this.rgContableOHalcon.SelectedIndexChanged += new System.EventHandler(this.rgContableOHalcon_SelectedIndexChanged);
             // 
             // ckSobreeEscribir
             // 
-            this.ckSobreeEscribir.Location = new System.Drawing.Point(304, 101);
+            this.ckSobreeEscribir.Location = new System.Drawing.Point(252, 101);
             this.ckSobreeEscribir.Name = "ckSobreeEscribir";
             this.ckSobreeEscribir.Properties.Caption = "Sobre escribir si ya existe";
-            this.ckSobreeEscribir.Size = new System.Drawing.Size(162, 20);
+            this.ckSobreeEscribir.Size = new System.Drawing.Size(175, 20);
             this.ckSobreeEscribir.TabIndex = 13;
             // 
             // btnObtenerTasaDelaFecha
             // 
-            this.btnObtenerTasaDelaFecha.Location = new System.Drawing.Point(459, 97);
+            this.btnObtenerTasaDelaFecha.Location = new System.Drawing.Point(470, 69);
             this.btnObtenerTasaDelaFecha.Name = "btnObtenerTasaDelaFecha";
-            this.btnObtenerTasaDelaFecha.Size = new System.Drawing.Size(172, 27);
+            this.btnObtenerTasaDelaFecha.Size = new System.Drawing.Size(144, 27);
             this.btnObtenerTasaDelaFecha.TabIndex = 14;
             this.btnObtenerTasaDelaFecha.Text = "Obtener tasa de la fecha";
             this.btnObtenerTasaDelaFecha.Click += new System.EventHandler(this.btnObtenerTasaDelaFecha_Click);
             // 
             // btnTodoElMesFecha
             // 
-            this.btnTodoElMesFecha.Location = new System.Drawing.Point(637, 68);
+            this.btnTodoElMesFecha.Location = new System.Drawing.Point(631, 69);
             this.btnTodoElMesFecha.Name = "btnTodoElMesFecha";
-            this.btnTodoElMesFecha.Size = new System.Drawing.Size(152, 27);
+            this.btnTodoElMesFecha.Size = new System.Drawing.Size(144, 27);
             this.btnTodoElMesFecha.TabIndex = 15;
             this.btnTodoElMesFecha.Text = "Todo el mes de fecha";
             this.btnTodoElMesFecha.Click += new System.EventHandler(this.btnTodoElMesFecha_Click);
+            // 
+            // ckIngresoTCgerencial
+            // 
+            this.ckIngresoTCgerencial.Location = new System.Drawing.Point(417, 101);
+            this.ckIngresoTCgerencial.Name = "ckIngresoTCgerencial";
+            this.ckIngresoTCgerencial.Properties.Caption = "Ingreso Manual TC Gerencial";
+            this.ckIngresoTCgerencial.Size = new System.Drawing.Size(177, 20);
+            this.ckIngresoTCgerencial.TabIndex = 13;
             // 
             // FrmTasaDeCambio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(868, 417);
+            this.ClientSize = new System.Drawing.Size(868, 535);
             this.Controls.Add(this.btnTodoElMesFecha);
             this.Controls.Add(this.btnObtenerTasaDelaFecha);
+            this.Controls.Add(this.ckIngresoTCgerencial);
             this.Controls.Add(this.ckSobreeEscribir);
             this.Controls.Add(this.rgContableOHalcon);
             this.Controls.Add(this.btnCargarExcel);
@@ -213,6 +224,7 @@
             this.Controls.SetChildIndex(this.btnCargarExcel, 0);
             this.Controls.SetChildIndex(this.rgContableOHalcon, 0);
             this.Controls.SetChildIndex(this.ckSobreeEscribir, 0);
+            this.Controls.SetChildIndex(this.ckIngresoTCgerencial, 0);
             this.Controls.SetChildIndex(this.btnObtenerTasaDelaFecha, 0);
             this.Controls.SetChildIndex(this.btnTodoElMesFecha, 0);
             ((System.ComponentModel.ISupportInitialize)(this.gcTasas)).EndInit();
@@ -223,6 +235,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dpFecha.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rgContableOHalcon.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ckSobreeEscribir.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ckIngresoTCgerencial.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -243,5 +256,6 @@
         private DevExpress.XtraEditors.CheckEdit ckSobreeEscribir;
         private DevExpress.XtraEditors.SimpleButton btnObtenerTasaDelaFecha;
         private DevExpress.XtraEditors.SimpleButton btnTodoElMesFecha;
+        private DevExpress.XtraEditors.CheckEdit ckIngresoTCgerencial;
     }
 }

@@ -162,6 +162,7 @@ namespace CSPresentacion.Sistema.Opcion_Catalogo
             this.txtproveedor.Properties.MaxLength = 150;
             this.txtproveedor.Size = new System.Drawing.Size(295, 20);
             this.txtproveedor.TabIndex = 150;
+            this.txtproveedor.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtproveedor_KeyUp);
             // 
             // fileSystemWatcher1
             // 
@@ -199,6 +200,7 @@ namespace CSPresentacion.Sistema.Opcion_Catalogo
             this.txtdireccion.Properties.MaxLength = 150;
             this.txtdireccion.Size = new System.Drawing.Size(295, 20);
             this.txtdireccion.TabIndex = 150;
+            this.txtdireccion.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtdireccion_KeyUp);
             // 
             // txtnoruc
             // 
@@ -208,6 +210,7 @@ namespace CSPresentacion.Sistema.Opcion_Catalogo
             this.txtnoruc.Properties.MaxLength = 14;
             this.txtnoruc.Size = new System.Drawing.Size(295, 20);
             this.txtnoruc.TabIndex = 14;
+            this.txtnoruc.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtnoruc_KeyUp);
             // 
             // txtsucursal
             // 
@@ -217,6 +220,7 @@ namespace CSPresentacion.Sistema.Opcion_Catalogo
             this.txtsucursal.Properties.MaxLength = 150;
             this.txtsucursal.Size = new System.Drawing.Size(295, 20);
             this.txtsucursal.TabIndex = 25;
+            this.txtsucursal.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtsucursal_KeyUp);
             // 
             // txtcorreo
             // 
@@ -226,6 +230,7 @@ namespace CSPresentacion.Sistema.Opcion_Catalogo
             this.txtcorreo.Properties.MaxLength = 42;
             this.txtcorreo.Size = new System.Drawing.Size(295, 20);
             this.txtcorreo.TabIndex = 12;
+            this.txtcorreo.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtcorreo_KeyUp);
             // 
             // txttelefono
             // 
@@ -235,6 +240,7 @@ namespace CSPresentacion.Sistema.Opcion_Catalogo
             this.txttelefono.Properties.MaxLength = 11;
             this.txttelefono.Size = new System.Drawing.Size(295, 20);
             this.txttelefono.TabIndex = 12;
+            this.txttelefono.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txttelefono_KeyUp);
             // 
             // dxErrorProvider
             // 
@@ -265,9 +271,10 @@ namespace CSPresentacion.Sistema.Opcion_Catalogo
             this.txtnocontacto.Location = new System.Drawing.Point(79, 69);
             this.txtnocontacto.Name = "txtnocontacto";
             this.txtnocontacto.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtnocontacto.Properties.MaxLength = 14;
+            this.txtnocontacto.Properties.MaxLength = 11;
             this.txtnocontacto.Size = new System.Drawing.Size(238, 20);
             this.txtnocontacto.TabIndex = 14;
+            this.txtnocontacto.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtnocontacto_KeyUp);
             // 
             // label9
             // 
@@ -286,6 +293,7 @@ namespace CSPresentacion.Sistema.Opcion_Catalogo
             this.txtcontacto.Properties.MaxLength = 14;
             this.txtcontacto.Size = new System.Drawing.Size(238, 20);
             this.txtcontacto.TabIndex = 14;
+            this.txtcontacto.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtcontacto_KeyUp);
             // 
             // groupControl1
             // 
@@ -360,6 +368,7 @@ namespace CSPresentacion.Sistema.Opcion_Catalogo
             this.txtcorreocontact.Properties.MaxLength = 42;
             this.txtcorreocontact.Size = new System.Drawing.Size(238, 20);
             this.txtcorreocontact.TabIndex = 12;
+            this.txtcorreocontact.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtcorreocontact_KeyUp);
             // 
             // txtCargo
             // 

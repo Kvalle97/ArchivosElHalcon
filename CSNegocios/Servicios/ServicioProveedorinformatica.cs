@@ -72,38 +72,41 @@ namespace CSNegocios.Servicios
         }
 
 
-        public Modeloproveedorinformatica ObtenerProveedorinf(int IdProveedor)      /*ojo con esto */
-        {
-            dataTable = null;
-            dataTable = Coneccion.EjecutarSpDataTable("spObtenerProveedorInformatica",
-                command =>
-                {
-                    command.Parameters.Add(new SqlParameter("@IdProveedor", SqlDbType.Int)).Value = IdProveedor;
-                });
+        //public Modeloproveedorinformatica ObtenerProveedorinf(int IdProveedor)      /*ojo con esto */
+        //{
+        //    dataTable = null;
+        //    dataTable = Coneccion.EjecutarSpDataTable("spObtenerProveedorInformatica",
+        //        command =>
+        //        {
+        //            command.Parameters.Add(new SqlParameter("@IdProveedor", SqlDbType.Int)).Value = IdProveedor;
+        //        });
 
-            if (dataTable != null && dataTable.Rows.Count > 0)
-            {
-                Modeloproveedorinformatica modeloproveedorinformatica = new Modeloproveedorinformatica();
-                DataRow row = dataTable.Rows[0];
+        //    if (dataTable != null && dataTable.Rows.Count > 0)
+        //    {
+        //        Modeloproveedorinformatica modeloproveedorinformatica = new Modeloproveedorinformatica();
+        //        DataRow row = dataTable.Rows[0];
 
-                modeloproveedorinformatica.IdProveedor = int.Parse(row["Codigo"].ToString());
-                modeloproveedorinformatica.Descripcion = (string)row["Descripcion"];
+        //        modeloproveedorinformatica.IdProveedor = int.Parse(row["Codigo"].ToString());
+        //        modeloproveedorinformatica.Descripcion = (string)row["Descripcion"];
 
 
-                modeloproveedorinformatica.Contacto = dataTable.Rows[0]["Contacto"] != DBNull.Value
-                ? Convert.ToString(dataTable.Rows[0]["Contacto"])
-                : null;
+        //        modeloproveedorinformatica.Contacto = dataTable.Rows[0]["Contacto"] != DBNull.Value
+        //        ? Convert.ToString(dataTable.Rows[0]["Contacto"])
+        //        : null;
 
-                modeloproveedorinformatica.NoContacto = dataTable.Rows[0]["NoContacto"] != DBNull.Value
-                ? Convert.ToString(dataTable.Rows[0]["NoContacto"])
-                : null;
+        //        modeloproveedorinformatica.NoContacto = dataTable.Rows[0]["NoContacto"] != DBNull.Value
+        //        ? Convert.ToString(dataTable.Rows[0]["NoContacto"])
+        //        : null;
 
-                return modeloproveedorinformatica;
-            }
+        //        return modeloproveedorinformatica;
+        //    }
 
-            return null;
+        //    return null;
 
-        }
+        //}
+
+   
+
 
         public int GuardarProveedor(Modeloproveedorinformatica proveedorinformatica, int login)
         {

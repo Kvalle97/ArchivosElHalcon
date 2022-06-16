@@ -34,6 +34,8 @@
         /// <summary>
         ///     Id Empresa
         /// </summary>
+        /// 
+        public static int   IdUsuario { get; set; }
         public static string ID_Empresa { get; set; }
 
         /// <summary>

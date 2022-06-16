@@ -1,5 +1,6 @@
 ﻿using System.Globalization;
 using System.Windows.Forms;
+using CSNegocios.Servicios;
 using DevExpress.XtraBars;
 using DevExpress.XtraEditors;
 using DevExpress.XtraSpellChecker;
@@ -11,6 +12,8 @@ namespace CSPresentacion.Sistema.General
     /// </summary>
     public partial class FrmBase : XtraForm
     {
+        protected string Pantalla { get; set; }
+  
         /// <summary>
         ///     Constructor del formulario base
         /// </summary>
