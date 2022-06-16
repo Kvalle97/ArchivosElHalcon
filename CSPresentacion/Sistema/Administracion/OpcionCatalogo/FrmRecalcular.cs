@@ -113,8 +113,26 @@ namespace CSPresentacion.Sistema.Administracion.OpcionCatalogo
             calcularMovimiento.IdTipoDoc = Convert.ToInt32(dr["idTipoDoc"]);
             calcularMovimiento.nodoc = Convert.ToInt32(dr["NoDoc"]);
 
-            servicioRecalcularMovimiento.ContabilizarDocumento(calcularMovimiento.IdTipoDoc, calcularMovimiento.nodoc);
+            if (XtraMessageBox.Show(
+                        "¿ Está seguro que desea Contabilizar  Nodoc=\"" + calcularMovimiento.nodoc + "\" ?",
+                        "",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question,
+                        MessageBoxDefaultButton.Button2
+                    ) == DialogResult.Yes)
+            {
+                WaitDialogForm wait = new WaitDialogForm("Contabilizando ( ͡° ͜ʖ ͡°)", "Por favor espere...");
 
+                servicioRecalcularMovimiento.ContabilizarDocumento(calcularMovimiento.IdTipoDoc, calcularMovimiento.nodoc);
+                wait.Close();
+            }
+            else
+            {
+
+                UIHelper.AlertarDeError("OK :)");
+            }
         }
+
+
     }
 }
