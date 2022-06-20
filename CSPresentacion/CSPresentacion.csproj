@@ -309,6 +309,12 @@
     <Compile Include="Sistema\Administracion\FrmUsuarios.Designer.cs">
       <DependentUpon>FrmUsuarios.cs</DependentUpon>
     </Compile>
+    <Compile Include="Sistema\Administracion\OpcionCatalogo\FrmDocumentoEntregaparcial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sistema\Administracion\OpcionCatalogo\FrmDocumentoEntregaparcial.Designer.cs">
+      <DependentUpon>FrmDocumentoEntregaparcial.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sistema\Administracion\OpcionCatalogo\FrmRecalcular.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -463,6 +469,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Sistema\Administracion\FrmUsuarios.resx">
       <DependentUpon>FrmUsuarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sistema\Administracion\OpcionCatalogo\FrmDocumentoEntregaparcial.resx">
+      <DependentUpon>FrmDocumentoEntregaparcial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sistema\Administracion\OpcionCatalogo\FrmRecalcular.resx">
       <DependentUpon>FrmRecalcular.cs</DependentUpon>

@@ -99,6 +99,9 @@ namespace CSPresentacion.Sistema.Administracion.OpcionCatalogo
 
                 servicioRecalcularMovimiento.RecalcularMovimiento(calcularMovimiento.IdTipoDoc, calcularMovimiento.nodoc, calcularMovimiento.periodo);
                 wait.Close();
+                XtraMessageBox.Show("Se ha Recalculado", "",
+                 MessageBoxButtons.OK);
+
             }
             else
             {
@@ -125,6 +128,9 @@ namespace CSPresentacion.Sistema.Administracion.OpcionCatalogo
 
                 servicioRecalcularMovimiento.ContabilizarDocumento(calcularMovimiento.IdTipoDoc, calcularMovimiento.nodoc);
                 wait.Close();
+                XtraMessageBox.Show("Se ha Contabilizado :)", "",
+                    MessageBoxButtons.OK);
+
             }
             else
             {
@@ -132,7 +138,6 @@ namespace CSPresentacion.Sistema.Administracion.OpcionCatalogo
                 UIHelper.AlertarDeError("OK :)");
             }
         }
-
 
     }
 }

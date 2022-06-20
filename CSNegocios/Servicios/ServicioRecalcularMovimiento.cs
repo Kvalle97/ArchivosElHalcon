@@ -116,7 +116,9 @@ namespace CSNegocios.Servicios
             });
         }
 
-        public int ContabilizarDocumento(int idtipodoc, int nodoc)
+        public int ContabilizarDocumento(int idtipodoc, int nodoc)  
+        
+        
         {
             return Coneccion.EjecutarSp("sp_Contabilizar_Documento", cmd =>
             {
