@@ -17,22 +17,6 @@
     <Setting Name="IdCompany" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">-1</Value>
     </Setting>
-    <Setting Name="halconConnectionString" Type="(Connection string)" Scope="Application">
-      <DesignTimeValue Profile="(Default)">
-        &lt;?xml version="1.0" encoding="utf-16"?&gt;
-        &lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-        &lt;ConnectionString&gt;Data Source=192.168.0.2;Initial Catalog=halcon;User ID=sa;Password=E727cd9b1f&lt;/ConnectionString&gt;
-        &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
-        &lt;/SerializableConnectionString&gt;
-      </DesignTimeValue>
-      <Value Profile="(Default)">
-        &lt;?xml version="1.0" encoding="utf-16"?&gt;
-        &lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-        &lt;ConnectionString&gt;Data Source=192.168.0.2;Initial Catalog=halcon;User ID=sa;Password=E727cd9b1f&lt;/ConnectionString&gt;
-        &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
-        &lt;/SerializableConnectionString&gt;
-      </Value>
-    </Setting>
     <Setting Name="Login" Type="System.String" Scope="User">
       <Value Profile="(Default)">SA</Value>
     </Setting>
@@ -63,6 +47,36 @@
     </Setting>
     <Setting Name="UserPalette" Type="System.String" Scope="User">
       <Value Profile="(Default)">The Bezier</Value>
+    </Setting>
+    <Setting Name="halconConnectionString" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;
+        &amp;lt;?xml version="1.0" encoding="utf-16"?&amp;gt;
+        &amp;lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&amp;gt;
+        &amp;lt;ConnectionString&amp;gt;Data Source=192.168.0.2;Initial Catalog=halcon;User ID=sa;Password=E727cd9b1f&amp;lt;/ConnectionString&amp;gt;
+        &amp;lt;ProviderName&amp;gt;System.Data.SqlClient&amp;lt;/ProviderName&amp;gt;
+        &amp;lt;/SerializableConnectionString&amp;gt;
+      &lt;/ConnectionString&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">
+        &lt;?xml version="1.0" encoding="utf-16"?&gt;
+        &lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+        &lt;ConnectionString&gt;Data Source=192.168.0.2;Initial Catalog=halcon;User ID=sa;Password=E727cd9b1f&lt;/ConnectionString&gt;
+        &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
+        &lt;/SerializableConnectionString&gt;
+      </Value>
+    </Setting>
+    <Setting Name="ServerAddress2" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string&gt;almacenes.elhalcon.com.ni&lt;/string&gt;
+  &lt;string&gt;almacenes2.elhalcon.com.ni&lt;/string&gt;
+  &lt;string&gt;192.168.0.7&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+    <Setting Name="Empresa" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
     </Setting>
   </Settings>
 </SettingsFile>

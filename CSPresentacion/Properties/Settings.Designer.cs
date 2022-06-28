@@ -83,22 +83,6 @@ namespace CSPresentacion.Properties {
             }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute(@"
-        <?xml version=""1.0"" encoding=""utf-16""?>
-        <SerializableConnectionString xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
-        <ConnectionString>Data Source=192.168.0.2;Initial Catalog=halcon;User ID=sa;Password=E727cd9b1f</ConnectionString>
-        <ProviderName>System.Data.SqlClient</ProviderName>
-        </SerializableConnectionString>
-      ")]
-        public string halconConnectionString {
-            get {
-                return ((string)(this["halconConnectionString"]));
-            }
-        }
-        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("SA")]
@@ -206,6 +190,51 @@ namespace CSPresentacion.Properties {
             }
             set {
                 this["UserPalette"] = value;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"
+        <?xml version=""1.0"" encoding=""utf-16""?>
+        <SerializableConnectionString xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
+        <ConnectionString>Data Source=192.168.0.2;Initial Catalog=halcon;User ID=sa;Password=E727cd9b1f</ConnectionString>
+        <ProviderName>System.Data.SqlClient</ProviderName>
+        </SerializableConnectionString>
+      ")]
+        public string halconConnectionString {
+            get {
+                return ((string)(this["halconConnectionString"]));
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
+<ArrayOfString xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
+  <string>almacenes.elhalcon.com.ni</string>
+  <string>almacenes2.elhalcon.com.ni</string>
+  <string>192.168.0.7</string>
+</ArrayOfString>")]
+        public global::System.Collections.Specialized.StringCollection ServerAddress2 {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["ServerAddress2"]));
+            }
+            set {
+                this["ServerAddress2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int Empresa {
+            get {
+                return ((int)(this["Empresa"]));
+            }
+            set {
+                this["Empresa"] = value;
             }
         }
     }

@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions2 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLogin));
             this.txtUsuario = new DevExpress.XtraEditors.TextEdit();
             this.txtClave = new DevExpress.XtraEditors.ButtonEdit();
@@ -51,11 +51,15 @@
             this.btnTestConnection = new DevExpress.XtraEditors.SimpleButton();
             this.btnAdd = new DevExpress.XtraEditors.SimpleButton();
             this.btnRemove = new DevExpress.XtraEditors.SimpleButton();
-            this.lblVersion = new DevExpress.XtraEditors.LabelControl();
             this.chkRecordar = new DevExpress.XtraEditors.CheckEdit();
             this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.btnIngresar = new DevExpress.XtraEditors.SimpleButton();
+            this.lblVersion = new DevExpress.XtraEditors.LabelControl();
+            this.rgEmpresa = new DevExpress.XtraEditors.RadioGroup();
+            this.btnReset = new DevExpress.XtraEditors.SimpleButton();
+            this.btnArriba = new DevExpress.XtraEditors.SimpleButton();
+            this.btnBajar = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.txtUsuario.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtClave.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLogin.Properties)).BeginInit();
@@ -65,6 +69,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtValue.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkRecordar.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rgEmpresa.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // txtUsuario
@@ -73,8 +78,6 @@
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtUsuario.Properties.NullValuePrompt = "Usuario";
-            this.txtUsuario.Properties.NullValuePromptShowForEmptyValue = true;
-            this.txtUsuario.Properties.ShowNullValuePromptWhenFocused = true;
             this.txtUsuario.Size = new System.Drawing.Size(182, 20);
             this.txtUsuario.TabIndex = 0;
             this.txtUsuario.EditValueChanged += new System.EventHandler(this.txtUsuario_EditValueChanged);
@@ -84,14 +87,12 @@
             // 
             this.txtClave.Location = new System.Drawing.Point(12, 162);
             this.txtClave.Name = "txtClave";
-            editorButtonImageOptions1.Image = global::CSPresentacion.Properties.Resources.hide_16x16;
-            serializableAppearanceObject3.Image = global::CSPresentacion.Properties.Resources.show_16x16;
-            serializableAppearanceObject3.Options.UseImage = true;
+            editorButtonImageOptions2.Image = global::CSPresentacion.Properties.Resources.hide_16x16;
+            serializableAppearanceObject7.Image = global::CSPresentacion.Properties.Resources.show_16x16;
+            serializableAppearanceObject7.Options.UseImage = true;
             this.txtClave.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.txtClave.Properties.NullValuePrompt = "Contraseña";
-            this.txtClave.Properties.NullValuePromptShowForEmptyValue = true;
-            this.txtClave.Properties.ShowNullValuePromptWhenFocused = true;
             this.txtClave.Properties.UseSystemPasswordChar = true;
             this.txtClave.Size = new System.Drawing.Size(182, 20);
             this.txtClave.TabIndex = 1;
@@ -223,16 +224,6 @@
             this.btnRemove.Text = "Eliminar";
             this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             // 
-            // lblVersion
-            // 
-            this.lblVersion.Appearance.Font = new System.Drawing.Font("Segoe UI", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVersion.Appearance.Options.UseFont = true;
-            this.lblVersion.Location = new System.Drawing.Point(12, 340);
-            this.lblVersion.Name = "lblVersion";
-            this.lblVersion.Size = new System.Drawing.Size(5, 11);
-            this.lblVersion.TabIndex = 18;
-            this.lblVersion.Text = "V";
-            // 
             // chkRecordar
             // 
             this.chkRecordar.Location = new System.Drawing.Point(119, 188);
@@ -258,7 +249,7 @@
             // 
             this.simpleButton1.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.simpleButton1.ImageOptions.Image = global::CSPresentacion.Properties.Resources.documentproperties_16x16;
-            this.simpleButton1.Location = new System.Drawing.Point(178, 337);
+            this.simpleButton1.Location = new System.Drawing.Point(178, 283);
             this.simpleButton1.Name = "simpleButton1";
             this.simpleButton1.Size = new System.Drawing.Size(16, 16);
             this.simpleButton1.TabIndex = 20;
@@ -274,11 +265,68 @@
             this.btnIngresar.Text = "Iniciar Sesión";
             this.btnIngresar.Click += new System.EventHandler(this.btnIngresar_Click);
             // 
+            // lblVersion
+            // 
+            this.lblVersion.Appearance.Font = new System.Drawing.Font("Segoe UI", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVersion.Appearance.Options.UseFont = true;
+            this.lblVersion.Location = new System.Drawing.Point(12, 349);
+            this.lblVersion.Name = "lblVersion";
+            this.lblVersion.Size = new System.Drawing.Size(5, 11);
+            this.lblVersion.TabIndex = 18;
+            this.lblVersion.Text = "V";
+            // 
+            // rgEmpresa
+            // 
+            this.rgEmpresa.Location = new System.Drawing.Point(12, 313);
+            this.rgEmpresa.Name = "rgEmpresa";
+            this.rgEmpresa.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rgEmpresa.Properties.Appearance.Options.UseFont = true;
+            this.rgEmpresa.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Default;
+            this.rgEmpresa.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
+            new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Juan Cajina", true, null, "Juan Cajina"),
+            new DevExpress.XtraEditors.Controls.RadioGroupItem(null, " El Halcon S.A.", true, null, " El Halcon S.A.")});
+            this.rgEmpresa.Size = new System.Drawing.Size(187, 28);
+            this.rgEmpresa.TabIndex = 23;
+            this.rgEmpresa.SelectedIndexChanged += new System.EventHandler(this.radioGroup1_SelectedIndexChanged_1);
+            // 
+            // btnReset
+            // 
+            this.btnReset.Location = new System.Drawing.Point(733, 134);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(75, 23);
+            this.btnReset.TabIndex = 24;
+            this.btnReset.Text = " Reset";
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
+            // 
+            // btnArriba
+            // 
+            this.btnArriba.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnArriba.ImageOptions.Image")));
+            this.btnArriba.Location = new System.Drawing.Point(581, 105);
+            this.btnArriba.Name = "btnArriba";
+            this.btnArriba.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.btnArriba.Size = new System.Drawing.Size(20, 43);
+            this.btnArriba.TabIndex = 25;
+            this.btnArriba.Click += new System.EventHandler(this.btnArriba_Click);
+            // 
+            // btnBajar
+            // 
+            this.btnBajar.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnBajar.ImageOptions.Image")));
+            this.btnBajar.Location = new System.Drawing.Point(581, 139);
+            this.btnBajar.Name = "btnBajar";
+            this.btnBajar.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.btnBajar.Size = new System.Drawing.Size(20, 43);
+            this.btnBajar.TabIndex = 25;
+            this.btnBajar.Click += new System.EventHandler(this.btnBajar_Click);
+            // 
             // FrmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(852, 365);
+            this.ClientSize = new System.Drawing.Size(852, 426);
+            this.Controls.Add(this.btnBajar);
+            this.Controls.Add(this.btnArriba);
+            this.Controls.Add(this.btnReset);
+            this.Controls.Add(this.rgEmpresa);
             this.Controls.Add(this.pictureEdit1);
             this.Controls.Add(this.simpleButton1);
             this.Controls.Add(this.chkRecordar);
@@ -303,7 +351,7 @@
             this.Controls.Add(this.txtUsuario);
             this.FormBorderEffect = DevExpress.XtraEditors.FormBorderEffect.Shadow;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.IconOptions.Icon = ((System.Drawing.Icon)(resources.GetObject("FrmLogin.IconOptions.Icon")));
             this.Name = "FrmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Iniciar Sesión";
@@ -318,6 +366,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtValue.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkRecordar.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rgEmpresa.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -343,9 +392,13 @@
         private DevExpress.XtraEditors.SimpleButton btnTestConnection;
         private DevExpress.XtraEditors.SimpleButton btnAdd;
         private DevExpress.XtraEditors.SimpleButton btnRemove;
-        private DevExpress.XtraEditors.LabelControl lblVersion;
         private DevExpress.XtraEditors.CheckEdit chkRecordar;
         private DevExpress.XtraEditors.SimpleButton simpleButton1;
         private DevExpress.XtraEditors.PictureEdit pictureEdit1;
+        private DevExpress.XtraEditors.LabelControl lblVersion;
+        private DevExpress.XtraEditors.RadioGroup rgEmpresa;
+        private DevExpress.XtraEditors.SimpleButton btnReset;
+        private DevExpress.XtraEditors.SimpleButton btnArriba;
+        private DevExpress.XtraEditors.SimpleButton btnBajar;
     }
 }

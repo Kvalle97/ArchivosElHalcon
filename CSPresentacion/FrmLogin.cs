@@ -34,11 +34,18 @@ namespace CSPresentacion
         /// </summary>
         private void ListItems()
         {
-            lstItems.DataSource = Settings.Default.ServerAddress.Cast<string>().ToArray();
-            //lstItems.Refresh();
-            //Properties.Settings.Default.Items.Cast<string>().ToArray();
+            switch (rgEmpresa.SelectedIndex)
+            {
+                case 0:
+                    lstItems.DataSource = Properties.Settings.Default.ServerAddress.Cast<string>().ToArray();
+                    break;
+                case 1:
+                    lstItems.DataSource = Properties.Settings.Default.ServerAddress2.Cast<string>().ToArray();
+                    break;
+            }
             lstItems.SelectedIndex = -1;
         }
+
 
         /// <summary>
         ///     Validar String de coneccion
@@ -89,7 +96,7 @@ namespace CSPresentacion
             lblVersion.Text = "v" + version;
             Datos_Globales.VersionSistemaLocal = version;
 
-            Width = 210; 
+            Width = 210;
             txtLogin.EditValue = Settings.Default.Login;
             txtPassword.EditValue = Settings.Default.Password;
             txtTimeOut.EditValue = Settings.Default.TimeOut;
@@ -299,6 +306,7 @@ namespace CSPresentacion
             Settings.Default.DataBase = txtDataBase.Text;
             Settings.Default.Save();
 
+            Properties.Settings.Default.Empresa = this.rgEmpresa.SelectedIndex;
 
             Close();
         }
@@ -374,6 +382,96 @@ namespace CSPresentacion
             }
         }
 
+
+        private void radioGroup1_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            ListItems();
+        }
+
         #endregion
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.ServerAddress.Clear();
+            Properties.Settings.Default.ServerAddress2.Clear();
+            Settings.Default.Reset();
+            Properties.Settings.Default.Save();
+            ListItems();
+            this.txtTimeOut.EditValue = Convert.ToInt32(Properties.Settings.Default.TimeOut);
+            this.txtDataBase.Text = Properties.Settings.Default.DataBase;
+            this.txtLogin.Text = Settings.Default.Login;
+            this.txtPassword.Text = Settings.Default.Password;
+        }
+
+        private void btnArriba_Click(object sender, EventArgs e)
+        {
+            {
+
+                var SCindex = lstItems.SelectedIndex;
+                switch (rgEmpresa.SelectedIndex)
+                {
+                    case 0:
+                        if (SCindex > 0)
+                        {
+                            Properties.Settings.Default.ServerAddress.Remove(lstItems.SelectedItem.ToString());
+                            Properties.Settings.Default.ServerAddress.Insert(SCindex - 1, lstItems.SelectedItem.ToString());
+                            ListItems();
+                            lstItems.SelectedIndex = SCindex - 1;
+                            lstItems.Focus();
+
+                        }
+                        break;
+                    case 1:
+
+                        if (SCindex > 0)
+                        {
+                            Properties.Settings.Default.ServerAddress2.Remove(lstItems.SelectedItem.ToString());
+                            Properties.Settings.Default.ServerAddress2.Insert(SCindex - 1, lstItems.SelectedItem.ToString());
+                            ListItems();
+                            lstItems.SelectedIndex = SCindex - 1;
+                            lstItems.Focus();
+
+                        }
+
+                        break;
+                }
+            }
+        }
+
+        private void btnBajar_Click(object sender, EventArgs e)
+        {
+
+            var SCindex = lstItems.SelectedIndex;
+            switch (rgEmpresa.SelectedIndex)
+            {
+                case 0:
+                    if (SCindex < lstItems.Items.Count - 1)
+                    {
+                        Properties.Settings.Default.ServerAddress.Remove(lstItems.SelectedItem.ToString());
+                        Properties.Settings.Default.ServerAddress.Insert(SCindex + 1, lstItems.SelectedItem.ToString());
+                        ListItems();
+                        lstItems.SelectedIndex = SCindex + 1;
+                        lstItems.Focus();
+
+                    }
+                  
+
+                    break;
+                case 1:
+
+                    if (SCindex < lstItems.Items.Count - 1)
+                    {
+                        Properties.Settings.Default.ServerAddress2.Remove(lstItems.SelectedItem.ToString());
+                        Properties.Settings.Default.ServerAddress2.Insert(SCindex + 1, lstItems.SelectedItem.ToString());
+                        ListItems();
+                        lstItems.SelectedIndex = SCindex + 1;
+                        lstItems.Focus();
+                    }
+
+
+                    break;
+            }
+        }
+
     }
 }
