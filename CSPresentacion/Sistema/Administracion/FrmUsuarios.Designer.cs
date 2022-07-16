@@ -314,9 +314,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(205, 108);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(85, 13);
+            this.label2.Size = new System.Drawing.Size(99, 13);
             this.label2.TabIndex = 10;
-            this.label2.Text = "Nivel de acceso";
+            this.label2.Text = "Puesto de Trabajo";
             // 
             // lueSucursalDeOrigen
             // 
@@ -372,7 +372,6 @@
             // 
             this.txtEmail.Location = new System.Drawing.Point(17, 173);
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtEmail.Size = new System.Drawing.Size(179, 20);
             this.txtEmail.TabIndex = 3;
             // 

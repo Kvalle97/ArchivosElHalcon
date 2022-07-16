@@ -18,7 +18,7 @@ namespace CSPresentacion.Sistema.Opcion_Catalogo
 
         Modeloproveedorinformatica proveedor = new Modeloproveedorinformatica();
         ServicioProveedorinformatica servicioProveedor = new ServicioProveedorinformatica();
-
+        private string validar;
 
 
         public FrmProveedoresInformatica()
@@ -130,6 +130,13 @@ namespace CSPresentacion.Sistema.Opcion_Catalogo
 
         protected override void GuardarEvent()
         {
+            validar = servicioProveedor.ExisteRuc(Convert.ToString(txtnoruc.Text));
+
+            if (validar == txtnoruc.Text)
+            {
+                UIHelper.AlertarDeError("ya existe este número ruc:" + " " + txtnoruc.Text);
+                return;
+            }
 
             if (string.IsNullOrWhiteSpace(txtproveedor.Text))
             {
@@ -147,6 +154,7 @@ namespace CSPresentacion.Sistema.Opcion_Catalogo
                 UIHelper.AlertarDeError(dxErrorProvider, txtnoruc, "Debe proporcionar un número Ruc");
                 return;
             }
+
 
 
             WaitDialogForm wait = new WaitDialogForm("Guardando proveedor", "Por favor espere...");
@@ -213,11 +221,7 @@ namespace CSPresentacion.Sistema.Opcion_Catalogo
                         gvcontacto.Columns.Clear();
                         wait.Close();
                     }
-                    else
-                    {
 
-                        UIHelper.AlertarDeError("Ocurrio un error inesperado, contacte al administrador");
-                    }
                 }
 
                 else
@@ -277,6 +281,16 @@ namespace CSPresentacion.Sistema.Opcion_Catalogo
 
             try
             {
+
+
+                validar = servicioProveedor.Existecontacto(Convert.ToString(txtcontacto.Text));
+
+                if (validar == txtcontacto.Text)
+                {
+                    UIHelper.AlertarDeError("ya existe este contacto:" + " " + txtcontacto.Text);
+                    return;
+                }
+
 
                 if (txtcontacto.Text.Length > 0)/*reparar no valida*/
                 {

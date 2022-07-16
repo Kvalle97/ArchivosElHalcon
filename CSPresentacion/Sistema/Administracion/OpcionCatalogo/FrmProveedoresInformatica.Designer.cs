@@ -287,6 +287,7 @@ namespace CSPresentacion.Sistema.Opcion_Catalogo
             // 
             // txtcontacto
             // 
+            this.txtcontacto.EditValue = "";
             this.txtcontacto.Location = new System.Drawing.Point(79, 42);
             this.txtcontacto.Name = "txtcontacto";
             this.txtcontacto.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;

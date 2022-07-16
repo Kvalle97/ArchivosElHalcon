@@ -451,5 +451,15 @@ namespace CSPresentacion
         {
             AgregarAlMdi(FrmRecalcular.Instance());
         }
+
+        private void barButtonItem7_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            AgregarAlMdi(FrmRecalcular.Instance());
+        }
+
+        private void barButtonItem6_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            AgregarAlMdi(FrmUsuarioCajaChica.Instance());
+        }
     }
 }

@@ -37,6 +37,9 @@
             this.btnBloqueoDeProductos = new DevExpress.XtraBars.BarButtonItem();
             this.BtnProveedores = new DevExpress.XtraBars.BarButtonItem();
             this.btnordendecompras = new DevExpress.XtraBars.BarButtonItem();
+            this.btnRecalcular = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem6 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem7 = new DevExpress.XtraBars.BarButtonItem();
             this.rpModulos = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.rpAdministracion = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.btnUsuarios = new DevExpress.XtraBars.BarButtonItem();
@@ -92,7 +95,6 @@
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.xtraTabbedMdiManager1 = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
-            this.btnRecalcular = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager1)).BeginInit();
             this.SuspendLayout();
@@ -109,9 +111,11 @@
             this.btnBloqueoDeProductos,
             this.BtnProveedores,
             this.btnordendecompras,
-            this.btnRecalcular});
+            this.btnRecalcular,
+            this.barButtonItem6,
+            this.barButtonItem7});
             this.ribbon.Location = new System.Drawing.Point(0, 0);
-            this.ribbon.MaxItemId = 77;
+            this.ribbon.MaxItemId = 79;
             this.ribbon.Name = "ribbon";
             this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.rpModulos,
@@ -173,6 +177,32 @@
             this.btnordendecompras.Name = "btnordendecompras";
             this.btnordendecompras.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnordendecompras_ItemClick);
             // 
+            // btnRecalcular
+            // 
+            this.btnRecalcular.Caption = "Recalcular";
+            this.btnRecalcular.Id = 76;
+            this.btnRecalcular.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnRecalcular.ImageOptions.SvgImage")));
+            this.btnRecalcular.Name = "btnRecalcular";
+            this.btnRecalcular.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnRecalcular_ItemClick);
+            // 
+            // barButtonItem6
+            // 
+            this.barButtonItem6.Caption = "Agregar Usuario a Caja Chica";
+            this.barButtonItem6.Id = 77;
+            this.barButtonItem6.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem6.ImageOptions.Image")));
+            this.barButtonItem6.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem6.ImageOptions.LargeImage")));
+            this.barButtonItem6.Name = "barButtonItem6";
+            this.barButtonItem6.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem6_ItemClick);
+            // 
+            // barButtonItem7
+            // 
+            this.barButtonItem7.Caption = "Recalcular o Contabilizar";
+            this.barButtonItem7.Id = 78;
+            this.barButtonItem7.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem7.ImageOptions.Image")));
+            this.barButtonItem7.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem7.ImageOptions.LargeImage")));
+            this.barButtonItem7.Name = "barButtonItem7";
+            this.barButtonItem7.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem7_ItemClick);
+            // 
             // rpModulos
             // 
             this.rpModulos.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -187,8 +217,10 @@
             this.rpAdministracion.ItemLinks.Add(this.btnBloqueoDeProductos);
             this.rpAdministracion.ItemLinks.Add(this.btnSistemasYPantallas);
             this.rpAdministracion.ItemLinks.Add(this.btnPermisos);
+            this.rpAdministracion.ItemLinks.Add(this.barButtonItem6);
             this.rpAdministracion.ItemLinks.Add(this.btnTasaDeCambio);
             this.rpAdministracion.ItemLinks.Add(this.btnDocumentos);
+            this.rpAdministracion.ItemLinks.Add(this.barButtonItem7);
             this.rpAdministracion.ItemLinks.Add(this.btnInformacion);
             this.rpAdministracion.ItemLinks.Add(this.btnFormatos);
             this.rpAdministracion.ItemLinks.Add(this.btnDiseniadorDeReportes);
@@ -381,7 +413,6 @@
             // 
             this.ribbonPageGroup1.ItemLinks.Add(this.BtnProveedores);
             this.ribbonPageGroup1.ItemLinks.Add(this.btnordendecompras);
-            this.ribbonPageGroup1.ItemLinks.Add(this.btnRecalcular);
             this.ribbonPageGroup1.Name = "ribbonPageGroup1";
             this.ribbonPageGroup1.Text = "Informatica";
             // 
@@ -592,14 +623,6 @@
             this.xtraTabbedMdiManager1.ClosePageButtonShowMode = DevExpress.XtraTab.ClosePageButtonShowMode.InAllTabPageHeaders;
             this.xtraTabbedMdiManager1.MdiParent = this;
             // 
-            // btnRecalcular
-            // 
-            this.btnRecalcular.Caption = "Recalcular";
-            this.btnRecalcular.Id = 76;
-            this.btnRecalcular.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem6.ImageOptions.SvgImage")));
-            this.btnRecalcular.Name = "btnRecalcular";
-            this.btnRecalcular.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnRecalcular_ItemClick);
-            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -677,7 +700,7 @@
         private DevExpress.XtraBars.BarButtonItem btnDocumentos;
         private DevExpress.XtraBars.BarButtonItem btnInformacion;
         private DevExpress.XtraTabbedMdi.XtraTabbedMdiManager xtraTabbedMdiManager1;
-        
+
         private DevExpress.XtraBars.BarButtonItem btnFormatos;
         private DevExpress.XtraBars.BarButtonItem btnDiseniadorDeReportes;
         private DevExpress.XtraBars.BarSubItem btnDashboard;
@@ -689,5 +712,7 @@
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
         private DevExpress.XtraBars.BarButtonItem btnordendecompras;
         private DevExpress.XtraBars.BarButtonItem btnRecalcular;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem6;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem7;
     }
 }

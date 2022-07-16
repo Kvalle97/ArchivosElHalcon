@@ -67,6 +67,7 @@
     <Compile Include="Modelos\ModeloRecalcularMovimiento.cs" />
     <Compile Include="Modelos\ModeloSucursal.cs" />
     <Compile Include="Modelos\ModeloOrdendeCompra.cs" />
+    <Compile Include="Modelos\ModeloUsuarioCajaChica.cs" />
     <Compile Include="Modelos\Pantalla.cs" />
     <Compile Include="Modelos\Rol.cs" />
     <Compile Include="Modelos\SistemaOModulo.cs" />
@@ -98,6 +99,7 @@
     <Compile Include="Servicios\ServicioRecalcularMovimiento.cs" />
     <Compile Include="Servicios\ServicioSistemasyPantallas.cs" />
     <Compile Include="Servicios\ServicioTasaDeCambio.cs" />
+    <Compile Include="Servicios\ServicioUsuarioCajaChica.cs" />
     <Compile Include="Servicios\ServicioUsuarios.cs" />
     <Compile Include="Usuarios.cs" />
     <Compile Include="Web References\ni.gob.bcn.servicios\Reference.cs">

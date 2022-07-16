@@ -98,16 +98,16 @@ namespace CSPresentacion.Sistema.General
         /// </summary>
         /// <param name="btn"></param>
         /// <returns></returns>
-        private bool AccionarBoton(BarButtonItem btn)
-        {
-            if (btn.Visibility == BarItemVisibility.Always && btn.Enabled)
+            private bool AccionarBoton(BarButtonItem btn)
             {
-                btn.PerformClick();
-                return true;
-            }
+                if (btn.Visibility == BarItemVisibility.Always && btn.Enabled)
+                {
+                    btn.PerformClick();
+                    return true;
+                }
 
-            return false;
-        }
+                return false;
+            }
 
         /// <summary>
         ///     Activa o desactiva las opciones del formulario base
@@ -440,6 +440,7 @@ namespace CSPresentacion.Sistema.General
         /// </summary>
         protected virtual void RevertirAplicarEvent()
         {
+            RevertirAplicarEvent();
         }
 
         #endregion
@@ -506,9 +507,9 @@ namespace CSPresentacion.Sistema.General
             AplicarEvent();
         }
 
-        private void btnRevertirAnular_ItemClick(object sender, ItemClickEventArgs e)
+        private void BtnRevertirAnular_ItemClick(object sender, ItemClickEventArgs e)
         {
-            RevertirAplicarEvent();
+            AplicarEvent();
         }
 
         #endregion

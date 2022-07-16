@@ -149,16 +149,7 @@ namespace CSNegocios.Servicios
                }));
         }
 
-        public string ObtenerultimoProducto(string codigop)
-        {
-            return Convert.ToString(Coneccion.ObterResultadoText("SELECT TOP (1) CodigoProducto + 1  as CodigoProducto FROM  OrdenDeCompraInformaticaDetalleTemporal order by Fecha desc;",
 
-               cmd =>
-               {
-                   cmd.Parameters.Add(new SqlParameter("CodigoProducto", SqlDbType.NVarChar)).Value = codigop;
-
-               }));
-        }
 
         public int LimpiarOrdenDeCompraTemporal(int idLogin, string codigo)
         {

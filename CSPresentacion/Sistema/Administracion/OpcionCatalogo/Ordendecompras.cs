@@ -79,14 +79,20 @@ namespace CSPresentacion.Sistema.Administracion.OpcionCatalogo
                     servicioOrdenesDeCompras.ObtenerDatosDeLaOrden(Datos_Globales.IdLogin);
                 if (dt != null && dt.Rows.Count > 0)
                 {
-
-                    ordenDeCompra.Descuento = seDescue.Value;
                     ordenDeCompra.SubTotal = ordenDeCompra.SubTotal =
-                        seImporte.Value = Convert.ToDecimal(dt.Rows[0]["SubTotal"]);
+                       seImporte.Value = Convert.ToDecimal(dt.Rows[0]["SubTotal"]); //IMPORTE
+
+                    ordenDeCompra.Descuento = seDescue.Value; //Descuento
+
+                    ordenDeCompra.ImportemenosDescuento = 
+                        seImpormenos.Value = seImporte.Value - seDescue.Value; //importe menos el descuento
+
                     ordenDeCompra.Iva = seIva.Value =
-                        !ckbCompraExoneradoIva.Checked ? Convert.ToDecimal(dt.Rows[0]["IVA"]) : 0;
-                    ordenDeCompra.Totalprecioproducto = seTotal.Value = seImporte.Value + seIva.Value - seDescue.Value;
-                }
+                        !ckbCompraExoneradoIva.Checked ? seImpormenos.Value * Convert.ToDecimal(dt.Rows[0]["IVA"]) : 0; // dar iva 
+
+                    ordenDeCompra.Totalprecioproducto =
+                        seTotal.Value = seImporte.Value + seIva.Value - seDescue.Value; //total
+                }                          //100              7.50           50
             }
             catch (Exception e)
 
@@ -113,6 +119,9 @@ namespace CSPresentacion.Sistema.Administracion.OpcionCatalogo
                 seImporte.Value = 0;
                 seIva.Value = 0;
                 seTotal.Value = 0;
+                seImpormenos.Value = 0;
+                seDescue.Value = 0;
+                seImpormenos.Value = 0;
                 ckbCompraExoneradoIva.Checked = false;
                 ckbDolarizarCompras.Checked = false;
                 dxErrorProvider1.ClearErrors();
@@ -129,10 +138,21 @@ namespace CSPresentacion.Sistema.Administracion.OpcionCatalogo
 
         private void Limpiarcamposcodigo()
         {
+            decimal cero = 0;
+
             txtcodigop.Text = string.Empty;
             txtdescripcion.Text = "";
             seCantidad.Value = 0;
             seCosto.Value = 0;
+
+            if (seImporte.Value == cero )
+            {
+                seDescue.Value = 0;
+                seImpormenos.Value = 0;
+                seIva.Value = 0;
+                seTotal.Value = 0;
+             
+            }
 
         }
 
@@ -146,7 +166,6 @@ namespace CSPresentacion.Sistema.Administracion.OpcionCatalogo
             btnProveedores.Enabled = true;
             ckbCompraExoneradoIva.Enabled = true;
             ckbDolarizarCompras.Enabled = true;
-            BtnDescuentoT.Enabled = true;
 
         }
 
@@ -172,6 +191,10 @@ namespace CSPresentacion.Sistema.Administracion.OpcionCatalogo
 
             seDescue.Properties.Mask.Culture = new CultureInfo(cultura);
             seDescue.Properties.Mask.UseMaskAsDisplayFormat = true;
+
+            seImpormenos.Properties.Mask.Culture = new CultureInfo(cultura);
+            seImpormenos.Properties.Mask.UseMaskAsDisplayFormat = true;
+
 
         }
 
@@ -291,9 +314,10 @@ namespace CSPresentacion.Sistema.Administracion.OpcionCatalogo
         }
         private void BtnDescuentoT_Click(object sender, EventArgs e)
         {
-            ordenDeCompra.DescuentoTotal = seDescue.Value;
-            Actualizardatosdelaorden();
+
         }
+
+
 
         private void btnQuitar_Click(object sender, EventArgs e)
         {
@@ -434,25 +458,24 @@ namespace CSPresentacion.Sistema.Administracion.OpcionCatalogo
 
                 if (!ordenDeCompra.Cerrado)
                 {
-                    ActivarBoton(true, Opciones.Guardar, Opciones.Aplicar,Opciones.Eliminar);
+                    ActivarBoton(true, Opciones.Guardar, Opciones.Aplicar, Opciones.Eliminar);
                     btnAgregar.Enabled = true;
                     btnQuitar.Enabled = true;
                     btnProveedores.Enabled = true;
                     ckbCompraExoneradoIva.Enabled = true;
                     ckbDolarizarCompras.Enabled = true;
                     ckbDolarizarCompras.Enabled = true;
-                    BtnDescuentoT.Enabled = true;
                 }
                 else
                 {
-                    ActivarBoton(false, Opciones.Guardar, Opciones.Aplicar,Opciones.Eliminar);
+                    ActivarBoton(false, Opciones.Guardar, Opciones.Aplicar, Opciones.Eliminar);
                     btnAgregar.Enabled = false;
                     btnQuitar.Enabled = false;
                     btnProveedores.Enabled = false;
                     ckbCompraExoneradoIva.Enabled = false;
                     ckbDolarizarCompras.Enabled = false;
                     ckbDolarizarCompras.Enabled = false;
-                    BtnDescuentoT.Enabled = false;
+
                 }
 
 
@@ -473,12 +496,6 @@ namespace CSPresentacion.Sistema.Administracion.OpcionCatalogo
 
         protected override void ImprimirEvent()
         {
-            //if (ordenDeCompra.IdOrden <= 0)
-            //{
-            //    UIHelper.AlertarDeError("Primero seleccione una orden de compra");
-            //    return;
-            //}
-
 
             WaitDialogForm wait = new WaitDialogForm("Por favor espere...", "Generando Vista Previa ♣♠");
 
@@ -692,26 +709,26 @@ namespace CSPresentacion.Sistema.Administracion.OpcionCatalogo
             }
 
 
-            
+
         }
 
-        private void btnOrdenes_Click(object sender, EventArgs e)
-        {
+        //private void btnOrdenes_Click(object sender, EventArgs e)
+        //{
 
-            try
-            {
-                FrmBuscador frmBuscador = new FrmBuscador(FrmBuscador.TipoBuscador.OrdenesDeCompra);
+        //    try
+        //    {
+        //        FrmBuscador frmBuscador = new FrmBuscador(FrmBuscador.TipoBuscador.OrdenesDeCompra);
 
-                if (frmBuscador.ShowDialog() == DialogResult.OK)
-                    CargarOrdenDeCompra(
-                        Convert.ToInt32(frmBuscador.DataRow["No_Orden"]));
+        //        if (frmBuscador.ShowDialog() == DialogResult.OK)
+        //            CargarOrdenDeCompra(
+        //                Convert.ToInt32(frmBuscador.DataRow["No_Orden"]));
 
-            }
-            catch (Exception ex)
-            {
-                UIHelper.MostrarError(ex);
-            }
-        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        UIHelper.MostrarError(ex);
+        //    }
+        //}
 
         private void gcProductos_Click(object sender, EventArgs e)
         {
@@ -728,7 +745,7 @@ namespace CSPresentacion.Sistema.Administracion.OpcionCatalogo
                     txtcodigop.Text = Convert.ToString(dr["Código"]);
                     txtdescripcion.Text = Convert.ToString(dr["Descripción"]);
                     seCantidad.Value = Convert.ToDecimal(dr["Cantidad"]);
-                    seCosto.Value = Convert.ToDecimal(dr["Total"]);
+                    seCosto.Value = Convert.ToDecimal(dr["Precio_Unitario"]);
 
                 }
 
@@ -763,5 +780,11 @@ namespace CSPresentacion.Sistema.Administracion.OpcionCatalogo
         }
 
 
+
+        private void seDescue_KeyPress_1(object sender, KeyEventArgs e)
+        {
+            ordenDeCompra.DescuentoTotal = seDescue.Value;
+            Actualizardatosdelaorden();
+        }
     }
 }

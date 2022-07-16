@@ -30,7 +30,7 @@ namespace CSNegocios.Modelos
         public bool Cerrado { get; set; }
         public decimal Tc { get; set; } = 0;
         public string Contacto { get; set; }
-
+        public decimal ImportemenosDescuento { get; set; }
 
     }
 }

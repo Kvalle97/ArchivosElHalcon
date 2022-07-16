@@ -27,7 +27,7 @@ namespace CSPresentacion.Sistema.Administracion
         // ReSharper disable once InconsistentNaming
         private static FrmUsuarios childInstance;
         private ModeloUsuario modeloUsuario = new ModeloUsuario();
-        
+
 
         private readonly ServicioAcciones servicioAcciones = new ServicioAcciones();
         private readonly ServicioUsuarios servicioUsuarios = new ServicioUsuarios();
@@ -96,21 +96,23 @@ namespace CSPresentacion.Sistema.Administracion
                 ckVentas.Checked = modeloUsuario.Ventas;
                 lueTipoDeDescuento.EditValue = modeloUsuario.IdDescuento; /*00*/
                 ckbActivo.Checked = modeloUsuario.Activo == 1;
-/*ok*/          ckVentaCompartida.Checked = modeloUsuario.VentaCompartida;
-/*ok*/          ckVentaproyecto.Checked = modeloUsuario.VendedorProyectos;
-                ckGerenciacomercial.Checked=modeloUsuario.GerenciaComercial;
-                ckPonermeta.Checked=modeloUsuario.PuedePonerMetas;
-                ckTienemeta.Checked=modeloUsuario.TieneMeta;
-                ckVeraveria.Checked=modeloUsuario.VerAverias;
-                tipopromotor.EditValue=modeloUsuario.idPromotor;
-                tiposegmento.EditValue=modeloUsuario.idSegmento;
-                ckProformaWeb.Checked=modeloUsuario.ProformaWeb;
-                ckVerMargen.Checked=modeloUsuario.verMargen;
-                ckPermitirRegalias.Checked=modeloUsuario.PermitirRegalia;
-                ckPagarfacturasA.Checked=modeloUsuario.PagarFacturasMasAntiguas;
-                ckPrestamo.Checked=modeloUsuario.Prestamos;
-  
-               
+                /*ok*/
+                ckVentaCompartida.Checked = modeloUsuario.VentaCompartida;
+                /*ok*/
+                ckVentaproyecto.Checked = modeloUsuario.VendedorProyectos;
+                ckGerenciacomercial.Checked = modeloUsuario.GerenciaComercial;
+                ckPonermeta.Checked = modeloUsuario.PuedePonerMetas;
+                ckTienemeta.Checked = modeloUsuario.TieneMeta;
+                ckVeraveria.Checked = modeloUsuario.VerAverias;
+                tipopromotor.EditValue = modeloUsuario.idPromotor;
+                tiposegmento.EditValue = modeloUsuario.idSegmento;
+                ckProformaWeb.Checked = modeloUsuario.ProformaWeb;
+                ckVerMargen.Checked = modeloUsuario.verMargen;
+                ckPermitirRegalias.Checked = modeloUsuario.PermitirRegalia;
+                ckPagarfacturasA.Checked = modeloUsuario.PagarFacturasMasAntiguas;
+                ckPrestamo.Checked = modeloUsuario.Prestamos;
+
+
                 // PERMISOS INVENTARIO
 
                 ckPermitirRealizarTraslados.Checked = modeloUsuario.PermitirRealizarTraslados;
@@ -122,13 +124,13 @@ namespace CSPresentacion.Sistema.Administracion
 
                 // FIN PERMISOS INVENTARIO
                 lueNievelDeAcceso.EditValue = modeloUsuario.IdNivel.ToString("D2");
-                
-               //ckComboPermiso.SetEditValue(UIHelper.ConvertirDataTableAListaSimple<int>(
-               //     servicioUsuarios.ObtenerPermisosdeusuario(modeloPermisoVentas.IdUsuario), "IdUsuario"));
-                
+
+                //ckComboPermiso.SetEditValue(UIHelper.ConvertirDataTableAListaSimple<int>(
+                //     servicioUsuarios.ObtenerPermisosdeusuario(modeloPermisoVentas.IdUsuario), "IdUsuario"));
+
                 ckComboSucursalesAsociadas.SetEditValue(UIHelper.ConvertirDataTableAListaSimple<int>(
                     servicioUsuarios.ObtenerSucursalesAsociadas(modeloUsuario.IdUsuario), "IdEmpresa"));
-               
+
                 ckComboRoles.SetEditValue(UIHelper.ConvertirDataTableAListaSimple<int>(
                     servicioUsuarios.ObtenerRolesAsociados(modeloUsuario.IdUsuario), "IdRol"));
 
@@ -195,12 +197,12 @@ namespace CSPresentacion.Sistema.Administracion
             try
             {
                 MailMessage correo = new MailMessage();
-                SmtpClient servidor = new SmtpClient("mail.elhalcon.com.ni") {Port = 25};
+                SmtpClient servidor = new SmtpClient("mail.elhalcon.com.ni") { Port = 25 };
 
 
                 correo.From = new MailAddress("informatica@elhalcon.com.ni");
 
-                List<object> lstCorreos = (List<object>) ckComboEnviarA.EditValue;
+                List<object> lstCorreos = (List<object>)ckComboEnviarA.EditValue;
 
                 foreach (int idCorreo in lstCorreos)
                 {
@@ -277,7 +279,7 @@ namespace CSPresentacion.Sistema.Administracion
             {
                 // Vamos a guardar el usuario :)
 
-                if (((DataTable) gcCorreos.DataSource).Rows.Count <= 0)
+                if (((DataTable)gcCorreos.DataSource).Rows.Count <= 0)
                 {
                     UIHelper.AlertarDeError("Debe agregar al menos un correo al usuario");
                     return;
@@ -305,7 +307,7 @@ namespace CSPresentacion.Sistema.Administracion
                 modeloUsuario.Nombres = txtNombres.Text;
                 modeloUsuario.Apellidos = txtApellidos.Text;
                 modeloUsuario.Telefono = txtTelefono.Text;
-                modeloUsuario.email =txtEmail.Text;
+                modeloUsuario.email = txtEmail.Text;
 
                 modeloUsuario.Administracion = ckAdministracion.Checked;
                 modeloUsuario.Bancos = ckBancos.Checked;
@@ -317,23 +319,24 @@ namespace CSPresentacion.Sistema.Administracion
                 modeloUsuario.Proveedores = ckProveedores.Checked;
                 modeloUsuario.Proyecto = ckPrestamo.Checked;
                 modeloUsuario.Ventas = ckVentas.Checked;
-                modeloUsuario.IdDescuento = (int) lueTipoDeDescuento.EditValue; //ojo
+                modeloUsuario.IdDescuento = (int)lueTipoDeDescuento.EditValue; 
+                //ojo
                 //nuevo keyner
- /*ok*/         modeloUsuario.VentaCompartida =  ckVentaCompartida.Checked;
- /*ok*/         modeloUsuario.VendedorProyectos =  ckVentaproyecto.Checked;
- /*ok*/         modeloUsuario.GerenciaComercial= ckGerenciacomercial.Checked;
-                modeloUsuario.PuedePonerMetas=ckPonermeta.Checked;
-                modeloUsuario.TieneMeta=ckTienemeta.Checked;
-                modeloUsuario.VerAverias=ckVeraveria.Checked;
-                modeloUsuario.idPromotor=(int) tipopromotor.EditValue;
-                modeloUsuario.idSegmento=(int) tiposegmento.EditValue;
+                modeloUsuario.VentaCompartida = ckVentaCompartida.Checked;
+                modeloUsuario.VendedorProyectos = ckVentaproyecto.Checked;
+                modeloUsuario.GerenciaComercial = ckGerenciacomercial.Checked;
+                modeloUsuario.PuedePonerMetas = ckPonermeta.Checked;
+                modeloUsuario.TieneMeta = ckTienemeta.Checked;
+                modeloUsuario.VerAverias = ckVeraveria.Checked;
+                modeloUsuario.idPromotor = (int)tipopromotor.EditValue;
+                modeloUsuario.idSegmento = (int)tiposegmento.EditValue;
                 modeloUsuario.ProformaWeb = ckProformaWeb.Checked;
-                modeloUsuario.verMargen=ckVerMargen.Checked;
-                modeloUsuario.PermitirRegalia=ckPermitirRegalias.Checked;
-                modeloUsuario.PagarFacturasMasAntiguas=ckPagarfacturasA.Checked;
-                modeloUsuario.Prestamos=ckPrestamo.Checked;
+                modeloUsuario.verMargen = ckVerMargen.Checked;
+                modeloUsuario.PermitirRegalia = ckPermitirRegalias.Checked;
+                modeloUsuario.PagarFacturasMasAntiguas = ckPagarfacturasA.Checked;
+                modeloUsuario.Prestamos = ckPrestamo.Checked;
                 //hasta aqui
-             
+
                 modeloUsuario.PermitirRealizarTraslados = ckPermitirRealizarTraslados.Checked;
                 modeloUsuario.GuardarPrestamos = ckGuardarPrestamos.Checked;
                 modeloUsuario.AplicarPrestamos = ckAplicarPrestamos.Checked;
@@ -344,7 +347,6 @@ namespace CSPresentacion.Sistema.Administracion
                 // Esto se hace asi porque en sql el tipo de dato es tinyint :(
                 // Si el usuario es nuevo siempre se le pondrá comoa ctivo
                 modeloUsuario.Activo = modeloUsuario.IdUsuario == 0 ? 1 : ckbActivo.Checked ? 1 : 0;
-
                 modeloUsuario.IdNivel = Convert.ToInt32(lueNievelDeAcceso.EditValue);
 
                 // Si no hay una empresa de ubicacion se poner por defecto cero :)
@@ -354,12 +356,12 @@ namespace CSPresentacion.Sistema.Administracion
                 }
                 else
                 {
-                    modeloUsuario.IdEmpresaUbicacion = (int) lueSucursalDeOrigen.EditValue;
+                    modeloUsuario.IdEmpresaUbicacion = (int)lueSucursalDeOrigen.EditValue;
                 }
 
                 servicioUsuarios.GuardarUsuario(modeloUsuario);
 
-             
+
 
                 // Nos servira para preguntar si queremos asignarle una contrasenia
                 // temporal a un posible nuevo usuario
@@ -374,7 +376,7 @@ namespace CSPresentacion.Sistema.Administracion
                 }
 
                 List<CorreoM> lstCorreos = UIHelper.ConvertirDataTable<CorreoM>(
-                    (DataTable) gcCorreos.DataSource);
+                    (DataTable)gcCorreos.DataSource);
 
                 // Guardando correos :)
 
@@ -466,11 +468,11 @@ namespace CSPresentacion.Sistema.Administracion
                 servicioUsuarios.CargarTipoDescuento(lueTipoDeDescuento);
                 servicioUsuarios.CargarCorreos(gcCorreos, gvCorreos, 0);
                 servicioUsuarios.CargarSucursales(ckComboSucursalesAsociadas);
-             
 
-       
-                
-                
+
+
+
+
 
                 ckbActivo.Checked = true;
             }
@@ -623,11 +625,11 @@ namespace CSPresentacion.Sistema.Administracion
             }
             else
             {
-                var drSelected = (DataRowView) lstBoxFirmas.SelectedItem;
+                var drSelected = (DataRowView)lstBoxFirmas.SelectedItem;
                 var dr = servicioUsuarios.ObtenerFirmaOSello(Convert.ToInt32(drSelected["Id"]));
                 txtNombreFirma.Text = Convert.ToString(dr["Nombre"]);
 
-                UIHelper.AgregarImagen(peVistaPreviaFirma, (byte[]) dr["FirmaOSello"]);
+                UIHelper.AgregarImagen(peVistaPreviaFirma, (byte[])dr["FirmaOSello"]);
             }
         }
 

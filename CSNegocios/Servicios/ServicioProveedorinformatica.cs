@@ -105,7 +105,7 @@ namespace CSNegocios.Servicios
 
         //}
 
-   
+
 
 
         public int GuardarProveedor(Modeloproveedorinformatica proveedorinformatica, int login)
@@ -113,7 +113,7 @@ namespace CSNegocios.Servicios
             return Coneccion.EjecutarSp("spGuardarProveedoresInformatica", command =>
             {
                 command.Parameters.Add(new SqlParameter("Descripcion", SqlDbType.NVarChar)).Value =
-                   RevisarSiEsNuloSql(proveedorinformatica.Descripcion);
+                RevisarSiEsNuloSql(proveedorinformatica.Descripcion);
                 command.Parameters.Add(new SqlParameter("Dirección", SqlDbType.NVarChar)).Value =
                 RevisarSiEsNuloSql(proveedorinformatica.Dirección);
                 command.Parameters.Add(new SqlParameter("NoRuc", SqlDbType.NVarChar)).Value =
@@ -124,7 +124,7 @@ namespace CSNegocios.Servicios
                 command.Parameters.Add(new SqlParameter("Teléfono", SqlDbType.NVarChar)).Value =
                 RevisarSiEsNuloSql(proveedorinformatica.Teléfono);
                 command.Parameters.Add(new SqlParameter("Nombre_Contacto", SqlDbType.NVarChar)).Value =
-                   RevisarSiEsNuloSql(proveedorinformatica.Contacto);
+                RevisarSiEsNuloSql(proveedorinformatica.Contacto);
                 command.Parameters.Add(new SqlParameter("Celular", SqlDbType.NVarChar)).Value =
                 RevisarSiEsNuloSql(proveedorinformatica.NoContacto);
                 command.Parameters.Add(new SqlParameter("Correo_Contacto", SqlDbType.NVarChar)).Value = proveedorinformatica.Correo_Contacto;
@@ -139,11 +139,11 @@ namespace CSNegocios.Servicios
         public string Obtenerultimoregistro(int IdProveedor)
         {
             return Convert.ToString(Coneccion.ObterResultadoText("SELECT TOP (1) IdProveedor + 1  FROM ProveedoresInformatica order by IdProveedor desc;",
-               cmd =>
-               {
-                   cmd.Parameters.Add(new SqlParameter("IdProveedor", SqlDbType.Int)).Value = IdProveedor;
+            cmd =>
+            {
+                cmd.Parameters.Add(new SqlParameter("IdProveedor", SqlDbType.Int)).Value = IdProveedor;
 
-               }));
+            }));
         }
 
         public int Agregarnuevocontacto(string idcontacto, string idproveedor, string nombre, string celular, string correo, string cargo)
@@ -180,10 +180,10 @@ namespace CSNegocios.Servicios
         {
             dataTable = null;
             dataTable = Coneccion.EjecutarSpDataTable("spCargarProveedorInformatica", cmd =>
-           {
+            {
 
-               cmd.Parameters.Add("Idproveedor", SqlDbType.Int).Value = idproveedor;
-           });
+                cmd.Parameters.Add("Idproveedor", SqlDbType.Int).Value = idproveedor;
+            });
 
             if (dataTable != null && dataTable.Rows.Count > 0)
             {
@@ -211,6 +211,28 @@ namespace CSNegocios.Servicios
                 cmd.Parameters.Add(new SqlParameter("IdContacto", SqlDbType.Int)).Value =
                 RevisarSiEsNuloSql(codigo);
             });
+        }
+
+        //validar numero de ruc existente
+        public string ExisteRuc(string ruc)
+        {
+            return Convert.ToString(Coneccion.ObterResultadoText("SELECT Noruc FROM ProveedoresInformatica WHERE NoRuc = @NoRuc",
+            cmd =>
+            {
+                cmd.Parameters.Add(new SqlParameter("NoRuc", SqlDbType.NVarChar)).Value = ruc;
+
+            }));
+        }
+
+
+        public string Existecontacto(string contacto)
+        {
+            return Convert.ToString(Coneccion.ObterResultadoText("select Nombre_Contacto from ProveedoresInformatica_Contacto where Nombre_Contacto = @Nombre_Contacto",
+            cmd =>
+            {
+                cmd.Parameters.Add(new SqlParameter("Nombre_Contacto", SqlDbType.NVarChar)).Value = contacto;
+
+            }));
         }
     }
 

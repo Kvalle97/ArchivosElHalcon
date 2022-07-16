@@ -232,7 +232,7 @@
             this.btnRevertirAnular.Name = "btnRevertirAnular";
             this.btnRevertirAnular.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.btnRevertirAnular.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-            this.btnRevertirAnular.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnRevertirAnular_ItemClick);
+            this.btnRevertirAnular.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BtnRevertirAnular_ItemClick);
             // 
             // barManager1
             // 
